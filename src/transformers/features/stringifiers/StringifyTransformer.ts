@@ -23,7 +23,17 @@ export namespace StringifyTransformer {
             throw new Error(ErrorMessages.GENERIC_ARGUMENT);
 
         return ts.factory.createCallExpression(
-            StringifyProgrammer.generate(project, modulo)(type),
+            StringifyProgrammer.generate(
+                {
+                    ...project,
+                    options: {
+                        ...project.options,
+                        functional: false,
+                        numeric: true,
+                    },
+                },
+                modulo,
+            )(type),
             undefined,
             [expression.arguments[0]!],
         );
@@ -31,6 +41,6 @@ export namespace StringifyTransformer {
 }
 
 const enum ErrorMessages {
-    NO_INPUT_VALUE = "Error on TSON.stringify(): no input value.",
-    GENERIC_ARGUMENT = "Error on TSON.stringify(): non-specified generic argument.",
+    NO_INPUT_VALUE = "Error on typia.stringify(): no input value.",
+    GENERIC_ARGUMENT = "Error on typia.stringify(): non-specified generic argument.",
 }

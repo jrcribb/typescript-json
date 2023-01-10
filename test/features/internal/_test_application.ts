@@ -1,15 +1,23 @@
+import fs from "fs";
+
 import { IJsonApplication } from "../../../src";
 import { primitive_equal_to } from "../../internal/primitive_equal_to";
 
 export const _test_application =
     (purpose: "ajv" | "swagger") =>
-    (name: string, generated: IJsonApplication, expected: any) => {
+    (name: string, generated: IJsonApplication) => {
+        const expected: IJsonApplication = JSON.parse(
+            fs.readFileSync(
+                `${__dirname}/../../../../test/schemas/json/${purpose}/${name}.json`,
+                "utf8",
+            ),
+        );
         sort(generated);
         sort(expected);
 
         if (primitive_equal_to(generated, expected) === false)
             throw new Error(
-                `Bug on TSON.application("${purpose}"): failed to understand the ${name} type.`,
+                `Bug on typia.application("${purpose}"): failed to understand the ${name} type.`,
             );
     };
 

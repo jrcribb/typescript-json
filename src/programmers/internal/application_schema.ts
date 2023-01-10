@@ -50,13 +50,18 @@ export const application_schema =
         if (meta.templates.length && AtomicPredicator.template(meta))
             union.push(application_templates(meta, attribute));
         for (const constant of meta.constants) {
-            if (constant.type === "string" && meta.templates.length) continue;
-            else if (!AtomicPredicator.constant(meta)(constant.type)) continue;
+            if (constant.type === "bigint") throw new Error(NO_BIGINT);
+            else if (
+                (constant.type === "string" && meta.templates.length) ||
+                AtomicPredicator.constant(meta)(constant.type) === false
+            )
+                continue;
             union.push(
                 application_constant(constant, meta.nullable, attribute),
             );
         }
         for (const type of meta.atomics) {
+            if (type === "bigint") throw new Error(NO_BIGINT);
             union.push(
                 type === "string"
                     ? application_string(meta, attribute)
@@ -78,7 +83,10 @@ export const application_schema =
 
         // TUPLE
         for (const items of meta.tuples)
-            if (options.purpose === "ajv")
+            if (
+                options.purpose === "ajv" &&
+                items.every((i) => i.rest === null)
+            )
                 union.push(
                     application_tuple(options)(components)(
                         items,
@@ -87,6 +95,11 @@ export const application_schema =
                     ),
                 );
             else {
+                if (items.length === 0)
+                    throw new Error(
+                        "Error on typia.application(): swagger does not support zero length tuple type.",
+                    );
+
                 // SWAGGER DOES NOT SUPPORT TUPLE TYPE YET
                 const merged: Metadata = items.reduce((x, y) =>
                     merge_metadata(x, y),
@@ -182,6 +195,8 @@ function merge_metadata(x: Metadata, y: Metadata): Metadata {
         atomics: [...new Set([...x.atomics, ...y.atomics])],
         constants: [...x.constants],
         templates: x.templates.slice(),
+
+        rest: null,
         arrays: x.arrays.slice(),
         tuples: x.tuples.slice(),
         objects: x.objects.slice(),
@@ -206,5 +221,13 @@ function merge_metadata(x: Metadata, y: Metadata): Metadata {
         ArrayUtil.set(output.arrays, array, (elem) => elem.getName());
     for (const obj of y.objects)
         ArrayUtil.set(output.objects, obj, (elem) => elem.name);
+
+    if (x.rest !== null)
+        ArrayUtil.set(output.arrays, x.rest, (elem) => elem.getName());
+    if (y.rest !== null)
+        ArrayUtil.set(output.arrays, y.rest, (elem) => elem.getName());
+
     return output;
 }
+
+const NO_BIGINT = "Error on typia.application(): does not allow bigint type.";

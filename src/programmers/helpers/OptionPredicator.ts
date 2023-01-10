@@ -1,18 +1,15 @@
 import { ITransformOptions } from "../../transformers/ITransformOptions";
 
 export namespace OptionPredicator {
-    export function functional(options: ITransformOptions): boolean {
-        return options.functional !== false;
+    export function numeric(options: ITransformOptions): boolean {
+        return finite(options) || options.numeric === true;
     }
 
-    export function numeric(
-        options: ITransformOptions,
-        from: "checker" | "stringify",
-    ): boolean {
-        return (
-            options.numeric === undefined ||
-            options.numeric === true ||
-            options.numeric === from
-        );
+    export function functional(options: ITransformOptions): boolean {
+        return options.functional === true;
+    }
+
+    export function finite(options: ITransformOptions): boolean {
+        return options.finite === true;
     }
 }

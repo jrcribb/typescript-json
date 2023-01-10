@@ -8,6 +8,7 @@ import { IProject } from "../transformers/IProject";
 import { CheckerProgrammer } from "./CheckerProgrammer";
 import { IsProgrammer } from "./IsProgrammer";
 import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { OptionPredicator } from "./helpers/OptionPredicator";
 import { check_everything } from "./internal/check_everything";
 import { check_object } from "./internal/check_object";
 
@@ -27,7 +28,7 @@ export namespace ValidateProgrammer {
                     unioners: "$vu",
                     path: true,
                     trace: true,
-                    numeric: !!project.options.numeric,
+                    numeric: OptionPredicator.numeric(project.options),
                     equals,
                     combiner: combine(equals)(importer),
                     joiner: joiner(equals)(importer),
@@ -87,7 +88,7 @@ const combine =
     (equals: boolean) =>
     (importer: FunctionImporter): CheckerProgrammer.IConfig.Combiner =>
     (explore: CheckerProgrammer.IExplore) => {
-        if (explore.tracable === false && explore.from !== "top")
+        if (explore.tracable === false)
             return IsProgrammer.CONFIG({
                 object: validate_object(equals)(importer),
                 numeric: true,
