@@ -1,9 +1,6 @@
 import { Metadata } from "../../metadata/Metadata";
-import { MetadataConstant } from "../../metadata/MetadataConstant";
 import { IJsonComponents } from "../../schemas/IJsonComponents";
 import { IJsonSchema } from "../../schemas/IJsonSchema";
-
-import { ArrayUtil } from "../../utils/ArrayUtil";
 
 import { ApplicationProgrammer } from "../ApplicationProgrammer";
 import { AtomicPredicator } from "../helpers/AtomicPredicator";
@@ -49,32 +46,33 @@ export const application_schema =
         // ATOMIC TYPES
         if (meta.templates.length && AtomicPredicator.template(meta))
             union.push(application_templates(meta, attribute));
-        for (const constant of meta.constants) {
+        for (const constant of meta.constants)
             if (constant.type === "bigint") throw new Error(NO_BIGINT);
             else if (
                 (constant.type === "string" && meta.templates.length) ||
                 AtomicPredicator.constant(meta)(constant.type) === false
             )
                 continue;
-            union.push(
-                application_constant(constant, meta.nullable, attribute),
-            );
-        }
-        for (const type of meta.atomics) {
+            else
+                union.push(
+                    application_constant(constant, meta.nullable, attribute),
+                );
+        for (const type of meta.atomics)
             if (type === "bigint") throw new Error(NO_BIGINT);
-            union.push(
-                type === "string"
-                    ? application_string(meta, attribute)
-                    : type === "boolean"
-                    ? application_boolean(meta.nullable, attribute)
-                    : application_number(meta.nullable, attribute),
-            );
-        }
+            else if (AtomicPredicator.atomic(meta)(type) === false) continue;
+            else
+                union.push(
+                    type === "string"
+                        ? application_string(meta, attribute)
+                        : type === "boolean"
+                        ? application_boolean(meta.nullable, attribute)
+                        : application_number(meta.nullable, attribute),
+                );
 
         // ARRAY
         for (const schema of meta.arrays.values())
             union.push(
-                application_array(options)(components)(
+                application_array(options)(components)()(
                     schema,
                     meta.nullable,
                     attribute,
@@ -82,45 +80,51 @@ export const application_schema =
             );
 
         // TUPLE
-        for (const items of meta.tuples)
-            if (
-                options.purpose === "ajv" &&
-                items.every((i) => i.rest === null)
-            )
-                union.push(
-                    application_tuple(options)(components)(
-                        items,
-                        meta.nullable,
-                        attribute,
-                    ),
+        for (const items of meta.tuples) {
+            const tuple: IJsonSchema.ITuple = application_tuple(options)(
+                components,
+            )(items, meta.nullable, attribute);
+            if (options.purpose === "swagger" && items.length === 0)
+                throw new Error(
+                    "Error on typia.application(): swagger does not support zero length tuple type.",
                 );
+            else if (
+                options.purpose === "ajv" &&
+                !items[items.length - 1]?.rest
+            )
+                union.push(tuple);
             else {
-                if (items.length === 0)
-                    throw new Error(
-                        "Error on typia.application(): swagger does not support zero length tuple type.",
-                    );
-
                 // SWAGGER DOES NOT SUPPORT TUPLE TYPE YET
                 const merged: Metadata = items.reduce((x, y) =>
-                    merge_metadata(x, y),
+                    Metadata.merge(x, y),
                 );
                 union.push(
-                    application_array(options)(components)(
+                    application_array(options)(components)(tuple)(
                         merged,
                         merged?.nullable || false,
                         attribute,
                     ),
                 );
             }
+        }
 
         // NATIVES
         for (const native of meta.natives)
-            union.push(
-                application_native(options)(components)(native)(
-                    meta.nullable,
-                    attribute,
-                ),
-            );
+            if (AtomicPredicator.native(native))
+                union.push(
+                    native === "String"
+                        ? application_string(meta, attribute)
+                        : native === "Boolean"
+                        ? application_boolean(meta.nullable, attribute)
+                        : application_number(meta.nullable, attribute),
+                );
+            else
+                union.push(
+                    application_native(options)(components)(native)(
+                        meta.nullable,
+                        attribute,
+                    ),
+                );
         if (meta.sets.length)
             union.push(
                 application_native(options)(components)(`Set`)(
@@ -176,58 +180,5 @@ const recursive = (
     $recursiveRef,
     ...attribute,
 });
-
-/**
- * @internal
- * @todo: not perfect
- */
-function merge_metadata(x: Metadata, y: Metadata): Metadata {
-    const output: Metadata = Metadata.create({
-        any: x.any || y.any,
-        nullable: x.nullable || y.nullable,
-        required: x.required && y.required,
-        functional: x.functional || y.functional,
-
-        resolved:
-            x.resolved !== null && y.resolved !== null
-                ? merge_metadata(x.resolved, y.resolved)
-                : x.resolved || y.resolved,
-        atomics: [...new Set([...x.atomics, ...y.atomics])],
-        constants: [...x.constants],
-        templates: x.templates.slice(),
-
-        rest: null,
-        arrays: x.arrays.slice(),
-        tuples: x.tuples.slice(),
-        objects: x.objects.slice(),
-
-        natives: [...new Set([...x.natives, ...y.natives])],
-        sets: x.sets.slice(),
-        maps: x.maps.slice(),
-    });
-    for (const constant of y.constants) {
-        const target: MetadataConstant = ArrayUtil.take(
-            output.constants,
-            (elem) => elem.type === constant.type,
-            () => ({
-                type: constant.type,
-                values: [],
-            }),
-        );
-        for (const value of constant.values)
-            ArrayUtil.add(target.values, value);
-    }
-    for (const array of y.arrays)
-        ArrayUtil.set(output.arrays, array, (elem) => elem.getName());
-    for (const obj of y.objects)
-        ArrayUtil.set(output.objects, obj, (elem) => elem.name);
-
-    if (x.rest !== null)
-        ArrayUtil.set(output.arrays, x.rest, (elem) => elem.getName());
-    if (y.rest !== null)
-        ArrayUtil.set(output.arrays, y.rest, (elem) => elem.getName());
-
-    return output;
-}
 
 const NO_BIGINT = "Error on typia.application(): does not allow bigint type.";

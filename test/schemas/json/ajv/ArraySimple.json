@@ -25,36 +25,12 @@
             "x-typia-required": true
           },
           "hobbies": {
-            "oneOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": false,
-                  "x-typia-required": true
-                },
-                "nullable": false,
-                "x-typia-required": true
-              },
-              {
-                "type": "array",
-                "items": {
-                  "$ref": "components#/schemas/ArraySimple.IHobby",
-                  "x-typia-required": true
-                },
-                "nullable": false,
-                "x-typia-required": true
-              },
-              {
-                "type": "array",
-                "items": {
-                  "$ref": "components#/schemas/ArraySimple.IContent",
-                  "x-typia-required": true
-                },
-                "nullable": false,
-                "x-typia-required": true
-              }
-            ],
+            "type": "array",
+            "items": {
+              "$ref": "components#/schemas/ArraySimple.IHobby",
+              "x-typia-required": true
+            },
+            "nullable": false,
             "x-typia-required": true
           }
         },
@@ -64,13 +40,18 @@
           "email",
           "hobbies"
         ],
-        "x-typia_jsDocTags": []
+        "x-typia-jsDocTags": []
       },
       "ArraySimple.IHobby": {
         "$id": "components#/schemas/ArraySimple.IHobby",
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "nullable": false,
+            "x-typia-required": true
+          },
+          "body": {
             "type": "string",
             "nullable": false,
             "x-typia-required": true
@@ -84,25 +65,10 @@
         "nullable": false,
         "required": [
           "name",
+          "body",
           "rank"
         ],
-        "x-typia_jsDocTags": []
-      },
-      "ArraySimple.IContent": {
-        "$id": "components#/schemas/ArraySimple.IContent",
-        "type": "object",
-        "properties": {
-          "body": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
-          }
-        },
-        "nullable": false,
-        "required": [
-          "body"
-        ],
-        "x-typia_jsDocTags": []
+        "x-typia-jsDocTags": []
       }
     }
   },
