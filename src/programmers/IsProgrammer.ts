@@ -27,6 +27,11 @@ export namespace IsProgrammer {
             numeric: OptionPredicator.numeric({
                 numeric: options?.numeric,
             }),
+            atomist: () => (entry) => () =>
+                [
+                    entry.expression,
+                    ...entry.tags.map((tag) => tag.expression),
+                ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
             combiner: () => (type: "and" | "or") => {
                 const initial: ts.TrueLiteral | ts.FalseLiteral =
                     type === "and"
@@ -105,7 +110,7 @@ export namespace IsProgrammer {
         })(importer);
         config.trace = equals;
 
-        config.decoder = (input, target, explore, tags) => {
+        config.decoder = (input, target, explore, tags, jsDocTags) => {
             if (
                 target.size() === 1 &&
                 target.objects.length === 1 &&
@@ -137,6 +142,7 @@ export namespace IsProgrammer {
                 target,
                 explore,
                 tags,
+                jsDocTags,
             );
         };
 

@@ -16,6 +16,7 @@ import { IProject } from "../transformers/IProject";
 import { FeatureProgrammer } from "./FeatureProgrammer";
 import { AtomicPredicator } from "./helpers/AtomicPredicator";
 import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { ICheckEntry } from "./helpers/ICheckEntry";
 import { IExpressionEntry } from "./helpers/IExpressionEntry";
 import { OptionPredicator } from "./helpers/OptionPredicator";
 import { UnionExplorer } from "./helpers/UnionExplorer";
@@ -39,6 +40,9 @@ export namespace CheckerProgrammer {
         numeric: boolean;
         combiner: IConfig.Combiner;
         decoder?: FeatureProgrammer.Decoder<Metadata, ts.Expression>;
+        atomist: (
+            explore: IExplore,
+        ) => (check: ICheckEntry) => (input: ts.Expression) => ts.Expression;
         joiner: IConfig.IJoiner;
         success: ts.Expression;
     }
@@ -217,6 +221,7 @@ export namespace CheckerProgrammer {
         meta: Metadata,
         explore: IExplore,
         tags: IMetadataTag[],
+        jsDocTags: ts.JSDocTagInfo[],
     ) => ts.Expression;
 
     /**
@@ -232,6 +237,7 @@ export namespace CheckerProgrammer {
         meta: Metadata,
         explore: IExplore,
         tags: IMetadataTag[],
+        jsDocTags: ts.JSDocTagInfo[],
     ) => ts.Expression;
 
     /**
@@ -246,7 +252,8 @@ export namespace CheckerProgrammer {
             input: ts.Expression,
             meta: Metadata,
             explore: IExplore,
-            tags: IMetadataTag[],
+            metaTags: IMetadataTag[],
+            jsDocTags: ts.JSDocTagInfo[],
         ): ts.Expression {
             if (meta.any) return config.success;
 
@@ -315,20 +322,25 @@ export namespace CheckerProgrammer {
                 if (AtomicPredicator.atomic(meta)(type) === false) continue;
                 else if (type === "number")
                     binaries.push({
-                        expression: check_number(project, config.numeric)(
-                            input,
-                            tags,
-                        ),
+                        expression: config.atomist(explore)(
+                            check_number(project, config.numeric)(importer)(
+                                metaTags,
+                            )(jsDocTags)(input),
+                        )(input),
                         combined: false,
                     });
                 else if (type === "bigint")
                     binaries.push({
-                        expression: check_bigint(input, tags),
+                        expression: config.atomist(explore)(
+                            check_bigint(importer)(metaTags)(jsDocTags)(input),
+                        )(input),
                         combined: false,
                     });
                 else if (type === "string")
                     binaries.push({
-                        expression: check_string(importer)(input, tags),
+                        expression: config.atomist(explore)(
+                            check_string(importer)(metaTags)(jsDocTags)(input),
+                        )(input),
                         combined: false,
                     });
                 else
@@ -342,11 +354,11 @@ export namespace CheckerProgrammer {
             if (meta.templates.length)
                 if (AtomicPredicator.template(meta))
                     binaries.push({
-                        expression: check_template(importer)(
-                            input,
-                            meta.templates,
-                            tags,
-                        ),
+                        expression: config.atomist(explore)(
+                            check_template(importer)(metaTags)(jsDocTags)(
+                                meta.templates,
+                            )(input),
+                        )(input),
                         combined: false,
                     });
 
@@ -394,6 +406,7 @@ export namespace CheckerProgrammer {
                                 from: "array",
                             },
                             [],
+                            [],
                         ),
                     );
             }
@@ -418,6 +431,7 @@ export namespace CheckerProgrammer {
                                 from: "array",
                             },
                             [],
+                            [],
                         ),
                     );
             }
@@ -425,7 +439,11 @@ export namespace CheckerProgrammer {
             // ARRAYS AND TUPLES
             if (meta.tuples.length + meta.arrays.length > 0) {
                 const install = prepare(
-                    check_array(input, meta.tuples.length === 0 ? tags : []),
+                    config.atomist(explore)(
+                        check_array(importer)(
+                            meta.tuples.length === 0 ? metaTags : [],
+                        )(jsDocTags)(input),
+                    )(input),
                     [...meta.tuples, ...meta.arrays]
                         .map((elem) =>
                             Array.isArray(elem)
@@ -445,7 +463,8 @@ export namespace CheckerProgrammer {
                                 ...explore,
                                 from: "array",
                             },
-                            tags,
+                            metaTags,
+                            jsDocTags,
                         ),
                     );
                 else if (meta.arrays.some((elem) => elem.any)) install(null);
@@ -459,7 +478,8 @@ export namespace CheckerProgrammer {
                                 ...explore,
                                 from: "array",
                             },
-                            tags,
+                            metaTags,
+                            jsDocTags,
                         ),
                     );
                 else
@@ -468,7 +488,8 @@ export namespace CheckerProgrammer {
                             input,
                             [...meta.tuples, ...meta.arrays],
                             explore,
-                            tags,
+                            metaTags,
+                            jsDocTags,
                         ),
                     );
             }
@@ -580,6 +601,7 @@ export namespace CheckerProgrammer {
             tuple: Array<Metadata>,
             explore: IExplore,
             tagList: IMetadataTag[],
+            jsDocTags: ts.JSDocTagInfo[],
         ): ts.Expression {
             const binaries: ts.Expression[] = tuple
                 .filter((meta) => meta.rest === null)
@@ -595,6 +617,7 @@ export namespace CheckerProgrammer {
                                 : `[${index}]`,
                         },
                         tagList,
+                        jsDocTags,
                     ),
                 );
             const rest: ts.Expression | null =
@@ -621,6 +644,7 @@ export namespace CheckerProgrammer {
                               start: tuple.length - 1,
                           },
                           tagList,
+                          jsDocTags,
                       )
                     : null;
 
@@ -728,11 +752,13 @@ export namespace CheckerProgrammer {
                         entry[0],
                         { ...explore, postfix: `${explore.postfix}[0]` },
                         [],
+                        [],
                     ),
                     func(
                         ts.factory.createElementAccessExpression(input, 1),
                         entry[1],
                         { ...explore, postfix: `${explore.postfix}[1]` },
+                        [],
                         [],
                     ),
                 );
@@ -758,6 +784,7 @@ export namespace CheckerProgrammer {
                         maps: [],
                     }),
                     explore,
+                    [],
                     [],
                 ),
             empty: config.success,
@@ -806,39 +833,41 @@ export namespace CheckerProgrammer {
         importer: FunctionImporter,
     ) =>
         UnionExplorer.array_or_tuple({
-            checker: (front, target, explore, tags, array) => {
-                if (Array.isArray(target))
-                    return check_union_tuple(project, config, importer)(
-                        front,
-                        target,
-                        explore,
-                        tags,
-                        array,
-                    );
-                const condition = decode(project, config, importer)(
-                    front,
-                    target,
-                    explore,
-                    tags,
-                );
-                const length = check_array_length(array, tags);
-                return length !== null
-                    ? ts.factory.createBitwiseAnd(condition, length)
-                    : condition;
-            },
-            decoder: (input, target, explore, tags) =>
+            checker: (front, target, explore, tags, jsDocTags, array) =>
+                Array.isArray(target)
+                    ? check_union_tuple(project, config, importer)(
+                          front,
+                          target,
+                          explore,
+                          tags,
+                          jsDocTags,
+                          array,
+                      )
+                    : config.atomist(explore)({
+                          expression: decode(project, config, importer)(
+                              front,
+                              target,
+                              explore,
+                              tags,
+                              jsDocTags,
+                          ),
+                          tags: check_array_length(tags)(array),
+                      })(array),
+            decoder: (input, target, explore, tags, jsDocTags) =>
                 Array.isArray(target)
                     ? decode_tuple(project, config, importer, true)(
                           input,
                           target,
                           explore,
                           tags,
+                          jsDocTags,
                       )
                     : decode_array(project, config, importer, true)(
                           input,
                           target,
                           explore,
                           tags,
+                          jsDocTags,
                       ),
             empty: config.success,
             success: config.success,

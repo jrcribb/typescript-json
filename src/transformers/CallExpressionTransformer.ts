@@ -12,11 +12,12 @@ import { CreateCloneTransformer } from "./features/miscellaneous/CreateCloneTran
 import { CreateIsCloneTransformer } from "./features/miscellaneous/CreateIsCloneTransformer";
 import { CreateIsPruneTransformer } from "./features/miscellaneous/CreateIsPruneTransformer";
 import { CreatePruneTransformer } from "./features/miscellaneous/CreatePruneTransformer";
-import { CreateRandomTransformer } from "./features/miscellaneous/CreateRandomGenerator";
+import { CreateRandomTransformer } from "./features/miscellaneous/CreateRandomTransformer";
 import { CreateValidateCloneTransformer } from "./features/miscellaneous/CreateValidateCloneTransformer";
 import { CreateValidatePruneTransformer } from "./features/miscellaneous/CreateValidatePruneTransformer";
 import { IsCloneTransformer } from "./features/miscellaneous/IsCloneTransformer";
 import { IsPruneTransformer } from "./features/miscellaneous/IsPruneTransformer";
+import { LiteralsTransformer } from "./features/miscellaneous/LiteralsTransformer";
 import { MetadataTransformer } from "./features/miscellaneous/MetadataTransformer";
 import { PruneTransformer } from "./features/miscellaneous/PruneTransformer";
 import { RandomTransformer } from "./features/miscellaneous/RandomTransformer";
@@ -122,6 +123,7 @@ const FUNCTORS: Record<string, () => Task> = {
     // MISC
     metadata: () => MetadataTransformer.transform,
     random: () => RandomTransformer.transform,
+    literals: () => LiteralsTransformer.transform,
 
     clone: () => CloneTransformer.transform,
     assertClone: () => AssertCloneTransformer.transform,

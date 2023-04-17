@@ -1,8 +1,14 @@
+import { $dictionary } from "./functional/$dictionary";
 import { Namespace } from "./functional/Namespace";
 
 import { IMetadataApplication } from "./metadata/IMetadataApplication";
 import { IJsonApplication } from "./schemas/IJsonApplication";
 
+import { Atomic } from "./typings/Atomic";
+
+import { MapUtil } from "./utils/MapUtil";
+
+import { CustomValidatorMap } from "./CustomValidatorMap";
 import { IRandomGenerator } from "./IRandomGenerator";
 import { IValidation } from "./IValidation";
 import { Primitive } from "./Primitive";
@@ -409,6 +415,56 @@ export function validateEquals(): never {
     halt("validateEquals");
 }
 Object.assign(validateEquals, Namespace.validate());
+
+/**
+ * Custom validators.
+ *
+ * If you want to add a custom validation logic utilizing comment tags,
+ * add a closure function with its tag and type name. Below example code
+ * would helpful to understand how to use this instance.
+ *
+ * ```ts
+ * typia.customValidators.insert("powerOf")("number")(
+ *     (text: string) => {
+ *         const denominator: number = Math.log(Number(text));
+ *         return (value: number) => {
+ *             value = Math.log(value) / denominator;
+ *             return value === Math.floor(value);
+ *         };
+ *     }
+ * );
+ * typia.customValidators.insert("dollar")("string")(
+ *     () => (value: string) => value.startsWith("$"),
+ * );
+ *
+ * interface TagCustom {
+ *    /**
+ *     * @powerOf 10
+ *     *\/
+ *    powerOf: number;
+ *
+ *    /**
+ *     * @dollar
+ *     *\/
+ *    dollar: string;
+ * }
+ * ```
+ *
+ * @author Jeongho Nam - https://github.com/samchon
+ */
+export const customValidators: CustomValidatorMap = {
+    size: (name?: string) =>
+        name ? $dictionary.get(name)?.size ?? 0 : $dictionary.size,
+    has: (name) => (type) => $dictionary.get(name)?.has(type) ?? false,
+    get: (name) => (type) => $dictionary.get(name)?.get(type),
+    insert: (name) => (type) => (closure) => {
+        const internal = MapUtil.take($dictionary, name, () => new Map());
+        if (internal.has(type)) return false;
+        internal.set(type, closure);
+        return true;
+    },
+    erase: (name) => (type) => $dictionary.get(name)?.delete(type) ?? false,
+};
 
 /* -----------------------------------------------------------
     JSON FUNCTIONS
@@ -887,6 +943,47 @@ export function random(): never {
     halt("random");
 }
 Object.assign(random, Namespace.random());
+
+/**
+ * > You must configure the generic argument `T`.
+ *
+ * Union literal type to array.
+ *
+ * Converts a union literal type to an array of its members.
+ *
+ * ```typescript
+ * literals<"A" | "B" | 1>; // [1, 2, 3] as const
+ * ```
+ *
+ * @template T Union literal type
+ * @return Array of union literal type's members
+ *
+ * @author Jeongho Nam - https://github.com/samchon
+ */
+export function literals(): never;
+
+/**
+ * Union literal type to array.
+ *
+ * Converts a union literal type to an array of its members.
+ *
+ * ```typescript
+ * literals<"A" | "B" | 1>; // [1, 2, 3] as const
+ * ```
+ *
+ * @template T Union literal type
+ * @return Array of union literal type's members
+ *
+ * @author Jeongho Nam - https://github.com/samchon
+ */
+export function literals<T extends Atomic.Type>(): T[];
+
+/**
+ * @internal
+ */
+export function literals(): never {
+    halt("literals");
+}
 
 /**
  * Clone a data.

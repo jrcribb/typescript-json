@@ -20,14 +20,12 @@ export namespace TypiaSetupWizard {
 
         // PREPARE ASSETS
         const pack: PackageManager = await PackageManager.mount();
-        const args: IArguments = await ArgumentParser.parse(pack)(true)(
-            inquiry,
-        );
+        const args: IArguments = await ArgumentParser.parse(pack)(inquiry);
 
         // INSTALL TYPESCRIPT
-        pack.install({ dev: true, modulo: "typescript" });
+        pack.install({ dev: true, modulo: "typescript", version: "4.9.5" });
         args.project ??= (() => {
-            CommandExecutor.run("npx tsc --init", false);
+            CommandExecutor.run("npx tsc --init");
             return (args.project = "tsconfig.json");
         })();
         pack.install({ dev: true, modulo: "ts-node" });
@@ -45,12 +43,11 @@ export namespace TypiaSetupWizard {
                         "ts-patch install && " + data.scripts.prepare;
                 else data.scripts.prepare = "ts-patch install";
             });
-            CommandExecutor.run("npm run prepare", false);
+            CommandExecutor.run("npm run prepare");
         }
 
-        // INSTALL AND CONFIGURE TYPIA
-        pack.install({ dev: false, modulo: "typia" });
-        await PluginConfigurator.configure(pack, args);
+        // CONFIGURE TYPIA
+        await PluginConfigurator.configure(args);
     }
 
     const inquiry: ArgumentParser.Inquiry<IArguments> = async (
@@ -85,11 +82,21 @@ export namespace TypiaSetupWizard {
         const configure = async () => {
             const fileList: string[] = await (
                 await fs.promises.readdir(process.cwd())
-            ).filter(
-                (str) =>
-                    str.substring(0, 8) === "tsconfig" &&
-                    str.substring(str.length - 5) === ".json",
-            );
+            )
+                .filter(
+                    (str) =>
+                        str.substring(0, 8) === "tsconfig" &&
+                        str.substring(str.length - 5) === ".json",
+                )
+                .sort((x, y) =>
+                    x === "tsconfig.json"
+                        ? -1
+                        : y === "tsconfig.json"
+                        ? 1
+                        : x < y
+                        ? -1
+                        : 1,
+                );
             if (fileList.length === 0) {
                 if (process.cwd() !== pack.directory)
                     throw new Error(`Unable to find "tsconfig.json" file.`);

@@ -1,9 +1,9 @@
 import ts from "typescript";
 
 import { IdentifierFactory } from "../factories/IdentifierFactory";
+import { StatementFactory } from "../factories/StatementFactory";
 import { TypeFactory } from "../factories/TypeFactory";
 
-// import { StatementFactory } from "../factories/StatementFactory";
 import { IProject } from "../transformers/IProject";
 
 import { CheckerProgrammer } from "./CheckerProgrammer";
@@ -30,6 +30,30 @@ export namespace AssertProgrammer {
                     trace: true,
                     numeric: OptionPredicator.numeric(project.options),
                     equals,
+                    atomist: (explore) => (tuple) => (input) =>
+                        [
+                            tuple.expression,
+                            ...tuple.tags.map((tag) =>
+                                ts.factory.createLogicalOr(
+                                    tag.expression,
+                                    create_guard_call(importer)(
+                                        explore.from === "top"
+                                            ? ts.factory.createTrue()
+                                            : ts.factory.createIdentifier(
+                                                  "_exceptionable",
+                                              ),
+                                    )(
+                                        ts.factory.createIdentifier(
+                                            explore.postfix
+                                                ? `_path + ${explore.postfix}`
+                                                : "_path",
+                                        ),
+                                        tag.expected,
+                                        input,
+                                    ),
+                                ),
+                            ),
+                        ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
                     combiner: combiner(equals)(importer),
                     joiner: joiner(equals)(importer),
                     success: ts.factory.createTrue(),
@@ -53,16 +77,44 @@ export namespace AssertProgrammer {
                 ts.factory.createBlock(
                     [
                         ...importer.declare(modulo),
-                        ts.factory.createExpressionStatement(
-                            ts.factory.createCallExpression(
-                                program,
-                                undefined,
-                                [
-                                    ts.factory.createIdentifier("input"),
-                                    ts.factory.createStringLiteral("$input"),
-                                    ts.factory.createTrue(),
-                                ],
+                        StatementFactory.constant(
+                            "__is",
+                            IsProgrammer.generate(
+                                project,
+                                modulo,
+                                equals,
+                            )(
+                                type,
+                                name ??
+                                    TypeFactory.getFullName(
+                                        project.checker,
+                                        type,
+                                    ),
                             ),
+                        ),
+                        ts.factory.createIfStatement(
+                            ts.factory.createStrictEquality(
+                                ts.factory.createFalse(),
+                                ts.factory.createCallExpression(
+                                    ts.factory.createIdentifier("__is"),
+                                    undefined,
+                                    [ts.factory.createIdentifier("input")],
+                                ),
+                            ),
+                            ts.factory.createExpressionStatement(
+                                ts.factory.createCallExpression(
+                                    program,
+                                    undefined,
+                                    [
+                                        ts.factory.createIdentifier("input"),
+                                        ts.factory.createStringLiteral(
+                                            "$input",
+                                        ),
+                                        ts.factory.createTrue(),
+                                    ],
+                                ),
+                            ),
+                            undefined,
                         ),
                         ts.factory.createReturnStatement(
                             ts.factory.createIdentifier(`input`),

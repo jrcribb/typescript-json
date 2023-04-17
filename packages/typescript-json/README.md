@@ -10,14 +10,10 @@
 
 ```typescript
 // RUNTIME VALIDATORS
-export function is<T>(input: unknown | T): input is T; // returns boolean
-export function assert<T>(input: unknown | T): T; // throws TypeGuardError
-export function validate<T>(input: unknown | T): IValidation<T>; // detailed
-
-// STRICT VALIDATORS
-export function equals<T>(input: unknown | T): input is T;
-export function assertEquals<T>(input: unknown | T): T;
-export function validateEquals<T>(input: unknown | T): IValidation<T>;
+export function is<T>(input: unknown): input is T; // returns boolean
+export function assert<T>(input: unknown): T; // throws TypeGuardError
+export function validate<T>(input: unknown): IValidation<T>; // detailed
+export const customValidators: CustomValidatorMap; // can add custom validators
 
 // JSON
 export function application<T>(): IJsonApplication; // JSON schema
@@ -27,7 +23,8 @@ export function assertStringify<T>(input: T): string; // safe and faster
     // +) stringify, isStringify, validateStringify
 
 // MISC
-export function random<T>(): Primitive<T>; // generate random data
+export function random<T>(g?: Partial<IRandomGenerator>): Primitive<T>;
+export function literals<T extends Atomic.Type>(): T[];
 export function clone<T>(input: T): Primitive<T>; // deep clone
 export function prune<T extends object>(input: T): void; // erase extra props
     // +) isClone, assertClone, validateClone
@@ -43,7 +40,7 @@ export function prune<T extends object>(input: T): void; // erase extra props
 
 All functions in `typia` require **only one line**. You don't need any extra dedication like JSON schema definitions or decorator function calls. Just call `typia` function with only one line like `typia.assert<T>(input)`.
 
-Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance is much faster than other competitive libaries. For an example, when comparing validate function `is()` with other competitive libraries, `typia` is maximum **15,000x times faster** than `class-validator`.
+Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance is much faster than other competitive libaries. For an example, when comparing validate function `is()` with other competitive libraries, `typia` is maximum **20,000x faster** than `class-validator`.
 
 ![Is Function Benchmark](https://github.com/samchon/typia/raw/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz/images/is.svg)
 
@@ -65,6 +62,7 @@ Your donation would encourage `typia` development.
 ## Setup
 ### Transformation
 ```bash
+npm install --save typia
 npx typia setup
 ```
 
@@ -87,7 +85,7 @@ For reference, to use this transform mode, you've install one onf them; [ttypesc
 
 If [ttypescript](https://github.com/cevek/ttypescript), you should compile through `ttsc` command, instead of using `tsc`.
 
-Otherwise, you've chosen [ts-patch](https://github.com/nonara/ts-patch), you can use original `tsc` command. However, [ts-patch](https://github.com/nonara/ts-patch) hacks `node_modules/typescript` source code. Also, whenever update `typescrtip` version, you have to run `npm run prepare` command repeatedly.
+Otherwise, you've chosen [ts-patch](https://github.com/nonara/ts-patch), you can use original `tsc` command. However, [ts-patch](https://github.com/nonara/ts-patch) hacks `node_modules/typescript` source code. Also, whenever update `typescript` version, you have to run `npm run prepare` command repeatedly.
 
 By the way, when using [@nest/cli](https://nestjs.com), you must just choose [ts-patch](https://github.com/nonara/ts-patch).
 
@@ -117,6 +115,7 @@ npm run prepare
 ```bash
 # INSTALL TYPIA
 npm install --save typia
+npm install --save-dev typescript
 
 # GENERATE TRANSFORMED TYPESCRIPT CODES
 npx typia generate \
@@ -172,27 +171,28 @@ For more details, refer to the [Guide Documents (wiki)](https://github.com/samch
 >   - [strict validators](https://github.com/samchon/typia/wiki/Runtime-Validators#strict-validators)
 >   - [factory functions](https://github.com/samchon/typia/wiki/Runtime-Validators#factory-functions)
 >   - [comment tags](https://github.com/samchon/typia/wiki/Runtime-Validators#comment-tags)
+>   - [custom validators](https://github.com/samchon/typia/wiki/Runtime-Validators#custom-validators)
 > - **Enhanced JSON**
->   - [JSON schema](https://github.com/samchon/typia/wiki/Enhanced-JSON#json-schema)
->   - [`parse()` functions](https://github.com/samchon/typia/wiki/Enhanced-JSON#parse-functions)
 >   - [`stringify()` functions](https://github.com/samchon/typia/wiki/Enhanced-JSON#stringify-functions)
+>   - [`parse()` functions](https://github.com/samchon/typia/wiki/Enhanced-JSON#parse-functions)
+>   - [JSON schema](https://github.com/samchon/typia/wiki/Enhanced-JSON#json-schema)
 >   - [comment tags](https://github.com/samchon/typia/wiki/Enhanced-JSON#comment-tags)
-> - **Miscellaneous**
->   - [`random()` function](https://github.com/samchon/typia/wiki/Miscellaneous#random-function)
->   - [`clone()` functions](https://github.com/samchon/typia/wiki/Miscellaneous#clone-functions)
->   - [`prune()` functions](https://github.com/samchon/typia/wiki/Miscellaneous#prune-functions)
+> - **Random Generator**
+>   - [`random()` function](https://github.com/samchon/typia/wiki/Random-Generator#random-function)
+>   - [comment tags](https://github.com/samchon/typia/wiki/Random-Geneerator#comment-tags)
+>   - [customization](https://github.com/samchon/typia/wiki/Random-Generator#customization)
 
 ### Runtime Validators
 ```typescript
 // ALLOW SUPERFLUOUS PROPERTIES
-export function is<T>(input: T | unknown): input is T; // returns boolean
-export function assert<T>(input: T | unknown): T; // throws `TypeGuardError`
-export function validate<T>(input: T | unknown): IValidation<T>; // detailed
+export function is<T>(input: unknown): input is T; // returns boolean
+export function assert<T>(input: unknown): T; // throws `TypeGuardError`
+export function validate<T>(input: unknown): IValidation<T>; // detailed
 
 // DO NOT ALLOW SUPERFLUOUS PROPERTIES
-export function equals<T>(input: T | unknown): input is T;
-export function assertEquals<T>(input: T | unknown): T;
-export function validateEquals<T>(input: T | unknown): IValidation<T>;
+export function equals<T>(input: unknown): input is T;
+export function assertEquals<T>(input: unknown): T;
+export function validateEquals<T>(input: unknown): IValidation<T>;
 
 // REUSABLE FACTORY FUNCTIONS
 export function createIs<T>(): (input: unknown) => input is T;
@@ -201,6 +201,9 @@ export function createValidate<T>(): (input: unknown) => IValidation<T>;
 export function createEquals<T>(): (input: unknown) => input is T;
 export function createAssertEquals<T>(): (input: unknown) => T;
 export function createValidateEquals<T>(): (input: unknown) => IValidation<T>;
+
+// YOU CAN ADD CUSTOM VALIDATORS
+export const customValidators: CustomValidatorMap;
 ```
 
 `typia` supports three type of validator functions:
@@ -209,11 +212,14 @@ export function createValidateEquals<T>(): (input: unknown) => IValidation<T>;
   - `assert()`: throws a [`TypeGuardError`](https://github.com/samchon/typia/blob/master/src/TypeGuardError.ts) when not matched
   - `validate()`
     - when matched, returns [`IValidation.ISuccess<T>`](https://github.com/samchon/typia/blob/master/src/IValidation.ts) with `value` property
-    - when not matched, returns [`IValidation.IFailure`](https://github.com/samchon/typia/blob/master/src/IValidation.ts) with `errors` property
+    - otherwise not matched, returns [`IValidation.IFailure`](https://github.com/samchon/typia/blob/master/src/IValidation.ts) with `errors` property
 
 Also, if you want more strict validator functions that even do not allowing superfluous properties not written in the type `T`, you can use those functions instead; `equals()`, `assertEquals()`, `validateEquals()`. Otherwise you want to create resuable validator functions,  you can utilize factory functions like `createIs()` instead.
 
-When you want to add special validation logics, like limiting range of numeric values, you can do it through comment tags. If you want to know about it, visit the Guide Documents ([Features > Runtime Validators > Comment Tags](https://github.com/samchon/typia/wiki/Runtime-Validators#comment-tags)).
+When you want to add special validation logics, like limiting range of numeric values, you can do it through comment tags. Furthermore, you can add your custom validator logics. If you want to know about them, visit the Guide Documents:
+
+  - [Features > Runtime Validators > Comment Tags](https://github.com/samchon/typia/wiki/Runtime-Validators#comment-tags)
+  - [Features > Runtime Validators > Custom Validators](https://github.com/samchon/typia/wiki/Runtime-Validators#custom-validators).
 
 ### Enhanced JSON
 ```typescript
@@ -249,7 +255,7 @@ export function createAssertStringify<T>(): (input: T) => string;
   - `application()`: generate JSON schema with only one line
     - you can complement JSON schema contents through [comment tags](https://github.com/samchon/typia/wiki/Enhanced-JSON#comment-tags)
   - `assertParse()`: parse JSON string safely with type validation
-  - `isStringify()`: maximum 10x faster JSON stringify fuction even type safe
+  - `isStringify()`: maximum 160x faster JSON stringify fuction even type safe
 
 ![JSON string conversion speed](https://raw.githubusercontent.com/samchon/typia/master/benchmark/results/AMD%20Ryzen%207%206800HS%20with%20Radeon%20Graphics/images/stringify.svg)
 
@@ -257,17 +263,20 @@ export function createAssertStringify<T>(): (input: T) => string;
 
 ### Miscellaneous
 ```typescript
-export function random<T>(): Primitive<T>; // random data generator
+export function random<T>(g?: Partial<IRandomGenerator>): Primitive<T>;
+export function literals<T extends Atomic.Type>(): T[];
 export function clone<T>(input: T): Primitive<T>; // deep copy
 export function prune<T>(input: T): void; // remove superfluous properties
     // +) isClone, assertClone, validateClone
     // +) isPrune, assertPrune, validatePrune
 ```
 
-When you need test data, just generate it through `typia.random<T>()`.
+When you need random data, just call only `typia.random<T>()` function.
 
-If a little bit special data being required, use ([Features > Runtime Validators > Comment Tags](https://github.com/samchon/typia/wiki/Runtime-Validators#comment-tags))
+If you need specific random data generation, utilize comment tags or do customize.
 
+  - [Features > Random Generator > comment tags](https://github.com/samchon/typia/wiki/Random-Generator#random-function)
+  - [Features > Random Generator > customization](https://github.com/samchon/typia/wiki/Random-Generator#customization)
 
 
 
@@ -281,7 +290,9 @@ If a little bit special data being required, use ([Features > Runtime Validators
 
 [Nestia](https://github.com/samchon/nestia) is a set of helper libraries for `NestJS`, supporting below features:
 
-  - `@nestia/core`: **15,000x times faster** validation decorators
+  - `@nestia/core`: superfast decorators using `typia`
+    - **20,000x faster** validation
+    - **200x faster** JSON serialization
   - `@nestia/sdk`: evolved **SDK** and **Swagger** generators
     - SDK (Software Development Kit)
       - interaction library for client developers
@@ -289,55 +300,3 @@ If a little bit special data being required, use ([Features > Runtime Validators
   - `nestia`: just CLI (command line interface) tool
 
 ![nestia-sdk-demo](https://user-images.githubusercontent.com/13158709/215004990-368c589d-7101-404e-b81b-fbc936382f05.gif)
-
-### Reactia
-> Not published yet, but soon
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/reactia/blob/master/LICENSE)
-[![Build Status](https://github.com/samchon/reactia/workflows/build/badge.svg)](https://github.com/samchon/reactia/actions?query=workflow%3Abuild)
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/reactia/wiki)
-
-[Reactia](https://github.com/samchon/reactia) is an automatic React components generator, just by analyzing TypeScript type.
-
-  - `@reactia/core`: Core Library analyzing TypeScript type
-  - `@reactia/mui`: Material UI Theme for `core` and `nest`
-  - `@reactia/nest`: Automatic Frontend Application Builder for `NestJS`
-
-![Sample](https://user-images.githubusercontent.com/13158709/199074008-46b2dd67-02be-40b1-aa0f-74ac41f3e0a7.png)
-
-When you want to automate an individual component, just use `@reactia/core`.
-
-```tsx
-import ReactDOM from "react-dom";
-
-import typia from "typia";
-import { ReactiaComponent } from "@reactia/core";
-import { MuiInputTheme } from "@reactia/mui";
-
-const RequestInput = ReactiaComponent<IRequestDto>(MuiInputTheme());
-const input: IRequestDto = { ... };
-
-ReactDOM.render(
-    <RequestInput input={input} />,
-    document.body
-);
-```
-
-Otherwise, you can fully automate frontend application development through `@reactia/nest`.
-
-```tsx
-import React from "react";
-import ReactDOM from "react-dom";
-
-import { ISwagger } "@nestia/swagger";
-import { MuiApplicationTheme } from "@reactia/mui";
-import { ReactiaApplication } from "@reactia/nest";
-
-const swagger: ISwagger = await import("./swagger.json");
-const App: React.FC = ReactiaApplication(MuiApplicationTheme())(swagger);
-
-ReactDOM.render(
-    <App />,
-    document.body
-);
-```

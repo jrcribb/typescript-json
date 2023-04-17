@@ -31,6 +31,30 @@ export namespace ValidateProgrammer {
                     trace: true,
                     numeric: OptionPredicator.numeric(project.options),
                     equals,
+                    atomist: (explore) => (tuple) => (input) =>
+                        [
+                            tuple.expression,
+                            ...tuple.tags.map((tag) =>
+                                ts.factory.createLogicalOr(
+                                    tag.expression,
+                                    create_report_call(
+                                        explore.from === "top"
+                                            ? ts.factory.createTrue()
+                                            : ts.factory.createIdentifier(
+                                                  "_exceptionable",
+                                              ),
+                                    )(
+                                        ts.factory.createIdentifier(
+                                            explore.postfix
+                                                ? `_path + ${explore.postfix}`
+                                                : "_path",
+                                        ),
+                                        tag.expected,
+                                        input,
+                                    ),
+                                ),
+                            ),
+                        ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
                     combiner: combine(equals)(importer),
                     joiner: joiner(equals)(importer),
                     success: ts.factory.createTrue(),
@@ -55,6 +79,21 @@ export namespace ValidateProgrammer {
                 undefined,
                 ts.factory.createBlock(
                     [
+                        StatementFactory.constant(
+                            "__is",
+                            IsProgrammer.generate(
+                                project,
+                                modulo,
+                                equals,
+                            )(
+                                type,
+                                name ??
+                                    TypeFactory.getFullName(
+                                        project.checker,
+                                        type,
+                                    ),
+                            ),
+                        ),
                         StatementFactory.constant(
                             "errors",
                             ts.factory.createAsExpression(
@@ -81,15 +120,27 @@ export namespace ValidateProgrammer {
                             ),
                         ),
                         ...importer.declare(modulo),
-                        ts.factory.createExpressionStatement(
-                            ts.factory.createCallExpression(
-                                program,
-                                undefined,
-                                [
-                                    ts.factory.createIdentifier("input"),
-                                    ts.factory.createStringLiteral("$input"),
-                                    ts.factory.createTrue(),
-                                ],
+                        ts.factory.createIfStatement(
+                            ts.factory.createStrictEquality(
+                                ts.factory.createFalse(),
+                                ts.factory.createCallExpression(
+                                    ts.factory.createIdentifier("__is"),
+                                    undefined,
+                                    [ts.factory.createIdentifier("input")],
+                                ),
+                            ),
+                            ts.factory.createExpressionStatement(
+                                ts.factory.createCallExpression(
+                                    program,
+                                    undefined,
+                                    [
+                                        ts.factory.createIdentifier("input"),
+                                        ts.factory.createStringLiteral(
+                                            "$input",
+                                        ),
+                                        ts.factory.createTrue(),
+                                    ],
+                                ),
                             ),
                         ),
                         StatementFactory.constant(

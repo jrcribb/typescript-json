@@ -47,8 +47,7 @@ async function generate(
         else if (feat.jsonable && s.JSONABLE === false) continue;
         else if (feat.primitive && s.PRIMITIVE === false) continue;
         else if (feat.strict && s.ADDABLE === false) continue;
-        else if (feat.method === "random" && s.name === "UltimateUnion")
-            continue;
+        else if (feat.method === "random" && s.RANDOM === false) continue;
 
         const location: string = `${path}/test_${method}_${s.name}.ts`;
         await fs.promises.writeFile(
@@ -76,9 +75,15 @@ function script(
         `    "${struct.name}",`,
         feat.random ? null : `    ${struct.name}.generate,`,
         create
-            ? `    typia.${method}<${struct.name}>(),`
+            ? feat.random
+                ? `    typia.createRandom<${struct.name}>(${
+                      struct.RANDOM ? `${struct.name}.RANDOM` : ""
+                  }),`
+                : `    typia.${method}<${struct.name}>(),`
             : feat.random
-            ? `    () => typia.${method}<${struct.name}>(),`
+            ? `    () => typia.random<${struct.name}>(${
+                  struct.RANDOM ? `${struct.name}.RANDOM` : ""
+              }),`
             : `    (input) => typia.${method}${
                   feat.explicit ? `<${struct.name}>` : ""
               }(input),`,
