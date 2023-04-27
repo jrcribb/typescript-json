@@ -20,7 +20,7 @@ export const test_validateStringify_TagMatrix = _test_validateStringify(
                                 elem.every(
                                     (elem: any) =>
                                         "string" === typeof elem &&
-                                        true === $is_uuid(elem),
+                                        $is_uuid(elem),
                                 ),
                         );
                     return (
@@ -92,10 +92,9 @@ export const test_validateStringify_TagMatrix = _test_validateStringify(
                                                             ) =>
                                                                 ("string" ===
                                                                     typeof elem &&
-                                                                    (true ===
-                                                                        $is_uuid(
-                                                                            elem,
-                                                                        ) ||
+                                                                    ($is_uuid(
+                                                                        elem,
+                                                                    ) ||
                                                                         $report(
                                                                             _exceptionable,
                                                                             {
@@ -152,13 +151,13 @@ export const test_validateStringify_TagMatrix = _test_validateStringify(
                             ((("object" === typeof input && null !== input) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected: "Resolve<TagMatrix>",
+                                    expected: "TagMatrix",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagMatrix>",
+                                expected: "TagMatrix",
                                 value: input,
                             })
                         );

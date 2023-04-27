@@ -45,9 +45,9 @@ export const test_random_TagObjectUnion = _test_random(
                 $pick([() => $ro0(), () => $ro1()])(),
             );
         })(),
-    (input: any): TagObjectUnion => {
+    (input: any): typia.Primitive<TagObjectUnion> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is TagObjectUnion => {
+        const __is = (input: any): input is typia.Primitive<TagObjectUnion> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.value &&
                 Number.isFinite(input.value) &&
@@ -79,7 +79,7 @@ export const test_random_TagObjectUnion = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is TagObjectUnion => {
+            ): input is typia.Primitive<TagObjectUnion> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -143,7 +143,7 @@ export const test_random_TagObjectUnion = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "Array<(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)>",
+                                "Array<(TagObjectUnion.Literal | TagObjectUnion.Numeric)>",
                             value: input,
                         })) &&
                     input.every(
@@ -152,7 +152,7 @@ export const test_random_TagObjectUnion = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)",
+                                        "(TagObjectUnion.Literal | TagObjectUnion.Numeric)",
                                     value: elem,
                                 })) &&
                             $au0(elem, _path + "[" + _index1 + "]", true),

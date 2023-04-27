@@ -105,9 +105,11 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
             $pick([() => $ro0(), () => $ro6()])(),
         );
     },
-    (input: any): ObjectUnionDouble => {
+    (input: any): typia.Primitive<ObjectUnionDouble> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectUnionDouble => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectUnionDouble> => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.value &&
                 null !== input.value &&
@@ -177,7 +179,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectUnionDouble => {
+            ): input is typia.Primitive<ObjectUnionDouble> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -187,7 +189,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type>",
+                            expected: "__type",
                             value: input.value,
                         })) &&
                     $ao1(
@@ -200,7 +202,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".child",
                             expected:
-                                "(Resolve<ObjectUnionDouble.IAA> | Resolve<ObjectUnionDouble.IAB>)",
+                                "(ObjectUnionDouble.IAA | ObjectUnionDouble.IAB)",
                             value: input.child,
                         })) &&
                     $au0(input.child, _path + ".child", true && _exceptionable);
@@ -224,7 +226,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type.o1>",
+                            expected: "__type.o1",
                             value: input.value,
                         })) &&
                     $ao3(input.value, _path + ".value", true && _exceptionable);
@@ -248,7 +250,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type.o2>",
+                            expected: "__type.o2",
                             value: input.value,
                         })) &&
                     $ao5(input.value, _path + ".value", true && _exceptionable);
@@ -272,7 +274,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type.o3>",
+                            expected: "__type.o3",
                             value: input.value,
                         })) &&
                     $ao7(
@@ -285,7 +287,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".child",
                             expected:
-                                "(Resolve<ObjectUnionDouble.IBA> | Resolve<ObjectUnionDouble.IBB>)",
+                                "(ObjectUnionDouble.IBA | ObjectUnionDouble.IBB)",
                             value: input.child,
                         })) &&
                     $au1(input.child, _path + ".child", true && _exceptionable);
@@ -309,7 +311,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type.o4>",
+                            expected: "__type.o4",
                             value: input.value,
                         })) &&
                     $ao9(input.value, _path + ".value", true && _exceptionable);
@@ -333,7 +335,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected: "Resolve<__type.o5>",
+                            expected: "__type.o5",
                             value: input.value,
                         })) &&
                     $ao11(
@@ -406,7 +408,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "Array<(Resolve<ObjectUnionDouble.IA> | Resolve<ObjectUnionDouble.IB>)>",
+                                "Array<(ObjectUnionDouble.IA | ObjectUnionDouble.IB)>",
                             value: input,
                         })) &&
                     input.every(
@@ -415,7 +417,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Resolve<ObjectUnionDouble.IA> | Resolve<ObjectUnionDouble.IB>)",
+                                        "(ObjectUnionDouble.IA | ObjectUnionDouble.IB)",
                                     value: elem,
                                 })) &&
                             $au2(elem, _path + "[" + _index1 + "]", true),

@@ -93,9 +93,11 @@ export const test_random_ObjectPropertyNullable = _test_random(
                 (generator?.array ?? $generator.array)(() => $ro3()),
             ];
         })(),
-    (input: any): ObjectPropertyNullable => {
+    (input: any): typia.Primitive<ObjectPropertyNullable> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectPropertyNullable => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectPropertyNullable> => {
             const $io0 = (input: any): boolean =>
                 null === input.value || "boolean" === typeof input.value;
             const $io1 = (input: any): boolean =>
@@ -151,7 +153,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectPropertyNullable => {
+            ): input is typia.Primitive<ObjectPropertyNullable> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -199,8 +201,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                         null !== input.value) ||
                         $guard(_exceptionable, {
                             path: _path + ".value",
-                            expected:
-                                "(Resolve<ObjectPropertyNullable.IMember> | null)",
+                            expected: "(ObjectPropertyNullable.IMember | null)",
                             value: input.value,
                         })) &&
                         $ao4(
@@ -255,21 +256,21 @@ export const test_random_ObjectPropertyNullable = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "[Array<Resolve<ObjectPropertyNullable.IPointer<boolean>>>, Array<Resolve<ObjectPropertyNullable.IPointer<number>>>, Array<Resolve<ObjectPropertyNullable.IPointer<string>>>, Array<Resolve<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>>]",
+                                "[Array<ObjectPropertyNullable.IPointer<boolean>>, Array<ObjectPropertyNullable.IPointer<number>>, Array<ObjectPropertyNullable.IPointer<string>>, Array<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>]",
                             value: input,
                         })) &&
                     (input.length === 4 ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "[Array<Resolve<ObjectPropertyNullable.IPointer<boolean>>>, Array<Resolve<ObjectPropertyNullable.IPointer<number>>>, Array<Resolve<ObjectPropertyNullable.IPointer<string>>>, Array<Resolve<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>>]",
+                                "[Array<ObjectPropertyNullable.IPointer<boolean>>, Array<ObjectPropertyNullable.IPointer<number>>, Array<ObjectPropertyNullable.IPointer<string>>, Array<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>]",
                             value: input,
                         })) &&
                     (Array.isArray(input[0]) ||
                         $guard(true, {
                             path: _path + "[0]",
                             expected:
-                                "Array<Resolve<ObjectPropertyNullable.IPointer<boolean>>>",
+                                "Array<ObjectPropertyNullable.IPointer<boolean>>",
                             value: input[0],
                         })) &&
                     input[0].every(
@@ -278,7 +279,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                                 $guard(true, {
                                     path: _path + "[0][" + _index1 + "]",
                                     expected:
-                                        "Resolve<ObjectPropertyNullable.IPointer<boolean>>",
+                                        "ObjectPropertyNullable.IPointer<boolean>",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[0][" + _index1 + "]", true),
@@ -287,7 +288,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                         $guard(true, {
                             path: _path + "[1]",
                             expected:
-                                "Array<Resolve<ObjectPropertyNullable.IPointer<number>>>",
+                                "Array<ObjectPropertyNullable.IPointer<number>>",
                             value: input[1],
                         })) &&
                     input[1].every(
@@ -296,7 +297,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                                 $guard(true, {
                                     path: _path + "[1][" + _index2 + "]",
                                     expected:
-                                        "Resolve<ObjectPropertyNullable.IPointer<number>>",
+                                        "ObjectPropertyNullable.IPointer<number>",
                                     value: elem,
                                 })) &&
                             $ao1(elem, _path + "[1][" + _index2 + "]", true),
@@ -305,7 +306,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                         $guard(true, {
                             path: _path + "[2]",
                             expected:
-                                "Array<Resolve<ObjectPropertyNullable.IPointer<string>>>",
+                                "Array<ObjectPropertyNullable.IPointer<string>>",
                             value: input[2],
                         })) &&
                     input[2].every(
@@ -314,7 +315,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                                 $guard(true, {
                                     path: _path + "[2][" + _index3 + "]",
                                     expected:
-                                        "Resolve<ObjectPropertyNullable.IPointer<string>>",
+                                        "ObjectPropertyNullable.IPointer<string>",
                                     value: elem,
                                 })) &&
                             $ao2(elem, _path + "[2][" + _index3 + "]", true),
@@ -323,7 +324,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                         $guard(true, {
                             path: _path + "[3]",
                             expected:
-                                "Array<Resolve<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>>",
+                                "Array<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>",
                             value: input[3],
                         })) &&
                     input[3].every(
@@ -332,7 +333,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                                 $guard(true, {
                                     path: _path + "[3][" + _index4 + "]",
                                     expected:
-                                        "Resolve<ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>>",
+                                        "ObjectPropertyNullable.IPointer<ObjectPropertyNullable.IMember>",
                                     value: elem,
                                 })) &&
                             $ao3(elem, _path + "[3][" + _index4 + "]", true),

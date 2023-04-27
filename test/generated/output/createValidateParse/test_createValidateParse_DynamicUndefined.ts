@@ -71,13 +71,13 @@ export const test_createValidateParse_DynamicUndefined = _test_validateParse(
                             false === Array.isArray(input)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicUndefined>",
+                                expected: "DynamicUndefined",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<DynamicUndefined>",
+                            expected: "DynamicUndefined",
                             value: input,
                         })
                     );
@@ -91,7 +91,7 @@ export const test_createValidateParse_DynamicUndefined = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     DynamicUndefined.SPOILERS,
 );

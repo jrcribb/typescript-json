@@ -88,9 +88,9 @@ export const test_random_TagRange = _test_random(
             });
             return (generator?.array ?? $generator.array)(() => $ro0());
         })(),
-    (input: any): TagRange => {
+    (input: any): typia.Primitive<TagRange> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is TagRange => {
+        const __is = (input: any): input is typia.Primitive<TagRange> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.greater &&
                 Number.isFinite(input.greater) &&
@@ -129,7 +129,7 @@ export const test_random_TagRange = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is TagRange => {
+            ): input is typia.Primitive<TagRange> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -263,7 +263,7 @@ export const test_random_TagRange = _test_random(
                     (Array.isArray(input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Array<Resolve<TagRange.Type>>",
+                            expected: "Array<TagRange.Type>",
                             value: input,
                         })) &&
                     input.every(
@@ -271,7 +271,7 @@ export const test_random_TagRange = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
-                                    expected: "Resolve<TagRange.Type>",
+                                    expected: "TagRange.Type",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

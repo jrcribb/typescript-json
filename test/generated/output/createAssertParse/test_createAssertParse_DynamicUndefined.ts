@@ -64,7 +64,7 @@ export const test_createAssertParse_DynamicUndefined = _test_assertParse(
                             false === Array.isArray(input)) ||
                             $guard(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicUndefined>",
+                                expected: "DynamicUndefined",
                                 value: input,
                             })) &&
                         $ao0(input, _path + "", true)
@@ -73,7 +73,7 @@ export const test_createAssertParse_DynamicUndefined = _test_assertParse(
             return input;
         };
         input = JSON.parse(input);
-        return assert(input);
+        return assert(input) as any;
     },
     DynamicUndefined.SPOILERS,
 );

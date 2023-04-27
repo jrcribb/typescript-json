@@ -39,9 +39,9 @@ export const test_createRandom_ArrayRecursive = _test_random(
         });
         return $ro0();
     },
-    (input: any): ArrayRecursive => {
+    (input: any): typia.Primitive<ArrayRecursive> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ArrayRecursive => {
+        const __is = (input: any): input is typia.Primitive<ArrayRecursive> => {
             const $io0 = (input: any): boolean =>
                 Array.isArray(input.children) &&
                 input.children.every(
@@ -66,7 +66,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ArrayRecursive => {
+            ): input is typia.Primitive<ArrayRecursive> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -75,8 +75,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                     (Array.isArray(input.children) ||
                         $guard(_exceptionable, {
                             path: _path + ".children",
-                            expected:
-                                "Array<Resolve<ArrayRecursive.ICategory>>",
+                            expected: "Array<ArrayRecursive.ICategory>",
                             value: input.children,
                         })) &&
                     input.children.every(
@@ -84,8 +83,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".children[" + _index1 + "]",
-                                    expected:
-                                        "Resolve<ArrayRecursive.ICategory>",
+                                    expected: "ArrayRecursive.ICategory",
                                     value: elem,
                                 })) &&
                             $ao0(
@@ -118,7 +116,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                         null !== input.created_at) ||
                         $guard(_exceptionable, {
                             path: _path + ".created_at",
-                            expected: "Resolve<ArrayRecursive.ITimestamp>",
+                            expected: "ArrayRecursive.ITimestamp",
                             value: input.created_at,
                         })) &&
                     $ao1(
@@ -149,7 +147,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<ArrayRecursive.ICategory>",
+                            expected: "ArrayRecursive.ICategory",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

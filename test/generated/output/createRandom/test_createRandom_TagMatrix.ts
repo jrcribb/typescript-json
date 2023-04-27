@@ -35,10 +35,10 @@ export const test_createRandom_TagMatrix = _test_random(
         });
         return $ro0();
     },
-    (input: any): TagMatrix => {
+    (input: any): typia.Primitive<TagMatrix> => {
         const $guard = (typia.createAssert as any).guard;
         const $is_uuid = (typia.createAssert as any).is_uuid;
-        const __is = (input: any): input is TagMatrix => {
+        const __is = (input: any): input is typia.Primitive<TagMatrix> => {
             const $is_uuid = (typia.createAssert as any).is_uuid;
             const $io0 = (input: any): boolean =>
                 Array.isArray(input.matrix) &&
@@ -49,8 +49,7 @@ export const test_createRandom_TagMatrix = _test_random(
                         3 === elem.length &&
                         elem.every(
                             (elem: any) =>
-                                "string" === typeof elem &&
-                                true === $is_uuid(elem),
+                                "string" === typeof elem && $is_uuid(elem),
                         ),
                 );
             return "object" === typeof input && null !== input && $io0(input);
@@ -60,7 +59,7 @@ export const test_createRandom_TagMatrix = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is TagMatrix => {
+            ): input is typia.Primitive<TagMatrix> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -96,7 +95,7 @@ export const test_createRandom_TagMatrix = _test_random(
                             elem.every(
                                 (elem: any, _index2: number) =>
                                     ("string" === typeof elem &&
-                                        (true === $is_uuid(elem) ||
+                                        ($is_uuid(elem) ||
                                             $guard(_exceptionable, {
                                                 path:
                                                     _path +
@@ -126,7 +125,7 @@ export const test_createRandom_TagMatrix = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<TagMatrix>",
+                            expected: "TagMatrix",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

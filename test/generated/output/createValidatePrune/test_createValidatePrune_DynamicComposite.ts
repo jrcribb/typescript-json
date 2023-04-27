@@ -139,13 +139,13 @@ export const test_createValidatePrune_DynamicComposite = _test_validatePrune(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicComposite>",
+                                expected: "DynamicComposite",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<DynamicComposite>",
+                            expected: "DynamicComposite",
                             value: input,
                         })
                     );
@@ -160,6 +160,21 @@ export const test_createValidatePrune_DynamicComposite = _test_validatePrune(
         const prune = (input: DynamicComposite): void => {
             const $join = (typia.createValidatePrune as any).join;
             const $po0 = (input: any): any => {
+                Object.entries(input).forEach(([key, value]) => {
+                    if (undefined === value) return;
+                    if ("id" === key) return;
+                    if ("name" === key) return;
+                    if (RegExp(/^-?\d+\.?\d*$/).test(key)) {
+                    }
+                    if (RegExp(/^(prefix_(.*))/).test(key)) {
+                    }
+                    if (RegExp(/((.*)_postfix)$/).test(key)) {
+                    }
+                    if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key)) {
+                    }
+                    if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key)) {
+                    }
+                });
                 for (const key of Object.keys(input)) {
                     if (
                         "id" === key ||

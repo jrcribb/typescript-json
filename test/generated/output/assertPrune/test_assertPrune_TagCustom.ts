@@ -16,7 +16,7 @@ export const test_assertPrune_TagCustom = _test_assertPrune(
                     const $is_custom = (typia.assertPrune as any).is_custom;
                     const $io0 = (input: any): boolean =>
                         "string" === typeof input.id &&
-                        true === $is_uuid(input.id) &&
+                        $is_uuid(input.id) &&
                         "string" === typeof input.dollar &&
                         $is_custom("dollar", "string", "", input.dollar) &&
                         "string" === typeof input.postfix &&
@@ -47,7 +47,7 @@ export const test_assertPrune_TagCustom = _test_assertPrune(
                             _exceptionable: boolean = true,
                         ): boolean =>
                             (("string" === typeof input.id &&
-                                (true === $is_uuid(input.id) ||
+                                ($is_uuid(input.id) ||
                                     $guard(_exceptionable, {
                                         path: _path + ".id",
                                         expected: "string (@format uuid)",
@@ -114,7 +114,7 @@ export const test_assertPrune_TagCustom = _test_assertPrune(
                             (("object" === typeof input && null !== input) ||
                                 $guard(true, {
                                     path: _path + "",
-                                    expected: "Resolve<TagCustom>",
+                                    expected: "TagCustom",
                                     value: input,
                                 })) &&
                             $ao0(input, _path + "", true)

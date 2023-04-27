@@ -174,13 +174,13 @@ export const test_validateParse_DynamicComposite = _test_validateParse(
                             ((("object" === typeof input && null !== input) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected: "Resolve<DynamicComposite>",
+                                    expected: "DynamicComposite",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicComposite>",
+                                expected: "DynamicComposite",
                                 value: input,
                             })
                         );
@@ -194,7 +194,7 @@ export const test_validateParse_DynamicComposite = _test_validateParse(
             };
             input = JSON.parse(input);
             const output = validate(input);
-            return output;
+            return output as any;
         })(input),
     DynamicComposite.SPOILERS,
 );

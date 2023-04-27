@@ -119,7 +119,7 @@ export const test_createValidateParse_TagObjectUnion = _test_validateParse(
                             $report(true, {
                                 path: _path + "",
                                 expected:
-                                    "Array<(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)>",
+                                    "Array<(TagObjectUnion.Literal | TagObjectUnion.Numeric)>",
                                 value: input,
                             })) &&
                             input
@@ -131,7 +131,7 @@ export const test_createValidateParse_TagObjectUnion = _test_validateParse(
                                                 path:
                                                     _path + "[" + _index1 + "]",
                                                 expected:
-                                                    "(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)",
+                                                    "(TagObjectUnion.Literal | TagObjectUnion.Numeric)",
                                                 value: elem,
                                             })) &&
                                             $vu0(
@@ -142,7 +142,7 @@ export const test_createValidateParse_TagObjectUnion = _test_validateParse(
                                         $report(true, {
                                             path: _path + "[" + _index1 + "]",
                                             expected:
-                                                "(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)",
+                                                "(TagObjectUnion.Literal | TagObjectUnion.Numeric)",
                                             value: elem,
                                         }),
                                 )
@@ -150,7 +150,7 @@ export const test_createValidateParse_TagObjectUnion = _test_validateParse(
                         $report(true, {
                             path: _path + "",
                             expected:
-                                "Array<(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)>",
+                                "Array<(TagObjectUnion.Literal | TagObjectUnion.Numeric)>",
                             value: input,
                         })
                     );
@@ -164,7 +164,7 @@ export const test_createValidateParse_TagObjectUnion = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     TagObjectUnion.SPOILERS,
 );

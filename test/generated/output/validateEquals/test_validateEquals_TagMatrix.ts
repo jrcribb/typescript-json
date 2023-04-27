@@ -24,8 +24,7 @@ export const test_validateEquals_TagMatrix = _test_validateEquals(
                             3 === elem.length &&
                             elem.every(
                                 (elem: any, _index2: number) =>
-                                    "string" === typeof elem &&
-                                    true === $is_uuid(elem),
+                                    "string" === typeof elem && $is_uuid(elem),
                             ),
                     ) &&
                     (1 === Object.keys(input).length ||
@@ -102,10 +101,9 @@ export const test_validateEquals_TagMatrix = _test_validateEquals(
                                                         ) =>
                                                             ("string" ===
                                                                 typeof elem &&
-                                                                (true ===
-                                                                    $is_uuid(
-                                                                        elem,
-                                                                    ) ||
+                                                                ($is_uuid(
+                                                                    elem,
+                                                                ) ||
                                                                     $report(
                                                                         _exceptionable,
                                                                         {
@@ -180,13 +178,13 @@ export const test_validateEquals_TagMatrix = _test_validateEquals(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagMatrix>",
+                                expected: "TagMatrix",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<TagMatrix>",
+                            expected: "TagMatrix",
                             value: input,
                         })
                     );

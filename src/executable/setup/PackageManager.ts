@@ -38,7 +38,7 @@ export class PackageManager {
     public install(props: {
         dev: boolean;
         modulo: string;
-        version?: string;
+        version: string;
     }): boolean {
         const middle: string =
             this.manager === "yarn"

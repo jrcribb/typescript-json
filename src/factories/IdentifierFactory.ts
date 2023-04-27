@@ -3,31 +3,36 @@ import ts from "typescript";
 import { Escaper } from "../utils/Escaper";
 
 export namespace IdentifierFactory {
-    export function generate(name: string) {
-        return Escaper.variable(name)
+    export const identifier = (name: string) =>
+        Escaper.variable(name)
             ? ts.factory.createIdentifier(name)
             : ts.factory.createStringLiteral(name);
-    }
 
-    export function join(prefix: ts.Expression, name: string) {
-        const postfix = generate(name);
+    /**
+     * @deprecated Use `access()` function instead.
+     */
+    export const join = (prefix: ts.Expression, name: string) =>
+        access(prefix)(name);
+
+    export const access = (target: ts.Expression) => (property: string) => {
+        const postfix = identifier(property);
         return ts.isStringLiteral(postfix)
-            ? ts.factory.createElementAccessExpression(prefix, postfix)
-            : ts.factory.createPropertyAccessExpression(prefix, postfix);
-    }
+            ? ts.factory.createElementAccessExpression(target, postfix)
+            : ts.factory.createPropertyAccessExpression(target, postfix);
+    };
 
-    export function postfix(str: string): string {
-        return Escaper.variable(str)
+    export const postfix = (str: string): string =>
+        Escaper.variable(str)
             ? `".${str}"`
             : `"[${JSON.stringify(str).split('"').join('\\"')}]"`;
-    }
 
-    export function parameter(
+    export const parameter = (
         name: string | ts.BindingName,
         type?: ts.TypeNode,
         init?: ts.Expression | ts.PunctuationToken<ts.SyntaxKind.QuestionToken>,
-    ) {
-        if (ts.version >= "4.8")
+    ) => {
+        // instead of ts.version >= "4.8"
+        if (ts.getDecorators !== undefined)
             return ts.factory.createParameterDeclaration(
                 undefined,
                 undefined,
@@ -41,7 +46,7 @@ export namespace IdentifierFactory {
                     : undefined,
             );
         // eslint-disable-next-line
-        return ts.factory.createParameterDeclaration(
+        return (ts.factory.createParameterDeclaration as any)(
             undefined,
             undefined,
             undefined,
@@ -54,28 +59,5 @@ export namespace IdentifierFactory {
                 ? init
                 : undefined,
         );
-    }
-
-    // export function property(
-    //     name: string | ts.PropertyName,
-    //     value: ts.Expression,
-    // ): ts.PropertyDeclaration {
-    //     if (ts.version >= "4.8")
-    //         return ts.factory.createPropertyDeclaration(
-    //             undefined,
-    //             name,
-    //             undefined,
-    //             undefined,
-    //             value,
-    //         );
-    //     // eslint-disable-next-line
-    //     return ts.factory.createPropertyDeclaration(
-    //         undefined,
-    //         undefined,
-    //         name,
-    //         undefined,
-    //         undefined,
-    //         value,
-    //     );
-    // }
+    };
 }

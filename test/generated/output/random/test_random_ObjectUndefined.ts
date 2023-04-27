@@ -56,9 +56,11 @@ export const test_random_ObjectUndefined = _test_random(
             });
             return (generator?.array ?? $generator.array)(() => $ro0());
         })(),
-    (input: any): ObjectUndefined => {
+    (input: any): typia.Primitive<ObjectUndefined> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectUndefined => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectUndefined> => {
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.name &&
                 (undefined === input.professor ||
@@ -92,7 +94,7 @@ export const test_random_ObjectUndefined = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectUndefined => {
+            ): input is typia.Primitive<ObjectUndefined> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -119,7 +121,7 @@ export const test_random_ObjectUndefined = _test_random(
                             $guard(_exceptionable, {
                                 path: _path + ".classroom",
                                 expected:
-                                    "(Resolve<ObjectUndefined.IClassroom> | undefined)",
+                                    "(ObjectUndefined.IClassroom | undefined)",
                                 value: input.classroom,
                             })) &&
                             $ao1(
@@ -181,8 +183,7 @@ export const test_random_ObjectUndefined = _test_random(
                     (Array.isArray(input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected:
-                                "Array<Resolve<ObjectUndefined.ILecture>>",
+                            expected: "Array<ObjectUndefined.ILecture>",
                             value: input,
                         })) &&
                     input.every(
@@ -190,8 +191,7 @@ export const test_random_ObjectUndefined = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
-                                    expected:
-                                        "Resolve<ObjectUndefined.ILecture>",
+                                    expected: "ObjectUndefined.ILecture",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

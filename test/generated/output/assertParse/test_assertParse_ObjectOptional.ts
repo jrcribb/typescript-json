@@ -73,7 +73,7 @@ export const test_assertParse_ObjectOptional = _test_assertParse(
                                 false === Array.isArray(input)) ||
                                 $guard(true, {
                                     path: _path + "",
-                                    expected: "Resolve<ObjectOptional>",
+                                    expected: "ObjectOptional",
                                     value: input,
                                 })) &&
                             $ao0(input, _path + "", true)
@@ -82,7 +82,7 @@ export const test_assertParse_ObjectOptional = _test_assertParse(
                 return input;
             };
             input = JSON.parse(input);
-            return assert(input);
+            return assert(input) as any;
         })(input),
     ObjectOptional.SPOILERS,
 );

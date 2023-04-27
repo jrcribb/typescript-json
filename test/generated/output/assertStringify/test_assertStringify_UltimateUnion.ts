@@ -586,7 +586,35 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                             "boolean" === typeof input["x-typia-required"]) &&
                         (undefined === input["x-typia-rest"] ||
                             "boolean" === typeof input["x-typia-rest"]);
-                    const $io31 = (input: any): boolean => true;
+                    const $io31 = (input: any): boolean =>
+                        null !== input.type &&
+                        undefined === input.type &&
+                        (undefined === input.deprecated ||
+                            "boolean" === typeof input.deprecated) &&
+                        (undefined === input.title ||
+                            "string" === typeof input.title) &&
+                        (undefined === input.description ||
+                            "string" === typeof input.description) &&
+                        (undefined === input["x-typia-metaTags"] ||
+                            (Array.isArray(input["x-typia-metaTags"]) &&
+                                input["x-typia-metaTags"].every(
+                                    (elem: any) =>
+                                        "object" === typeof elem &&
+                                        null !== elem &&
+                                        $iu0(elem),
+                                ))) &&
+                        (undefined === input["x-typia-jsDocTags"] ||
+                            (Array.isArray(input["x-typia-jsDocTags"]) &&
+                                input["x-typia-jsDocTags"].every(
+                                    (elem: any) =>
+                                        "object" === typeof elem &&
+                                        null !== elem &&
+                                        $io17(elem),
+                                ))) &&
+                        (undefined === input["x-typia-required"] ||
+                            "boolean" === typeof input["x-typia-required"]) &&
+                        (undefined === input["x-typia-rest"] ||
+                            "boolean" === typeof input["x-typia-rest"]);
                     const $io32 = (input: any): boolean =>
                         "object" === typeof input.schemas &&
                         null !== input.schemas &&
@@ -831,7 +859,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 $guard(_exceptionable, {
                                     path: _path + ".schemas",
                                     expected:
-                                        'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                        'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                     value: input.schemas,
                                 })) &&
                             input.schemas.every(
@@ -846,7 +874,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 _index2 +
                                                 "]",
                                             expected:
-                                                '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                             value: elem,
                                         })) &&
                                     $au3(
@@ -859,7 +887,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 null !== input.components) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".components",
-                                    expected: "Resolve<IJsonComponents>",
+                                    expected: "IJsonComponents",
                                     value: input.components,
                                 })) &&
                             $ao32(
@@ -946,7 +974,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -960,7 +988,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index4 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -977,7 +1005,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -990,8 +1018,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index5 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -1309,7 +1336,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + ".text",
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo.IText>> | undefined)",
+                                            "(Array<IJsDocTagInfo.IText> | undefined)",
                                         value: input.text,
                                     })) &&
                                     input.text.every(
@@ -1323,7 +1350,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index6 +
                                                         "]",
                                                     expected:
-                                                        "Resolve<IJsDocTagInfo.IText>",
+                                                        "IJsDocTagInfo.IText",
                                                     value: elem,
                                                 })) &&
                                             $ao18(
@@ -1420,7 +1447,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -1434,7 +1461,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index8 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -1451,7 +1478,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -1464,8 +1491,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index9 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -1561,7 +1587,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -1575,7 +1601,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index11 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -1592,7 +1618,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -1605,8 +1631,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index12 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -1683,7 +1708,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -1697,7 +1722,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index13 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -1714,7 +1739,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -1727,8 +1752,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index14 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -1865,7 +1889,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -1879,7 +1903,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index15 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -1896,7 +1920,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -1909,8 +1933,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index16 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2026,7 +2049,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2040,7 +2063,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index17 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2057,7 +2080,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2070,8 +2093,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index18 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2204,7 +2226,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2218,7 +2240,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index19 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2235,7 +2257,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2248,8 +2270,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index20 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2287,7 +2308,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 $guard(_exceptionable, {
                                     path: _path + ".items",
                                     expected:
-                                        '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                     value: input.items,
                                 })) &&
                             $au3(
@@ -2343,7 +2364,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-tuple"]',
                                         expected:
-                                            "(Resolve<IJsonSchema.ITuple> | undefined)",
+                                            "(IJsonSchema.ITuple | undefined)",
                                         value: input["x-typia-tuple"],
                                     })) &&
                                     $ao26(
@@ -2389,7 +2410,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2403,7 +2424,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index21 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2420,7 +2441,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2433,8 +2454,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index22 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2470,7 +2490,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 $guard(_exceptionable, {
                                     path: _path + ".items",
                                     expected:
-                                        'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                        'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                     value: input.items,
                                 })) &&
                             input.items.every(
@@ -2485,7 +2505,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 _index23 +
                                                 "]",
                                             expected:
-                                                '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                             value: elem,
                                         })) &&
                                     $au2(
@@ -2532,7 +2552,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2546,7 +2566,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index24 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2563,7 +2583,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2576,8 +2596,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index25 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2613,7 +2632,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 $guard(_exceptionable, {
                                     path: _path + ".oneOf",
                                     expected:
-                                        'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                        'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                     value: input.oneOf,
                                 })) &&
                             input.oneOf.every(
@@ -2628,7 +2647,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 _index26 +
                                                 "]",
                                             expected:
-                                                '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                             value: elem,
                                         })) &&
                                     $au1(
@@ -2663,7 +2682,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2677,7 +2696,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index27 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2694,7 +2713,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2707,8 +2726,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index28 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2772,7 +2790,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2786,7 +2804,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index29 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2803,7 +2821,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2816,8 +2834,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index30 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2881,7 +2898,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -2895,7 +2912,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index31 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -2912,7 +2929,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -2925,8 +2942,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index32 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -2990,7 +3006,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     })) &&
                                     input["x-typia-metaTags"].every(
@@ -3004,7 +3020,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         _index33 +
                                                         "]",
                                                     expected:
-                                                        "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                     value: elem,
                                                 })) &&
                                             $au0(
@@ -3021,7 +3037,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
@@ -3034,8 +3050,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                         '["x-typia-jsDocTags"][' +
                                                         _index34 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
@@ -3066,7 +3081,116 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                             input: any,
                             _path: string,
                             _exceptionable: boolean = true,
-                        ): boolean => true;
+                        ): boolean =>
+                            (null !== input.type ||
+                                $guard(_exceptionable, {
+                                    path: _path + ".type",
+                                    expected: "undefined",
+                                    value: input.type,
+                                })) &&
+                            (undefined === input.type ||
+                                $guard(_exceptionable, {
+                                    path: _path + ".type",
+                                    expected: "undefined",
+                                    value: input.type,
+                                })) &&
+                            (undefined === input.deprecated ||
+                                "boolean" === typeof input.deprecated ||
+                                $guard(_exceptionable, {
+                                    path: _path + ".deprecated",
+                                    expected: "(boolean | undefined)",
+                                    value: input.deprecated,
+                                })) &&
+                            (undefined === input.title ||
+                                "string" === typeof input.title ||
+                                $guard(_exceptionable, {
+                                    path: _path + ".title",
+                                    expected: "(string | undefined)",
+                                    value: input.title,
+                                })) &&
+                            (undefined === input.description ||
+                                "string" === typeof input.description ||
+                                $guard(_exceptionable, {
+                                    path: _path + ".description",
+                                    expected: "(string | undefined)",
+                                    value: input.description,
+                                })) &&
+                            (undefined === input["x-typia-metaTags"] ||
+                                ((Array.isArray(input["x-typia-metaTags"]) ||
+                                    $guard(_exceptionable, {
+                                        path: _path + '["x-typia-metaTags"]',
+                                        expected:
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
+                                        value: input["x-typia-metaTags"],
+                                    })) &&
+                                    input["x-typia-metaTags"].every(
+                                        (elem: any, _index35: number) =>
+                                            (("object" === typeof elem &&
+                                                null !== elem) ||
+                                                $guard(_exceptionable, {
+                                                    path:
+                                                        _path +
+                                                        '["x-typia-metaTags"][' +
+                                                        _index35 +
+                                                        "]",
+                                                    expected:
+                                                        "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
+                                                    value: elem,
+                                                })) &&
+                                            $au0(
+                                                elem,
+                                                _path +
+                                                    '["x-typia-metaTags"][' +
+                                                    _index35 +
+                                                    "]",
+                                                true && _exceptionable,
+                                            ),
+                                    ))) &&
+                            (undefined === input["x-typia-jsDocTags"] ||
+                                ((Array.isArray(input["x-typia-jsDocTags"]) ||
+                                    $guard(_exceptionable, {
+                                        path: _path + '["x-typia-jsDocTags"]',
+                                        expected:
+                                            "(Array<IJsDocTagInfo> | undefined)",
+                                        value: input["x-typia-jsDocTags"],
+                                    })) &&
+                                    input["x-typia-jsDocTags"].every(
+                                        (elem: any, _index36: number) =>
+                                            (("object" === typeof elem &&
+                                                null !== elem) ||
+                                                $guard(_exceptionable, {
+                                                    path:
+                                                        _path +
+                                                        '["x-typia-jsDocTags"][' +
+                                                        _index36 +
+                                                        "]",
+                                                    expected: "IJsDocTagInfo",
+                                                    value: elem,
+                                                })) &&
+                                            $ao17(
+                                                elem,
+                                                _path +
+                                                    '["x-typia-jsDocTags"][' +
+                                                    _index36 +
+                                                    "]",
+                                                true && _exceptionable,
+                                            ),
+                                    ))) &&
+                            (undefined === input["x-typia-required"] ||
+                                "boolean" ===
+                                    typeof input["x-typia-required"] ||
+                                $guard(_exceptionable, {
+                                    path: _path + '["x-typia-required"]',
+                                    expected: "(boolean | undefined)",
+                                    value: input["x-typia-required"],
+                                })) &&
+                            (undefined === input["x-typia-rest"] ||
+                                "boolean" === typeof input["x-typia-rest"] ||
+                                $guard(_exceptionable, {
+                                    path: _path + '["x-typia-rest"]',
+                                    expected: "(boolean | undefined)",
+                                    value: input["x-typia-rest"],
+                                }));
                         const $ao32 = (
                             input: any,
                             _path: string,
@@ -3078,7 +3202,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 $guard(_exceptionable, {
                                     path: _path + ".schemas",
                                     expected:
-                                        "Resolve<Record<string, IJsonComponents.IObject>>",
+                                        "Record<string, IJsonComponents.IObject>",
                                     value: input.schemas,
                                 })) &&
                             $ao33(
@@ -3102,7 +3226,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                             $guard(_exceptionable, {
                                                 path: _path + $join(key),
                                                 expected:
-                                                    "Resolve<IJsonComponents.IObject>",
+                                                    "IJsonComponents.IObject",
                                                 value: value,
                                             })) &&
                                         $ao34(
@@ -3149,8 +3273,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 false === Array.isArray(input.properties)) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".properties",
-                                    expected:
-                                        "Resolve<Record<string, IJsonSchema>>",
+                                    expected: "Record<string, IJsonSchema>",
                                     value: input.properties,
                                 })) &&
                             $ao35(
@@ -3169,7 +3292,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + ".patternProperties",
                                         expected:
-                                            "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                            "(Record<string, IJsonSchema> | undefined)",
                                         value: input.patternProperties,
                                     })) &&
                                     $ao35(
@@ -3188,7 +3311,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + ".additionalProperties",
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                         value: input.additionalProperties,
                                     })) &&
                                     $au3(
@@ -3204,13 +3327,13 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                         value: input.required,
                                     })) &&
                                     input.required.every(
-                                        (elem: any, _index35: number) =>
+                                        (elem: any, _index37: number) =>
                                             "string" === typeof elem ||
                                             $guard(_exceptionable, {
                                                 path:
                                                     _path +
                                                     ".required[" +
-                                                    _index35 +
+                                                    _index37 +
                                                     "]",
                                                 expected: "string",
                                                 value: elem,
@@ -3228,28 +3351,27 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                     $guard(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     })) &&
                                     input["x-typia-jsDocTags"].every(
-                                        (elem: any, _index36: number) =>
+                                        (elem: any, _index38: number) =>
                                             (("object" === typeof elem &&
                                                 null !== elem) ||
                                                 $guard(_exceptionable, {
                                                     path:
                                                         _path +
                                                         '["x-typia-jsDocTags"][' +
-                                                        _index36 +
+                                                        _index38 +
                                                         "]",
-                                                    expected:
-                                                        "Resolve<IJsDocTagInfo>",
+                                                    expected: "IJsDocTagInfo",
                                                     value: elem,
                                                 })) &&
                                             $ao17(
                                                 elem,
                                                 _path +
                                                     '["x-typia-jsDocTags"][' +
-                                                    _index36 +
+                                                    _index38 +
                                                     "]",
                                                 true && _exceptionable,
                                             ),
@@ -3268,7 +3390,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                             _path +
                                             '["x-typia-patternProperties"]',
                                         expected:
-                                            "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                            "(Record<string, IJsonSchema> | undefined)",
                                         value: input[
                                             "x-typia-patternProperties"
                                         ],
@@ -3297,7 +3419,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                             _path +
                                             '["x-typia-additionalProperties"]',
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                         value: input[
                                             "x-typia-additionalProperties"
                                         ],
@@ -3325,7 +3447,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                             $guard(_exceptionable, {
                                                 path: _path + $join(key),
                                                 expected:
-                                                    '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                 value: value,
                                             })) &&
                                         $au3(
@@ -3460,7 +3582,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 if (
                                     Array.isArray(input.items) &&
                                     input.items.every(
-                                        (elem: any, _index37: number) =>
+                                        (elem: any, _index39: number) =>
                                             "object" === typeof elem &&
                                             null !== elem &&
                                             false === Array.isArray(elem) &&
@@ -3468,7 +3590,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 elem,
                                                 _path +
                                                     ".items[" +
-                                                    _index37 +
+                                                    _index39 +
                                                     "]",
                                                 false && _exceptionable,
                                             ),
@@ -3571,7 +3693,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 if (
                                     Array.isArray(input.items) &&
                                     input.items.every(
-                                        (elem: any, _index38: number) =>
+                                        (elem: any, _index40: number) =>
                                             "object" === typeof elem &&
                                             null !== elem &&
                                             false === Array.isArray(elem) &&
@@ -3579,7 +3701,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 elem,
                                                 _path +
                                                     ".items[" +
-                                                    _index38 +
+                                                    _index40 +
                                                     "]",
                                                 false && _exceptionable,
                                             ),
@@ -3703,7 +3825,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                 if (
                                     Array.isArray(input.items) &&
                                     input.items.every(
-                                        (elem: any, _index39: number) =>
+                                        (elem: any, _index41: number) =>
                                             "object" === typeof elem &&
                                             null !== elem &&
                                             false === Array.isArray(elem) &&
@@ -3711,7 +3833,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                                 elem,
                                                 _path +
                                                     ".items[" +
-                                                    _index39 +
+                                                    _index41 +
                                                     "]",
                                                 false && _exceptionable,
                                             ),
@@ -3794,8 +3916,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                             (Array.isArray(input) ||
                                 $guard(true, {
                                     path: _path + "",
-                                    expected:
-                                        "Array<Resolve<IJsonApplication>>",
+                                    expected: "Array<IJsonApplication>",
                                     value: input,
                                 })) &&
                             input.every(
@@ -3804,8 +3925,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                                         null !== elem) ||
                                         $guard(true, {
                                             path: _path + "[" + _index1 + "]",
-                                            expected:
-                                                "Resolve<IJsonApplication>",
+                                            expected: "IJsonApplication",
                                             value: elem,
                                         })) &&
                                     $ao0(
@@ -3824,6 +3944,7 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                 const $string = (typia.assertStringify as any).string;
                 const $throws = (typia.assertStringify as any).throws;
                 const $number = (typia.assertStringify as any).number;
+                const $tail = (typia.assertStringify as any).tail;
                 const $join = (typia.assertStringify as any).join;
                 const $io1 = (input: any): boolean =>
                     Array.isArray(input["enum"]) &&
@@ -4348,7 +4469,35 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                         "boolean" === typeof input["x-typia-required"]) &&
                     (undefined === input["x-typia-rest"] ||
                         "boolean" === typeof input["x-typia-rest"]);
-                const $io31 = (input: any): boolean => true;
+                const $io31 = (input: any): boolean =>
+                    null !== input.type &&
+                    undefined === input.type &&
+                    (undefined === input.deprecated ||
+                        "boolean" === typeof input.deprecated) &&
+                    (undefined === input.title ||
+                        "string" === typeof input.title) &&
+                    (undefined === input.description ||
+                        "string" === typeof input.description) &&
+                    (undefined === input["x-typia-metaTags"] ||
+                        (Array.isArray(input["x-typia-metaTags"]) &&
+                            input["x-typia-metaTags"].every(
+                                (elem: any) =>
+                                    "object" === typeof elem &&
+                                    null !== elem &&
+                                    $iu0(elem),
+                            ))) &&
+                    (undefined === input["x-typia-jsDocTags"] ||
+                        (Array.isArray(input["x-typia-jsDocTags"]) &&
+                            input["x-typia-jsDocTags"].every(
+                                (elem: any) =>
+                                    "object" === typeof elem &&
+                                    null !== elem &&
+                                    $io17(elem),
+                            ))) &&
+                    (undefined === input["x-typia-required"] ||
+                        "boolean" === typeof input["x-typia-required"]) &&
+                    (undefined === input["x-typia-rest"] ||
+                        "boolean" === typeof input["x-typia-rest"]);
                 const $io32 = (input: any): boolean =>
                     "object" === typeof input.schemas &&
                     null !== input.schemas &&
@@ -5879,7 +6028,70 @@ export const test_assertStringify_UltimateUnion = _test_assertStringify(
                             value: input.type,
                         });
                     })()}}`;
-                const $so31 = (input: any): any => "{}";
+                const $so31 = (input: any): any =>
+                    `{${$tail(
+                        `${
+                            undefined === input.deprecated
+                                ? ""
+                                : `"deprecated":${
+                                      undefined !== input.deprecated
+                                          ? input.deprecated
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input.title
+                                ? ""
+                                : `"title":${
+                                      undefined !== input.title
+                                          ? $string(input.title)
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input.description
+                                ? ""
+                                : `"description":${
+                                      undefined !== input.description
+                                          ? $string(input.description)
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-metaTags"]
+                                ? ""
+                                : `"x-typia-metaTags":${
+                                      undefined !== input["x-typia-metaTags"]
+                                          ? `[${input["x-typia-metaTags"]
+                                                .map((elem: any) => $su0(elem))
+                                                .join(",")}]`
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-jsDocTags"]
+                                ? ""
+                                : `"x-typia-jsDocTags":${
+                                      undefined !== input["x-typia-jsDocTags"]
+                                          ? `[${input["x-typia-jsDocTags"]
+                                                .map((elem: any) => $so17(elem))
+                                                .join(",")}]`
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-required"]
+                                ? ""
+                                : `"x-typia-required":${
+                                      undefined !== input["x-typia-required"]
+                                          ? input["x-typia-required"]
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-rest"]
+                                ? ""
+                                : `"x-typia-rest":${
+                                      undefined !== input["x-typia-rest"]
+                                          ? input["x-typia-rest"]
+                                          : undefined
+                                  }`
+                        }`,
+                    )}}`;
                 const $so32 = (input: any): any =>
                     `{"schemas":${$so33(input.schemas)}}`;
                 const $so33 = (input: any): any =>

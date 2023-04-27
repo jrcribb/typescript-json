@@ -18,7 +18,7 @@ export const test_validateEquals_TagCustom = _test_validateEquals(
                     _exceptionable: boolean = true,
                 ): boolean =>
                     "string" === typeof input.id &&
-                    true === $is_uuid(input.id) &&
+                    $is_uuid(input.id) &&
                     "string" === typeof input.dollar &&
                     $is_custom("dollar", "string", "", input.dollar) &&
                     "string" === typeof input.postfix &&
@@ -62,7 +62,7 @@ export const test_validateEquals_TagCustom = _test_validateEquals(
                     ): boolean =>
                         [
                             ("string" === typeof input.id &&
-                                (true === $is_uuid(input.id) ||
+                                ($is_uuid(input.id) ||
                                     $report(_exceptionable, {
                                         path: _path + ".id",
                                         expected: "string (@format uuid)",
@@ -152,13 +152,13 @@ export const test_validateEquals_TagCustom = _test_validateEquals(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagCustom>",
+                                expected: "TagCustom",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<TagCustom>",
+                            expected: "TagCustom",
                             value: input,
                         })
                     );

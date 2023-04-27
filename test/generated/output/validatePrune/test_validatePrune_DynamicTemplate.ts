@@ -132,13 +132,13 @@ export const test_validatePrune_DynamicTemplate = _test_validatePrune(
                                 false === Array.isArray(input)) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected: "Resolve<DynamicTemplate>",
+                                    expected: "DynamicTemplate",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicTemplate>",
+                                expected: "DynamicTemplate",
                                 value: input,
                             })
                         );
@@ -153,6 +153,19 @@ export const test_validatePrune_DynamicTemplate = _test_validatePrune(
             const prune = (input: DynamicTemplate): void => {
                 const $join = (typia.validatePrune as any).join;
                 const $po0 = (input: any): any => {
+                    Object.entries(input).forEach(([key, value]) => {
+                        if (undefined === value) return;
+                        if (RegExp(/^(prefix_(.*))/).test(key)) {
+                        }
+                        if (RegExp(/((.*)_postfix)$/).test(key)) {
+                        }
+                        if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key)) {
+                        }
+                        if (
+                            RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key)
+                        ) {
+                        }
+                    });
                     for (const key of Object.keys(input)) {
                         if (
                             RegExp(/^(prefix_(.*))/).test(key) ||

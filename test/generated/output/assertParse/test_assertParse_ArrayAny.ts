@@ -115,7 +115,7 @@ export const test_assertParse_ArrayAny = _test_assertParse(
                             (("object" === typeof input && null !== input) ||
                                 $guard(true, {
                                     path: _path + "",
-                                    expected: "Resolve<ArrayAny>",
+                                    expected: "ArrayAny",
                                     value: input,
                                 })) &&
                             $ao0(input, _path + "", true)
@@ -124,7 +124,7 @@ export const test_assertParse_ArrayAny = _test_assertParse(
                 return input;
             };
             input = JSON.parse(input);
-            return assert(input);
+            return assert(input) as any;
         })(input),
     ArrayAny.SPOILERS,
 );

@@ -75,9 +75,9 @@ export const test_random_ArrayAny = _test_random(
             });
             return $ro0();
         })(),
-    (input: any): ArrayAny => {
+    (input: any): typia.Primitive<ArrayAny> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ArrayAny => {
+        const __is = (input: any): input is typia.Primitive<ArrayAny> => {
             const $io0 = (input: any): boolean =>
                 Array.isArray(input.anys) &&
                 (undefined === input.undefindable1 ||
@@ -105,7 +105,7 @@ export const test_random_ArrayAny = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ArrayAny => {
+            ): input is typia.Primitive<ArrayAny> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -179,7 +179,7 @@ export const test_random_ArrayAny = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<ArrayAny>",
+                            expected: "ArrayAny",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

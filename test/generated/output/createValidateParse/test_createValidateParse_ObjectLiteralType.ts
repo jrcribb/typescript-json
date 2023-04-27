@@ -55,13 +55,13 @@ export const test_createValidateParse_ObjectLiteralType = _test_validateParse(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<__object>",
+                                expected: "__object",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<__object>",
+                            expected: "__object",
                             value: input,
                         })
                     );
@@ -75,7 +75,7 @@ export const test_createValidateParse_ObjectLiteralType = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     ObjectLiteralType.SPOILERS,
 );

@@ -75,13 +75,13 @@ export const test_validateParse_DynamicConstant = _test_validateParse(
                             ((("object" === typeof input && null !== input) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected: "Resolve<DynamicConstant>",
+                                    expected: "DynamicConstant",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicConstant>",
+                                expected: "DynamicConstant",
                                 value: input,
                             })
                         );
@@ -95,7 +95,7 @@ export const test_validateParse_DynamicConstant = _test_validateParse(
             };
             input = JSON.parse(input);
             const output = validate(input);
-            return output;
+            return output as any;
         })(input),
     DynamicConstant.SPOILERS,
 );

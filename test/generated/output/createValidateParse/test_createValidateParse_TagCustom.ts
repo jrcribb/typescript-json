@@ -12,7 +12,7 @@ export const test_createValidateParse_TagCustom = _test_validateParse(
                 const $is_custom = (typia.createValidateParse as any).is_custom;
                 const $io0 = (input: any): boolean =>
                     "string" === typeof input.id &&
-                    true === $is_uuid(input.id) &&
+                    $is_uuid(input.id) &&
                     "string" === typeof input.dollar &&
                     $is_custom("dollar", "string", "", input.dollar) &&
                     "string" === typeof input.postfix &&
@@ -41,7 +41,7 @@ export const test_createValidateParse_TagCustom = _test_validateParse(
                     ): boolean =>
                         [
                             ("string" === typeof input.id &&
-                                (true === $is_uuid(input.id) ||
+                                ($is_uuid(input.id) ||
                                     $report(_exceptionable, {
                                         path: _path + ".id",
                                         expected: "string (@format uuid)",
@@ -109,13 +109,13 @@ export const test_createValidateParse_TagCustom = _test_validateParse(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagCustom>",
+                                expected: "TagCustom",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<TagCustom>",
+                            expected: "TagCustom",
                             value: input,
                         })
                     );
@@ -129,7 +129,7 @@ export const test_createValidateParse_TagCustom = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     TagCustom.SPOILERS,
 );

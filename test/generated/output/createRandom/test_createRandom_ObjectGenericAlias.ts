@@ -18,9 +18,11 @@ export const test_createRandom_ObjectGenericAlias = _test_random(
         });
         return $ro0();
     },
-    (input: any): ObjectGenericAlias => {
+    (input: any): typia.Primitive<ObjectGenericAlias> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectGenericAlias => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectGenericAlias> => {
             return (
                 "object" === typeof input &&
                 null !== input &&
@@ -32,7 +34,7 @@ export const test_createRandom_ObjectGenericAlias = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectGenericAlias => {
+            ): input is typia.Primitive<ObjectGenericAlias> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -48,7 +50,7 @@ export const test_createRandom_ObjectGenericAlias = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<ObjectGenericAlias.Alias>",
+                            expected: "ObjectGenericAlias.Alias",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

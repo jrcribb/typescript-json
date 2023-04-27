@@ -32,9 +32,11 @@ export const test_createRandom_ConstantAtomicWrapper = _test_random(
         });
         return [$ro0(), $ro1(), $ro2()];
     },
-    (input: any): ConstantAtomicWrapper => {
+    (input: any): typia.Primitive<ConstantAtomicWrapper> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ConstantAtomicWrapper => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ConstantAtomicWrapper> => {
             const $io0 = (input: any): boolean =>
                 "boolean" === typeof input.value;
             const $io1 = (input: any): boolean =>
@@ -60,7 +62,7 @@ export const test_createRandom_ConstantAtomicWrapper = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ConstantAtomicWrapper => {
+            ): input is typia.Primitive<ConstantAtomicWrapper> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -100,37 +102,34 @@ export const test_createRandom_ConstantAtomicWrapper = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "[Resolve<ConstantAtomicWrapper.IPointer<boolean>>, Resolve<ConstantAtomicWrapper.IPointer<number>>, Resolve<ConstantAtomicWrapper.IPointer<string>>]",
+                                "[ConstantAtomicWrapper.IPointer<boolean>, ConstantAtomicWrapper.IPointer<number>, ConstantAtomicWrapper.IPointer<string>]",
                             value: input,
                         })) &&
                     (input.length === 3 ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "[Resolve<ConstantAtomicWrapper.IPointer<boolean>>, Resolve<ConstantAtomicWrapper.IPointer<number>>, Resolve<ConstantAtomicWrapper.IPointer<string>>]",
+                                "[ConstantAtomicWrapper.IPointer<boolean>, ConstantAtomicWrapper.IPointer<number>, ConstantAtomicWrapper.IPointer<string>]",
                             value: input,
                         })) &&
                     (("object" === typeof input[0] && null !== input[0]) ||
                         $guard(true, {
                             path: _path + "[0]",
-                            expected:
-                                "Resolve<ConstantAtomicWrapper.IPointer<boolean>>",
+                            expected: "ConstantAtomicWrapper.IPointer<boolean>",
                             value: input[0],
                         })) &&
                     $ao0(input[0], _path + "[0]", true) &&
                     (("object" === typeof input[1] && null !== input[1]) ||
                         $guard(true, {
                             path: _path + "[1]",
-                            expected:
-                                "Resolve<ConstantAtomicWrapper.IPointer<number>>",
+                            expected: "ConstantAtomicWrapper.IPointer<number>",
                             value: input[1],
                         })) &&
                     $ao1(input[1], _path + "[1]", true) &&
                     (("object" === typeof input[2] && null !== input[2]) ||
                         $guard(true, {
                             path: _path + "[2]",
-                            expected:
-                                "Resolve<ConstantAtomicWrapper.IPointer<string>>",
+                            expected: "ConstantAtomicWrapper.IPointer<string>",
                             value: input[2],
                         })) &&
                     $ao2(input[2], _path + "[2]", true)

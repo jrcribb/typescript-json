@@ -114,7 +114,7 @@ export const test_createAssertParse_TagObjectUnion = _test_assertParse(
                             $guard(true, {
                                 path: _path + "",
                                 expected:
-                                    "Array<(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)>",
+                                    "Array<(TagObjectUnion.Literal | TagObjectUnion.Numeric)>",
                                 value: input,
                             })) &&
                         input.every(
@@ -123,7 +123,7 @@ export const test_createAssertParse_TagObjectUnion = _test_assertParse(
                                     $guard(true, {
                                         path: _path + "[" + _index1 + "]",
                                         expected:
-                                            "(Resolve<TagObjectUnion.Literal> | Resolve<TagObjectUnion.Numeric>)",
+                                            "(TagObjectUnion.Literal | TagObjectUnion.Numeric)",
                                         value: elem,
                                     })) &&
                                 $au0(elem, _path + "[" + _index1 + "]", true),
@@ -133,7 +133,7 @@ export const test_createAssertParse_TagObjectUnion = _test_assertParse(
             return input;
         };
         input = JSON.parse(input);
-        return assert(input);
+        return assert(input) as any;
     },
     TagObjectUnion.SPOILERS,
 );

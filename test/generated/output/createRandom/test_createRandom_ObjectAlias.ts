@@ -45,9 +45,9 @@ export const test_createRandom_ObjectAlias = _test_random(
         });
         return (generator?.array ?? $generator.array)(() => $ro0());
     },
-    (input: any): ObjectAlias => {
+    (input: any): typia.Primitive<ObjectAlias> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectAlias => {
+        const __is = (input: any): input is typia.Primitive<ObjectAlias> => {
             const $io0 = (input: any): boolean =>
                 (null === input.id || "string" === typeof input.id) &&
                 "string" === typeof input.email &&
@@ -74,7 +74,7 @@ export const test_createRandom_ObjectAlias = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectAlias => {
+            ): input is typia.Primitive<ObjectAlias> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -128,7 +128,7 @@ export const test_createRandom_ObjectAlias = _test_random(
                     (Array.isArray(input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Array<Resolve<ObjectAlias.IMember>>",
+                            expected: "Array<ObjectAlias.IMember>",
                             value: input,
                         })) &&
                     input.every(
@@ -136,7 +136,7 @@ export const test_createRandom_ObjectAlias = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
-                                    expected: "Resolve<ObjectAlias.IMember>",
+                                    expected: "ObjectAlias.IMember",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

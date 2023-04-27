@@ -70,14 +70,13 @@ export const test_validateParse_ObjectLiteralProperty = _test_validateParse(
                                 $report(true, {
                                     path: _path + "",
                                     expected:
-                                        "Resolve<ObjectLiteralProperty.ISomething>",
+                                        "ObjectLiteralProperty.ISomething",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected:
-                                    "Resolve<ObjectLiteralProperty.ISomething>",
+                                expected: "ObjectLiteralProperty.ISomething",
                                 value: input,
                             })
                         );
@@ -91,7 +90,7 @@ export const test_validateParse_ObjectLiteralProperty = _test_validateParse(
             };
             input = JSON.parse(input);
             const output = validate(input);
-            return output;
+            return output as any;
         })(input),
     ObjectLiteralProperty.SPOILERS,
 );

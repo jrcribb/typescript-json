@@ -64,8 +64,7 @@ export const test_createAssertParse_DynamicTree = _test_assertParse(
                             false === Array.isArray(input.children)) ||
                             $guard(_exceptionable, {
                                 path: _path + ".children",
-                                expected:
-                                    "Resolve<Record<string, DynamicTree>>",
+                                expected: "Record<string, DynamicTree>",
                                 value: input.children,
                             })) &&
                         $ao1(
@@ -88,7 +87,7 @@ export const test_createAssertParse_DynamicTree = _test_assertParse(
                                         null !== value) ||
                                         $guard(_exceptionable, {
                                             path: _path + $join(key),
-                                            expected: "Resolve<DynamicTree>",
+                                            expected: "DynamicTree",
                                             value: value,
                                         })) &&
                                     $ao0(
@@ -103,7 +102,7 @@ export const test_createAssertParse_DynamicTree = _test_assertParse(
                         (("object" === typeof input && null !== input) ||
                             $guard(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicTree>",
+                                expected: "DynamicTree",
                                 value: input,
                             })) &&
                         $ao0(input, _path + "", true)
@@ -112,7 +111,7 @@ export const test_createAssertParse_DynamicTree = _test_assertParse(
             return input;
         };
         input = JSON.parse(input);
-        return assert(input);
+        return assert(input) as any;
     },
     DynamicTree.SPOILERS,
 );

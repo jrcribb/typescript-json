@@ -66,7 +66,7 @@ export const test_createAssertParse_ObjectDynamic = _test_assertParse(
                             false === Array.isArray(input)) ||
                             $guard(true, {
                                 path: _path + "",
-                                expected: "Resolve<ObjectDynamic>",
+                                expected: "ObjectDynamic",
                                 value: input,
                             })) &&
                         $ao0(input, _path + "", true)
@@ -75,7 +75,7 @@ export const test_createAssertParse_ObjectDynamic = _test_assertParse(
             return input;
         };
         input = JSON.parse(input);
-        return assert(input);
+        return assert(input) as any;
     },
     ObjectDynamic.SPOILERS,
 );

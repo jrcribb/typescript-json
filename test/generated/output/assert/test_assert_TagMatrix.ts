@@ -20,8 +20,7 @@ export const test_assert_TagMatrix = _test_assert(
                             3 === elem.length &&
                             elem.every(
                                 (elem: any) =>
-                                    "string" === typeof elem &&
-                                    true === $is_uuid(elem),
+                                    "string" === typeof elem && $is_uuid(elem),
                             ),
                     );
                 return (
@@ -73,7 +72,7 @@ export const test_assert_TagMatrix = _test_assert(
                                 elem.every(
                                     (elem: any, _index2: number) =>
                                         ("string" === typeof elem &&
-                                            (true === $is_uuid(elem) ||
+                                            ($is_uuid(elem) ||
                                                 $guard(_exceptionable, {
                                                     path:
                                                         _path +
@@ -103,7 +102,7 @@ export const test_assert_TagMatrix = _test_assert(
                         (("object" === typeof input && null !== input) ||
                             $guard(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagMatrix>",
+                                expected: "TagMatrix",
                                 value: input,
                             })) &&
                         $ao0(input, _path + "", true)

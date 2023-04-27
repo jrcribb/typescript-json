@@ -43,16 +43,16 @@ export const test_random_TagCustom = _test_random(
             });
             return $ro0();
         })(TagCustom.RANDOM),
-    (input: any): TagCustom => {
+    (input: any): typia.Primitive<TagCustom> => {
         const $guard = (typia.createAssert as any).guard;
         const $is_uuid = (typia.createAssert as any).is_uuid;
         const $is_custom = (typia.createAssert as any).is_custom;
-        const __is = (input: any): input is TagCustom => {
+        const __is = (input: any): input is typia.Primitive<TagCustom> => {
             const $is_uuid = (typia.createAssert as any).is_uuid;
             const $is_custom = (typia.createAssert as any).is_custom;
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.id &&
-                true === $is_uuid(input.id) &&
+                $is_uuid(input.id) &&
                 "string" === typeof input.dollar &&
                 $is_custom("dollar", "string", "", input.dollar) &&
                 "string" === typeof input.postfix &&
@@ -67,14 +67,14 @@ export const test_random_TagCustom = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is TagCustom => {
+            ): input is typia.Primitive<TagCustom> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
                     _exceptionable: boolean = true,
                 ): boolean =>
                     (("string" === typeof input.id &&
-                        (true === $is_uuid(input.id) ||
+                        ($is_uuid(input.id) ||
                             $guard(_exceptionable, {
                                 path: _path + ".id",
                                 expected: "string (@format uuid)",
@@ -131,7 +131,7 @@ export const test_random_TagCustom = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<TagCustom>",
+                            expected: "TagCustom",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

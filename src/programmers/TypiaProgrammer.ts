@@ -6,16 +6,16 @@ import { ImportTransformer } from "../transformers/ImportTransformer";
 
 import transform from "../transform";
 
-export namespace TypiaFileFactory {
+export namespace TypiaProgrammer {
     export interface IProps {
         input: string;
         output: string;
         project: string;
     }
 
-    export async function generate(
-        props: TypiaFileFactory.IProps,
-    ): Promise<void> {
+    export const build = async (
+        props: TypiaProgrammer.IProps,
+    ): Promise<void> => {
         props.input = path.resolve(props.input);
         props.output = path.resolve(props.output);
 
@@ -35,7 +35,16 @@ export namespace TypiaFileFactory {
         }
 
         // CREATE PROGRAM
-        const { config } = ts.readConfigFile(props.project, ts.sys.readFile);
+        const { options: compilerOptions } = ts.parseJsonConfigFileContent(
+            ts.readConfigFile(props.project, ts.sys.readFile).config,
+            {
+                fileExists: ts.sys.fileExists,
+                readFile: ts.sys.readFile,
+                readDirectory: ts.sys.readDirectory,
+                useCaseSensitiveFileNames: ts.sys.useCaseSensitiveFileNames,
+            },
+            path.dirname(props.project),
+        );
 
         const program: ts.Program = ts.createProgram(
             await (async () => {
@@ -43,7 +52,7 @@ export namespace TypiaFileFactory {
                 await gather(props)(container)(props.input)(props.output);
                 return container;
             })(),
-            config.compilerOptions,
+            compilerOptions,
         );
 
         // DO TRANSFORM
@@ -59,7 +68,7 @@ export namespace TypiaFileFactory {
                 ImportTransformer.transform(props.input)(props.output),
                 transform(
                     program,
-                    (config.compilerOptions.plugins ?? []).find(
+                    ((compilerOptions.plugins as any[]) ?? []).find(
                         (p: any) =>
                             p.transform === "typia/lib/transform" ||
                             p.transform === "../src/transform.ts",
@@ -81,7 +90,7 @@ export namespace TypiaFileFactory {
             const content: string = printer.printFile(file);
             await fs.promises.writeFile(to, emend(content), "utf8");
         }
-    }
+    };
 
     const emend = (content: string): string => {
         if (

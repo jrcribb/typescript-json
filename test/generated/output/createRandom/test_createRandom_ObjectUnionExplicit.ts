@@ -108,9 +108,11 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
             ])(),
         );
     },
-    (input: any): ObjectUnionExplicit => {
+    (input: any): typia.Primitive<ObjectUnionExplicit> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectUnionExplicit => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectUnionExplicit> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
                 Number.isFinite(input.x) &&
@@ -239,7 +241,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectUnionExplicit => {
+            ): input is typia.Primitive<ObjectUnionExplicit> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -273,14 +275,14 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (("object" === typeof input.p1 && null !== input.p1) ||
                         $guard(_exceptionable, {
                             path: _path + ".p1",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p1,
                         })) &&
                     $ao2(input.p1, _path + ".p1", true && _exceptionable) &&
                     (("object" === typeof input.p2 && null !== input.p2) ||
                         $guard(_exceptionable, {
                             path: _path + ".p2",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p2,
                         })) &&
                     $ao2(input.p2, _path + ".p2", true && _exceptionable) &&
@@ -317,21 +319,21 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (("object" === typeof input.p1 && null !== input.p1) ||
                         $guard(_exceptionable, {
                             path: _path + ".p1",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p1,
                         })) &&
                     $ao2(input.p1, _path + ".p1", true && _exceptionable) &&
                     (("object" === typeof input.p2 && null !== input.p2) ||
                         $guard(_exceptionable, {
                             path: _path + ".p2",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p2,
                         })) &&
                     $ao2(input.p2, _path + ".p2", true && _exceptionable) &&
                     (("object" === typeof input.p3 && null !== input.p3) ||
                         $guard(_exceptionable, {
                             path: _path + ".p3",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p3,
                         })) &&
                     $ao2(input.p3, _path + ".p3", true && _exceptionable) &&
@@ -349,28 +351,28 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (("object" === typeof input.p1 && null !== input.p1) ||
                         $guard(_exceptionable, {
                             path: _path + ".p1",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p1,
                         })) &&
                     $ao2(input.p1, _path + ".p1", true && _exceptionable) &&
                     (("object" === typeof input.p2 && null !== input.p2) ||
                         $guard(_exceptionable, {
                             path: _path + ".p2",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p2,
                         })) &&
                     $ao2(input.p2, _path + ".p2", true && _exceptionable) &&
                     (("object" === typeof input.p3 && null !== input.p3) ||
                         $guard(_exceptionable, {
                             path: _path + ".p3",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p3,
                         })) &&
                     $ao2(input.p3, _path + ".p3", true && _exceptionable) &&
                     (("object" === typeof input.p4 && null !== input.p4) ||
                         $guard(_exceptionable, {
                             path: _path + ".p4",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.p4,
                         })) &&
                     $ao2(input.p4, _path + ".p4", true && _exceptionable) &&
@@ -388,8 +390,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (Array.isArray(input.points) ||
                         $guard(_exceptionable, {
                             path: _path + ".points",
-                            expected:
-                                "Array<Resolve<ObjectUnionExplicit.IPoint>>",
+                            expected: "Array<ObjectUnionExplicit.IPoint>",
                             value: input.points,
                         })) &&
                     input.points.every(
@@ -397,8 +398,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".points[" + _index2 + "]",
-                                    expected:
-                                        "Resolve<ObjectUnionExplicit.IPoint>",
+                                    expected: "ObjectUnionExplicit.IPoint",
                                     value: elem,
                                 })) &&
                             $ao2(
@@ -422,7 +422,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                         null !== input.outer) ||
                         $guard(_exceptionable, {
                             path: _path + ".outer",
-                            expected: "Resolve<ObjectUnionExplicit.IPolyline>",
+                            expected: "ObjectUnionExplicit.IPolyline",
                             value: input.outer,
                         })) &&
                     $ao7(
@@ -433,8 +433,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (Array.isArray(input.inner) ||
                         $guard(_exceptionable, {
                             path: _path + ".inner",
-                            expected:
-                                "Array<Resolve<ObjectUnionExplicit.IPolyline>>",
+                            expected: "Array<ObjectUnionExplicit.IPolyline>",
                             value: input.inner,
                         })) &&
                     input.inner.every(
@@ -442,8 +441,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".inner[" + _index3 + "]",
-                                    expected:
-                                        "Resolve<ObjectUnionExplicit.IPolyline>",
+                                    expected: "ObjectUnionExplicit.IPolyline",
                                     value: elem,
                                 })) &&
                             $ao7(
@@ -466,8 +464,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                     (Array.isArray(input.points) ||
                         $guard(_exceptionable, {
                             path: _path + ".points",
-                            expected:
-                                "Array<Resolve<ObjectUnionExplicit.IPoint>>",
+                            expected: "Array<ObjectUnionExplicit.IPoint>",
                             value: input.points,
                         })) &&
                     input.points.every(
@@ -475,8 +472,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".points[" + _index4 + "]",
-                                    expected:
-                                        "Resolve<ObjectUnionExplicit.IPoint>",
+                                    expected: "ObjectUnionExplicit.IPoint",
                                     value: elem,
                                 })) &&
                             $ao2(
@@ -494,7 +490,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                         null !== input.centroid) ||
                         $guard(_exceptionable, {
                             path: _path + ".centroid",
-                            expected: "Resolve<ObjectUnionExplicit.IPoint>",
+                            expected: "ObjectUnionExplicit.IPoint",
                             value: input.centroid,
                         })) &&
                     $ao2(
@@ -547,7 +543,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                'Array<(Resolve<ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>> | Resolve<ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine>> | Resolve<ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint>> | Resolve<ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon>> | Resolve<ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline>> | Resolve<ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle>> | Resolve<ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>>)>',
+                                'Array<(ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>)>',
                             value: input,
                         })) &&
                     input.every(
@@ -556,7 +552,7 @@ export const test_createRandom_ObjectUnionExplicit = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        '(Resolve<ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>> | Resolve<ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine>> | Resolve<ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint>> | Resolve<ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon>> | Resolve<ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline>> | Resolve<ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle>> | Resolve<ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>>)',
+                                        '(ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>)',
                                     value: elem,
                                 })) &&
                             $au0(elem, _path + "[" + _index1 + "]", true),

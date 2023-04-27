@@ -71,9 +71,9 @@ export const test_random_TagStep = _test_random(
             });
             return (generator?.array ?? $generator.array)(() => $ro0());
         })(),
-    (input: any): TagStep => {
+    (input: any): typia.Primitive<TagStep> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is TagStep => {
+        const __is = (input: any): input is typia.Primitive<TagStep> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.exclusiveMinimum &&
                 0 === (input.exclusiveMinimum % 5) - 3 &&
@@ -102,7 +102,7 @@ export const test_random_TagStep = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is TagStep => {
+            ): input is typia.Primitive<TagStep> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -196,7 +196,7 @@ export const test_random_TagStep = _test_random(
                     (Array.isArray(input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Array<Resolve<TagStep.Type>>",
+                            expected: "Array<TagStep.Type>",
                             value: input,
                         })) &&
                     input.every(
@@ -204,7 +204,7 @@ export const test_random_TagStep = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
-                                    expected: "Resolve<TagStep.Type>",
+                                    expected: "TagStep.Type",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

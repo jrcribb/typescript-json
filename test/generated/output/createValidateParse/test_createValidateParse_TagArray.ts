@@ -14,7 +14,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                     3 === input.items.length &&
                     input.items.every(
                         (elem: any) =>
-                            "string" === typeof elem && true === $is_uuid(elem),
+                            "string" === typeof elem && $is_uuid(elem),
                     ) &&
                     Array.isArray(input.minItems) &&
                     3 <= input.minItems.length &&
@@ -38,7 +38,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                     7 >= input.both.length &&
                     input.both.every(
                         (elem: any) =>
-                            "string" === typeof elem && true === $is_uuid(elem),
+                            "string" === typeof elem && $is_uuid(elem),
                     );
                 return (
                     Array.isArray(input) &&
@@ -81,7 +81,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                                     .map(
                                         (elem: any, _index2: number) =>
                                             ("string" === typeof elem &&
-                                                (true === $is_uuid(elem) ||
+                                                ($is_uuid(elem) ||
                                                     $report(_exceptionable, {
                                                         path:
                                                             _path +
@@ -230,7 +230,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                                     .map(
                                         (elem: any, _index5: number) =>
                                             ("string" === typeof elem &&
-                                                (true === $is_uuid(elem) ||
+                                                ($is_uuid(elem) ||
                                                     $report(_exceptionable, {
                                                         path:
                                                             _path +
@@ -262,7 +262,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                         ((Array.isArray(input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Array<Resolve<TagArray.Type>>",
+                                expected: "Array<TagArray.Type>",
                                 value: input,
                             })) &&
                             input
@@ -273,8 +273,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                                             $report(true, {
                                                 path:
                                                     _path + "[" + _index1 + "]",
-                                                expected:
-                                                    "Resolve<TagArray.Type>",
+                                                expected: "TagArray.Type",
                                                 value: elem,
                                             })) &&
                                             $vo0(
@@ -284,14 +283,14 @@ export const test_createValidateParse_TagArray = _test_validateParse(
                                             )) ||
                                         $report(true, {
                                             path: _path + "[" + _index1 + "]",
-                                            expected: "Resolve<TagArray.Type>",
+                                            expected: "TagArray.Type",
                                             value: elem,
                                         }),
                                 )
                                 .every((flag: boolean) => flag)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Array<Resolve<TagArray.Type>>",
+                            expected: "Array<TagArray.Type>",
                             value: input,
                         })
                     );
@@ -305,7 +304,7 @@ export const test_createValidateParse_TagArray = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     TagArray.SPOILERS,
 );

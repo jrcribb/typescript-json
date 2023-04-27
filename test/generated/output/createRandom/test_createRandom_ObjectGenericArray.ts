@@ -47,9 +47,11 @@ export const test_createRandom_ObjectGenericArray = _test_random(
         });
         return $ro0();
     },
-    (input: any): ObjectGenericArray => {
+    (input: any): typia.Primitive<ObjectGenericArray> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectGenericArray => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectGenericArray> => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.pagination &&
                 null !== input.pagination &&
@@ -79,7 +81,7 @@ export const test_createRandom_ObjectGenericArray = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectGenericArray => {
+            ): input is typia.Primitive<ObjectGenericArray> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -89,7 +91,7 @@ export const test_createRandom_ObjectGenericArray = _test_random(
                         null !== input.pagination) ||
                         $guard(_exceptionable, {
                             path: _path + ".pagination",
-                            expected: "Resolve<ObjectGenericArray.IPagination>",
+                            expected: "ObjectGenericArray.IPagination",
                             value: input.pagination,
                         })) &&
                     $ao1(
@@ -100,8 +102,7 @@ export const test_createRandom_ObjectGenericArray = _test_random(
                     (Array.isArray(input.data) ||
                         $guard(_exceptionable, {
                             path: _path + ".data",
-                            expected:
-                                "Array<Resolve<ObjectGenericArray.IPerson>>",
+                            expected: "Array<ObjectGenericArray.IPerson>",
                             value: input.data,
                         })) &&
                     input.data.every(
@@ -109,8 +110,7 @@ export const test_createRandom_ObjectGenericArray = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".data[" + _index1 + "]",
-                                    expected:
-                                        "Resolve<ObjectGenericArray.IPerson>",
+                                    expected: "ObjectGenericArray.IPerson",
                                     value: elem,
                                 })) &&
                             $ao2(
@@ -174,7 +174,7 @@ export const test_createRandom_ObjectGenericArray = _test_random(
                     (("object" === typeof input && null !== input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected: "Resolve<ObjectGenericArray>",
+                            expected: "ObjectGenericArray",
                             value: input,
                         })) &&
                     $ao0(input, _path + "", true)

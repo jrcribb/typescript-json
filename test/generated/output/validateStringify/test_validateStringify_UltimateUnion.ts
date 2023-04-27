@@ -586,7 +586,35 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                             "boolean" === typeof input["x-typia-required"]) &&
                         (undefined === input["x-typia-rest"] ||
                             "boolean" === typeof input["x-typia-rest"]);
-                    const $io31 = (input: any): boolean => true;
+                    const $io31 = (input: any): boolean =>
+                        null !== input.type &&
+                        undefined === input.type &&
+                        (undefined === input.deprecated ||
+                            "boolean" === typeof input.deprecated) &&
+                        (undefined === input.title ||
+                            "string" === typeof input.title) &&
+                        (undefined === input.description ||
+                            "string" === typeof input.description) &&
+                        (undefined === input["x-typia-metaTags"] ||
+                            (Array.isArray(input["x-typia-metaTags"]) &&
+                                input["x-typia-metaTags"].every(
+                                    (elem: any) =>
+                                        "object" === typeof elem &&
+                                        null !== elem &&
+                                        $iu0(elem),
+                                ))) &&
+                        (undefined === input["x-typia-jsDocTags"] ||
+                            (Array.isArray(input["x-typia-jsDocTags"]) &&
+                                input["x-typia-jsDocTags"].every(
+                                    (elem: any) =>
+                                        "object" === typeof elem &&
+                                        null !== elem &&
+                                        $io17(elem),
+                                ))) &&
+                        (undefined === input["x-typia-required"] ||
+                            "boolean" === typeof input["x-typia-required"]) &&
+                        (undefined === input["x-typia-rest"] ||
+                            "boolean" === typeof input["x-typia-rest"]);
                     const $io32 = (input: any): boolean =>
                         "object" === typeof input.schemas &&
                         null !== input.schemas &&
@@ -835,7 +863,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".schemas",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.schemas,
                                     })) &&
                                     input.schemas
@@ -852,7 +880,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index2 +
                                                             "]",
                                                         expected:
-                                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                         value: elem,
                                                     })) &&
                                                     $vu3(
@@ -870,7 +898,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         _index2 +
                                                         "]",
                                                     expected:
-                                                        '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                     value: elem,
                                                 }),
                                         )
@@ -878,14 +906,14 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".schemas",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.schemas,
                                     }),
                                 ((("object" === typeof input.components &&
                                     null !== input.components) ||
                                     $report(_exceptionable, {
                                         path: _path + ".components",
-                                        expected: "Resolve<IJsonComponents>",
+                                        expected: "IJsonComponents",
                                         value: input.components,
                                     })) &&
                                     $vo32(
@@ -895,7 +923,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     )) ||
                                     $report(_exceptionable, {
                                         path: _path + ".components",
-                                        expected: "Resolve<IJsonComponents>",
+                                        expected: "IJsonComponents",
                                         value: input.components,
                                     }),
                                 "ajv" === input.purpose ||
@@ -992,7 +1020,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -1010,7 +1038,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index4 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1030,7 +1058,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index4 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -1038,7 +1066,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -1049,7 +1077,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -1067,7 +1095,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index5 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1087,7 +1115,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index5 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -1095,7 +1123,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -1437,7 +1465,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                         $report(_exceptionable, {
                                             path: _path + ".text",
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo.IText>> | undefined)",
+                                                "(Array<IJsDocTagInfo.IText> | undefined)",
                                             value: input.text,
                                         })) &&
                                         input.text
@@ -1455,7 +1483,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index6 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo.IText>",
+                                                                    "IJsDocTagInfo.IText",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1475,7 +1503,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index6 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo.IText>",
+                                                            "IJsDocTagInfo.IText",
                                                         value: elem,
                                                     }),
                                             )
@@ -1483,7 +1511,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".text",
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo.IText>> | undefined)",
+                                            "(Array<IJsDocTagInfo.IText> | undefined)",
                                         value: input.text,
                                     }),
                             ].every((flag: boolean) => flag);
@@ -1588,7 +1616,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -1606,7 +1634,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index8 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1626,7 +1654,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index8 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -1634,7 +1662,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -1645,7 +1673,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -1663,7 +1691,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index9 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1683,7 +1711,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index9 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -1691,7 +1719,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -1791,7 +1819,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -1809,7 +1837,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index11 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1829,7 +1857,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index11 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -1837,7 +1865,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -1848,7 +1876,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -1866,7 +1894,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index12 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -1886,7 +1914,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index12 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -1894,7 +1922,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -1968,7 +1996,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -1986,7 +2014,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index13 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2006,7 +2034,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index13 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -2014,7 +2042,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -2025,7 +2053,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -2043,7 +2071,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index14 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2063,7 +2091,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index14 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -2071,7 +2099,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -2207,7 +2235,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -2225,7 +2253,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index15 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2245,7 +2273,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index15 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -2253,7 +2281,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -2264,7 +2292,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -2282,7 +2310,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index16 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2302,7 +2330,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index16 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -2310,7 +2338,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -2425,7 +2453,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -2443,7 +2471,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index17 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2463,7 +2491,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index17 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -2471,7 +2499,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -2482,7 +2510,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -2500,7 +2528,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index18 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2520,7 +2548,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index18 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -2528,7 +2556,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -2658,7 +2686,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -2676,7 +2704,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index19 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2696,7 +2724,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index19 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -2704,7 +2732,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -2715,7 +2743,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -2733,7 +2761,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index20 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2753,7 +2781,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index20 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -2761,7 +2789,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -2793,7 +2821,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".items",
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                         value: input.items,
                                     })) &&
                                     $vu3(
@@ -2804,7 +2832,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".items",
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                         value: input.items,
                                     }),
                                 undefined === input.minItems ||
@@ -2856,7 +2884,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                         $report(_exceptionable, {
                                             path: _path + '["x-typia-tuple"]',
                                             expected:
-                                                "(Resolve<IJsonSchema.ITuple> | undefined)",
+                                                "(IJsonSchema.ITuple | undefined)",
                                             value: input["x-typia-tuple"],
                                         })) &&
                                         $vo26(
@@ -2867,7 +2895,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-tuple"]',
                                         expected:
-                                            "(Resolve<IJsonSchema.ITuple> | undefined)",
+                                            "(IJsonSchema.ITuple | undefined)",
                                         value: input["x-typia-tuple"],
                                     }),
                                 "array" === input.type ||
@@ -2911,7 +2939,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -2929,7 +2957,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index21 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -2949,7 +2977,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index21 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -2957,7 +2985,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -2968,7 +2996,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -2986,7 +3014,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index22 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3006,7 +3034,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index22 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3014,7 +3042,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3044,7 +3072,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".items",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.items,
                                     })) &&
                                     input.items
@@ -3061,7 +3089,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index23 +
                                                             "]",
                                                         expected:
-                                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                         value: elem,
                                                     })) &&
                                                     $vu2(
@@ -3079,7 +3107,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         _index23 +
                                                         "]",
                                                     expected:
-                                                        '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                     value: elem,
                                                 }),
                                         )
@@ -3087,7 +3115,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".items",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.items,
                                     }),
                                 "array" === input.type ||
@@ -3131,7 +3159,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -3149,7 +3177,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index24 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3169,7 +3197,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index24 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -3177,7 +3205,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -3188,7 +3216,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -3206,7 +3234,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index25 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3226,7 +3254,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index25 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3234,7 +3262,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3264,7 +3292,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".oneOf",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.oneOf,
                                     })) &&
                                     input.oneOf
@@ -3281,7 +3309,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index26 +
                                                             "]",
                                                         expected:
-                                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                         value: elem,
                                                     })) &&
                                                     $vu1(
@@ -3299,7 +3327,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         _index26 +
                                                         "]",
                                                     expected:
-                                                        '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                     value: elem,
                                                 }),
                                         )
@@ -3307,7 +3335,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".oneOf",
                                         expected:
-                                            'Array<(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)>',
+                                            'Array<(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)>',
                                         value: input.oneOf,
                                     }),
                                 undefined === input.deprecated ||
@@ -3339,7 +3367,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -3357,7 +3385,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index27 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3377,7 +3405,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index27 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -3385,7 +3413,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -3396,7 +3424,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -3414,7 +3442,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index28 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3434,7 +3462,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index28 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3442,7 +3470,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3503,7 +3531,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -3521,7 +3549,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index29 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3541,7 +3569,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index29 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -3549,7 +3577,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -3560,7 +3588,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -3578,7 +3606,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index30 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3598,7 +3626,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index30 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3606,7 +3634,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3667,7 +3695,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -3685,7 +3713,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index31 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3705,7 +3733,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index31 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -3713,7 +3741,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -3724,7 +3752,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -3742,7 +3770,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index32 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3762,7 +3790,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index32 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3770,7 +3798,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3831,7 +3859,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-metaTags"]',
                                             expected:
-                                                "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                             value: input["x-typia-metaTags"],
                                         })) &&
                                         input["x-typia-metaTags"]
@@ -3849,7 +3877,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index33 +
                                                                     "]",
                                                                 expected:
-                                                                    "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3869,7 +3897,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index33 +
                                                             "]",
                                                         expected:
-                                                            "(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)",
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
                                                         value: elem,
                                                     }),
                                             )
@@ -3877,7 +3905,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-metaTags"]',
                                         expected:
-                                            "(Array<(Resolve<IMetadataTag.IExclusiveMaximum> | Resolve<IMetadataTag.IExclusiveMinimum> | Resolve<IMetadataTag.IFormat> | Resolve<IMetadataTag.IItems> | Resolve<IMetadataTag.ILength> | Resolve<IMetadataTag.IMaxItems> | Resolve<IMetadataTag.IMaxLength> | Resolve<IMetadataTag.IMaximum> | Resolve<IMetadataTag.IMinItems> | Resolve<IMetadataTag.IMinLength> | Resolve<IMetadataTag.IMinimum> | Resolve<IMetadataTag.IMultipleOf> | Resolve<IMetadataTag.IPattern> | Resolve<IMetadataTag.IStep> | Resolve<IMetadataTag.IType>)> | undefined)",
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
                                         value: input["x-typia-metaTags"],
                                     }),
                                 undefined === input["x-typia-jsDocTags"] ||
@@ -3888,7 +3916,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
@@ -3906,7 +3934,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _index34 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -3926,7 +3954,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             _index34 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -3934,7 +3962,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined === input["x-typia-required"] ||
@@ -3958,7 +3986,172 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                             input: any,
                             _path: string,
                             _exceptionable: boolean = true,
-                        ): boolean => true;
+                        ): boolean =>
+                            [
+                                (null !== input.type ||
+                                    $report(_exceptionable, {
+                                        path: _path + ".type",
+                                        expected: "undefined",
+                                        value: input.type,
+                                    })) &&
+                                    (undefined === input.type ||
+                                        $report(_exceptionable, {
+                                            path: _path + ".type",
+                                            expected: "undefined",
+                                            value: input.type,
+                                        })),
+                                undefined === input.deprecated ||
+                                    "boolean" === typeof input.deprecated ||
+                                    $report(_exceptionable, {
+                                        path: _path + ".deprecated",
+                                        expected: "(boolean | undefined)",
+                                        value: input.deprecated,
+                                    }),
+                                undefined === input.title ||
+                                    "string" === typeof input.title ||
+                                    $report(_exceptionable, {
+                                        path: _path + ".title",
+                                        expected: "(string | undefined)",
+                                        value: input.title,
+                                    }),
+                                undefined === input.description ||
+                                    "string" === typeof input.description ||
+                                    $report(_exceptionable, {
+                                        path: _path + ".description",
+                                        expected: "(string | undefined)",
+                                        value: input.description,
+                                    }),
+                                undefined === input["x-typia-metaTags"] ||
+                                    ((Array.isArray(
+                                        input["x-typia-metaTags"],
+                                    ) ||
+                                        $report(_exceptionable, {
+                                            path:
+                                                _path + '["x-typia-metaTags"]',
+                                            expected:
+                                                "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
+                                            value: input["x-typia-metaTags"],
+                                        })) &&
+                                        input["x-typia-metaTags"]
+                                            .map(
+                                                (elem: any, _index35: number) =>
+                                                    ((("object" ===
+                                                        typeof elem &&
+                                                        null !== elem) ||
+                                                        $report(
+                                                            _exceptionable,
+                                                            {
+                                                                path:
+                                                                    _path +
+                                                                    '["x-typia-metaTags"][' +
+                                                                    _index35 +
+                                                                    "]",
+                                                                expected:
+                                                                    "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
+                                                                value: elem,
+                                                            },
+                                                        )) &&
+                                                        $vu0(
+                                                            elem,
+                                                            _path +
+                                                                '["x-typia-metaTags"][' +
+                                                                _index35 +
+                                                                "]",
+                                                            true &&
+                                                                _exceptionable,
+                                                        )) ||
+                                                    $report(_exceptionable, {
+                                                        path:
+                                                            _path +
+                                                            '["x-typia-metaTags"][' +
+                                                            _index35 +
+                                                            "]",
+                                                        expected:
+                                                            "(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)",
+                                                        value: elem,
+                                                    }),
+                                            )
+                                            .every((flag: boolean) => flag)) ||
+                                    $report(_exceptionable, {
+                                        path: _path + '["x-typia-metaTags"]',
+                                        expected:
+                                            "(Array<(IMetadataTag.IExclusiveMaximum | IMetadataTag.IExclusiveMinimum | IMetadataTag.IFormat | IMetadataTag.IItems | IMetadataTag.ILength | IMetadataTag.IMaxItems | IMetadataTag.IMaxLength | IMetadataTag.IMaximum | IMetadataTag.IMinItems | IMetadataTag.IMinLength | IMetadataTag.IMinimum | IMetadataTag.IMultipleOf | IMetadataTag.IPattern | IMetadataTag.IStep | IMetadataTag.IType)> | undefined)",
+                                        value: input["x-typia-metaTags"],
+                                    }),
+                                undefined === input["x-typia-jsDocTags"] ||
+                                    ((Array.isArray(
+                                        input["x-typia-jsDocTags"],
+                                    ) ||
+                                        $report(_exceptionable, {
+                                            path:
+                                                _path + '["x-typia-jsDocTags"]',
+                                            expected:
+                                                "(Array<IJsDocTagInfo> | undefined)",
+                                            value: input["x-typia-jsDocTags"],
+                                        })) &&
+                                        input["x-typia-jsDocTags"]
+                                            .map(
+                                                (elem: any, _index36: number) =>
+                                                    ((("object" ===
+                                                        typeof elem &&
+                                                        null !== elem) ||
+                                                        $report(
+                                                            _exceptionable,
+                                                            {
+                                                                path:
+                                                                    _path +
+                                                                    '["x-typia-jsDocTags"][' +
+                                                                    _index36 +
+                                                                    "]",
+                                                                expected:
+                                                                    "IJsDocTagInfo",
+                                                                value: elem,
+                                                            },
+                                                        )) &&
+                                                        $vo17(
+                                                            elem,
+                                                            _path +
+                                                                '["x-typia-jsDocTags"][' +
+                                                                _index36 +
+                                                                "]",
+                                                            true &&
+                                                                _exceptionable,
+                                                        )) ||
+                                                    $report(_exceptionable, {
+                                                        path:
+                                                            _path +
+                                                            '["x-typia-jsDocTags"][' +
+                                                            _index36 +
+                                                            "]",
+                                                        expected:
+                                                            "IJsDocTagInfo",
+                                                        value: elem,
+                                                    }),
+                                            )
+                                            .every((flag: boolean) => flag)) ||
+                                    $report(_exceptionable, {
+                                        path: _path + '["x-typia-jsDocTags"]',
+                                        expected:
+                                            "(Array<IJsDocTagInfo> | undefined)",
+                                        value: input["x-typia-jsDocTags"],
+                                    }),
+                                undefined === input["x-typia-required"] ||
+                                    "boolean" ===
+                                        typeof input["x-typia-required"] ||
+                                    $report(_exceptionable, {
+                                        path: _path + '["x-typia-required"]',
+                                        expected: "(boolean | undefined)",
+                                        value: input["x-typia-required"],
+                                    }),
+                                undefined === input["x-typia-rest"] ||
+                                    "boolean" ===
+                                        typeof input["x-typia-rest"] ||
+                                    $report(_exceptionable, {
+                                        path: _path + '["x-typia-rest"]',
+                                        expected: "(boolean | undefined)",
+                                        value: input["x-typia-rest"],
+                                    }),
+                            ].every((flag: boolean) => flag);
                         const $vo32 = (
                             input: any,
                             _path: string,
@@ -3971,7 +4164,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".schemas",
                                         expected:
-                                            "Resolve<Record<string, IJsonComponents.IObject>>",
+                                            "Record<string, IJsonComponents.IObject>",
                                         value: input.schemas,
                                     })) &&
                                     $vo33(
@@ -3982,7 +4175,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".schemas",
                                         expected:
-                                            "Resolve<Record<string, IJsonComponents.IObject>>",
+                                            "Record<string, IJsonComponents.IObject>",
                                         value: input.schemas,
                                     }),
                             ].every((flag: boolean) => flag);
@@ -4010,7 +4203,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _path +
                                                                     $join(key),
                                                                 expected:
-                                                                    "Resolve<IJsonComponents.IObject>",
+                                                                    "IJsonComponents.IObject",
                                                                 value: value,
                                                             },
                                                         )) &&
@@ -4024,7 +4217,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         path:
                                                             _path + $join(key),
                                                         expected:
-                                                            "Resolve<IJsonComponents.IObject>",
+                                                            "IJsonComponents.IObject",
                                                         value: value,
                                                     })
                                                 );
@@ -4071,8 +4264,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                         Array.isArray(input.properties)) ||
                                     $report(_exceptionable, {
                                         path: _path + ".properties",
-                                        expected:
-                                            "Resolve<Record<string, IJsonSchema>>",
+                                        expected: "Record<string, IJsonSchema>",
                                         value: input.properties,
                                     })) &&
                                     $vo35(
@@ -4082,8 +4274,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     )) ||
                                     $report(_exceptionable, {
                                         path: _path + ".properties",
-                                        expected:
-                                            "Resolve<Record<string, IJsonSchema>>",
+                                        expected: "Record<string, IJsonSchema>",
                                         value: input.properties,
                                     }),
                                 undefined === input.patternProperties ||
@@ -4097,7 +4288,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                         $report(_exceptionable, {
                                             path: _path + ".patternProperties",
                                             expected:
-                                                "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                                "(Record<string, IJsonSchema> | undefined)",
                                             value: input.patternProperties,
                                         })) &&
                                         $vo35(
@@ -4108,7 +4299,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".patternProperties",
                                         expected:
-                                            "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                            "(Record<string, IJsonSchema> | undefined)",
                                         value: input.patternProperties,
                                     }),
                                 undefined === input.additionalProperties ||
@@ -4123,7 +4314,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + ".additionalProperties",
                                             expected:
-                                                '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                             value: input.additionalProperties,
                                         })) &&
                                         $vu3(
@@ -4134,7 +4325,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + ".additionalProperties",
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                         value: input.additionalProperties,
                                     }),
                                 undefined === input.required ||
@@ -4147,13 +4338,13 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                         })) &&
                                         input.required
                                             .map(
-                                                (elem: any, _index35: number) =>
+                                                (elem: any, _index37: number) =>
                                                     "string" === typeof elem ||
                                                     $report(_exceptionable, {
                                                         path:
                                                             _path +
                                                             ".required[" +
-                                                            _index35 +
+                                                            _index37 +
                                                             "]",
                                                         expected: "string",
                                                         value: elem,
@@ -4180,12 +4371,12 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             path:
                                                 _path + '["x-typia-jsDocTags"]',
                                             expected:
-                                                "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                                "(Array<IJsDocTagInfo> | undefined)",
                                             value: input["x-typia-jsDocTags"],
                                         })) &&
                                         input["x-typia-jsDocTags"]
                                             .map(
-                                                (elem: any, _index36: number) =>
+                                                (elem: any, _index38: number) =>
                                                     ((("object" ===
                                                         typeof elem &&
                                                         null !== elem) ||
@@ -4195,10 +4386,10 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                 path:
                                                                     _path +
                                                                     '["x-typia-jsDocTags"][' +
-                                                                    _index36 +
+                                                                    _index38 +
                                                                     "]",
                                                                 expected:
-                                                                    "Resolve<IJsDocTagInfo>",
+                                                                    "IJsDocTagInfo",
                                                                 value: elem,
                                                             },
                                                         )) &&
@@ -4206,7 +4397,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                             elem,
                                                             _path +
                                                                 '["x-typia-jsDocTags"][' +
-                                                                _index36 +
+                                                                _index38 +
                                                                 "]",
                                                             true &&
                                                                 _exceptionable,
@@ -4215,10 +4406,10 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         path:
                                                             _path +
                                                             '["x-typia-jsDocTags"][' +
-                                                            _index36 +
+                                                            _index38 +
                                                             "]",
                                                         expected:
-                                                            "Resolve<IJsDocTagInfo>",
+                                                            "IJsDocTagInfo",
                                                         value: elem,
                                                     }),
                                             )
@@ -4226,7 +4417,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     $report(_exceptionable, {
                                         path: _path + '["x-typia-jsDocTags"]',
                                         expected:
-                                            "(Array<Resolve<IJsDocTagInfo>> | undefined)",
+                                            "(Array<IJsDocTagInfo> | undefined)",
                                         value: input["x-typia-jsDocTags"],
                                     }),
                                 undefined ===
@@ -4250,7 +4441,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                 _path +
                                                 '["x-typia-patternProperties"]',
                                             expected:
-                                                "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                                "(Record<string, IJsonSchema> | undefined)",
                                             value: input[
                                                 "x-typia-patternProperties"
                                             ],
@@ -4266,7 +4457,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             _path +
                                             '["x-typia-patternProperties"]',
                                         expected:
-                                            "(Resolve<Record<string, IJsonSchema>> | undefined)",
+                                            "(Record<string, IJsonSchema> | undefined)",
                                         value: input[
                                             "x-typia-patternProperties"
                                         ],
@@ -4292,7 +4483,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                 _path +
                                                 '["x-typia-additionalProperties"]',
                                             expected:
-                                                '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                             value: input[
                                                 "x-typia-additionalProperties"
                                             ],
@@ -4310,7 +4501,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             _path +
                                             '["x-typia-additionalProperties"]',
                                         expected:
-                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown> | undefined)',
+                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
                                         value: input[
                                             "x-typia-additionalProperties"
                                         ],
@@ -4344,7 +4535,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                                     _path +
                                                                     $join(key),
                                                                 expected:
-                                                                    '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                                 value: value,
                                                             },
                                                         )) &&
@@ -4358,7 +4549,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         path:
                                                             _path + $join(key),
                                                         expected:
-                                                            '(Resolve<IJsonSchema.IArray> | Resolve<IJsonSchema.IBoolean> | Resolve<IJsonSchema.IEnumeration<"boolean">> | Resolve<IJsonSchema.IEnumeration<"number">> | Resolve<IJsonSchema.IEnumeration<"string">> | Resolve<IJsonSchema.IInteger> | Resolve<IJsonSchema.INullOnly> | Resolve<IJsonSchema.INumber> | Resolve<IJsonSchema.IOneOf> | Resolve<IJsonSchema.IRecursiveReference> | Resolve<IJsonSchema.IReference> | Resolve<IJsonSchema.IString> | Resolve<IJsonSchema.ITuple> | Resolve<IJsonSchema.IUnknown>)',
+                                                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IRecursiveReference | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                                                         value: value,
                                                     })
                                                 );
@@ -4491,7 +4682,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     Array.isArray(input.items) &&
                                     input.items
                                         .map(
-                                            (elem: any, _index37: number) =>
+                                            (elem: any, _index39: number) =>
                                                 "object" === typeof elem &&
                                                 null !== elem &&
                                                 false === Array.isArray(elem) &&
@@ -4499,7 +4690,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                     elem,
                                                     _path +
                                                         ".items[" +
-                                                        _index37 +
+                                                        _index39 +
                                                         "]",
                                                     false && _exceptionable,
                                                 ),
@@ -4594,7 +4785,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     Array.isArray(input.items) &&
                                     input.items
                                         .map(
-                                            (elem: any, _index38: number) =>
+                                            (elem: any, _index40: number) =>
                                                 "object" === typeof elem &&
                                                 null !== elem &&
                                                 false === Array.isArray(elem) &&
@@ -4602,7 +4793,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                     elem,
                                                     _path +
                                                         ".items[" +
-                                                        _index38 +
+                                                        _index40 +
                                                         "]",
                                                     false && _exceptionable,
                                                 ),
@@ -4718,7 +4909,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                     Array.isArray(input.items) &&
                                     input.items
                                         .map(
-                                            (elem: any, _index39: number) =>
+                                            (elem: any, _index41: number) =>
                                                 "object" === typeof elem &&
                                                 null !== elem &&
                                                 false === Array.isArray(elem) &&
@@ -4726,7 +4917,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                     elem,
                                                     _path +
                                                         ".items[" +
-                                                        _index39 +
+                                                        _index41 +
                                                         "]",
                                                     false && _exceptionable,
                                                 ),
@@ -4800,8 +4991,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                             ((Array.isArray(input) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected:
-                                        "Array<Resolve<IJsonApplication>>",
+                                    expected: "Array<IJsonApplication>",
                                     value: input,
                                 })) &&
                                 input
@@ -4816,7 +5006,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                                         _index1 +
                                                         "]",
                                                     expected:
-                                                        "Resolve<IJsonApplication>",
+                                                        "IJsonApplication",
                                                     value: elem,
                                                 })) &&
                                                 $vo0(
@@ -4827,15 +5017,14 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                                             $report(true, {
                                                 path:
                                                     _path + "[" + _index1 + "]",
-                                                expected:
-                                                    "Resolve<IJsonApplication>",
+                                                expected: "IJsonApplication",
                                                 value: elem,
                                             }),
                                     )
                                     .every((flag: boolean) => flag)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Array<Resolve<IJsonApplication>>",
+                                expected: "Array<IJsonApplication>",
                                 value: input,
                             })
                         );
@@ -4853,6 +5042,7 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                 const $string = (typia.validateStringify as any).string;
                 const $throws = (typia.validateStringify as any).throws;
                 const $number = (typia.validateStringify as any).number;
+                const $tail = (typia.validateStringify as any).tail;
                 const $join = (typia.validateStringify as any).join;
                 const $io1 = (input: any): boolean =>
                     Array.isArray(input["enum"]) &&
@@ -5377,7 +5567,35 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                         "boolean" === typeof input["x-typia-required"]) &&
                     (undefined === input["x-typia-rest"] ||
                         "boolean" === typeof input["x-typia-rest"]);
-                const $io31 = (input: any): boolean => true;
+                const $io31 = (input: any): boolean =>
+                    null !== input.type &&
+                    undefined === input.type &&
+                    (undefined === input.deprecated ||
+                        "boolean" === typeof input.deprecated) &&
+                    (undefined === input.title ||
+                        "string" === typeof input.title) &&
+                    (undefined === input.description ||
+                        "string" === typeof input.description) &&
+                    (undefined === input["x-typia-metaTags"] ||
+                        (Array.isArray(input["x-typia-metaTags"]) &&
+                            input["x-typia-metaTags"].every(
+                                (elem: any) =>
+                                    "object" === typeof elem &&
+                                    null !== elem &&
+                                    $iu0(elem),
+                            ))) &&
+                    (undefined === input["x-typia-jsDocTags"] ||
+                        (Array.isArray(input["x-typia-jsDocTags"]) &&
+                            input["x-typia-jsDocTags"].every(
+                                (elem: any) =>
+                                    "object" === typeof elem &&
+                                    null !== elem &&
+                                    $io17(elem),
+                            ))) &&
+                    (undefined === input["x-typia-required"] ||
+                        "boolean" === typeof input["x-typia-required"]) &&
+                    (undefined === input["x-typia-rest"] ||
+                        "boolean" === typeof input["x-typia-rest"]);
                 const $io32 = (input: any): boolean =>
                     "object" === typeof input.schemas &&
                     null !== input.schemas &&
@@ -6908,7 +7126,70 @@ export const test_validateStringify_UltimateUnion = _test_validateStringify(
                             value: input.type,
                         });
                     })()}}`;
-                const $so31 = (input: any): any => "{}";
+                const $so31 = (input: any): any =>
+                    `{${$tail(
+                        `${
+                            undefined === input.deprecated
+                                ? ""
+                                : `"deprecated":${
+                                      undefined !== input.deprecated
+                                          ? input.deprecated
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input.title
+                                ? ""
+                                : `"title":${
+                                      undefined !== input.title
+                                          ? $string(input.title)
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input.description
+                                ? ""
+                                : `"description":${
+                                      undefined !== input.description
+                                          ? $string(input.description)
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-metaTags"]
+                                ? ""
+                                : `"x-typia-metaTags":${
+                                      undefined !== input["x-typia-metaTags"]
+                                          ? `[${input["x-typia-metaTags"]
+                                                .map((elem: any) => $su0(elem))
+                                                .join(",")}]`
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-jsDocTags"]
+                                ? ""
+                                : `"x-typia-jsDocTags":${
+                                      undefined !== input["x-typia-jsDocTags"]
+                                          ? `[${input["x-typia-jsDocTags"]
+                                                .map((elem: any) => $so17(elem))
+                                                .join(",")}]`
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-required"]
+                                ? ""
+                                : `"x-typia-required":${
+                                      undefined !== input["x-typia-required"]
+                                          ? input["x-typia-required"]
+                                          : undefined
+                                  },`
+                        }${
+                            undefined === input["x-typia-rest"]
+                                ? ""
+                                : `"x-typia-rest":${
+                                      undefined !== input["x-typia-rest"]
+                                          ? input["x-typia-rest"]
+                                          : undefined
+                                  }`
+                        }`,
+                    )}}`;
                 const $so32 = (input: any): any =>
                     `{"schemas":${$so33(input.schemas)}}`;
                 const $so33 = (input: any): any =>

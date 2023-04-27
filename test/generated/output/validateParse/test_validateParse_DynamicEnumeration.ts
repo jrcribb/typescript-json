@@ -132,13 +132,13 @@ export const test_validateParse_DynamicEnumeration = _test_validateParse(
                                 false === Array.isArray(input)) ||
                                 $report(true, {
                                     path: _path + "",
-                                    expected: "Resolve<DynamicEnumeration>",
+                                    expected: "DynamicEnumeration",
                                     value: input,
                                 })) &&
                                 $vo0(input, _path + "", true)) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<DynamicEnumeration>",
+                                expected: "DynamicEnumeration",
                                 value: input,
                             })
                         );
@@ -152,7 +152,7 @@ export const test_validateParse_DynamicEnumeration = _test_validateParse(
             };
             input = JSON.parse(input);
             const output = validate(input);
-            return output;
+            return output as any;
         })(input),
     DynamicEnumeration.SPOILERS,
 );

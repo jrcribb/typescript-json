@@ -75,9 +75,11 @@ export const test_createRandom_ArrayHierarchical = _test_random(
         });
         return (generator?.array ?? $generator.array)(() => $ro0());
     },
-    (input: any): ArrayHierarchical => {
+    (input: any): typia.Primitive<ArrayHierarchical> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ArrayHierarchical => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ArrayHierarchical> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -139,7 +141,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ArrayHierarchical => {
+            ): input is typia.Primitive<ArrayHierarchical> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -169,7 +171,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                         null !== input.established_at) ||
                         $guard(_exceptionable, {
                             path: _path + ".established_at",
-                            expected: "Resolve<ArrayHierarchical.ITimestamp>",
+                            expected: "ArrayHierarchical.ITimestamp",
                             value: input.established_at,
                         })) &&
                     $ao1(
@@ -180,8 +182,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                     (Array.isArray(input.departments) ||
                         $guard(_exceptionable, {
                             path: _path + ".departments",
-                            expected:
-                                "Array<Resolve<ArrayHierarchical.IDepartment>>",
+                            expected: "Array<ArrayHierarchical.IDepartment>",
                             value: input.departments,
                         })) &&
                     input.departments.every(
@@ -190,8 +191,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                                 $guard(_exceptionable, {
                                     path:
                                         _path + ".departments[" + _index2 + "]",
-                                    expected:
-                                        "Resolve<ArrayHierarchical.IDepartment>",
+                                    expected: "ArrayHierarchical.IDepartment",
                                     value: elem,
                                 })) &&
                             $ao2(
@@ -248,7 +248,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                         null !== input.created_at) ||
                         $guard(_exceptionable, {
                             path: _path + ".created_at",
-                            expected: "Resolve<ArrayHierarchical.ITimestamp>",
+                            expected: "ArrayHierarchical.ITimestamp",
                             value: input.created_at,
                         })) &&
                     $ao1(
@@ -259,8 +259,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                     (Array.isArray(input.employees) ||
                         $guard(_exceptionable, {
                             path: _path + ".employees",
-                            expected:
-                                "Array<Resolve<ArrayHierarchical.IEmployee>>",
+                            expected: "Array<ArrayHierarchical.IEmployee>",
                             value: input.employees,
                         })) &&
                     input.employees.every(
@@ -268,8 +267,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(_exceptionable, {
                                     path: _path + ".employees[" + _index3 + "]",
-                                    expected:
-                                        "Resolve<ArrayHierarchical.IEmployee>",
+                                    expected: "ArrayHierarchical.IEmployee",
                                     value: elem,
                                 })) &&
                             $ao3(
@@ -314,7 +312,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                         null !== input.employeed_at) ||
                         $guard(_exceptionable, {
                             path: _path + ".employeed_at",
-                            expected: "Resolve<ArrayHierarchical.ITimestamp>",
+                            expected: "ArrayHierarchical.ITimestamp",
                             value: input.employeed_at,
                         })) &&
                     $ao1(
@@ -326,8 +324,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                     (Array.isArray(input) ||
                         $guard(true, {
                             path: _path + "",
-                            expected:
-                                "Array<Resolve<ArrayHierarchical.ICompany>>",
+                            expected: "Array<ArrayHierarchical.ICompany>",
                             value: input,
                         })) &&
                     input.every(
@@ -335,8 +332,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                             (("object" === typeof elem && null !== elem) ||
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
-                                    expected:
-                                        "Resolve<ArrayHierarchical.ICompany>",
+                                    expected: "ArrayHierarchical.ICompany",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

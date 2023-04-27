@@ -18,8 +18,7 @@ export const test_createValidateParse_TagMatrix = _test_validateParse(
                             3 === elem.length &&
                             elem.every(
                                 (elem: any) =>
-                                    "string" === typeof elem &&
-                                    true === $is_uuid(elem),
+                                    "string" === typeof elem && $is_uuid(elem),
                             ),
                     );
                 return (
@@ -85,10 +84,9 @@ export const test_createValidateParse_TagMatrix = _test_validateParse(
                                                         ) =>
                                                             ("string" ===
                                                                 typeof elem &&
-                                                                (true ===
-                                                                    $is_uuid(
-                                                                        elem,
-                                                                    ) ||
+                                                                ($is_uuid(
+                                                                    elem,
+                                                                ) ||
                                                                     $report(
                                                                         _exceptionable,
                                                                         {
@@ -144,13 +142,13 @@ export const test_createValidateParse_TagMatrix = _test_validateParse(
                         ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
-                                expected: "Resolve<TagMatrix>",
+                                expected: "TagMatrix",
                                 value: input,
                             })) &&
                             $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
-                            expected: "Resolve<TagMatrix>",
+                            expected: "TagMatrix",
                             value: input,
                         })
                     );
@@ -164,7 +162,7 @@ export const test_createValidateParse_TagMatrix = _test_validateParse(
         };
         input = JSON.parse(input);
         const output = validate(input);
-        return output;
+        return output as any;
     },
     TagMatrix.SPOILERS,
 );

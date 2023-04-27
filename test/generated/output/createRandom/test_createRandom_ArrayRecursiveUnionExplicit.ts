@@ -140,9 +140,11 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
             ])(),
         );
     },
-    (input: any): ArrayRecursiveUnionExplicit => {
+    (input: any): typia.Primitive<ArrayRecursiveUnionExplicit> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ArrayRecursiveUnionExplicit => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ArrayRecursiveUnionExplicit> => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -221,7 +223,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ArrayRecursiveUnionExplicit => {
+            ): input is typia.Primitive<ArrayRecursiveUnionExplicit> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -250,7 +252,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".children",
                             expected:
-                                "Array<(Resolve<ArrayRecursiveUnionExplicit.IDirectory> | Resolve<ArrayRecursiveUnionExplicit.IImageFile> | Resolve<ArrayRecursiveUnionExplicit.IShortcut> | Resolve<ArrayRecursiveUnionExplicit.ITextFile> | Resolve<ArrayRecursiveUnionExplicit.IZipFile>)>",
+                                "Array<(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.IShortcut | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile)>",
                             value: input.children,
                         })) &&
                     input.children.every(
@@ -259,7 +261,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                                 $guard(_exceptionable, {
                                     path: _path + ".children[" + _index2 + "]",
                                     expected:
-                                        "(Resolve<ArrayRecursiveUnionExplicit.IDirectory> | Resolve<ArrayRecursiveUnionExplicit.IImageFile> | Resolve<ArrayRecursiveUnionExplicit.IShortcut> | Resolve<ArrayRecursiveUnionExplicit.ITextFile> | Resolve<ArrayRecursiveUnionExplicit.IZipFile>)",
+                                        "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.IShortcut | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile)",
                                     value: elem,
                                 })) &&
                             $au0(
@@ -465,7 +467,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".target",
                             expected:
-                                "(Resolve<ArrayRecursiveUnionExplicit.IDirectory> | Resolve<ArrayRecursiveUnionExplicit.IImageFile> | Resolve<ArrayRecursiveUnionExplicit.IShortcut> | Resolve<ArrayRecursiveUnionExplicit.ITextFile> | Resolve<ArrayRecursiveUnionExplicit.IZipFile>)",
+                                "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.IShortcut | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile)",
                             value: input.target,
                         })) &&
                     $au0(
@@ -513,7 +515,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "Array<(Resolve<ArrayRecursiveUnionExplicit.IDirectory> | Resolve<ArrayRecursiveUnionExplicit.IImageFile> | Resolve<ArrayRecursiveUnionExplicit.IShortcut> | Resolve<ArrayRecursiveUnionExplicit.ITextFile> | Resolve<ArrayRecursiveUnionExplicit.IZipFile>)>",
+                                "Array<(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.IShortcut | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile)>",
                             value: input,
                         })) &&
                     input.every(
@@ -522,7 +524,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Resolve<ArrayRecursiveUnionExplicit.IDirectory> | Resolve<ArrayRecursiveUnionExplicit.IImageFile> | Resolve<ArrayRecursiveUnionExplicit.IShortcut> | Resolve<ArrayRecursiveUnionExplicit.ITextFile> | Resolve<ArrayRecursiveUnionExplicit.IZipFile>)",
+                                        "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.IShortcut | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile)",
                                     value: elem,
                                 })) &&
                             $au0(elem, _path + "[" + _index1 + "]", true),

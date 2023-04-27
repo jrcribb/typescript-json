@@ -193,7 +193,7 @@ export const test_assertParse_TagRange = _test_assertParse(
                             (Array.isArray(input) ||
                                 $guard(true, {
                                     path: _path + "",
-                                    expected: "Array<Resolve<TagRange.Type>>",
+                                    expected: "Array<TagRange.Type>",
                                     value: input,
                                 })) &&
                             input.every(
@@ -202,7 +202,7 @@ export const test_assertParse_TagRange = _test_assertParse(
                                         null !== elem) ||
                                         $guard(true, {
                                             path: _path + "[" + _index1 + "]",
-                                            expected: "Resolve<TagRange.Type>",
+                                            expected: "TagRange.Type",
                                             value: elem,
                                         })) &&
                                     $ao0(
@@ -216,7 +216,7 @@ export const test_assertParse_TagRange = _test_assertParse(
                 return input;
             };
             input = JSON.parse(input);
-            return assert(input);
+            return assert(input) as any;
         })(input),
     TagRange.SPOILERS,
 );

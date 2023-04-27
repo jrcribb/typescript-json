@@ -67,9 +67,11 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
         });
         return (generator?.array ?? $generator.array)(() => $ro0());
     },
-    (input: any): ObjectUnionNonPredictable => {
+    (input: any): typia.Primitive<ObjectUnionNonPredictable> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ObjectUnionNonPredictable => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ObjectUnionNonPredictable> => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.value &&
                 null !== input.value &&
@@ -111,7 +113,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ObjectUnionNonPredictable => {
+            ): input is typia.Primitive<ObjectUnionNonPredictable> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -122,7 +124,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".value",
                             expected:
-                                "Resolve<ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>>",
+                                "ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>",
                             value: input.value,
                         })) &&
                     $ao1(input.value, _path + ".value", true && _exceptionable);
@@ -136,7 +138,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".value",
                             expected:
-                                "(Resolve<ObjectUnionNonPredictable.IWrapper<boolean>> | Resolve<ObjectUnionNonPredictable.IWrapper<number>> | Resolve<ObjectUnionNonPredictable.IWrapper<string>>)",
+                                "(ObjectUnionNonPredictable.IWrapper<boolean> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<string>)",
                             value: input.value,
                         })) &&
                     $au0(input.value, _path + ".value", true && _exceptionable);
@@ -150,7 +152,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".value",
                             expected:
-                                "Resolve<ObjectUnionNonPredictable.IPointer<boolean>>",
+                                "ObjectUnionNonPredictable.IPointer<boolean>",
                             value: input.value,
                         })) &&
                     $ao3(input.value, _path + ".value", true && _exceptionable);
@@ -175,7 +177,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".value",
                             expected:
-                                "Resolve<ObjectUnionNonPredictable.IPointer<number>>",
+                                "ObjectUnionNonPredictable.IPointer<number>",
                             value: input.value,
                         })) &&
                     $ao5(input.value, _path + ".value", true && _exceptionable);
@@ -201,7 +203,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(_exceptionable, {
                             path: _path + ".value",
                             expected:
-                                "Resolve<ObjectUnionNonPredictable.IPointer<string>>",
+                                "ObjectUnionNonPredictable.IPointer<string>",
                             value: input.value,
                         })) &&
                     $ao7(input.value, _path + ".value", true && _exceptionable);
@@ -235,7 +237,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "Array<Resolve<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>>",
+                                "Array<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
                             value: input,
                         })) &&
                     input.every(
@@ -244,7 +246,7 @@ export const test_createRandom_ObjectUnionNonPredictable = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "Resolve<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
+                                        "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
                                     value: elem,
                                 })) &&
                             $ao0(elem, _path + "[" + _index1 + "]", true),

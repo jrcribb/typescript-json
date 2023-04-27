@@ -63,7 +63,7 @@ export const test_assertParse_ObjectLiteralProperty = _test_assertParse(
                                 $guard(true, {
                                     path: _path + "",
                                     expected:
-                                        "Resolve<ObjectLiteralProperty.ISomething>",
+                                        "ObjectLiteralProperty.ISomething",
                                     value: input,
                                 })) &&
                             $ao0(input, _path + "", true)
@@ -72,7 +72,7 @@ export const test_assertParse_ObjectLiteralProperty = _test_assertParse(
                 return input;
             };
             input = JSON.parse(input);
-            return assert(input);
+            return assert(input) as any;
         })(input),
     ObjectLiteralProperty.SPOILERS,
 );

@@ -26,9 +26,11 @@ export const test_createRandom_ConstantAtomicUnion = _test_random(
             ])(),
         );
     },
-    (input: any): ConstantAtomicUnion => {
+    (input: any): typia.Primitive<ConstantAtomicUnion> => {
         const $guard = (typia.createAssert as any).guard;
-        const __is = (input: any): input is ConstantAtomicUnion => {
+        const __is = (
+            input: any,
+        ): input is typia.Primitive<ConstantAtomicUnion> => {
             const $io0 = (input: any): boolean => "key" === input.key;
             return (
                 Array.isArray(input) &&
@@ -50,7 +52,7 @@ export const test_createRandom_ConstantAtomicUnion = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is ConstantAtomicUnion => {
+            ): input is typia.Primitive<ConstantAtomicUnion> => {
                 const $ao0 = (
                     input: any,
                     _path: string,
@@ -67,7 +69,7 @@ export const test_createRandom_ConstantAtomicUnion = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                'Array<("four" | "three" | 1 | 2 | Resolve<__type> | false)>',
+                                'Array<("four" | "three" | 1 | 2 | __type | false)>',
                             value: input,
                         })) &&
                     input.every(
@@ -81,7 +83,7 @@ export const test_createRandom_ConstantAtomicUnion = _test_random(
                                 $guard(true, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        '("four" | "three" | 1 | 2 | Resolve<__type> | false)',
+                                        '("four" | "three" | 1 | 2 | __type | false)',
                                     value: elem,
                                 })) &&
                                 $ao0(elem, _path + "[" + _index1 + "]", true)),
