@@ -1,4 +1,4 @@
 import { TypeboxObjectSimple } from "../../../structures/typebox/TypeboxObjectSimple";
-import { createIsTypeboxBenchmarkProgram } from "./createIsTypeboxBenchmarkProgram";
+import { createIsTypeboxBenchmarkProgram } from "./createIsTypeBoxBenchmarkProgram";
 
 createIsTypeboxBenchmarkProgram(TypeboxObjectSimple);

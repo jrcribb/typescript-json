@@ -10,20 +10,16 @@
         "type": "object",
         "properties": {
           "scale": {
-            "$ref": "#/components/schemas/ObjectSimple.IPoint3D",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectSimple.IPoint3D"
           },
           "position": {
-            "$ref": "#/components/schemas/ObjectSimple.IPoint3D",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectSimple.IPoint3D"
           },
           "rotate": {
-            "$ref": "#/components/schemas/ObjectSimple.IPoint3D",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectSimple.IPoint3D"
           },
           "pivot": {
-            "$ref": "#/components/schemas/ObjectSimple.IPoint3D",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectSimple.IPoint3D"
           }
         },
         "nullable": false,
@@ -39,19 +35,19 @@
         "type": "object",
         "properties": {
           "x": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "y": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "z": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -64,6 +60,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

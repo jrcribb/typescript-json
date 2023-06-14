@@ -5,18 +5,15 @@ export const isSomeOutputDto = (input: any): ISomeOutputDto => {
     const $guard = (typia.createAssert as any).guard;
     const $is_uuid = (typia.createAssert as any).is_uuid;
     const __is = (input: any): input is ISomeOutputDto => {
-        const $is_uuid = (typia.createAssert as any).is_uuid;
-        return (
-            "object" === typeof input &&
-            null !== input &&
+        const $io0 = (input: any): boolean =>
             "string" === typeof input.id &&
             $is_uuid(input.id) &&
             "string" === typeof input.name &&
             3 <= input.name.length &&
             "number" === typeof input.age &&
             0 <= input.age &&
-            100 >= input.age
-        );
+            100 >= input.age;
+        return "object" === typeof input && null !== input && $io0(input);
     };
     if (false === __is(input))
         ((
@@ -75,7 +72,7 @@ export const isSomeOutputDto = (input: any): ISomeOutputDto => {
                 (("object" === typeof input && null !== input) ||
                     $guard(true, {
                         path: _path + "",
-                        expected: "Resolve<ISomeOutputDto>",
+                        expected: "ISomeOutputDto",
                         value: input,
                     })) &&
                 $ao0(input, _path + "", true)

@@ -21,7 +21,7 @@ export namespace IJsonSchema {
         | INullOnly;
 
     export interface IUnknown extends IAttribute {
-        type: undefined;
+        type?: undefined;
     }
 
     /**
@@ -115,7 +115,11 @@ export namespace IJsonSchema {
 
     export interface ISignificant<Literal extends string> extends IAttribute {
         type: Literal;
-        nullable: boolean;
+
+        /**
+         * Only when swagger mode.
+         */
+        nullable?: boolean;
     }
     export interface IAttribute {
         deprecated?: boolean;
@@ -124,6 +128,7 @@ export namespace IJsonSchema {
         "x-typia-metaTags"?: IMetadataTag[];
         "x-typia-jsDocTags"?: IJsDocTagInfo[];
         "x-typia-required"?: boolean;
+        "x-typia-optional"?: boolean;
         "x-typia-rest"?: boolean;
     }
 }

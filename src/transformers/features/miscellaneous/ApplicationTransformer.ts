@@ -42,16 +42,6 @@ export namespace ApplicationTransformer {
                 (str) => str === "swagger" || str === "ajv",
                 () => "swagger",
             );
-            const prefix: string = get_parameter(
-                checker,
-                "Prefix",
-                expression.typeArguments[2],
-                () => true,
-                () =>
-                    purpose === "swagger"
-                        ? "#/components/schemas"
-                        : "components#/schemas",
-            );
 
             //----
             // GENERATORS
@@ -64,6 +54,7 @@ export namespace ApplicationTransformer {
                 MetadataFactory.analyze(checker)({
                     resolve: true,
                     constant: true,
+                    absorb: false,
                     validate: (meta) => {
                         if (meta.atomics.find((str) => str === "bigint"))
                             throw new Error(NO_BIGIT);
@@ -74,7 +65,6 @@ export namespace ApplicationTransformer {
             // APPLICATION
             const app: IJsonApplication = ApplicationProgrammer.write({
                 purpose,
-                prefix,
             })(metadatas);
 
             // RETURNS WITH LITERAL EXPRESSION

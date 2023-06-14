@@ -1,4 +1,4 @@
 import { TypeboxObjectHierarchical } from "../../../structures/typebox/TypeboxObjectHierarchical";
-import { createIsTypeboxBenchmarkProgram } from "./createIsTypeboxBenchmarkProgram";
+import { createIsTypeboxBenchmarkProgram } from "./createIsTypeBoxBenchmarkProgram";
 
 createIsTypeboxBenchmarkProgram(TypeboxObjectHierarchical);

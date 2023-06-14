@@ -10,17 +10,15 @@
         "type": "object",
         "properties": {
           "pagination": {
-            "$ref": "#/components/schemas/ObjectGenericArray.IPagination",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectGenericArray.IPagination"
           },
           "data": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ObjectGenericArray.IPerson",
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "x-typia-required": true
+              "$ref": "#/components/schemas/ObjectGenericArray.IPerson"
+            }
           }
         },
         "nullable": false,
@@ -34,24 +32,24 @@
         "type": "object",
         "properties": {
           "page": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "limit": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "total_count": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "total_pages": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -67,14 +65,14 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           },
           "age": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -86,6 +84,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

@@ -1,28 +1,36 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": [
-        {
-          "type": "boolean",
-          "nullable": false
-        },
-        {
-          "type": "number",
-          "nullable": false
-        },
-        {
-          "type": "string",
-          "nullable": false,
-          "x-typia-rest": false
-        }
-      ],
-      "nullable": false
+      "$ref": "#/components/schemas/AtomicAlias"
     }
   ],
   "components": {
-    "schemas": {}
+    "schemas": {
+      "AtomicAlias": {
+        "$id": "#/components/schemas/AtomicAlias",
+        "type": "array",
+        "items": [
+          {
+            "x-typia-rest": false,
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          {
+            "x-typia-rest": false,
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          {
+            "x-typia-rest": false,
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        ]
+      }
+    }
   },
-  "purpose": "ajv",
-  "prefix": "components#/schemas"
+  "purpose": "ajv"
 }

@@ -1,8 +1,18 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": {
+      "$ref": "#/components/schemas/ObjectUnionDouble"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ObjectUnionDouble": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ObjectUnionDouble.Union"
+        }
+      },
+      "ObjectUnionDouble.Union": {
         "oneOf": [
           {
             "$ref": "#/components/schemas/ObjectUnionDouble.IA"
@@ -12,30 +22,23 @@
           }
         ]
       },
-      "nullable": false
-    }
-  ],
-  "components": {
-    "schemas": {
       "ObjectUnionDouble.IA": {
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/__type",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/__type"
           },
           "child": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/ObjectUnionDouble.IAA",
-                "x-typia-required": true
+                "$ref": "#/components/schemas/ObjectUnionDouble.IAB"
               },
               {
-                "$ref": "#/components/schemas/ObjectUnionDouble.IAB",
-                "x-typia-required": true
+                "$ref": "#/components/schemas/ObjectUnionDouble.IAA"
               }
             ],
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false
           }
         },
         "nullable": false,
@@ -49,9 +52,9 @@
         "type": "object",
         "properties": {
           "x": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -60,41 +63,11 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ObjectUnionDouble.IAA": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/__type.o1",
-            "x-typia-required": true
-          }
-        },
-        "nullable": false,
-        "required": [
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "__type.o1": {
-        "type": "object",
-        "properties": {
-          "y": {
-            "type": "boolean",
-            "nullable": false,
-            "x-typia-required": true
-          }
-        },
-        "nullable": false,
-        "required": [
-          "y"
-        ],
-        "x-typia-jsDocTags": []
-      },
       "ObjectUnionDouble.IAB": {
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/__type.o2",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/__type.o2"
           }
         },
         "nullable": false,
@@ -107,9 +80,37 @@
         "type": "object",
         "properties": {
           "y": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "y"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ObjectUnionDouble.IAA": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/__type.o1"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "value"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o1": {
+        "type": "object",
+        "properties": {
+          "y": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
           }
         },
         "nullable": false,
@@ -122,21 +123,19 @@
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/__type.o3",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/__type.o3"
           },
           "child": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/ObjectUnionDouble.IBA",
-                "x-typia-required": true
+                "$ref": "#/components/schemas/ObjectUnionDouble.IBB"
               },
               {
-                "$ref": "#/components/schemas/ObjectUnionDouble.IBB",
-                "x-typia-required": true
+                "$ref": "#/components/schemas/ObjectUnionDouble.IBA"
               }
             ],
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false
           }
         },
         "nullable": false,
@@ -150,9 +149,9 @@
         "type": "object",
         "properties": {
           "x": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           }
         },
         "nullable": false,
@@ -161,41 +160,11 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ObjectUnionDouble.IBA": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/__type.o4",
-            "x-typia-required": true
-          }
-        },
-        "nullable": false,
-        "required": [
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "__type.o4": {
-        "type": "object",
-        "properties": {
-          "y": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
-          }
-        },
-        "nullable": false,
-        "required": [
-          "y"
-        ],
-        "x-typia-jsDocTags": []
-      },
       "ObjectUnionDouble.IBB": {
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/__type.o5",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/__type.o5"
           }
         },
         "nullable": false,
@@ -208,14 +177,42 @@
         "type": "object",
         "properties": {
           "y": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "array",
             "items": {
-              "type": "number",
-              "nullable": false,
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "x-typia-required": true
+              "x-typia-required": true,
+              "x-typia-optional": false,
+              "type": "number"
+            }
+          }
+        },
+        "nullable": false,
+        "required": [
+          "y"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ObjectUnionDouble.IBA": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/__type.o4"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "value"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o4": {
+        "type": "object",
+        "properties": {
+          "y": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           }
         },
         "nullable": false,
@@ -226,6 +223,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

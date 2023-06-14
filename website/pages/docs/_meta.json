@@ -1,6 +1,7 @@
 {
     "index": "🙋🏻‍♂️ Introduction",
-    "setup": "🛠 Setup",
+    "setup": "📦 Setup",
+    "pure": "⛲ Pure TypeScript",
 
     "-- features": {
         "type": "separator",

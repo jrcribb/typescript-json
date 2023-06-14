@@ -1,4 +1,4 @@
 import { TypeboxArrayRecursive } from "../../../structures/typebox/TypeboxArrayRecursive";
-import { createIsTypeboxBenchmarkProgram } from "./createIsTypeboxBenchmarkProgram";
+import { createIsTypeboxBenchmarkProgram } from "./createIsTypeBoxBenchmarkProgram";
 
 createIsTypeboxBenchmarkProgram(TypeboxArrayRecursive);

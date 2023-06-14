@@ -1,65 +1,73 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": {
-        "$ref": "#/components/schemas/ObjectAlias.IMember"
-      },
-      "nullable": false
+      "$ref": "#/components/schemas/ObjectAlias"
     }
   ],
   "components": {
     "schemas": {
+      "ObjectAlias": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ObjectAlias.IMember"
+        }
+      },
       "ObjectAlias.IMember": {
         "type": "object",
         "properties": {
           "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "string",
-            "nullable": true,
-            "x-typia-required": true
+            "nullable": true
           },
           "email": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           },
           "sex": {
             "oneOf": [
               {
+                "x-typia-required": true,
+                "x-typia-optional": false,
                 "type": "number",
                 "enum": [
                   2,
                   1
                 ],
-                "nullable": true,
-                "x-typia-required": true
+                "nullable": true
               },
               {
+                "x-typia-required": true,
+                "x-typia-optional": false,
                 "type": "string",
                 "enum": [
                   "male",
                   "female"
                 ],
-                "nullable": true,
-                "x-typia-required": true
+                "nullable": true
               }
             ],
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false
           },
           "age": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "number",
-            "nullable": true,
-            "x-typia-required": true
+            "nullable": true
           },
           "dead": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "boolean",
-            "nullable": true,
-            "x-typia-required": true
+            "nullable": true
           }
         },
         "nullable": false,
@@ -75,6 +83,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

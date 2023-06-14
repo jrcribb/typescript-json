@@ -1,4 +1,5 @@
 import { Metadata } from "../../metadata/Metadata";
+import { MetadataTuple } from "../../metadata/MetadataTuple";
 import { IJsonComponents } from "../../schemas/IJsonComponents";
 import { IJsonSchema } from "../../schemas/IJsonSchema";
 
@@ -11,19 +12,36 @@ import { application_schema } from "./application_schema";
 export const application_tuple =
     (options: ApplicationProgrammer.IOptions) =>
     (components: IJsonComponents) =>
-    (items: Array<Metadata>) =>
-    (props: {
-        nullable: boolean;
-        attribute: IJsonSchema.IAttribute;
-    }): IJsonSchema.ITuple => ({
-        type: "array",
-        items: items.map((meta, i) =>
-            application_schema(options)(false)(components)(meta.rest ?? meta)({
-                ...props.attribute,
-                "x-typia-rest":
-                    i === items.length - 1 ? meta.rest !== null : undefined,
-            }),
-        ),
-        nullable: props.nullable,
-        ...props.attribute,
-    });
+    (tuple: MetadataTuple) =>
+    (
+        attribute: IJsonSchema.IAttribute,
+    ): IJsonSchema.ITuple | IJsonSchema.IArray => {
+        const schema: IJsonSchema.ITuple = {
+            type: "array",
+            items: tuple.elements.map((meta, i) =>
+                application_schema(options)(false)(components)(
+                    meta.rest ?? meta,
+                )({
+                    ...attribute,
+                    "x-typia-rest":
+                        i === tuple.elements.length - 1 && meta.rest !== null,
+                    "x-typia-required": meta.required,
+                    "x-typia-optional": meta.optional,
+                }),
+            ),
+            ...attribute,
+        };
+        if (options.purpose === "ajv") return schema;
+
+        const wrapper: IJsonSchema.IArray = {
+            ...schema,
+            items: application_schema(options)(false)(components)(
+                tuple.elements.reduce(
+                    (x, y) => Metadata.merge(x.rest ?? x, y.rest ?? y),
+                    Metadata.initialize(),
+                ),
+            )(tuple.recursive ? {} : attribute),
+            "x-typia-tuple": schema,
+        };
+        return wrapper;
+    };

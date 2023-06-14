@@ -10,19 +10,20 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           },
           "dead": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "boolean",
-            "nullable": true,
-            "x-typia-required": true
+            "nullable": true
           }
         },
         "nullable": false,
@@ -35,6 +36,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

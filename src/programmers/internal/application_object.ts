@@ -9,6 +9,7 @@ import { PatternUtil } from "../../utils/PatternUtil";
 
 import { IJsonSchema } from "../../module";
 import { ApplicationProgrammer } from "../ApplicationProgrammer";
+import { JSON_COMPONENTS_PREFIX } from "./JSON_SCHEMA_PREFIX";
 import { application_schema } from "./application_schema";
 import { metadata_to_pattern } from "./metadata_to_pattern";
 
@@ -19,10 +20,23 @@ export const application_object =
     (options: ApplicationProgrammer.IOptions) =>
     (components: IJsonComponents) =>
     (obj: MetadataObject) =>
-    (props: { key: string; nullable: boolean }): void => {
+    (
+        nullable: boolean,
+    ): IJsonSchema.IReference | IJsonSchema.IRecursiveReference => {
+        const key: string =
+            options.purpose === "ajv"
+                ? obj.name
+                : `${obj.name}${nullable ? ".Nullable" : ""}`;
+        const $id: string = `${JSON_COMPONENTS_PREFIX}/schemas/${key}`;
+        const out = () =>
+            options.purpose === "ajv" && obj.recursive
+                ? { $recursiveRef: $id }
+                : { $ref: $id };
+
         // TEMPORARY ASSIGNMENT
-        if (components.schemas[props.key] !== undefined) return;
-        components.schemas[props.key] = {} as any;
+        if (components.schemas?.[key] !== undefined) return out();
+        components.schemas ??= {};
+        components.schemas[key] = {} as any;
 
         // ITERATE PROPERTIES
         const properties: Record<string, any> = {};
@@ -53,10 +67,10 @@ export const application_object =
                     const info: IJsDocTagInfo | undefined =
                         property.jsDocTags.find((tag) => tag.name === "title");
                     return info?.text?.length
-                        ? CommentFactory.string(info.text)
+                        ? CommentFactory.merge(info.text)
                         : undefined;
                 })(),
-                description: property.description,
+                description: property.description ?? undefined,
                 "x-typia-metaTags": property.tags.length
                     ? property.tags
                     : undefined,
@@ -64,6 +78,7 @@ export const application_object =
                     ? property.jsDocTags
                     : undefined,
                 "x-typia-required": property.value.required,
+                "x-typia-optional": property.value.optional,
             });
 
             if (schema === null) continue;
@@ -96,15 +111,12 @@ export const application_object =
             })(),
         };
         const schema: IJsonComponents.IObject = {
-            $id:
-                options.purpose === "ajv"
-                    ? options.prefix + "/" + props.key
-                    : undefined,
+            $id: options.purpose === "ajv" ? $id : undefined,
             $recursiveAnchor:
                 (options.purpose === "ajv" && obj.recursive) || undefined,
             type: "object",
             properties,
-            nullable: props.nullable,
+            nullable: options.purpose === "swagger" ? nullable : undefined,
             required: required.length ? required : undefined,
             description: obj.description,
             "x-typia-jsDocTags": obj.jsDocTags,
@@ -119,7 +131,8 @@ export const application_object =
                           join(options)(components)(extraMeta),
                   }),
         };
-        components.schemas[props.key] = schema;
+        components.schemas[key] = schema;
+        return out();
     };
 
 const join =

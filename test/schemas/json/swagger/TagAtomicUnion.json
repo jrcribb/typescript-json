@@ -1,23 +1,24 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": {
-        "$ref": "#/components/schemas/TagAtomicUnion.Type"
-      },
-      "nullable": false
+      "$ref": "#/components/schemas/TagAtomicUnion"
     }
   ],
   "components": {
     "schemas": {
+      "TagAtomicUnion": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TagAtomicUnion.Type"
+        }
+      },
       "TagAtomicUnion.Type": {
         "type": "object",
         "properties": {
           "value": {
             "oneOf": [
               {
-                "type": "string",
-                "nullable": false,
+                "description": "@minimum 3\n@minLength 3\n@maxLength 7",
                 "x-typia-metaTags": [
                   {
                     "kind": "minimum",
@@ -62,12 +63,13 @@
                   }
                 ],
                 "x-typia-required": true,
+                "x-typia-optional": false,
+                "type": "string",
                 "minLength": 3,
                 "maxLength": 7
               },
               {
-                "type": "number",
-                "nullable": false,
+                "description": "@minimum 3\n@minLength 3\n@maxLength 7",
                 "x-typia-metaTags": [
                   {
                     "kind": "minimum",
@@ -112,9 +114,12 @@
                   }
                 ],
                 "x-typia-required": true,
+                "x-typia-optional": false,
+                "type": "number",
                 "minimum": 3
               }
             ],
+            "description": "@minimum 3\n@minLength 3\n@maxLength 7",
             "x-typia-metaTags": [
               {
                 "kind": "minimum",
@@ -158,17 +163,18 @@
                 ]
               }
             ],
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false
           }
         },
         "nullable": false,
         "required": [
           "value"
         ],
+        "description": "@minimum 3\n@minLength 3\n@maxLength 7",
         "x-typia-jsDocTags": []
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

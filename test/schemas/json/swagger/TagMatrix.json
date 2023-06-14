@@ -10,13 +10,77 @@
         "type": "object",
         "properties": {
           "matrix": {
+            "description": "Doubled array.\n\n@items 3\n@format uuid",
+            "x-typia-metaTags": [
+              {
+                "kind": "items",
+                "value": 3
+              },
+              {
+                "kind": "format",
+                "value": "uuid"
+              }
+            ],
+            "x-typia-jsDocTags": [
+              {
+                "name": "items",
+                "text": [
+                  {
+                    "text": "3",
+                    "kind": "text"
+                  }
+                ]
+              },
+              {
+                "name": "format",
+                "text": [
+                  {
+                    "text": "uuid",
+                    "kind": "text"
+                  }
+                ]
+              }
+            ],
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "array",
             "items": {
+              "description": "Doubled array.\n\n@items 3\n@format uuid",
+              "x-typia-metaTags": [
+                {
+                  "kind": "items",
+                  "value": 3
+                },
+                {
+                  "kind": "format",
+                  "value": "uuid"
+                }
+              ],
+              "x-typia-jsDocTags": [
+                {
+                  "name": "items",
+                  "text": [
+                    {
+                      "text": "3",
+                      "kind": "text"
+                    }
+                  ]
+                },
+                {
+                  "name": "format",
+                  "text": [
+                    {
+                      "text": "uuid",
+                      "kind": "text"
+                    }
+                  ]
+                }
+              ],
+              "x-typia-required": true,
+              "x-typia-optional": false,
               "type": "array",
               "items": {
-                "type": "string",
-                "nullable": false,
-                "description": "Doubled array.",
+                "description": "Doubled array.\n\n@items 3\n@format uuid",
                 "x-typia-metaTags": [
                   {
                     "kind": "items",
@@ -48,85 +112,21 @@
                   }
                 ],
                 "x-typia-required": true,
+                "x-typia-optional": false,
+                "type": "string",
                 "format": "uuid"
-              },
-              "nullable": false,
-              "description": "Doubled array.",
-              "x-typia-metaTags": [
-                {
-                  "kind": "items",
-                  "value": 3
-                },
-                {
-                  "kind": "format",
-                  "value": "uuid"
-                }
-              ],
-              "x-typia-jsDocTags": [
-                {
-                  "name": "items",
-                  "text": [
-                    {
-                      "text": "3",
-                      "kind": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "format",
-                  "text": [
-                    {
-                      "text": "uuid",
-                      "kind": "text"
-                    }
-                  ]
-                }
-              ],
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "description": "Doubled array.",
-            "x-typia-metaTags": [
-              {
-                "kind": "items",
-                "value": 3
-              },
-              {
-                "kind": "format",
-                "value": "uuid"
               }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "items",
-                "text": [
-                  {
-                    "text": "3",
-                    "kind": "text"
-                  }
-                ]
-              },
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "uuid",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
-            "x-typia-required": true
+            }
           }
         },
         "nullable": false,
         "required": [
           "matrix"
         ],
+        "description": "Doubled array.\n\n@items 3\n@format uuid",
         "x-typia-jsDocTags": []
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

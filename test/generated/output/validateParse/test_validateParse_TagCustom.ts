@@ -8,6 +8,8 @@ export const test_validateParse_TagCustom = _test_validateParse(
     (input) =>
         ((input: string): typia.IValidation<typia.Primitive<TagCustom>> => {
             const validate = (input: any): typia.IValidation<TagCustom> => {
+                const errors = [] as any[];
+                const $report = (typia.validateParse as any).report(errors);
                 const __is = (input: any): input is TagCustom => {
                     const $is_uuid = (typia.validateParse as any).is_uuid;
                     const $is_custom = (typia.validateParse as any).is_custom;
@@ -32,16 +34,15 @@ export const test_validateParse_TagCustom = _test_validateParse(
                         $io0(input)
                     );
                 };
-                const errors = [] as any[];
-                const $report = (typia.validateParse as any).report(errors);
-                const $is_uuid = (typia.validateParse as any).is_uuid;
-                const $is_custom = (typia.validateParse as any).is_custom;
                 if (false === __is(input))
                     ((
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
                     ): input is TagCustom => {
+                        const $is_uuid = (typia.validateParse as any).is_uuid;
+                        const $is_custom = (typia.validateParse as any)
+                            .is_custom;
                         const $vo0 = (
                             input: any,
                             _path: string,

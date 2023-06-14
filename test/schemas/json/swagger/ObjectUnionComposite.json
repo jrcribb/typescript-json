@@ -1,52 +1,54 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.ILine"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.ITriangle"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IRectangle"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPolygon"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPointedShape"
-          },
-          {
-            "$ref": "#/components/schemas/ObjectUnionComposite.ICircle"
-          }
-        ]
-      },
-      "nullable": false
+      "$ref": "#/components/schemas/ObjectUnionComposite"
     }
   ],
   "components": {
     "schemas": {
+      "ObjectUnionComposite": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.ILine"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.ITriangle"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IRectangle"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPointedShape"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPolygon"
+            },
+            {
+              "$ref": "#/components/schemas/ObjectUnionComposite.ICircle"
+            }
+          ]
+        }
+      },
       "ObjectUnionComposite.IPoint": {
         "type": "object",
         "properties": {
           "x": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           },
           "y": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -60,12 +62,10 @@
         "type": "object",
         "properties": {
           "p1": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p2": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           }
         },
         "nullable": false,
@@ -79,16 +79,13 @@
         "type": "object",
         "properties": {
           "p1": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p2": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p3": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           }
         },
         "nullable": false,
@@ -103,20 +100,16 @@
         "type": "object",
         "properties": {
           "p1": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p2": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p3": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "p4": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           }
         },
         "nullable": false,
@@ -132,13 +125,12 @@
         "type": "object",
         "properties": {
           "points": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "x-typia-required": true
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
+            }
           }
         },
         "nullable": false,
@@ -147,21 +139,19 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ObjectUnionComposite.IPolygon": {
+      "ObjectUnionComposite.IPointedShape": {
         "type": "object",
         "properties": {
           "outer": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline",
-            "x-typia-required": true
-          },
-          "inner": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline",
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "x-typia-required": true
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
+            }
+          },
+          "inner": {
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           }
         },
         "nullable": false,
@@ -171,21 +161,19 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ObjectUnionComposite.IPointedShape": {
+      "ObjectUnionComposite.IPolygon": {
         "type": "object",
         "properties": {
           "outer": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-              "x-typia-required": true
-            },
-            "nullable": false,
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline"
           },
           "inner": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectUnionComposite.IPolyline"
+            }
           }
         },
         "nullable": false,
@@ -199,13 +187,12 @@
         "type": "object",
         "properties": {
           "centroid": {
-            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionComposite.IPoint"
           },
           "radius": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
         "nullable": false,
@@ -217,6 +204,5 @@
       }
     }
   },
-  "purpose": "swagger",
-  "prefix": "#/components/schemas"
+  "purpose": "swagger"
 }

@@ -1,146 +1,137 @@
 {
   "schemas": [
     {
-      "type": "array",
-      "items": {
-        "$ref": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_ObjectUnionNonPredictable.IUnion_gt_"
-      },
-      "nullable": false
+      "$ref": "#/components/schemas/ObjectUnionNonPredictable"
     }
   ],
   "components": {
     "schemas": {
+      "ObjectUnionNonPredictable": {
+        "$id": "#/components/schemas/ObjectUnionNonPredictable",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_ObjectUnionNonPredictable.IUnion_gt_"
+        }
+      },
       "ObjectUnionNonPredictable.IWrapper_lt_ObjectUnionNonPredictable.IUnion_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_ObjectUnionNonPredictable.IUnion_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_ObjectUnionNonPredictable.IUnion_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_ObjectUnionNonPredictable.IUnion_gt_",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_ObjectUnionNonPredictable.IUnion_gt_"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IPointer_lt_ObjectUnionNonPredictable.IUnion_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_ObjectUnionNonPredictable.IUnion_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_ObjectUnionNonPredictable.IUnion_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "oneOf": [
-              {
-                "$ref": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_boolean_gt_",
-                "x-typia-required": true
-              },
-              {
-                "$ref": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_number_gt_",
-                "x-typia-required": true
-              },
-              {
-                "$ref": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_string_gt_",
-                "x-typia-required": true
-              }
-            ],
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IUnion"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
+      "ObjectUnionNonPredictable.IUnion": {
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IUnion",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_boolean_gt_"
+          },
+          {
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_number_gt_"
+          },
+          {
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_string_gt_"
+          }
+        ]
+      },
       "ObjectUnionNonPredictable.IWrapper_lt_boolean_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_boolean_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_boolean_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_boolean_gt_",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_boolean_gt_"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IPointer_lt_boolean_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_boolean_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_boolean_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "type": "boolean",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IWrapper_lt_number_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_number_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_number_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_number_gt_",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_number_gt_"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IPointer_lt_number_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_number_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_number_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "type": "number",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IWrapper_lt_string_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IWrapper_lt_string_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IWrapper_lt_string_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_string_gt_",
-            "x-typia-required": true
+            "$ref": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_string_gt_"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
         "x-typia-jsDocTags": []
       },
       "ObjectUnionNonPredictable.IPointer_lt_string_gt_": {
-        "$id": "components#/schemas/ObjectUnionNonPredictable.IPointer_lt_string_gt_",
+        "$id": "#/components/schemas/ObjectUnionNonPredictable.IPointer_lt_string_gt_",
         "type": "object",
         "properties": {
           "value": {
-            "type": "string",
-            "nullable": false,
-            "x-typia-required": true
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           }
         },
-        "nullable": false,
         "required": [
           "value"
         ],
@@ -148,6 +139,5 @@
       }
     }
   },
-  "purpose": "ajv",
-  "prefix": "components#/schemas"
+  "purpose": "ajv"
 }

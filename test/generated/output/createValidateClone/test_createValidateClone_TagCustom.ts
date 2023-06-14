@@ -7,6 +7,8 @@ export const test_createValidateClone_TagCustom = _test_validateClone(
     TagCustom.generate,
     (input: any): typia.IValidation<typia.Primitive<TagCustom>> => {
         const validate = (input: any): typia.IValidation<TagCustom> => {
+            const errors = [] as any[];
+            const $report = (typia.createValidateClone as any).report(errors);
             const __is = (input: any): input is TagCustom => {
                 const $is_uuid = (typia.createValidateClone as any).is_uuid;
                 const $is_custom = (typia.createValidateClone as any).is_custom;
@@ -24,16 +26,15 @@ export const test_createValidateClone_TagCustom = _test_validateClone(
                     "object" === typeof input && null !== input && $io0(input)
                 );
             };
-            const errors = [] as any[];
-            const $report = (typia.createValidateClone as any).report(errors);
-            const $is_uuid = (typia.createValidateClone as any).is_uuid;
-            const $is_custom = (typia.createValidateClone as any).is_custom;
             if (false === __is(input))
                 ((
                     input: any,
                     _path: string,
                     _exceptionable: boolean = true,
                 ): input is TagCustom => {
+                    const $is_uuid = (typia.createValidateClone as any).is_uuid;
+                    const $is_custom = (typia.createValidateClone as any)
+                        .is_custom;
                     const $vo0 = (
                         input: any,
                         _path: string,
