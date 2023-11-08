@@ -4,7 +4,4 @@ import { ObjectUnionDouble } from "../../structures/ObjectUnionDouble";
 
 export const test_createIs_ObjectUnionDouble = _test_is(
     "ObjectUnionDouble",
-    ObjectUnionDouble.generate,
-    typia.createIs<ObjectUnionDouble>(),
-    ObjectUnionDouble.SPOILERS,
-);
+)<ObjectUnionDouble>(ObjectUnionDouble)(typia.createIs<ObjectUnionDouble>());

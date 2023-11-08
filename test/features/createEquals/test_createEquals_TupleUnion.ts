@@ -4,6 +4,4 @@ import { TupleUnion } from "../../structures/TupleUnion";
 
 export const test_createEquals_TupleUnion = _test_equals(
     "TupleUnion",
-    TupleUnion.generate,
-    typia.createEquals<TupleUnion>(),
-);
+)<TupleUnion>(TupleUnion)(typia.createEquals<TupleUnion>());

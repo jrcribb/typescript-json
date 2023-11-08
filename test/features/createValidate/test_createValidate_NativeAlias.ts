@@ -4,7 +4,4 @@ import { NativeAlias } from "../../structures/NativeAlias";
 
 export const test_createValidate_NativeAlias = _test_validate(
     "NativeAlias",
-    NativeAlias.generate,
-    typia.createValidate<NativeAlias>(),
-    NativeAlias.SPOILERS,
-);
+)<NativeAlias>(NativeAlias)(typia.createValidate<NativeAlias>());

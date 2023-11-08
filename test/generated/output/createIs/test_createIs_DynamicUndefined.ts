@@ -4,15 +4,13 @@ import { DynamicUndefined } from "../../../structures/DynamicUndefined";
 
 export const test_createIs_DynamicUndefined = _test_is(
     "DynamicUndefined",
-    DynamicUndefined.generate,
+)<DynamicUndefined>(DynamicUndefined)(
     (input: any): input is DynamicUndefined => {
-        const $join = (typia.createIs as any).join;
         const $io0 = (input: any): boolean =>
             Object.keys(input).every((key: any) => {
                 const value = input[key];
                 if (undefined === value) return true;
-                if (RegExp(/(.*)/).test(key))
-                    return null !== value && undefined === value;
+                if (true) return null !== value && undefined === value;
                 return true;
             });
         return (
@@ -22,5 +20,4 @@ export const test_createIs_DynamicUndefined = _test_is(
             $io0(input)
         );
     },
-    DynamicUndefined.SPOILERS,
 );

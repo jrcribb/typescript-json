@@ -4,7 +4,4 @@ import { ArrayMatrix } from "../../structures/ArrayMatrix";
 
 export const test_validate_ArrayMatrix = _test_validate(
     "ArrayMatrix",
-    ArrayMatrix.generate,
-    (input) => typia.validate(input),
-    ArrayMatrix.SPOILERS,
-);
+)<ArrayMatrix>(ArrayMatrix)((input) => typia.validate<ArrayMatrix>(input));

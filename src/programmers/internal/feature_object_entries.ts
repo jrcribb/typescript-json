@@ -2,7 +2,7 @@ import ts from "typescript";
 
 import { IdentifierFactory } from "../../factories/IdentifierFactory";
 
-import { MetadataObject } from "../../metadata/MetadataObject";
+import { MetadataObject } from "../../schemas/metadata/MetadataObject";
 
 import { Escaper } from "../../utils/Escaper";
 
@@ -21,7 +21,7 @@ export const feature_object_entries =
     ) =>
     (importer: FunctionImporter) =>
     (obj: MetadataObject) =>
-    (input: ts.Expression) =>
+    (input: ts.Expression, from: "object" | "top" | "array" = "object") =>
         obj.properties.map((prop) => {
             const sole: string | null = prop.key.getSoleLiteral();
             const propInput =
@@ -41,23 +41,18 @@ export const feature_object_entries =
                 input: propInput,
                 key: prop.key,
                 meta: prop.value,
-                expression: config.decoder()(
-                    propInput,
-                    prop.value,
-                    {
-                        tracable: config.path || config.trace,
-                        source: "function",
-                        from: "object",
-                        postfix:
-                            sole !== null
-                                ? IdentifierFactory.postfix(sole)
-                                : (() => {
-                                      importer.use("join");
-                                      return `$join(key)`;
-                                  })(),
-                    },
-                    prop.tags,
-                    prop.jsDocTags,
-                ),
+                expression: config.decoder()(propInput, prop.value, {
+                    tracable: config.path || config.trace,
+                    source: "function",
+                    from,
+                    postfix: config.trace
+                        ? sole !== null
+                            ? IdentifierFactory.postfix(sole)
+                            : (() => {
+                                  importer.use("join");
+                                  return `$join(key)`;
+                              })()
+                        : "",
+                }),
             };
         });

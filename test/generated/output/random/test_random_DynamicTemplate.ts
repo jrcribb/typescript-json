@@ -4,10 +4,11 @@ import { DynamicTemplate } from "../../../structures/DynamicTemplate";
 
 export const test_random_DynamicTemplate = _test_random(
     "DynamicTemplate",
-    () =>
+)<DynamicTemplate>(DynamicTemplate)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<DynamicTemplate> => {
+        ): typia.Resolved<DynamicTemplate> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -82,25 +83,38 @@ export const test_random_DynamicTemplate = _test_random(
                 return output;
             };
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<DynamicTemplate> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<DynamicTemplate> => {
-            const $join = (typia.createAssert as any).join;
+        })((DynamicTemplate as any).RANDOM),
+    assert: (input: any): DynamicTemplate => {
+        const __is = (input: any): input is DynamicTemplate => {
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/^(prefix_(.*))/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/^prefix_(.*)/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/((.*)_postfix)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/(.*)_postfix$/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return (
                             "number" === typeof value && Number.isFinite(value)
                         );
-                    if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return "boolean" === typeof value;
                     return true;
                 });
@@ -116,7 +130,7 @@ export const test_random_DynamicTemplate = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<DynamicTemplate> => {
+            ): input is DynamicTemplate => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -128,7 +142,10 @@ export const test_random_DynamicTemplate = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/^(prefix_(.*))/).test(key))
+                        if (
+                            "string" === typeof key &&
+                            RegExp(/^prefix_(.*)/).test(key)
+                        )
                             return (
                                 "string" === typeof value ||
                                 $guard(_exceptionable, {
@@ -137,7 +154,10 @@ export const test_random_DynamicTemplate = _test_random(
                                     value: value,
                                 })
                             );
-                        if (RegExp(/((.*)_postfix)$/).test(key))
+                        if (
+                            "string" === typeof key &&
+                            RegExp(/(.*)_postfix$/).test(key)
+                        )
                             return (
                                 "string" === typeof value ||
                                 $guard(_exceptionable, {
@@ -146,7 +166,12 @@ export const test_random_DynamicTemplate = _test_random(
                                     value: value,
                                 })
                             );
-                        if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                        if (
+                            "string" === typeof key &&
+                            RegExp(
+                                /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                            ).test(key)
+                        )
                             return (
                                 ("number" === typeof value &&
                                     Number.isFinite(value)) ||
@@ -157,7 +182,10 @@ export const test_random_DynamicTemplate = _test_random(
                                 })
                             );
                         if (
-                            RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key)
+                            "string" === typeof key &&
+                            RegExp(
+                                /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                            ).test(key)
                         )
                             return (
                                 "boolean" === typeof value ||
@@ -188,4 +216,4 @@ export const test_random_DynamicTemplate = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

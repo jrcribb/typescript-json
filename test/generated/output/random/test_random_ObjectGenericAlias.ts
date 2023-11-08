@@ -4,10 +4,11 @@ import { ObjectGenericAlias } from "../../../structures/ObjectGenericAlias";
 
 export const test_random_ObjectGenericAlias = _test_random(
     "ObjectGenericAlias",
-    () =>
+)<ObjectGenericAlias>(ObjectGenericAlias)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectGenericAlias> => {
+        ): typia.Resolved<ObjectGenericAlias> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -18,11 +19,9 @@ export const test_random_ObjectGenericAlias = _test_random(
                     (generator?.string ?? $generator.string)(),
             });
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<ObjectGenericAlias> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectGenericAlias> => {
+        })((ObjectGenericAlias as any).RANDOM),
+    assert: (input: any): ObjectGenericAlias => {
+        const __is = (input: any): input is ObjectGenericAlias => {
             return (
                 "object" === typeof input &&
                 null !== input &&
@@ -34,7 +33,7 @@ export const test_random_ObjectGenericAlias = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectGenericAlias> => {
+            ): input is ObjectGenericAlias => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -64,4 +63,4 @@ export const test_random_ObjectGenericAlias = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

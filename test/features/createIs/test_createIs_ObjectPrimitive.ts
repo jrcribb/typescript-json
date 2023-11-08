@@ -4,7 +4,4 @@ import { ObjectPrimitive } from "../../structures/ObjectPrimitive";
 
 export const test_createIs_ObjectPrimitive = _test_is(
     "ObjectPrimitive",
-    ObjectPrimitive.generate,
-    typia.createIs<ObjectPrimitive>(),
-    ObjectPrimitive.SPOILERS,
-);
+)<ObjectPrimitive>(ObjectPrimitive)(typia.createIs<ObjectPrimitive>());

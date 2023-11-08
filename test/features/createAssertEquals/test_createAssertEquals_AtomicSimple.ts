@@ -4,6 +4,4 @@ import { AtomicSimple } from "../../structures/AtomicSimple";
 
 export const test_createAssertEquals_AtomicSimple = _test_assertEquals(
     "AtomicSimple",
-    AtomicSimple.generate,
-    typia.createAssertEquals<AtomicSimple>(),
-);
+)<AtomicSimple>(AtomicSimple)(typia.createAssertEquals<AtomicSimple>());

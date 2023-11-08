@@ -4,6 +4,4 @@ import { InstanceUnion } from "../../structures/InstanceUnion";
 
 export const test_assert_InstanceUnion = _test_assert(
     "InstanceUnion",
-    InstanceUnion.generate,
-    (input) => typia.assert(input),
-);
+)<InstanceUnion>(InstanceUnion)((input) => typia.assert<InstanceUnion>(input));

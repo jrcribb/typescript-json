@@ -4,6 +4,6 @@ import { DynamicEnumeration } from "../../structures/DynamicEnumeration";
 
 export const test_assertEquals_DynamicEnumeration = _test_assertEquals(
     "DynamicEnumeration",
-    DynamicEnumeration.generate,
-    (input) => typia.assertEquals(input),
+)<DynamicEnumeration>(DynamicEnumeration)((input) =>
+    typia.assertEquals<DynamicEnumeration>(input),
 );

@@ -4,7 +4,7 @@ import { ArrayRecursive } from "../../../structures/ArrayRecursive";
 
 export const test_createEquals_ArrayRecursive = _test_equals(
     "ArrayRecursive",
-    ArrayRecursive.generate,
+)<ArrayRecursive>(ArrayRecursive)(
     (input: any, _exceptionable: boolean = true): input is ArrayRecursive => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             Array.isArray(input.children) &&

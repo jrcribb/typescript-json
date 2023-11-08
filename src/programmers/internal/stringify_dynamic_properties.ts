@@ -125,7 +125,7 @@ export const stringify_dynamic_properties = (
     const simple: boolean =
         dynamic.length === 1 &&
         dynamic[0]!.key.size() === 1 &&
-        dynamic[0]!.key.atomics[0] === "string";
+        dynamic[0]!.key.atomics[0]?.type === "string";
     if (simple === true) {
         statements.push(stringify(dynamic[0]!));
         return output();
@@ -145,6 +145,10 @@ export const stringify_dynamic_properties = (
         );
         statements.push(condition);
     }
+    statements.push(
+        ts.factory.createReturnStatement(ts.factory.createStringLiteral("")),
+    );
+
     return output();
 };
 

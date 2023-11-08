@@ -4,7 +4,4 @@ import { NativeSimple } from "../../structures/NativeSimple";
 
 export const test_createIs_NativeSimple = _test_is(
     "NativeSimple",
-    NativeSimple.generate,
-    typia.createIs<NativeSimple>(),
-    NativeSimple.SPOILERS,
-);
+)<NativeSimple>(NativeSimple)(typia.createIs<NativeSimple>());

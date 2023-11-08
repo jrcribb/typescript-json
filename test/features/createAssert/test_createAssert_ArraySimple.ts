@@ -4,7 +4,4 @@ import { ArraySimple } from "../../structures/ArraySimple";
 
 export const test_createAssert_ArraySimple = _test_assert(
     "ArraySimple",
-    ArraySimple.generate,
-    typia.createAssert<ArraySimple>(),
-    ArraySimple.SPOILERS,
-);
+)<ArraySimple>(ArraySimple)(typia.createAssert<ArraySimple>());

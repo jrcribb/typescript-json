@@ -5,579 +5,621 @@ import { ObjectUnionNonPredictable } from "../../../structures/ObjectUnionNonPre
 export const test_validateEquals_ObjectUnionNonPredictable =
     _test_validateEquals(
         "ObjectUnionNonPredictable",
-        ObjectUnionNonPredictable.generate,
-        (input) =>
-            ((
+    )<ObjectUnionNonPredictable>(ObjectUnionNonPredictable)((input) =>
+        ((input: any): typia.IValidation<ObjectUnionNonPredictable> => {
+            const errors = [] as any[];
+            const __is = (
                 input: any,
-            ): typia.IValidation<
-                Array<
-                    ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>
-                >
-            > => {
-                const errors = [] as any[];
-                const $report = (typia.validateEquals as any).report(errors);
-                const __is = (
+                _exceptionable: boolean = true,
+            ): input is ObjectUnionNonPredictable => {
+                const $io0 = (
                     input: any,
                     _exceptionable: boolean = true,
-                ): input is Array<
-                    ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>
-                > => {
-                    const $io0 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "object" === typeof input.value &&
-                        null !== input.value &&
-                        $io1(input.value, true && _exceptionable) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io1 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "object" === typeof input.value &&
-                        null !== input.value &&
-                        $iu0(input.value, true && _exceptionable) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io2 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "object" === typeof input.value &&
-                        null !== input.value &&
-                        $io3(input.value, true && _exceptionable) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io3 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "boolean" === typeof input.value &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io4 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "object" === typeof input.value &&
-                        null !== input.value &&
-                        $io5(input.value, true && _exceptionable) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io5 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "number" === typeof input.value &&
-                        Number.isFinite(input.value) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io6 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "object" === typeof input.value &&
-                        null !== input.value &&
-                        $io7(input.value, true && _exceptionable) &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $io7 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): boolean =>
-                        "string" === typeof input.value &&
-                        (1 === Object.keys(input).length ||
-                            Object.keys(input).every((key: any) => {
-                                if (["value"].some((prop: any) => key === prop))
-                                    return true;
-                                const value = input[key];
-                                if (undefined === value) return true;
-                                return false;
-                            }));
-                    const $iu0 = (
-                        input: any,
-                        _exceptionable: boolean = true,
-                    ): any =>
-                        (() => {
-                            if ($io6(input, false && _exceptionable))
-                                return $io6(input, true && _exceptionable);
-                            if ($io4(input, false && _exceptionable))
-                                return $io4(input, true && _exceptionable);
-                            if ($io2(input, false && _exceptionable))
-                                return $io2(input, true && _exceptionable);
+                ): boolean =>
+                    Array.isArray(input.value) &&
+                    input.value.every(
+                        (elem: any, _index1: number) =>
+                            "object" === typeof elem &&
+                            null !== elem &&
+                            $io1(elem, true && _exceptionable),
+                    ) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
                             return false;
-                        })();
-                    return (
-                        Array.isArray(input) &&
-                        input.every(
-                            (elem: any, _index1: number) =>
-                                "object" === typeof elem &&
-                                null !== elem &&
-                                $io0(elem, true),
-                        )
-                    );
-                };
-                if (false === __is(input))
-                    ((
+                        }));
+                const $io1 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io2(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io2 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $iu0(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io3 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io4(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io4 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "boolean" === typeof input.value &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io5 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io6(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io6 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "number" === typeof input.value &&
+                    Number.isFinite(input.value) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io7 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io8(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io8 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "string" === typeof input.value &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $iu0 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): any =>
+                    (() => {
+                        if ($io7(input, false && _exceptionable))
+                            return $io7(input, true && _exceptionable);
+                        else if ($io5(input, false && _exceptionable))
+                            return $io5(input, true && _exceptionable);
+                        else if ($io3(input, false && _exceptionable))
+                            return $io3(input, true && _exceptionable);
+                        else return false;
+                    })();
+                return (
+                    "object" === typeof input &&
+                    null !== input &&
+                    $io0(input, true)
+                );
+            };
+            if (false === __is(input)) {
+                const $report = (typia.validateEquals as any).report(errors);
+                ((
+                    input: any,
+                    _path: string,
+                    _exceptionable: boolean = true,
+                ): input is ObjectUnionNonPredictable => {
+                    const $join = (typia.validateEquals as any).join;
+                    const $vo0 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
-                    ): input is Array<
-                        ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>
-                    > => {
-                        const $join = (typia.validateEquals as any).join;
-                        const $vo0 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ((("object" === typeof input.value &&
-                                    null !== input.value) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>",
-                                        value: input.value,
-                                    })) &&
-                                    $vo1(
-                                        input.value,
-                                        _path + ".value",
-                                        true && _exceptionable,
-                                    )) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo1 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ((("object" === typeof input.value &&
-                                    null !== input.value) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "(ObjectUnionNonPredictable.IWrapper<boolean> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<string>)",
-                                        value: input.value,
-                                    })) &&
-                                    $vu0(
-                                        input.value,
-                                        _path + ".value",
-                                        true && _exceptionable,
-                                    )) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "(ObjectUnionNonPredictable.IWrapper<boolean> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<string>)",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo2 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ((("object" === typeof input.value &&
-                                    null !== input.value) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<boolean>",
-                                        value: input.value,
-                                    })) &&
-                                    $vo3(
-                                        input.value,
-                                        _path + ".value",
-                                        true && _exceptionable,
-                                    )) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<boolean>",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo3 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                "boolean" === typeof input.value ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected: "boolean",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo4 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ((("object" === typeof input.value &&
-                                    null !== input.value) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<number>",
-                                        value: input.value,
-                                    })) &&
-                                    $vo5(
-                                        input.value,
-                                        _path + ".value",
-                                        true && _exceptionable,
-                                    )) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<number>",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo5 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ("number" === typeof input.value &&
-                                    Number.isFinite(input.value)) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected: "number",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo6 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                ((("object" === typeof input.value &&
-                                    null !== input.value) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<string>",
-                                        value: input.value,
-                                    })) &&
-                                    $vo7(
-                                        input.value,
-                                        _path + ".value",
-                                        true && _exceptionable,
-                                    )) ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected:
-                                            "ObjectUnionNonPredictable.IPointer<string>",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vo7 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): boolean =>
-                            [
-                                "string" === typeof input.value ||
-                                    $report(_exceptionable, {
-                                        path: _path + ".value",
-                                        expected: "string",
-                                        value: input.value,
-                                    }),
-                                1 === Object.keys(input).length ||
-                                    false === _exceptionable ||
-                                    Object.keys(input)
-                                        .map((key: any) => {
-                                            if (
-                                                ["value"].some(
-                                                    (prop: any) => key === prop,
-                                                )
-                                            )
-                                                return true;
-                                            const value = input[key];
-                                            if (undefined === value)
-                                                return true;
-                                            return $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "undefined",
-                                                value: value,
-                                            });
-                                        })
-                                        .every((flag: boolean) => flag),
-                            ].every((flag: boolean) => flag);
-                        const $vu0 = (
-                            input: any,
-                            _path: string,
-                            _exceptionable: boolean = true,
-                        ): any =>
-                            (() => {
-                                if ($vo6(input, _path, false && _exceptionable))
-                                    return $vo6(
-                                        input,
-                                        _path,
-                                        true && _exceptionable,
-                                    );
-                                if ($vo4(input, _path, false && _exceptionable))
-                                    return $vo4(
-                                        input,
-                                        _path,
-                                        true && _exceptionable,
-                                    );
-                                if ($vo2(input, _path, false && _exceptionable))
-                                    return $vo2(
-                                        input,
-                                        _path,
-                                        true && _exceptionable,
-                                    );
-                                return $report(_exceptionable, {
-                                    path: _path,
+                    ): boolean =>
+                        [
+                            ((Array.isArray(input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
                                     expected:
-                                        "(ObjectUnionNonPredictable.IWrapper<string> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<boolean>)",
-                                    value: input,
-                                });
-                            })();
-                        return (
-                            ((Array.isArray(input) ||
-                                $report(true, {
-                                    path: _path + "",
-                                    expected: "ObjectUnionNonPredictable",
-                                    value: input,
+                                        "Array<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
+                                    value: input.value,
                                 })) &&
-                                input
+                                input.value
                                     .map(
                                         (elem: any, _index1: number) =>
                                             ((("object" === typeof elem &&
                                                 null !== elem) ||
-                                                $report(true, {
+                                                $report(_exceptionable, {
                                                     path:
                                                         _path +
-                                                        "[" +
+                                                        ".value[" +
                                                         _index1 +
                                                         "]",
                                                     expected:
                                                         "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
                                                     value: elem,
                                                 })) &&
-                                                $vo0(
+                                                $vo1(
                                                     elem,
-                                                    _path + "[" + _index1 + "]",
-                                                    true,
+                                                    _path +
+                                                        ".value[" +
+                                                        _index1 +
+                                                        "]",
+                                                    true && _exceptionable,
                                                 )) ||
-                                            $report(true, {
+                                            $report(_exceptionable, {
                                                 path:
-                                                    _path + "[" + _index1 + "]",
+                                                    _path +
+                                                    ".value[" +
+                                                    _index1 +
+                                                    "]",
                                                 expected:
                                                     "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
                                                 value: elem,
                                             }),
                                     )
                                     .every((flag: boolean) => flag)) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "Array<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo1 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "IPointer<ObjectUnionNonPredictable.IUnion>",
+                                    value: input.value,
+                                })) &&
+                                $vo2(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "IPointer<ObjectUnionNonPredictable.IUnion>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo2 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "(ObjectUnionNonPredictable.IWrapper<boolean> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<string>)",
+                                    value: input.value,
+                                })) &&
+                                $vu0(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "(ObjectUnionNonPredictable.IWrapper<boolean> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<string>)",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo3 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<boolean>",
+                                    value: input.value,
+                                })) &&
+                                $vo4(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<boolean>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo4 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            "boolean" === typeof input.value ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "boolean",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo5 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<number>",
+                                    value: input.value,
+                                })) &&
+                                $vo6(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<number>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo6 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ("number" === typeof input.value &&
+                                Number.isFinite(input.value)) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "number",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo7 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<string>",
+                                    value: input.value,
+                                })) &&
+                                $vo8(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "IPointer<string>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo8 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            "string" === typeof input.value ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected: "string",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vu0 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): any =>
+                        (() => {
+                            if ($vo7(input, _path, false && _exceptionable))
+                                return $vo7(
+                                    input,
+                                    _path,
+                                    true && _exceptionable,
+                                );
+                            else if (
+                                $vo5(input, _path, false && _exceptionable)
+                            )
+                                return $vo5(
+                                    input,
+                                    _path,
+                                    true && _exceptionable,
+                                );
+                            else if (
+                                $vo3(input, _path, false && _exceptionable)
+                            )
+                                return $vo3(
+                                    input,
+                                    _path,
+                                    true && _exceptionable,
+                                );
+                            else
+                                return $report(_exceptionable, {
+                                    path: _path,
+                                    expected:
+                                        "(ObjectUnionNonPredictable.IWrapper<string> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<boolean>)",
+                                    value: input,
+                                });
+                        })();
+                    return (
+                        ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
                                 expected: "ObjectUnionNonPredictable",
                                 value: input,
-                            })
-                        );
-                    })(input, "$input", true);
-                const success = 0 === errors.length;
-                return {
-                    success,
-                    errors,
-                    data: success ? input : undefined,
-                } as any;
-            })(input),
+                            })) &&
+                            $vo0(input, _path + "", true)) ||
+                        $report(true, {
+                            path: _path + "",
+                            expected: "ObjectUnionNonPredictable",
+                            value: input,
+                        })
+                    );
+                })(input, "$input", true);
+            }
+            const success = 0 === errors.length;
+            return {
+                success,
+                errors,
+                data: success ? input : undefined,
+            } as any;
+        })(input),
     );

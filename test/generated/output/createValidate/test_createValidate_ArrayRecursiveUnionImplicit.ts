@@ -4,10 +4,9 @@ import { ArrayRecursiveUnionImplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
     "ArrayRecursiveUnionImplicit",
-    ArrayRecursiveUnionImplicit.generate,
+)<ArrayRecursiveUnionImplicit>(ArrayRecursiveUnionImplicit)(
     (input: any): typia.IValidation<ArrayRecursiveUnionImplicit> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ArrayRecursiveUnionImplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
@@ -70,11 +69,11 @@ export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.access) return $io1(input);
-                    if (undefined !== input.width) return $io2(input);
-                    if (undefined !== input.content) return $io3(input);
-                    if (undefined !== input.count) return $io4(input);
-                    if (undefined !== input.target) return $io5(input);
-                    return $io0(input);
+                    else if (undefined !== input.width) return $io2(input);
+                    else if (undefined !== input.content) return $io3(input);
+                    else if (undefined !== input.count) return $io4(input);
+                    else if (undefined !== input.target) return $io5(input);
+                    else return $io0(input);
                 })();
             return (
                 Array.isArray(input) &&
@@ -84,7 +83,8 @@ export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -430,15 +430,15 @@ export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
                     (() => {
                         if (undefined !== input.access)
                             return $vo1(input, _path, true && _exceptionable);
-                        if (undefined !== input.width)
+                        else if (undefined !== input.width)
                             return $vo2(input, _path, true && _exceptionable);
-                        if (undefined !== input.content)
+                        else if (undefined !== input.content)
                             return $vo3(input, _path, true && _exceptionable);
-                        if (undefined !== input.count)
+                        else if (undefined !== input.count)
                             return $vo4(input, _path, true && _exceptionable);
-                        if (undefined !== input.target)
+                        else if (undefined !== input.target)
                             return $vo5(input, _path, true && _exceptionable);
-                        return $vo0(input, _path, true && _exceptionable);
+                        else return $vo0(input, _path, true && _exceptionable);
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -478,6 +478,7 @@ export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -485,5 +486,4 @@ export const test_createValidate_ArrayRecursiveUnionImplicit = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ArrayRecursiveUnionImplicit.SPOILERS,
 );

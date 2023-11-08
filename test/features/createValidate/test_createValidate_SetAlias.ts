@@ -4,7 +4,4 @@ import { SetAlias } from "../../structures/SetAlias";
 
 export const test_createValidate_SetAlias = _test_validate(
     "SetAlias",
-    SetAlias.generate,
-    typia.createValidate<SetAlias>(),
-    SetAlias.SPOILERS,
-);
+)<SetAlias>(SetAlias)(typia.createValidate<SetAlias>());

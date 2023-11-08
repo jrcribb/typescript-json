@@ -4,7 +4,7 @@ import { FunctionalValueUnion } from "../../../structures/FunctionalValueUnion";
 
 export const test_createAssert_FunctionalValueUnion = _test_assert(
     "FunctionalValueUnion",
-    FunctionalValueUnion.generate,
+)<FunctionalValueUnion>(FunctionalValueUnion)(
     (input: any): FunctionalValueUnion => {
         const __is = (input: any): input is FunctionalValueUnion => {
             return (
@@ -62,5 +62,4 @@ export const test_createAssert_FunctionalValueUnion = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    FunctionalValueUnion.SPOILERS,
 );

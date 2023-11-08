@@ -4,7 +4,7 @@ import { ArrayAtomicAlias } from "../../../structures/ArrayAtomicAlias";
 
 export const test_createEquals_ArrayAtomicAlias = _test_equals(
     "ArrayAtomicAlias",
-    ArrayAtomicAlias.generate,
+)<ArrayAtomicAlias>(ArrayAtomicAlias)(
     (input: any, _exceptionable: boolean = true): input is ArrayAtomicAlias => {
         return (
             Array.isArray(input) &&

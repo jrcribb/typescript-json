@@ -4,6 +4,7 @@ import { DynamicNever } from "../../structures/DynamicNever";
 
 export const test_random_DynamicNever = _test_random(
     "DynamicNever",
-    () => typia.random<DynamicNever>(),
-    typia.createAssert<typia.Primitive<DynamicNever>>(),
-);
+)<DynamicNever>(DynamicNever)({
+    random: () => typia.random<DynamicNever>((DynamicNever as any).RANDOM),
+    assert: typia.createAssert<DynamicNever>(),
+});

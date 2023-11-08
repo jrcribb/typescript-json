@@ -4,7 +4,7 @@ import { ConstantAtomicUnion } from "../../../structures/ConstantAtomicUnion";
 
 export const test_createEquals_ConstantAtomicUnion = _test_equals(
     "ConstantAtomicUnion",
-    ConstantAtomicUnion.generate,
+)<ConstantAtomicUnion>(ConstantAtomicUnion)(
     (
         input: any,
         _exceptionable: boolean = true,
@@ -22,14 +22,16 @@ export const test_createEquals_ConstantAtomicUnion = _test_equals(
             Array.isArray(input) &&
             input.every(
                 (elem: any, _index1: number) =>
-                    false === elem ||
-                    1 === elem ||
-                    2 === elem ||
-                    "three" === elem ||
-                    "four" === elem ||
-                    ("object" === typeof elem &&
-                        null !== elem &&
-                        $io0(elem, true)),
+                    null !== elem &&
+                    undefined !== elem &&
+                    (false === elem ||
+                        2 === elem ||
+                        1 === elem ||
+                        "three" === elem ||
+                        "four" === elem ||
+                        ("object" === typeof elem &&
+                            null !== elem &&
+                            $io0(elem, true))),
             )
         );
     },

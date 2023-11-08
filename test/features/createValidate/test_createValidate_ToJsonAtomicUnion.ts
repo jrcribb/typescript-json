@@ -4,6 +4,6 @@ import { ToJsonAtomicUnion } from "../../structures/ToJsonAtomicUnion";
 
 export const test_createValidate_ToJsonAtomicUnion = _test_validate(
     "ToJsonAtomicUnion",
-    ToJsonAtomicUnion.generate,
+)<ToJsonAtomicUnion>(ToJsonAtomicUnion)(
     typia.createValidate<ToJsonAtomicUnion>(),
 );

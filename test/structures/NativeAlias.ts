@@ -13,14 +13,14 @@ export interface NativeAlias {
     bigInt64Array: NativeAlias.BIGINT64ARRAY;
     float32Array: NativeAlias.FLOAT32ARRAY;
     float64Array: NativeAlias.FLOAT64ARRAY;
-    buffer: NativeAlias.BUFFER;
     arrayBuffer: NativeAlias.ARRAYBUFFER;
     sharedArrayBuffer: NativeAlias.SHAREDARRAYBUFFER;
     dataView: NativeAlias.DATAVIEW;
-    weakSet: NativeAlias.WEAKSET;
-    weakMap: NativeAlias.WEAKMAP;
 }
 export namespace NativeAlias {
+    export const ADDABLE = false;
+    export const BINARABLE = false;
+    export const JSONABLE = false;
     export const PRIMITIVE = false;
 
     export type DATE = Date;
@@ -35,17 +35,13 @@ export namespace NativeAlias {
     export type BIGINT64ARRAY = BigInt64Array;
     export type FLOAT32ARRAY = Float32Array;
     export type FLOAT64ARRAY = Float64Array;
-    export type BUFFER = Buffer;
     export type ARRAYBUFFER = ArrayBuffer;
     export type SHAREDARRAYBUFFER = SharedArrayBuffer;
     export type DATAVIEW = DataView;
-    export type WEAKSET = WeakSet<any>;
-    export type WEAKMAP = WeakMap<any, any>;
 
     export function generate(): NativeAlias {
         return NativeSimple.generate();
     }
 
-    export const ADDABLE = false;
     export const SPOILERS = NativeSimple.SPOILERS;
 }

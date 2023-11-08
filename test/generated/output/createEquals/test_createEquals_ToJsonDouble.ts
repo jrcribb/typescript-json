@@ -4,7 +4,7 @@ import { ToJsonDouble } from "../../../structures/ToJsonDouble";
 
 export const test_createEquals_ToJsonDouble = _test_equals(
     "ToJsonDouble",
-    ToJsonDouble.generate,
+)<ToJsonDouble>(ToJsonDouble)(
     (input: any, _exceptionable: boolean = true): input is ToJsonDouble => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             0 === Object.keys(input).length ||

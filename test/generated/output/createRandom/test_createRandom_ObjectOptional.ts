@@ -4,9 +4,11 @@ import { ObjectOptional } from "../../../structures/ObjectOptional";
 
 export const test_createRandom_ObjectOptional = _test_random(
     "ObjectOptional",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectOptional> => {
+)<ObjectOptional>(ObjectOptional)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectOptional as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectOptional> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (
@@ -40,8 +42,8 @@ export const test_createRandom_ObjectOptional = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectOptional> => {
-        const __is = (input: any): input is typia.Primitive<ObjectOptional> => {
+    assert: (input: any): ObjectOptional => {
+        const __is = (input: any): input is ObjectOptional => {
             const $io0 = (input: any): boolean =>
                 (undefined === input.id || "string" === typeof input.id) &&
                 (undefined === input.name || "string" === typeof input.name) &&
@@ -62,7 +64,7 @@ export const test_createRandom_ObjectOptional = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectOptional> => {
+            ): input is ObjectOptional => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -117,4 +119,4 @@ export const test_createRandom_ObjectOptional = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

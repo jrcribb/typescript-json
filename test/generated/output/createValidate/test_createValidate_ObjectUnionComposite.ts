@@ -4,10 +4,9 @@ import { ObjectUnionComposite } from "../../../structures/ObjectUnionComposite";
 
 export const test_createValidate_ObjectUnionComposite = _test_validate(
     "ObjectUnionComposite",
-    ObjectUnionComposite.generate,
+)<ObjectUnionComposite>(ObjectUnionComposite)(
     (input: any): typia.IValidation<ObjectUnionComposite> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ObjectUnionComposite => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
@@ -110,9 +109,9 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.x) return $io0(input);
-                    if (undefined !== input.p4) return $io3(input);
-                    if (undefined !== input.points) return $io4(input);
-                    if (
+                    else if (undefined !== input.p4) return $io3(input);
+                    else if (undefined !== input.points) return $io4(input);
+                    else if (
                         Array.isArray(input.outer) &&
                         input.outer.every(
                             (elem: any) =>
@@ -122,17 +121,18 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                         )
                     )
                         return $io6(input);
-                    if (
+                    else if (
                         "object" === typeof input.outer &&
                         null !== input.outer &&
                         $io4(input.outer)
                     )
                         return $io5(input);
-                    if (undefined !== input.centroid) return $io7(input);
-                    return (() => {
-                        if (undefined !== input.p3) return $io2(input);
-                        return $io1(input);
-                    })();
+                    else if (undefined !== input.centroid) return $io7(input);
+                    else
+                        return (() => {
+                            if (undefined !== input.p3) return $io2(input);
+                            else return $io1(input);
+                        })();
                 })();
             return (
                 Array.isArray(input) &&
@@ -142,7 +142,8 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -568,11 +569,11 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                     (() => {
                         if (undefined !== input.x)
                             return $vo0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p4)
+                        else if (undefined !== input.p4)
                             return $vo3(input, _path, true && _exceptionable);
-                        if (undefined !== input.points)
+                        else if (undefined !== input.points)
                             return $vo4(input, _path, true && _exceptionable);
-                        if (
+                        else if (
                             Array.isArray(input.outer) &&
                             input.outer
                                 .map(
@@ -588,7 +589,7 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                                 .every((flag: boolean) => flag)
                         )
                             return $vo6(input, _path, true && _exceptionable);
-                        if (
+                        else if (
                             "object" === typeof input.outer &&
                             null !== input.outer &&
                             $vo4(
@@ -598,17 +599,23 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                             )
                         )
                             return $vo5(input, _path, true && _exceptionable);
-                        if (undefined !== input.centroid)
+                        else if (undefined !== input.centroid)
                             return $vo7(input, _path, true && _exceptionable);
-                        return (() => {
-                            if (undefined !== input.p3)
-                                return $vo2(
-                                    input,
-                                    _path,
-                                    true && _exceptionable,
-                                );
-                            return $vo1(input, _path, true && _exceptionable);
-                        })();
+                        else
+                            return (() => {
+                                if (undefined !== input.p3)
+                                    return $vo2(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                                else
+                                    return $vo1(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                            })();
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -648,6 +655,7 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -655,5 +663,4 @@ export const test_createValidate_ObjectUnionComposite = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ObjectUnionComposite.SPOILERS,
 );

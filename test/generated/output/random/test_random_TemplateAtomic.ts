@@ -4,10 +4,11 @@ import { TemplateAtomic } from "../../../structures/TemplateAtomic";
 
 export const test_random_TemplateAtomic = _test_random(
     "TemplateAtomic",
-    () =>
+)<TemplateAtomic>(TemplateAtomic)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<TemplateAtomic> => {
+        ): typia.Resolved<TemplateAtomic> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -63,9 +64,9 @@ export const test_random_TemplateAtomic = _test_random(
                 }`,
             });
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<TemplateAtomic> => {
-        const __is = (input: any): input is typia.Primitive<TemplateAtomic> => {
+        })((TemplateAtomic as any).RANDOM),
+    assert: (input: any): TemplateAtomic => {
+        const __is = (input: any): input is TemplateAtomic => {
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.prefix &&
                 RegExp(/^prefix_(.*)/).test(input.prefix) &&
@@ -76,12 +77,14 @@ export const test_random_TemplateAtomic = _test_random(
                 "string" === typeof input.middle_string_empty &&
                 RegExp(/^the_(.*)_value$/).test(input.middle_string_empty) &&
                 "string" === typeof input.middle_numeric &&
-                RegExp(/^the_-?\d+\.?\d*_value$/).test(input.middle_numeric) &&
+                RegExp(/^the_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_value$/).test(
+                    input.middle_numeric,
+                ) &&
                 ("the_false_value" === input.middle_boolean ||
                     "the_true_value" === input.middle_boolean) &&
                 "string" === typeof input.ipv4 &&
                 RegExp(
-                    /^-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*$/,
+                    /^[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                 ).test(input.ipv4) &&
                 "string" === typeof input.email &&
                 RegExp(/(.*)@(.*)\.(.*)/).test(input.email);
@@ -92,7 +95,7 @@ export const test_random_TemplateAtomic = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<TemplateAtomic> => {
+            ): input is TemplateAtomic => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -130,9 +133,9 @@ export const test_random_TemplateAtomic = _test_random(
                             value: input.middle_string_empty,
                         })) &&
                     (("string" === typeof input.middle_numeric &&
-                        RegExp(/^the_-?\d+\.?\d*_value$/).test(
-                            input.middle_numeric,
-                        )) ||
+                        RegExp(
+                            /^the_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_value$/,
+                        ).test(input.middle_numeric)) ||
                         $guard(_exceptionable, {
                             path: _path + ".middle_numeric",
                             expected: "`the_${number}_value`",
@@ -147,7 +150,7 @@ export const test_random_TemplateAtomic = _test_random(
                         })) &&
                     (("string" === typeof input.ipv4 &&
                         RegExp(
-                            /^-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*$/,
+                            /^[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                         ).test(input.ipv4)) ||
                         $guard(_exceptionable, {
                             path: _path + ".ipv4",
@@ -179,4 +182,4 @@ export const test_random_TemplateAtomic = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

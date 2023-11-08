@@ -7,7 +7,9 @@ export type ToJsonUnion = Array<
     | ToJsonUnion.IWrapper<ToJsonUnion.IProduct>
 >;
 export namespace ToJsonUnion {
+    export const BINARABLE = false;
     export const PRIMITIVE = false;
+    export const RESOLVABLE = false;
 
     export interface IWrapper<T> {
         toJSON: () => T;

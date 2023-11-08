@@ -4,7 +4,6 @@ import { ObjectLiteralProperty } from "../../structures/ObjectLiteralProperty";
 
 export const test_createAssert_ObjectLiteralProperty = _test_assert(
     "ObjectLiteralProperty",
-    ObjectLiteralProperty.generate,
+)<ObjectLiteralProperty>(ObjectLiteralProperty)(
     typia.createAssert<ObjectLiteralProperty>(),
-    ObjectLiteralProperty.SPOILERS,
 );

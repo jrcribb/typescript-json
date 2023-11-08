@@ -4,7 +4,7 @@ import { ConstantEnumeration } from "../../../structures/ConstantEnumeration";
 
 export const test_createIs_ConstantEnumeration = _test_is(
     "ConstantEnumeration",
-    ConstantEnumeration.generate,
+)<ConstantEnumeration>(ConstantEnumeration)(
     (input: any): input is ConstantEnumeration => {
         return (
             Array.isArray(input) &&
@@ -18,5 +18,4 @@ export const test_createIs_ConstantEnumeration = _test_is(
             )
         );
     },
-    ConstantEnumeration.SPOILERS,
 );

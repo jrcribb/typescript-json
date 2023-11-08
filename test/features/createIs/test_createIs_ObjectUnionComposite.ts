@@ -4,7 +4,6 @@ import { ObjectUnionComposite } from "../../structures/ObjectUnionComposite";
 
 export const test_createIs_ObjectUnionComposite = _test_is(
     "ObjectUnionComposite",
-    ObjectUnionComposite.generate,
+)<ObjectUnionComposite>(ObjectUnionComposite)(
     typia.createIs<ObjectUnionComposite>(),
-    ObjectUnionComposite.SPOILERS,
 );

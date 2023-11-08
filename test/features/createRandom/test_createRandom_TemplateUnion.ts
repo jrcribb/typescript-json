@@ -4,6 +4,7 @@ import { TemplateUnion } from "../../structures/TemplateUnion";
 
 export const test_createRandom_TemplateUnion = _test_random(
     "TemplateUnion",
-    typia.createRandom<TemplateUnion>(),
-    typia.createAssert<typia.Primitive<TemplateUnion>>(),
-);
+)<TemplateUnion>(TemplateUnion)({
+    random: typia.createRandom<TemplateUnion>((TemplateUnion as any).RANDOM),
+    assert: typia.createAssert<TemplateUnion>(),
+});

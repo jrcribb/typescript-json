@@ -4,6 +4,4 @@ import { AtomicUnion } from "../../structures/AtomicUnion";
 
 export const test_assertEquals_AtomicUnion = _test_assertEquals(
     "AtomicUnion",
-    AtomicUnion.generate,
-    (input) => typia.assertEquals(input),
-);
+)<AtomicUnion>(AtomicUnion)((input) => typia.assertEquals<AtomicUnion>(input));

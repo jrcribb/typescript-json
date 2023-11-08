@@ -2,9 +2,7 @@ import typia from "../../../../src";
 import { _test_is } from "../../../internal/_test_is";
 import { SetSimple } from "../../../structures/SetSimple";
 
-export const test_is_SetSimple = _test_is(
-    "SetSimple",
-    SetSimple.generate,
+export const test_is_SetSimple = _test_is("SetSimple")<SetSimple>(SetSimple)(
     (input) =>
         ((input: any): input is SetSimple => {
             const $io0 = (input: any): boolean =>
@@ -50,5 +48,4 @@ export const test_is_SetSimple = _test_is(
                 Number.isFinite(input.age);
             return "object" === typeof input && null !== input && $io0(input);
         })(input),
-    SetSimple.SPOILERS,
 );

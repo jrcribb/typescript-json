@@ -4,6 +4,6 @@ import { TemplateAtomic } from "../../structures/TemplateAtomic";
 
 export const test_equals_TemplateAtomic = _test_equals(
     "TemplateAtomic",
-    TemplateAtomic.generate,
-    (input) => typia.equals(input),
+)<TemplateAtomic>(TemplateAtomic)((input) =>
+    typia.equals<TemplateAtomic>(input),
 );

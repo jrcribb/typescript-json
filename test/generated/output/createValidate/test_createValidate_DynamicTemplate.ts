@@ -4,25 +4,39 @@ import { DynamicTemplate } from "../../../structures/DynamicTemplate";
 
 export const test_createValidate_DynamicTemplate = _test_validate(
     "DynamicTemplate",
-    DynamicTemplate.generate,
+)<DynamicTemplate>(DynamicTemplate)(
     (input: any): typia.IValidation<DynamicTemplate> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is DynamicTemplate => {
-            const $join = (typia.createValidate as any).join;
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/^(prefix_(.*))/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/^prefix_(.*)/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/((.*)_postfix)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/(.*)_postfix$/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return (
                             "number" === typeof value && Number.isFinite(value)
                         );
-                    if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return "boolean" === typeof value;
                     return true;
                 });
@@ -33,7 +47,8 @@ export const test_createValidate_DynamicTemplate = _test_validate(
                 $io0(input)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -51,16 +66,10 @@ export const test_createValidate_DynamicTemplate = _test_validate(
                                 .map((key: any) => {
                                     const value = input[key];
                                     if (undefined === value) return true;
-                                    if (RegExp(/^(prefix_(.*))/).test(key))
-                                        return (
-                                            "string" === typeof value ||
-                                            $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "string",
-                                                value: value,
-                                            })
-                                        );
-                                    if (RegExp(/((.*)_postfix)$/).test(key))
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(/^prefix_(.*)/).test(key)
+                                    )
                                         return (
                                             "string" === typeof value ||
                                             $report(_exceptionable, {
@@ -70,9 +79,22 @@ export const test_createValidate_DynamicTemplate = _test_validate(
                                             })
                                         );
                                     if (
-                                        RegExp(/^(value_-?\d+\.?\d*)$/).test(
-                                            key,
-                                        )
+                                        "string" === typeof key &&
+                                        RegExp(/(.*)_postfix$/).test(key)
+                                    )
+                                        return (
+                                            "string" === typeof value ||
+                                            $report(_exceptionable, {
+                                                path: _path + $join(key),
+                                                expected: "string",
+                                                value: value,
+                                            })
+                                        );
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(
+                                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                                        ).test(key)
                                     )
                                         return (
                                             ("number" === typeof value &&
@@ -84,8 +106,9 @@ export const test_createValidate_DynamicTemplate = _test_validate(
                                             })
                                         );
                                     if (
+                                        "string" === typeof key &&
                                         RegExp(
-                                            /^(between_(.*)_and_-?\d+\.?\d*)$/,
+                                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                                         ).test(key)
                                     )
                                         return (
@@ -117,6 +140,7 @@ export const test_createValidate_DynamicTemplate = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -124,5 +148,4 @@ export const test_createValidate_DynamicTemplate = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    DynamicTemplate.SPOILERS,
 );

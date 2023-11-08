@@ -4,7 +4,6 @@ import { ArrayRecursiveUnionExplicit } from "../../structures/ArrayRecursiveUnio
 
 export const test_createAssert_ArrayRecursiveUnionExplicit = _test_assert(
     "ArrayRecursiveUnionExplicit",
-    ArrayRecursiveUnionExplicit.generate,
+)<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)(
     typia.createAssert<ArrayRecursiveUnionExplicit>(),
-    ArrayRecursiveUnionExplicit.SPOILERS,
 );

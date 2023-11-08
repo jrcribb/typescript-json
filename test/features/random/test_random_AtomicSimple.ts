@@ -4,6 +4,7 @@ import { AtomicSimple } from "../../structures/AtomicSimple";
 
 export const test_random_AtomicSimple = _test_random(
     "AtomicSimple",
-    () => typia.random<AtomicSimple>(),
-    typia.createAssert<typia.Primitive<AtomicSimple>>(),
-);
+)<AtomicSimple>(AtomicSimple)({
+    random: () => typia.random<AtomicSimple>((AtomicSimple as any).RANDOM),
+    assert: typia.createAssert<AtomicSimple>(),
+});

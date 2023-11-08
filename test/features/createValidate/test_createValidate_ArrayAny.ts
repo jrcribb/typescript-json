@@ -4,7 +4,4 @@ import { ArrayAny } from "../../structures/ArrayAny";
 
 export const test_createValidate_ArrayAny = _test_validate(
     "ArrayAny",
-    ArrayAny.generate,
-    typia.createValidate<ArrayAny>(),
-    ArrayAny.SPOILERS,
-);
+)<ArrayAny>(ArrayAny)(typia.createValidate<ArrayAny>());

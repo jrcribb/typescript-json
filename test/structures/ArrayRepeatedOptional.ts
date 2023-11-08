@@ -1,5 +1,4 @@
-import typia from "typia";
-
+import typia from "../../src";
 import { Spoiler } from "../helpers/Spoiler";
 
 export type ArrayRepeatedOptional =
@@ -38,5 +37,6 @@ export namespace ArrayRepeatedOptional {
     ];
 
     export const ADDABLE: boolean = false;
+    export const BINARABLE = false;
     export const JSONABLE: boolean = false;
 }

@@ -4,7 +4,6 @@ import { ArrayRecursiveUnionImplicit } from "../../structures/ArrayRecursiveUnio
 
 export const test_createIs_ArrayRecursiveUnionImplicit = _test_is(
     "ArrayRecursiveUnionImplicit",
-    ArrayRecursiveUnionImplicit.generate,
+)<ArrayRecursiveUnionImplicit>(ArrayRecursiveUnionImplicit)(
     typia.createIs<ArrayRecursiveUnionImplicit>(),
-    ArrayRecursiveUnionImplicit.SPOILERS,
 );

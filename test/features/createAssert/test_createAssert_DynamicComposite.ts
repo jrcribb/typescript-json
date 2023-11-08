@@ -4,7 +4,4 @@ import { DynamicComposite } from "../../structures/DynamicComposite";
 
 export const test_createAssert_DynamicComposite = _test_assert(
     "DynamicComposite",
-    DynamicComposite.generate,
-    typia.createAssert<DynamicComposite>(),
-    DynamicComposite.SPOILERS,
-);
+)<DynamicComposite>(DynamicComposite)(typia.createAssert<DynamicComposite>());

@@ -1,5 +1,6 @@
 import ts from "typescript";
 
+import { ExpressionFactory } from "../factories/ExpressionFactory";
 import { IdentifierFactory } from "../factories/IdentifierFactory";
 import { StatementFactory } from "../factories/StatementFactory";
 import { TypeFactory } from "../factories/TypeFactory";
@@ -14,24 +15,14 @@ import { check_everything } from "./internal/check_everything";
 import { check_object } from "./internal/check_object";
 
 export namespace ValidateProgrammer {
-    /**
-     * @deprecated Use `write()` function instead
-     */
-    export const generate =
-        (
-            project: IProject,
-            modulo: ts.LeftHandSideExpression,
-            equals: boolean = false,
-        ) =>
-        (type: ts.Type, name?: string) =>
-            write(project)(modulo)(equals)(type, name);
-
     export const write =
         (project: IProject) =>
         (modulo: ts.LeftHandSideExpression) =>
         (equals: boolean) =>
         (type: ts.Type, name?: string) => {
-            const importer: FunctionImporter = new FunctionImporter();
+            const importer: FunctionImporter = new FunctionImporter(
+                modulo.getText(),
+            );
 
             const is = IsProgrammer.write(project)(modulo, true)(equals)(
                 type,
@@ -44,32 +35,71 @@ export namespace ValidateProgrammer {
                     trace: true,
                     numeric: OptionPredicator.numeric(project.options),
                     equals,
-                    atomist: (explore) => (tuple) => (input) =>
+                    atomist: (explore) => (entry) => (input) =>
                         [
-                            tuple.expression,
-                            ...tuple.tags.map((tag) =>
-                                ts.factory.createLogicalOr(
-                                    tag.expression,
-                                    create_report_call(
-                                        explore.from === "top"
-                                            ? ts.factory.createTrue()
-                                            : ts.factory.createIdentifier(
-                                                  "_exceptionable",
+                            ...(entry.expression ? [entry.expression] : []),
+                            ...(entry.conditions.length === 0
+                                ? []
+                                : entry.conditions.length === 1
+                                ? entry.conditions[0]!.map((cond) =>
+                                      ts.factory.createLogicalOr(
+                                          cond.expression,
+                                          create_report_call(
+                                              explore.from === "top"
+                                                  ? ts.factory.createTrue()
+                                                  : ts.factory.createIdentifier(
+                                                        "_exceptionable",
+                                                    ),
+                                          )(
+                                              ts.factory.createIdentifier(
+                                                  explore.postfix
+                                                      ? `_path + ${explore.postfix}`
+                                                      : "_path",
                                               ),
-                                    )(
-                                        ts.factory.createIdentifier(
-                                            explore.postfix
-                                                ? `_path + ${explore.postfix}`
-                                                : "_path",
-                                        ),
-                                        tag.expected,
-                                        input,
-                                    ),
-                                ),
-                            ),
+                                              cond.expected,
+                                              input,
+                                          ),
+                                      ),
+                                  )
+                                : [
+                                      ts.factory.createLogicalOr(
+                                          entry.conditions
+                                              .map((set) =>
+                                                  set
+                                                      .map((s) => s.expression)
+                                                      .reduce((a, b) =>
+                                                          ts.factory.createLogicalAnd(
+                                                              a,
+                                                              b,
+                                                          ),
+                                                      ),
+                                              )
+                                              .reduce((a, b) =>
+                                                  ts.factory.createLogicalOr(
+                                                      a,
+                                                      b,
+                                                  ),
+                                              ),
+                                          create_report_call(
+                                              explore.from === "top"
+                                                  ? ts.factory.createTrue()
+                                                  : ts.factory.createIdentifier(
+                                                        "_exceptionable",
+                                                    ),
+                                          )(
+                                              ts.factory.createIdentifier(
+                                                  explore.postfix
+                                                      ? `_path + ${explore.postfix}`
+                                                      : "_path",
+                                              ),
+                                              entry.expected,
+                                              input,
+                                          ),
+                                      ),
+                                  ]),
                         ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
-                    combiner: combine(equals)(importer),
-                    joiner: joiner(equals)(importer),
+                    combiner: combine(equals)(project)(importer),
+                    joiner: joiner(equals)(project)(importer),
                     success: ts.factory.createTrue(),
                     addition: () => importer.declare(modulo),
                 },
@@ -101,21 +131,6 @@ export namespace ValidateProgrammer {
                                 ),
                             ),
                         ),
-                        StatementFactory.constant(
-                            "$report",
-                            ts.factory.createCallExpression(
-                                IdentifierFactory.access(
-                                    ts.factory.createParenthesizedExpression(
-                                        ts.factory.createAsExpression(
-                                            modulo,
-                                            TypeFactory.keyword("any"),
-                                        ),
-                                    ),
-                                )("report"),
-                                [],
-                                [ts.factory.createIdentifier("errors")],
-                            ),
-                        ),
                         StatementFactory.constant("__is", is),
                         ts.factory.createIfStatement(
                             ts.factory.createStrictEquality(
@@ -126,24 +141,43 @@ export namespace ValidateProgrammer {
                                     [ts.factory.createIdentifier("input")],
                                 ),
                             ),
-                            ts.factory.createExpressionStatement(
-                                ts.factory.createCallExpression(
-                                    validate,
-                                    undefined,
-                                    [
-                                        ts.factory.createIdentifier("input"),
-                                        ts.factory.createStringLiteral(
-                                            "$input",
-                                        ),
-                                        ts.factory.createTrue(),
-                                    ],
+                            ts.factory.createBlock([
+                                StatementFactory.constant(
+                                    "$report",
+                                    ts.factory.createCallExpression(
+                                        IdentifierFactory.access(
+                                            ts.factory.createParenthesizedExpression(
+                                                ts.factory.createAsExpression(
+                                                    modulo,
+                                                    TypeFactory.keyword("any"),
+                                                ),
+                                            ),
+                                        )("report"),
+                                        [],
+                                        [ts.factory.createIdentifier("errors")],
+                                    ),
                                 ),
-                            ),
+                                ts.factory.createExpressionStatement(
+                                    ts.factory.createCallExpression(
+                                        validate,
+                                        undefined,
+                                        [
+                                            ts.factory.createIdentifier(
+                                                "input",
+                                            ),
+                                            ts.factory.createStringLiteral(
+                                                "$input",
+                                            ),
+                                            ts.factory.createTrue(),
+                                        ],
+                                    ),
+                                ),
+                            ]),
                         ),
                         StatementFactory.constant(
                             "success",
                             ts.factory.createStrictEquality(
-                                ts.factory.createNumericLiteral(0),
+                                ExpressionFactory.number(0),
                                 ts.factory.createIdentifier("errors.length"),
                             ),
                         ),
@@ -162,13 +196,14 @@ export namespace ValidateProgrammer {
 
 const combine =
     (equals: boolean) =>
+    (project: IProject) =>
     (importer: FunctionImporter): CheckerProgrammer.IConfig.Combiner =>
     (explore: CheckerProgrammer.IExplore) => {
         if (explore.tracable === false)
             return IsProgrammer.configure({
-                object: validate_object(equals)(importer),
+                object: validate_object(equals)(project)(importer),
                 numeric: true,
-            })(importer).combiner(explore);
+            })(project)(importer).combiner(explore);
 
         const path: string = explore.postfix
             ? `_path + ${explore.postfix}`
@@ -207,40 +242,42 @@ const combine =
                   );
     };
 
-const validate_object = (equals: boolean) => (importer: FunctionImporter) =>
-    check_object({
-        equals,
-        undefined: true,
-        assert: false,
-        reduce: ts.factory.createLogicalAnd,
-        positive: ts.factory.createTrue(),
-        superfluous: (value) =>
-            create_report_call()(
-                ts.factory.createAdd(
-                    ts.factory.createIdentifier("_path"),
-                    ts.factory.createCallExpression(
-                        importer.use("join"),
-                        undefined,
-                        [ts.factory.createIdentifier("key")],
+const validate_object =
+    (equals: boolean) => (project: IProject) => (importer: FunctionImporter) =>
+        check_object({
+            equals,
+            undefined: true,
+            assert: false,
+            reduce: ts.factory.createLogicalAnd,
+            positive: ts.factory.createTrue(),
+            superfluous: (value) =>
+                create_report_call()(
+                    ts.factory.createAdd(
+                        ts.factory.createIdentifier("_path"),
+                        ts.factory.createCallExpression(
+                            importer.use("join"),
+                            undefined,
+                            [ts.factory.createIdentifier("key")],
+                        ),
                     ),
+                    "undefined",
+                    value,
                 ),
-                "undefined",
-                value,
-            ),
-        halt: (expr) =>
-            ts.factory.createLogicalOr(
-                ts.factory.createStrictEquality(
-                    ts.factory.createFalse(),
-                    ts.factory.createIdentifier("_exceptionable"),
+            halt: (expr) =>
+                ts.factory.createLogicalOr(
+                    ts.factory.createStrictEquality(
+                        ts.factory.createFalse(),
+                        ts.factory.createIdentifier("_exceptionable"),
+                    ),
+                    expr,
                 ),
-                expr,
-            ),
-    })(importer);
+        })(project)(importer);
 
 const joiner =
     (equals: boolean) =>
+    (project: IProject) =>
     (importer: FunctionImporter): CheckerProgrammer.IConfig.IJoiner => ({
-        object: validate_object(equals)(importer),
+        object: validate_object(equals)(project)(importer),
         array: (input, arrow) =>
             check_everything(
                 ts.factory.createCallExpression(

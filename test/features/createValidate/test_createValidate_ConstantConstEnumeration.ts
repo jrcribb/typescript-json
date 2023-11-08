@@ -4,7 +4,6 @@ import { ConstantConstEnumeration } from "../../structures/ConstantConstEnumerat
 
 export const test_createValidate_ConstantConstEnumeration = _test_validate(
     "ConstantConstEnumeration",
-    ConstantConstEnumeration.generate,
+)<ConstantConstEnumeration>(ConstantConstEnumeration)(
     typia.createValidate<ConstantConstEnumeration>(),
-    ConstantConstEnumeration.SPOILERS,
 );

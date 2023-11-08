@@ -4,9 +4,11 @@ import { ObjectRecursive } from "../../../structures/ObjectRecursive";
 
 export const test_createRandom_ObjectRecursive = _test_random(
     "ObjectRecursive",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectRecursive> => {
+)<ObjectRecursive>(ObjectRecursive)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectRecursive as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectRecursive> => {
         const $pick = (typia.createRandom as any).pick;
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (_recursive: boolean = true, _depth: number = 0): any => ({
@@ -41,10 +43,8 @@ export const test_createRandom_ObjectRecursive = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectRecursive> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectRecursive> => {
+    assert: (input: any): ObjectRecursive => {
+        const __is = (input: any): input is ObjectRecursive => {
             const $io0 = (input: any): boolean =>
                 (null === input.parent ||
                     ("object" === typeof input.parent &&
@@ -69,7 +69,7 @@ export const test_createRandom_ObjectRecursive = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectRecursive> => {
+            ): input is ObjectRecursive => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -174,4 +174,4 @@ export const test_createRandom_ObjectRecursive = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

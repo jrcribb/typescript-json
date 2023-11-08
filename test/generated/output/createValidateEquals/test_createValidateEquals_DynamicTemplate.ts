@@ -4,10 +4,9 @@ import { DynamicTemplate } from "../../../structures/DynamicTemplate";
 
 export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
     "DynamicTemplate",
-    DynamicTemplate.generate,
+)<DynamicTemplate>(DynamicTemplate)(
     (input: any): typia.IValidation<DynamicTemplate> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -20,15 +19,31 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/^(prefix_(.*))/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/^prefix_(.*)/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/((.*)_postfix)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/(.*)_postfix$/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return (
                             "number" === typeof value && Number.isFinite(value)
                         );
-                    if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return "boolean" === typeof value;
                     return false;
                 });
@@ -39,7 +54,8 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                 $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -57,16 +73,10 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                                 .map((key: any) => {
                                     const value = input[key];
                                     if (undefined === value) return true;
-                                    if (RegExp(/^(prefix_(.*))/).test(key))
-                                        return (
-                                            "string" === typeof value ||
-                                            $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "string",
-                                                value: value,
-                                            })
-                                        );
-                                    if (RegExp(/((.*)_postfix)$/).test(key))
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(/^prefix_(.*)/).test(key)
+                                    )
                                         return (
                                             "string" === typeof value ||
                                             $report(_exceptionable, {
@@ -76,9 +86,22 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                                             })
                                         );
                                     if (
-                                        RegExp(/^(value_-?\d+\.?\d*)$/).test(
-                                            key,
-                                        )
+                                        "string" === typeof key &&
+                                        RegExp(/(.*)_postfix$/).test(key)
+                                    )
+                                        return (
+                                            "string" === typeof value ||
+                                            $report(_exceptionable, {
+                                                path: _path + $join(key),
+                                                expected: "string",
+                                                value: value,
+                                            })
+                                        );
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(
+                                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                                        ).test(key)
                                     )
                                         return (
                                             ("number" === typeof value &&
@@ -90,8 +113,9 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                                             })
                                         );
                                     if (
+                                        "string" === typeof key &&
                                         RegExp(
-                                            /^(between_(.*)_and_-?\d+\.?\d*)$/,
+                                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                                         ).test(key)
                                     )
                                         return (
@@ -127,6 +151,7 @@ export const test_createValidateEquals_DynamicTemplate = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

@@ -4,7 +4,7 @@ import { FunctionalPropertyUnion } from "../../../structures/FunctionalPropertyU
 
 export const test_createIs_FunctionalPropertyUnion = _test_is(
     "FunctionalPropertyUnion",
-    FunctionalPropertyUnion.generate,
+)<FunctionalPropertyUnion>(FunctionalPropertyUnion)(
     (input: any): input is FunctionalPropertyUnion => {
         const $io0 = (input: any): boolean =>
             "string" === typeof input.name &&
@@ -22,5 +22,4 @@ export const test_createIs_FunctionalPropertyUnion = _test_is(
             )
         );
     },
-    FunctionalPropertyUnion.SPOILERS,
 );

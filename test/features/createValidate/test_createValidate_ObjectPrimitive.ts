@@ -4,7 +4,4 @@ import { ObjectPrimitive } from "../../structures/ObjectPrimitive";
 
 export const test_createValidate_ObjectPrimitive = _test_validate(
     "ObjectPrimitive",
-    ObjectPrimitive.generate,
-    typia.createValidate<ObjectPrimitive>(),
-    ObjectPrimitive.SPOILERS,
-);
+)<ObjectPrimitive>(ObjectPrimitive)(typia.createValidate<ObjectPrimitive>());

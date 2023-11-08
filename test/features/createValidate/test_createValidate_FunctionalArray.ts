@@ -4,7 +4,4 @@ import { FunctionalArray } from "../../structures/FunctionalArray";
 
 export const test_createValidate_FunctionalArray = _test_validate(
     "FunctionalArray",
-    FunctionalArray.generate,
-    typia.createValidate<FunctionalArray>(),
-    FunctionalArray.SPOILERS,
-);
+)<FunctionalArray>(FunctionalArray)(typia.createValidate<FunctionalArray>());

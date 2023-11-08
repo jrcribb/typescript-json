@@ -4,7 +4,6 @@ import { ObjectUndefined } from "../../structures/ObjectUndefined";
 
 export const test_validate_ObjectUndefined = _test_validate(
     "ObjectUndefined",
-    ObjectUndefined.generate,
-    (input) => typia.validate(input),
-    ObjectUndefined.SPOILERS,
+)<ObjectUndefined>(ObjectUndefined)((input) =>
+    typia.validate<ObjectUndefined>(input),
 );

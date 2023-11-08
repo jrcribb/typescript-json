@@ -4,7 +4,4 @@ import { ObjectUndefined } from "../../structures/ObjectUndefined";
 
 export const test_createAssert_ObjectUndefined = _test_assert(
     "ObjectUndefined",
-    ObjectUndefined.generate,
-    typia.createAssert<ObjectUndefined>(),
-    ObjectUndefined.SPOILERS,
-);
+)<ObjectUndefined>(ObjectUndefined)(typia.createAssert<ObjectUndefined>());

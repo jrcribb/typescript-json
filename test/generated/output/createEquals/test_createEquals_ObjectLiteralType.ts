@@ -4,7 +4,7 @@ import { ObjectLiteralType } from "../../../structures/ObjectLiteralType";
 
 export const test_createEquals_ObjectLiteralType = _test_equals(
     "ObjectLiteralType",
-    ObjectLiteralType.generate,
+)<ObjectLiteralType>(ObjectLiteralType)(
     (
         input: any,
         _exceptionable: boolean = true,

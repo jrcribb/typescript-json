@@ -4,7 +4,7 @@ import { ObjectUnionComposite } from "../../../structures/ObjectUnionComposite";
 
 export const test_createIs_ObjectUnionComposite = _test_is(
     "ObjectUnionComposite",
-    ObjectUnionComposite.generate,
+)<ObjectUnionComposite>(ObjectUnionComposite)(
     (input: any): input is ObjectUnionComposite => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.x &&
@@ -107,9 +107,9 @@ export const test_createIs_ObjectUnionComposite = _test_is(
         const $iu0 = (input: any): any =>
             (() => {
                 if (undefined !== input.x) return $io0(input);
-                if (undefined !== input.p4) return $io3(input);
-                if (undefined !== input.points) return $io4(input);
-                if (
+                else if (undefined !== input.p4) return $io3(input);
+                else if (undefined !== input.points) return $io4(input);
+                else if (
                     Array.isArray(input.outer) &&
                     input.outer.every(
                         (elem: any) =>
@@ -119,17 +119,18 @@ export const test_createIs_ObjectUnionComposite = _test_is(
                     )
                 )
                     return $io6(input);
-                if (
+                else if (
                     "object" === typeof input.outer &&
                     null !== input.outer &&
                     $io4(input.outer)
                 )
                     return $io5(input);
-                if (undefined !== input.centroid) return $io7(input);
-                return (() => {
-                    if (undefined !== input.p3) return $io2(input);
-                    return $io1(input);
-                })();
+                else if (undefined !== input.centroid) return $io7(input);
+                else
+                    return (() => {
+                        if (undefined !== input.p3) return $io2(input);
+                        else return $io1(input);
+                    })();
             })();
         return (
             Array.isArray(input) &&
@@ -139,5 +140,4 @@ export const test_createIs_ObjectUnionComposite = _test_is(
             )
         );
     },
-    ObjectUnionComposite.SPOILERS,
 );

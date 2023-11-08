@@ -4,7 +4,4 @@ import { ObjectIntersection } from "../../structures/ObjectIntersection";
 
 export const test_createIs_ObjectIntersection = _test_is(
     "ObjectIntersection",
-    ObjectIntersection.generate,
-    typia.createIs<ObjectIntersection>(),
-    ObjectIntersection.SPOILERS,
-);
+)<ObjectIntersection>(ObjectIntersection)(typia.createIs<ObjectIntersection>());

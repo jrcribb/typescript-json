@@ -4,7 +4,4 @@ import { DynamicArray } from "../../structures/DynamicArray";
 
 export const test_createIs_DynamicArray = _test_is(
     "DynamicArray",
-    DynamicArray.generate,
-    typia.createIs<DynamicArray>(),
-    DynamicArray.SPOILERS,
-);
+)<DynamicArray>(DynamicArray)(typia.createIs<DynamicArray>());

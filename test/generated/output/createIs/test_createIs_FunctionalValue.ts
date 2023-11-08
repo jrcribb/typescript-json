@@ -4,8 +4,6 @@ import { FunctionalValue } from "../../../structures/FunctionalValue";
 
 export const test_createIs_FunctionalValue = _test_is(
     "FunctionalValue",
-    FunctionalValue.generate,
-    (input: any): input is FunctionalValue => {
-        return "function" === typeof input;
-    },
-);
+)<FunctionalValue>(FunctionalValue)((input: any): input is FunctionalValue => {
+    return "function" === typeof input;
+});

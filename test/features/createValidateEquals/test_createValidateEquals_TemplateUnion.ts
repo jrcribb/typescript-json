@@ -4,6 +4,4 @@ import { TemplateUnion } from "../../structures/TemplateUnion";
 
 export const test_createValidateEquals_TemplateUnion = _test_validateEquals(
     "TemplateUnion",
-    TemplateUnion.generate,
-    typia.createValidateEquals<TemplateUnion>(),
-);
+)<TemplateUnion>(TemplateUnion)(typia.createValidateEquals<TemplateUnion>());

@@ -4,6 +4,6 @@ import { ObjectUnionExplicit } from "../../structures/ObjectUnionExplicit";
 
 export const test_createEquals_ObjectUnionExplicit = _test_equals(
     "ObjectUnionExplicit",
-    ObjectUnionExplicit.generate,
+)<ObjectUnionExplicit>(ObjectUnionExplicit)(
     typia.createEquals<ObjectUnionExplicit>(),
 );

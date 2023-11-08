@@ -4,6 +4,6 @@ import { FunctionalValue } from "../../structures/FunctionalValue";
 
 export const test_createAssertEquals_FunctionalValue = _test_assertEquals(
     "FunctionalValue",
-    FunctionalValue.generate,
+)<FunctionalValue>(FunctionalValue)(
     typia.createAssertEquals<FunctionalValue>(),
 );

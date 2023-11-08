@@ -4,9 +4,11 @@ import { DynamicNever } from "../../../structures/DynamicNever";
 
 export const test_createRandom_DynamicNever = _test_random(
     "DynamicNever",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<DynamicNever> => {
+)<DynamicNever>(DynamicNever)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (DynamicNever as any)
+            .RANDOM,
+    ): typia.Resolved<DynamicNever> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (_recursive: boolean = false, _depth: number = 0): any => {
             const output = {} as any;
@@ -23,15 +25,13 @@ export const test_createRandom_DynamicNever = _test_random(
         };
         return $ro0();
     },
-    (input: any): typia.Primitive<DynamicNever> => {
-        const __is = (input: any): input is typia.Primitive<DynamicNever> => {
-            const $join = (typia.createAssert as any).join;
+    assert: (input: any): DynamicNever => {
+        const __is = (input: any): input is DynamicNever => {
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/(.*)/).test(key))
-                        return null !== value && undefined === value;
+                    if (true) return null !== value && undefined === value;
                     return true;
                 });
             return (
@@ -46,7 +46,7 @@ export const test_createRandom_DynamicNever = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<DynamicNever> => {
+            ): input is DynamicNever => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -58,7 +58,7 @@ export const test_createRandom_DynamicNever = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/(.*)/).test(key))
+                        if (true)
                             return (
                                 (null !== value ||
                                     $guard(_exceptionable, {
@@ -94,4 +94,4 @@ export const test_createRandom_DynamicNever = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

@@ -4,7 +4,6 @@ import { ConstantIntersection } from "../../structures/ConstantIntersection";
 
 export const test_is_ConstantIntersection = _test_is(
     "ConstantIntersection",
-    ConstantIntersection.generate,
-    (input) => typia.is(input),
-    ConstantIntersection.SPOILERS,
+)<ConstantIntersection>(ConstantIntersection)((input) =>
+    typia.is<ConstantIntersection>(input),
 );

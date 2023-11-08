@@ -4,6 +4,6 @@ import { ObjectGenericUnion } from "../../structures/ObjectGenericUnion";
 
 export const test_assertEquals_ObjectGenericUnion = _test_assertEquals(
     "ObjectGenericUnion",
-    ObjectGenericUnion.generate,
-    (input) => typia.assertEquals(input),
+)<ObjectGenericUnion>(ObjectGenericUnion)((input) =>
+    typia.assertEquals<ObjectGenericUnion>(input),
 );

@@ -4,10 +4,11 @@ import { DynamicUnion } from "../../../structures/DynamicUnion";
 
 export const test_random_DynamicUnion = _test_random(
     "DynamicUnion",
-    () =>
+)<DynamicUnion>(DynamicUnion)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<DynamicUnion> => {
+        ): typia.Resolved<DynamicUnion> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -84,23 +85,32 @@ export const test_random_DynamicUnion = _test_random(
                 return output;
             };
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<DynamicUnion> => {
-        const __is = (input: any): input is typia.Primitive<DynamicUnion> => {
-            const $join = (typia.createAssert as any).join;
+        })((DynamicUnion as any).RANDOM),
+    assert: (input: any): DynamicUnion => {
+        const __is = (input: any): input is DynamicUnion => {
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/^-?\d+\.?\d*$/).test(key))
-                        return "string" === typeof value;
-                    if (RegExp(/^(prefix_(.*))/).test(key))
-                        return "string" === typeof value;
-                    if (RegExp(/((.*)_postfix)$/).test(key))
+                    if (
+                        "number" === typeof Number(key) &&
+                        Number.isFinite(Number(key))
+                    )
                         return "string" === typeof value;
                     if (
+                        "string" === typeof key &&
+                        RegExp(/^prefix_(.*)/).test(key)
+                    )
+                        return "string" === typeof value;
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/(.*)_postfix$/).test(key)
+                    )
+                        return "string" === typeof value;
+                    if (
+                        "string" === typeof key &&
                         RegExp(
-                            /^(value_between_-?\d+\.?\d*_and_-?\d+\.?\d*)$/,
+                            /^value_between_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                         ).test(key)
                     )
                         return (
@@ -120,7 +130,7 @@ export const test_random_DynamicUnion = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<DynamicUnion> => {
+            ): input is DynamicUnion => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -132,25 +142,10 @@ export const test_random_DynamicUnion = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/^-?\d+\.?\d*$/).test(key))
-                            return (
-                                "string" === typeof value ||
-                                $guard(_exceptionable, {
-                                    path: _path + $join(key),
-                                    expected: "string",
-                                    value: value,
-                                })
-                            );
-                        if (RegExp(/^(prefix_(.*))/).test(key))
-                            return (
-                                "string" === typeof value ||
-                                $guard(_exceptionable, {
-                                    path: _path + $join(key),
-                                    expected: "string",
-                                    value: value,
-                                })
-                            );
-                        if (RegExp(/((.*)_postfix)$/).test(key))
+                        if (
+                            "number" === typeof Number(key) &&
+                            Number.isFinite(Number(key))
+                        )
                             return (
                                 "string" === typeof value ||
                                 $guard(_exceptionable, {
@@ -160,8 +155,33 @@ export const test_random_DynamicUnion = _test_random(
                                 })
                             );
                         if (
+                            "string" === typeof key &&
+                            RegExp(/^prefix_(.*)/).test(key)
+                        )
+                            return (
+                                "string" === typeof value ||
+                                $guard(_exceptionable, {
+                                    path: _path + $join(key),
+                                    expected: "string",
+                                    value: value,
+                                })
+                            );
+                        if (
+                            "string" === typeof key &&
+                            RegExp(/(.*)_postfix$/).test(key)
+                        )
+                            return (
+                                "string" === typeof value ||
+                                $guard(_exceptionable, {
+                                    path: _path + $join(key),
+                                    expected: "string",
+                                    value: value,
+                                })
+                            );
+                        if (
+                            "string" === typeof key &&
                             RegExp(
-                                /^(value_between_-?\d+\.?\d*_and_-?\d+\.?\d*)$/,
+                                /^value_between_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                             ).test(key)
                         )
                             return (
@@ -194,4 +214,4 @@ export const test_random_DynamicUnion = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

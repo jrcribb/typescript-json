@@ -1,11 +1,24 @@
 {
   "schemas": [
     {
-      "$ref": "#/components/schemas/ObjectGenericUnion.ISaleEntireArticle"
+      "$ref": "#/components/schemas/ObjectGenericUnion"
     }
   ],
   "components": {
     "schemas": {
+      "ObjectGenericUnion": {
+        "$id": "#/components/schemas/ObjectGenericUnion",
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ObjectGenericUnion.ISaleEntireArticle"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "x-typia-jsDocTags": []
+      },
       "ObjectGenericUnion.ISaleEntireArticle": {
         "$id": "#/components/schemas/ObjectGenericUnion.ISaleEntireArticle",
         "oneOf": [
@@ -139,7 +152,7 @@
             "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Omit_lt_ObjectGenericUnion.IAttachmentFile_comma__space__doublequote_id_doublequote__gt_"
+              "$ref": "#/components/schemas/ObjectGenericUnion.IAttachmentFile"
             }
           }
         },
@@ -152,15 +165,10 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "Omit_lt_ObjectGenericUnion.IAttachmentFile_comma__space__doublequote_id_doublequote__gt_": {
-        "$id": "#/components/schemas/Omit_lt_ObjectGenericUnion.IAttachmentFile_comma__space__doublequote_id_doublequote__gt_",
+      "ObjectGenericUnion.IAttachmentFile": {
+        "$id": "#/components/schemas/ObjectGenericUnion.IAttachmentFile",
         "type": "object",
         "properties": {
-          "url": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
           "name": {
             "x-typia-required": true,
             "x-typia-optional": false,
@@ -181,12 +189,17 @@
             ],
             "x-typia-required": true,
             "x-typia-optional": false
+          },
+          "url": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
           }
         },
         "required": [
-          "url",
           "name",
-          "extension"
+          "extension",
+          "url"
         ],
         "x-typia-jsDocTags": []
       },
@@ -281,7 +294,7 @@
             "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Omit_lt_ObjectGenericUnion.IAttachmentFile_comma__space__doublequote_id_doublequote__gt_"
+              "$ref": "#/components/schemas/ObjectGenericUnion.IAttachmentFile"
             }
           }
         },

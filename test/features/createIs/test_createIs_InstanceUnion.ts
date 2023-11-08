@@ -4,6 +4,4 @@ import { InstanceUnion } from "../../structures/InstanceUnion";
 
 export const test_createIs_InstanceUnion = _test_is(
     "InstanceUnion",
-    InstanceUnion.generate,
-    typia.createIs<InstanceUnion>(),
-);
+)<InstanceUnion>(InstanceUnion)(typia.createIs<InstanceUnion>());

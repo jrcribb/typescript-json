@@ -4,7 +4,7 @@ import { ConstantAtomicUnion } from "../../../structures/ConstantAtomicUnion";
 
 export const test_createAssert_ConstantAtomicUnion = _test_assert(
     "ConstantAtomicUnion",
-    ConstantAtomicUnion.generate,
+)<ConstantAtomicUnion>(ConstantAtomicUnion)(
     (input: any): ConstantAtomicUnion => {
         const __is = (input: any): input is ConstantAtomicUnion => {
             const $io0 = (input: any): boolean => "key" === input.key;
@@ -12,14 +12,16 @@ export const test_createAssert_ConstantAtomicUnion = _test_assert(
                 Array.isArray(input) &&
                 input.every(
                     (elem: any) =>
-                        false === elem ||
-                        1 === elem ||
-                        2 === elem ||
-                        "three" === elem ||
-                        "four" === elem ||
-                        ("object" === typeof elem &&
-                            null !== elem &&
-                            $io0(elem)),
+                        null !== elem &&
+                        undefined !== elem &&
+                        (false === elem ||
+                            2 === elem ||
+                            1 === elem ||
+                            "three" === elem ||
+                            "four" === elem ||
+                            ("object" === typeof elem &&
+                                null !== elem &&
+                                $io0(elem))),
                 )
             );
         };
@@ -50,29 +52,44 @@ export const test_createAssert_ConstantAtomicUnion = _test_assert(
                         })) &&
                         input.every(
                             (elem: any, _index1: number) =>
-                                false === elem ||
-                                1 === elem ||
-                                2 === elem ||
-                                "three" === elem ||
-                                "four" === elem ||
-                                ((("object" === typeof elem && null !== elem) ||
+                                (null !== elem ||
                                     $guard(true, {
                                         path: _path + "[" + _index1 + "]",
                                         expected:
                                             '("four" | "three" | 1 | 2 | __type | false)',
                                         value: elem,
                                     })) &&
-                                    $ao0(
-                                        elem,
-                                        _path + "[" + _index1 + "]",
-                                        true,
-                                    )) ||
-                                $guard(true, {
-                                    path: _path + "[" + _index1 + "]",
-                                    expected:
-                                        '("four" | "three" | 1 | 2 | __type | false)',
-                                    value: elem,
-                                }),
+                                (undefined !== elem ||
+                                    $guard(true, {
+                                        path: _path + "[" + _index1 + "]",
+                                        expected:
+                                            '("four" | "three" | 1 | 2 | __type | false)',
+                                        value: elem,
+                                    })) &&
+                                (false === elem ||
+                                    2 === elem ||
+                                    1 === elem ||
+                                    "three" === elem ||
+                                    "four" === elem ||
+                                    ((("object" === typeof elem &&
+                                        null !== elem) ||
+                                        $guard(true, {
+                                            path: _path + "[" + _index1 + "]",
+                                            expected:
+                                                '("four" | "three" | 1 | 2 | __type | false)',
+                                            value: elem,
+                                        })) &&
+                                        $ao0(
+                                            elem,
+                                            _path + "[" + _index1 + "]",
+                                            true,
+                                        )) ||
+                                    $guard(true, {
+                                        path: _path + "[" + _index1 + "]",
+                                        expected:
+                                            '("four" | "three" | 1 | 2 | __type | false)',
+                                        value: elem,
+                                    })),
                         )) ||
                     $guard(true, {
                         path: _path + "",
@@ -83,5 +100,4 @@ export const test_createAssert_ConstantAtomicUnion = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ConstantAtomicUnion.SPOILERS,
 );

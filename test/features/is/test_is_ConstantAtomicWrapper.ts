@@ -4,7 +4,6 @@ import { ConstantAtomicWrapper } from "../../structures/ConstantAtomicWrapper";
 
 export const test_is_ConstantAtomicWrapper = _test_is(
     "ConstantAtomicWrapper",
-    ConstantAtomicWrapper.generate,
-    (input) => typia.is(input),
-    ConstantAtomicWrapper.SPOILERS,
+)<ConstantAtomicWrapper>(ConstantAtomicWrapper)((input) =>
+    typia.is<ConstantAtomicWrapper>(input),
 );

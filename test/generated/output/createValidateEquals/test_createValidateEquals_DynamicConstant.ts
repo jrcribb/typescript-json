@@ -4,15 +4,29 @@ import { DynamicConstant } from "../../../structures/DynamicConstant";
 
 export const test_createValidateEquals_DynamicConstant = _test_validateEquals(
     "DynamicConstant",
-    DynamicConstant.generate,
+)<DynamicConstant>(DynamicConstant)(
     (input: any): typia.IValidation<DynamicConstant> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
         ): input is DynamicConstant => {
             const $io0 = (
+                input: any,
+                _exceptionable: boolean = true,
+            ): boolean =>
+                "object" === typeof input.value &&
+                null !== input.value &&
+                $io1(input.value, true && _exceptionable) &&
+                (1 === Object.keys(input).length ||
+                    Object.keys(input).every((key: any) => {
+                        if (["value"].some((prop: any) => key === prop))
+                            return true;
+                        const value = input[key];
+                        if (undefined === value) return true;
+                        return false;
+                    }));
+            const $io1 = (
                 input: any,
                 _exceptionable: boolean = true,
             ): boolean =>
@@ -40,7 +54,8 @@ export const test_createValidateEquals_DynamicConstant = _test_validateEquals(
                 "object" === typeof input && null !== input && $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -48,6 +63,49 @@ export const test_createValidateEquals_DynamicConstant = _test_validateEquals(
             ): input is DynamicConstant => {
                 const $join = (typia.createValidateEquals as any).join;
                 const $vo0 = (
+                    input: any,
+                    _path: string,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    [
+                        ((("object" === typeof input.value &&
+                            null !== input.value) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "__type",
+                                value: input.value,
+                            })) &&
+                            $vo1(
+                                input.value,
+                                _path + ".value",
+                                true && _exceptionable,
+                            )) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "__type",
+                                value: input.value,
+                            }),
+                        1 === Object.keys(input).length ||
+                            false === _exceptionable ||
+                            Object.keys(input)
+                                .map((key: any) => {
+                                    if (
+                                        ["value"].some(
+                                            (prop: any) => key === prop,
+                                        )
+                                    )
+                                        return true;
+                                    const value = input[key];
+                                    if (undefined === value) return true;
+                                    return $report(_exceptionable, {
+                                        path: _path + $join(key),
+                                        expected: "undefined",
+                                        value: value,
+                                    });
+                                })
+                                .every((flag: boolean) => flag),
+                    ].every((flag: boolean) => flag);
+                const $vo1 = (
                     input: any,
                     _path: string,
                     _exceptionable: boolean = true,
@@ -116,6 +174,7 @@ export const test_createValidateEquals_DynamicConstant = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

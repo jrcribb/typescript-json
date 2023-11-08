@@ -4,6 +4,6 @@ import { ArrayHierarchical } from "../../structures/ArrayHierarchical";
 
 export const test_createAssertEquals_ArrayHierarchical = _test_assertEquals(
     "ArrayHierarchical",
-    ArrayHierarchical.generate,
+)<ArrayHierarchical>(ArrayHierarchical)(
     typia.createAssertEquals<ArrayHierarchical>(),
 );

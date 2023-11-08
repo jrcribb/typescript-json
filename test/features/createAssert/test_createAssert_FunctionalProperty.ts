@@ -4,7 +4,6 @@ import { FunctionalProperty } from "../../structures/FunctionalProperty";
 
 export const test_createAssert_FunctionalProperty = _test_assert(
     "FunctionalProperty",
-    FunctionalProperty.generate,
+)<FunctionalProperty>(FunctionalProperty)(
     typia.createAssert<FunctionalProperty>(),
-    FunctionalProperty.SPOILERS,
 );

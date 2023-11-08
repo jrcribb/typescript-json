@@ -4,7 +4,6 @@ import { ArrayRepeatedUnion } from "../../structures/ArrayRepeatedUnion";
 
 export const test_validate_ArrayRepeatedUnion = _test_validate(
     "ArrayRepeatedUnion",
-    ArrayRepeatedUnion.generate,
-    (input) => typia.validate(input),
-    ArrayRepeatedUnion.SPOILERS,
+)<ArrayRepeatedUnion>(ArrayRepeatedUnion)((input) =>
+    typia.validate<ArrayRepeatedUnion>(input),
 );

@@ -4,7 +4,6 @@ import { ArrayAtomicSimple } from "../../structures/ArrayAtomicSimple";
 
 export const test_createAssert_ArrayAtomicSimple = _test_assert(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(
     typia.createAssert<ArrayAtomicSimple>(),
-    ArrayAtomicSimple.SPOILERS,
 );

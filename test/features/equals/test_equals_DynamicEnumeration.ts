@@ -4,6 +4,6 @@ import { DynamicEnumeration } from "../../structures/DynamicEnumeration";
 
 export const test_equals_DynamicEnumeration = _test_equals(
     "DynamicEnumeration",
-    DynamicEnumeration.generate,
-    (input) => typia.equals(input),
+)<DynamicEnumeration>(DynamicEnumeration)((input) =>
+    typia.equals<DynamicEnumeration>(input),
 );

@@ -4,7 +4,7 @@ import { FunctionalArray } from "../../../structures/FunctionalArray";
 
 export const test_createEquals_FunctionalArray = _test_equals(
     "FunctionalArray",
-    FunctionalArray.generate,
+)<FunctionalArray>(FunctionalArray)(
     (input: any, _exceptionable: boolean = true): input is FunctionalArray => {
         return (
             Array.isArray(input) &&

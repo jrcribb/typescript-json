@@ -4,7 +4,7 @@ import { ConstantIntersection } from "../../../structures/ConstantIntersection";
 
 export const test_createEquals_ConstantIntersection = _test_equals(
     "ConstantIntersection",
-    ConstantIntersection.generate,
+)<ConstantIntersection>(ConstantIntersection)(
     (
         input: any,
         _exceptionable: boolean = true,

@@ -5,6 +5,6 @@ import { ArrayRecursiveUnionImplicit } from "../../structures/ArrayRecursiveUnio
 export const test_createValidateEquals_ArrayRecursiveUnionImplicit =
     _test_validateEquals(
         "ArrayRecursiveUnionImplicit",
-        ArrayRecursiveUnionImplicit.generate,
+    )<ArrayRecursiveUnionImplicit>(ArrayRecursiveUnionImplicit)(
         typia.createValidateEquals<ArrayRecursiveUnionImplicit>(),
     );

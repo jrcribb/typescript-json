@@ -4,7 +4,6 @@ import { ConstantAtomicSimple } from "../../structures/ConstantAtomicSimple";
 
 export const test_createValidate_ConstantAtomicSimple = _test_validate(
     "ConstantAtomicSimple",
-    ConstantAtomicSimple.generate,
+)<ConstantAtomicSimple>(ConstantAtomicSimple)(
     typia.createValidate<ConstantAtomicSimple>(),
-    ConstantAtomicSimple.SPOILERS,
 );

@@ -4,7 +4,4 @@ import { ArraySimple } from "../../structures/ArraySimple";
 
 export const test_createValidate_ArraySimple = _test_validate(
     "ArraySimple",
-    ArraySimple.generate,
-    typia.createValidate<ArraySimple>(),
-    ArraySimple.SPOILERS,
-);
+)<ArraySimple>(ArraySimple)(typia.createValidate<ArraySimple>());

@@ -4,7 +4,6 @@ import { ArrayRepeatedNullable } from "../../structures/ArrayRepeatedNullable";
 
 export const test_createValidate_ArrayRepeatedNullable = _test_validate(
     "ArrayRepeatedNullable",
-    ArrayRepeatedNullable.generate,
+)<ArrayRepeatedNullable>(ArrayRepeatedNullable)(
     typia.createValidate<ArrayRepeatedNullable>(),
-    ArrayRepeatedNullable.SPOILERS,
 );

@@ -4,7 +4,6 @@ import { DynamicTemplate } from "../../structures/DynamicTemplate";
 
 export const test_validate_DynamicTemplate = _test_validate(
     "DynamicTemplate",
-    DynamicTemplate.generate,
-    (input) => typia.validate(input),
-    DynamicTemplate.SPOILERS,
+)<DynamicTemplate>(DynamicTemplate)((input) =>
+    typia.validate<DynamicTemplate>(input),
 );

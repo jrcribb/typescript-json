@@ -4,6 +4,10 @@ import { ArrayRepeatedOptional } from "../../structures/ArrayRepeatedOptional";
 
 export const test_random_ArrayRepeatedOptional = _test_random(
     "ArrayRepeatedOptional",
-    () => typia.random<ArrayRepeatedOptional>(),
-    typia.createAssert<typia.Primitive<ArrayRepeatedOptional>>(),
-);
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)({
+    random: () =>
+        typia.random<ArrayRepeatedOptional>(
+            (ArrayRepeatedOptional as any).RANDOM,
+        ),
+    assert: typia.createAssert<ArrayRepeatedOptional>(),
+});

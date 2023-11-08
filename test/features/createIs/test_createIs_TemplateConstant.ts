@@ -4,7 +4,4 @@ import { TemplateConstant } from "../../structures/TemplateConstant";
 
 export const test_createIs_TemplateConstant = _test_is(
     "TemplateConstant",
-    TemplateConstant.generate,
-    typia.createIs<TemplateConstant>(),
-    TemplateConstant.SPOILERS,
-);
+)<TemplateConstant>(TemplateConstant)(typia.createIs<TemplateConstant>());

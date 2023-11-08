@@ -15,6 +15,8 @@ export namespace SetSimple {
     }
 
     export const ADDABLE = false;
+    export const BINARABLE = false;
+    export const JSONABLE = false;
     export const PRIMITIVE = false;
 
     export function generate(): SetSimple {

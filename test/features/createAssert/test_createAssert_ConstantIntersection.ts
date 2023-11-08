@@ -4,7 +4,6 @@ import { ConstantIntersection } from "../../structures/ConstantIntersection";
 
 export const test_createAssert_ConstantIntersection = _test_assert(
     "ConstantIntersection",
-    ConstantIntersection.generate,
+)<ConstantIntersection>(ConstantIntersection)(
     typia.createAssert<ConstantIntersection>(),
-    ConstantIntersection.SPOILERS,
 );

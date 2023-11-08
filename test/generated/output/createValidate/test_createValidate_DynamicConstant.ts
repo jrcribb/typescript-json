@@ -4,29 +4,57 @@ import { DynamicConstant } from "../../../structures/DynamicConstant";
 
 export const test_createValidate_DynamicConstant = _test_validate(
     "DynamicConstant",
-    DynamicConstant.generate,
+)<DynamicConstant>(DynamicConstant)(
     (input: any): typia.IValidation<DynamicConstant> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is DynamicConstant => {
-            const $io0 = (input: any): boolean =>
-                "number" === typeof input.a &&
-                Number.isFinite(input.a) &&
-                "number" === typeof input.b &&
-                Number.isFinite(input.b) &&
-                "number" === typeof input.c &&
-                Number.isFinite(input.c) &&
-                "number" === typeof input.d &&
-                Number.isFinite(input.d);
-            return "object" === typeof input && null !== input && $io0(input);
+            return (
+                "object" === typeof input &&
+                null !== input &&
+                "object" === typeof (input as any).value &&
+                null !== (input as any).value &&
+                "number" === typeof ((input as any).value as any).a &&
+                Number.isFinite(((input as any).value as any).a) &&
+                "number" === typeof ((input as any).value as any).b &&
+                Number.isFinite(((input as any).value as any).b) &&
+                "number" === typeof ((input as any).value as any).c &&
+                Number.isFinite(((input as any).value as any).c) &&
+                "number" === typeof ((input as any).value as any).d &&
+                Number.isFinite(((input as any).value as any).d)
+            );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
             ): input is DynamicConstant => {
                 const $vo0 = (
+                    input: any,
+                    _path: string,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    [
+                        ((("object" === typeof input.value &&
+                            null !== input.value) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "__type",
+                                value: input.value,
+                            })) &&
+                            $vo1(
+                                input.value,
+                                _path + ".value",
+                                true && _exceptionable,
+                            )) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "__type",
+                                value: input.value,
+                            }),
+                    ].every((flag: boolean) => flag);
+                const $vo1 = (
                     input: any,
                     _path: string,
                     _exceptionable: boolean = true,
@@ -76,6 +104,7 @@ export const test_createValidate_DynamicConstant = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -83,5 +112,4 @@ export const test_createValidate_DynamicConstant = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    DynamicConstant.SPOILERS,
 );

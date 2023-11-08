@@ -4,7 +4,6 @@ import { FunctionalTupleUnion } from "../../structures/FunctionalTupleUnion";
 
 export const test_createAssert_FunctionalTupleUnion = _test_assert(
     "FunctionalTupleUnion",
-    FunctionalTupleUnion.generate,
+)<FunctionalTupleUnion>(FunctionalTupleUnion)(
     typia.createAssert<FunctionalTupleUnion>(),
-    FunctionalTupleUnion.SPOILERS,
 );

@@ -4,7 +4,7 @@ import { ConstantConstEnumeration } from "../../../structures/ConstantConstEnume
 
 export const test_createAssert_ConstantConstEnumeration = _test_assert(
     "ConstantConstEnumeration",
-    ConstantConstEnumeration.generate,
+)<ConstantConstEnumeration>(ConstantConstEnumeration)(
     (input: any): ConstantConstEnumeration => {
         const __is = (input: any): input is ConstantConstEnumeration => {
             return (
@@ -55,5 +55,4 @@ export const test_createAssert_ConstantConstEnumeration = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ConstantConstEnumeration.SPOILERS,
 );

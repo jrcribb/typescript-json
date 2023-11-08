@@ -4,6 +4,4 @@ import { TupleRestArray } from "../../structures/TupleRestArray";
 
 export const test_createAssertEquals_TupleRestArray = _test_assertEquals(
     "TupleRestArray",
-    TupleRestArray.generate,
-    typia.createAssertEquals<TupleRestArray>(),
-);
+)<TupleRestArray>(TupleRestArray)(typia.createAssertEquals<TupleRestArray>());

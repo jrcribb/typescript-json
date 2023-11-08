@@ -4,7 +4,6 @@ import { ArrayRecursiveUnionExplicit } from "../../structures/ArrayRecursiveUnio
 
 export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
     "ArrayRecursiveUnionExplicit",
-    ArrayRecursiveUnionExplicit.generate,
+)<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)(
     typia.createValidate<ArrayRecursiveUnionExplicit>(),
-    ArrayRecursiveUnionExplicit.SPOILERS,
 );

@@ -4,20 +4,33 @@ import { DynamicTemplate } from "../../../structures/DynamicTemplate";
 
 export const test_createEquals_DynamicTemplate = _test_equals(
     "DynamicTemplate",
-    DynamicTemplate.generate,
+)<DynamicTemplate>(DynamicTemplate)(
     (input: any, _exceptionable: boolean = true): input is DynamicTemplate => {
         const $join = (typia.createEquals as any).join;
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             Object.keys(input).every((key: any) => {
                 const value = input[key];
                 if (undefined === value) return true;
-                if (RegExp(/^(prefix_(.*))/).test(key))
+                if ("string" === typeof key && RegExp(/^prefix_(.*)/).test(key))
                     return "string" === typeof value;
-                if (RegExp(/((.*)_postfix)$/).test(key))
+                if (
+                    "string" === typeof key &&
+                    RegExp(/(.*)_postfix$/).test(key)
+                )
                     return "string" === typeof value;
-                if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                if (
+                    "string" === typeof key &&
+                    RegExp(/^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/).test(
+                        key,
+                    )
+                )
                     return "number" === typeof value && Number.isFinite(value);
-                if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key))
+                if (
+                    "string" === typeof key &&
+                    RegExp(
+                        /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                    ).test(key)
+                )
                     return "boolean" === typeof value;
                 return false;
             });

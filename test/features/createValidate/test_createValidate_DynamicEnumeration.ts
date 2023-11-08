@@ -4,7 +4,6 @@ import { DynamicEnumeration } from "../../structures/DynamicEnumeration";
 
 export const test_createValidate_DynamicEnumeration = _test_validate(
     "DynamicEnumeration",
-    DynamicEnumeration.generate,
+)<DynamicEnumeration>(DynamicEnumeration)(
     typia.createValidate<DynamicEnumeration>(),
-    DynamicEnumeration.SPOILERS,
 );

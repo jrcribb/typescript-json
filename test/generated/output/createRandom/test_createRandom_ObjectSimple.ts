@@ -4,9 +4,11 @@ import { ObjectSimple } from "../../../structures/ObjectSimple";
 
 export const test_createRandom_ObjectSimple = _test_random(
     "ObjectSimple",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectSimple> => {
+)<ObjectSimple>(ObjectSimple)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectSimple as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectSimple> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (
             _recursive: boolean = false,
@@ -33,49 +35,51 @@ export const test_createRandom_ObjectSimple = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectSimple> => {
-        const __is = (input: any): input is typia.Primitive<ObjectSimple> => {
-            const $io0 = (input: any): boolean =>
-                "object" === typeof input.scale &&
-                null !== input.scale &&
-                "number" === typeof (input.scale as any).x &&
-                Number.isFinite((input.scale as any).x) &&
-                "number" === typeof (input.scale as any).y &&
-                Number.isFinite((input.scale as any).y) &&
-                "number" === typeof (input.scale as any).z &&
-                Number.isFinite((input.scale as any).z) &&
-                "object" === typeof input.position &&
-                null !== input.position &&
-                "number" === typeof (input.position as any).x &&
-                Number.isFinite((input.position as any).x) &&
-                "number" === typeof (input.position as any).y &&
-                Number.isFinite((input.position as any).y) &&
-                "number" === typeof (input.position as any).z &&
-                Number.isFinite((input.position as any).z) &&
-                "object" === typeof input.rotate &&
-                null !== input.rotate &&
-                "number" === typeof (input.rotate as any).x &&
-                Number.isFinite((input.rotate as any).x) &&
-                "number" === typeof (input.rotate as any).y &&
-                Number.isFinite((input.rotate as any).y) &&
-                "number" === typeof (input.rotate as any).z &&
-                Number.isFinite((input.rotate as any).z) &&
-                "object" === typeof input.pivot &&
-                null !== input.pivot &&
-                "number" === typeof (input.pivot as any).x &&
-                Number.isFinite((input.pivot as any).x) &&
-                "number" === typeof (input.pivot as any).y &&
-                Number.isFinite((input.pivot as any).y) &&
-                "number" === typeof (input.pivot as any).z &&
-                Number.isFinite((input.pivot as any).z);
-            return "object" === typeof input && null !== input && $io0(input);
+    assert: (input: any): ObjectSimple => {
+        const __is = (input: any): input is ObjectSimple => {
+            return (
+                "object" === typeof input &&
+                null !== input &&
+                "object" === typeof (input as any).scale &&
+                null !== (input as any).scale &&
+                "number" === typeof ((input as any).scale as any).x &&
+                Number.isFinite(((input as any).scale as any).x) &&
+                "number" === typeof ((input as any).scale as any).y &&
+                Number.isFinite(((input as any).scale as any).y) &&
+                "number" === typeof ((input as any).scale as any).z &&
+                Number.isFinite(((input as any).scale as any).z) &&
+                "object" === typeof (input as any).position &&
+                null !== (input as any).position &&
+                "number" === typeof ((input as any).position as any).x &&
+                Number.isFinite(((input as any).position as any).x) &&
+                "number" === typeof ((input as any).position as any).y &&
+                Number.isFinite(((input as any).position as any).y) &&
+                "number" === typeof ((input as any).position as any).z &&
+                Number.isFinite(((input as any).position as any).z) &&
+                "object" === typeof (input as any).rotate &&
+                null !== (input as any).rotate &&
+                "number" === typeof ((input as any).rotate as any).x &&
+                Number.isFinite(((input as any).rotate as any).x) &&
+                "number" === typeof ((input as any).rotate as any).y &&
+                Number.isFinite(((input as any).rotate as any).y) &&
+                "number" === typeof ((input as any).rotate as any).z &&
+                Number.isFinite(((input as any).rotate as any).z) &&
+                "object" === typeof (input as any).pivot &&
+                null !== (input as any).pivot &&
+                "number" === typeof ((input as any).pivot as any).x &&
+                Number.isFinite(((input as any).pivot as any).x) &&
+                "number" === typeof ((input as any).pivot as any).y &&
+                Number.isFinite(((input as any).pivot as any).y) &&
+                "number" === typeof ((input as any).pivot as any).z &&
+                Number.isFinite(((input as any).pivot as any).z)
+            );
         };
         if (false === __is(input))
             ((
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectSimple> => {
+            ): input is ObjectSimple => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -193,4 +197,4 @@ export const test_createRandom_ObjectSimple = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

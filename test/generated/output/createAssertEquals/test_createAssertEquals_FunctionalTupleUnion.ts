@@ -4,7 +4,7 @@ import { FunctionalTupleUnion } from "../../../structures/FunctionalTupleUnion";
 
 export const test_createAssertEquals_FunctionalTupleUnion = _test_assertEquals(
     "FunctionalTupleUnion",
-    FunctionalTupleUnion.generate,
+)<FunctionalTupleUnion>(FunctionalTupleUnion)(
     (input: any): FunctionalTupleUnion => {
         const __is = (
             input: any,

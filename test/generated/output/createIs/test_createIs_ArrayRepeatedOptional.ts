@@ -4,7 +4,7 @@ import { ArrayRepeatedOptional } from "../../../structures/ArrayRepeatedOptional
 
 export const test_createIs_ArrayRepeatedOptional = _test_is(
     "ArrayRepeatedOptional",
-    ArrayRepeatedOptional.generate,
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)(
     (input: any): input is ArrayRepeatedOptional => {
         const $ia0 = (input: any): any =>
             input.every(
@@ -23,5 +23,4 @@ export const test_createIs_ArrayRepeatedOptional = _test_is(
                 (Array.isArray(input) && ($ia0(input) || false)))
         );
     },
-    ArrayRepeatedOptional.SPOILERS,
 );

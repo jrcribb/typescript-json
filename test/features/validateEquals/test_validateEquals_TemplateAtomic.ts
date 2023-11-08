@@ -4,6 +4,6 @@ import { TemplateAtomic } from "../../structures/TemplateAtomic";
 
 export const test_validateEquals_TemplateAtomic = _test_validateEquals(
     "TemplateAtomic",
-    TemplateAtomic.generate,
-    (input) => typia.validateEquals(input),
+)<TemplateAtomic>(TemplateAtomic)((input) =>
+    typia.validateEquals<TemplateAtomic>(input),
 );

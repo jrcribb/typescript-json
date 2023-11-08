@@ -1,24 +1,26 @@
+import { NamingConvention } from "../utils/NamingConvention";
 import { RandomGenerator } from "../utils/RandomGenerator";
 
 import { IValidation } from "../IValidation";
 import { TypeGuardError } from "../TypeGuardError";
+import { $HeadersReader } from "./$HeadersReader";
+import { $ParameterReader } from "./$ParameterReader";
+import { $ProtobufReader } from "./$ProtobufReader";
+import { $ProtobufSizer } from "./$ProtobufSizer";
+import { $ProtobufWriter } from "./$ProtobufWriter";
+import { $QueryReader } from "./$QueryReader";
 import { $any } from "./$any";
+import { $convention } from "./$convention";
 import { $every } from "./$every";
 import { $guard } from "./$guard";
 import { $is_between } from "./$is_between";
-import { $is_custom } from "./$is_custom";
-import { $is_date } from "./$is_date";
-import { $is_datetime } from "./$is_datetime";
-import { $is_email } from "./$is_email";
-import { $is_ipv4 } from "./$is_ipv4";
-import { $is_ipv6 } from "./$is_ipv6";
-import { $is_url } from "./$is_url";
-import { $is_uuid } from "./$is_uuid";
 import { $join } from "./$join";
 import { $number } from "./$number";
 import { $report } from "./$report";
 import { $rest } from "./$rest";
+import { $is_bigint_string } from "./$stoll";
 import { $string } from "./$string";
+import { $strlen } from "./$strlen";
 import { $tail } from "./$tail";
 
 /**
@@ -26,15 +28,8 @@ import { $tail } from "./$tail";
  */
 export namespace Namespace {
     export const is = () => ({
-        is_uuid: $is_uuid,
-        is_email: $is_email,
-        is_url: $is_url,
-        is_ipv4: $is_ipv4,
-        is_ipv6: $is_ipv6,
         is_between: $is_between,
-        is_date: $is_date,
-        is_datetime: $is_datetime,
-        is_custom: $is_custom,
+        is_bigint_string: $is_bigint_string,
     });
 
     export const assert = (method: string) => ({
@@ -91,25 +86,71 @@ export namespace Namespace {
             },
     });
 
-    export const stringify = (method: string) => ({
-        ...is(),
-        number: $number,
-        string: $string,
-        tail: $tail,
-        rest: $rest,
-        throws: $throws(method),
-    });
+    export namespace json {
+        export const stringify = (method: string) => ({
+            ...is(),
+            number: $number,
+            string: $string,
+            tail: $tail,
+            rest: $rest,
+            throws: $throws(`json.${method}`),
+        });
+    }
 
-    export const clone = (method: string) => ({
-        ...is(),
-        throws: $throws(method),
-        any: $any,
-    });
+    export namespace protobuf {
+        export const decode = (method: string) => ({
+            ...is(),
+            Reader: $ProtobufReader,
+            throws: $throws(`protobuf.${method}`),
+        });
 
-    export const prune = (method: string) => ({
-        ...is(),
-        throws: $throws(method),
-    });
+        export const encode = (method: string) => ({
+            ...is(),
+            Sizer: $ProtobufSizer,
+            Writer: $ProtobufWriter,
+            strlen: $strlen,
+            throws: $throws(method),
+        });
+    }
+
+    export namespace http {
+        export const query = () => $QueryReader;
+        export const headers = () => $HeadersReader;
+        export const parameter = () => $ParameterReader;
+    }
+
+    export namespace misc {
+        export const clone = (method: string) => ({
+            ...is(),
+            throws: $throws(`misc.${method}`),
+            any: $any,
+        });
+
+        export const prune = (method: string) => ({
+            ...is(),
+            throws: $throws(`misc.${method}`),
+        });
+    }
+
+    export namespace notations {
+        export const camel = (method: string) => ({
+            ...base(method),
+            any: $convention(NamingConvention.camel),
+        });
+        export const pascal = (method: string) => ({
+            ...base(method),
+            any: $convention(NamingConvention.pascal),
+        });
+        export const snake = (method: string) => ({
+            ...base(method),
+            any: $convention(NamingConvention.snake),
+        });
+
+        const base = (method: string) => ({
+            ...is(),
+            throws: $throws(`notations.${method}`),
+        });
+    }
 
     export const random = () => ({
         generator: RandomGenerator,

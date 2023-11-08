@@ -1,8 +1,8 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
-import { MetadataObject } from "../../../metadata/MetadataObject";
-import { MetadataProperty } from "../../../metadata/MetadataProperty";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataObject } from "../../../schemas/metadata/MetadataObject";
+import { MetadataProperty } from "../../../schemas/metadata/MetadataProperty";
 
 import { Writable } from "../../../typings/Writable";
 
@@ -11,14 +11,15 @@ import { ArrayUtil } from "../../../utils/ArrayUtil";
 import { CommentFactory } from "../../CommentFactory";
 import { MetadataCollection } from "../../MetadataCollection";
 import { MetadataFactory } from "../../MetadataFactory";
-import { MetadataTagFactory } from "../../MetadataTagFactory";
 import { MetadataHelper } from "./MetadataHelper";
 import { explore_metadata } from "./explore_metadata";
+import { iterate_metadata_coalesce } from "./iterate_metadata_coalesce";
 
 export const emplace_metadata_object =
     (checker: ts.TypeChecker) =>
     (options: MetadataFactory.IOptions) =>
     (collection: MetadataCollection) =>
+    (errors: MetadataFactory.IError[]) =>
     (parent: ts.Type, nullable: boolean): MetadataObject => {
         // EMPLACE OBJECT
         const [obj, newbie] = collection.emplace(checker, parent);
@@ -44,7 +45,6 @@ export const emplace_metadata_object =
         const insert =
             (key: Metadata) =>
             (value: Metadata) =>
-            (identifier: () => string) =>
             (
                 symbol: ts.Symbol | undefined,
                 filter?: (doc: ts.JSDocTagInfo) => boolean,
@@ -63,9 +63,6 @@ export const emplace_metadata_object =
                     value,
                     description,
                     jsDocTags,
-                    tags: MetadataTagFactory.generate(value)(jsDocTags)(() =>
-                        identifier(),
-                    ),
                 });
                 obj.properties.push(property);
                 return property;
@@ -85,17 +82,12 @@ export const emplace_metadata_object =
 
             // CHECK NODE IS A FORMAL PROPERTY
             const [node, type] = (() => {
-                const node = (prop.getDeclarations() ?? [])[0] as
+                const node = prop.getDeclarations()?.[0] as
                     | ts.PropertyDeclaration
                     | undefined;
                 const type: ts.Type | undefined = node
                     ? checker.getTypeOfSymbolAtLocation(prop, node)
-                    : "getTypeOfPropertyOfType" in checker
-                    ? (checker as any).getTypeOfPropertyOfType(
-                          parent,
-                          prop.name,
-                      )
-                    : undefined;
+                    : checker.getTypeOfPropertyOfType(parent, prop.name);
                 return [node, type];
             })();
             if ((node && pred(node) === false) || type === undefined) continue;
@@ -104,12 +96,17 @@ export const emplace_metadata_object =
             const key: Metadata = MetadataHelper.literal_to_metadata(prop.name);
             const value: Metadata = explore_metadata(checker)(options)(
                 collection,
-            )(type, false);
-
-            // OPTIONAL, BUT CAN BE RQUIRED BY `Required<T>` TYPE
-            if (node?.questionToken && (value.required === false || value.any))
-                Writable(value).optional = true;
-            insert(key)(value)(() => `${obj.name}.${prop.name}`)(prop);
+            )(errors)(type, {
+                top: false,
+                object: obj,
+                property: prop.name,
+                nested: null,
+                escaped: false,
+                aliased: false,
+            });
+            Writable(value).optional =
+                (prop.flags & ts.SymbolFlags.Optional) !== 0;
+            insert(key)(value)(prop);
         }
 
         //----
@@ -117,13 +114,48 @@ export const emplace_metadata_object =
         //----
         for (const index of checker.getIndexInfosOfType(parent)) {
             // GET EXACT TYPE
-            const analyzer = (type: ts.Type) =>
-                explore_metadata(checker)(options)(collection)(type, false);
-            const key: Metadata = analyzer(index.keyType);
-            const value: Metadata = analyzer(index.type);
+            const analyzer = (type: ts.Type) => (property: {} | null) =>
+                explore_metadata(checker)(options)(collection)(errors)(type, {
+                    top: false,
+                    object: obj,
+                    property,
+                    nested: null,
+                    escaped: false,
+                    aliased: false,
+                });
+            const key: Metadata = analyzer(index.keyType)(null);
+            const value: Metadata = analyzer(index.type)({});
+
+            if (
+                key.atomics.length +
+                    key.constants
+                        .map((c) => c.values.length)
+                        .reduce((a, b) => a + b, 0) +
+                    key.templates.length +
+                    key.natives.filter(
+                        (type) =>
+                            type === "Boolean" ||
+                            type === "BigInt" ||
+                            type === "Number" ||
+                            type === "String",
+                    ).length !==
+                key.size()
+            )
+                errors.push({
+                    name: key.getName(),
+                    explore: {
+                        top: false,
+                        object: obj,
+                        property: "[key]",
+                        nested: null,
+                        escaped: false,
+                        aliased: false,
+                    },
+                    messages: [],
+                });
 
             // INSERT WITH REQUIRED CONFIGURATION
-            insert(key)(value)(() => `${obj.name}[${key.getName()}]`)(
+            insert(key)(value)(
                 index.declaration?.parent
                     ? checker.getSymbolAtLocation(index.declaration.parent)
                     : undefined,
@@ -138,3 +170,9 @@ const isProperty = (node: ts.Declaration) =>
     ts.isPropertyAssignment(node) ||
     ts.isPropertySignature(node) ||
     ts.isTypeLiteralNode(node);
+
+const iterate_optional_coalesce = (meta: Metadata, type: ts.Type): void => {
+    if (type.isUnionOrIntersection())
+        type.types.forEach((child) => iterate_optional_coalesce(meta, child));
+    else iterate_metadata_coalesce(meta, type);
+};

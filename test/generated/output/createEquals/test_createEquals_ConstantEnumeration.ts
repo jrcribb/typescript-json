@@ -4,7 +4,7 @@ import { ConstantEnumeration } from "../../../structures/ConstantEnumeration";
 
 export const test_createEquals_ConstantEnumeration = _test_equals(
     "ConstantEnumeration",
-    ConstantEnumeration.generate,
+)<ConstantEnumeration>(ConstantEnumeration)(
     (
         input: any,
         _exceptionable: boolean = true,

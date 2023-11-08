@@ -4,6 +4,6 @@ import { ArrayHierarchical } from "../../structures/ArrayHierarchical";
 
 export const test_createValidateEquals_ArrayHierarchical = _test_validateEquals(
     "ArrayHierarchical",
-    ArrayHierarchical.generate,
+)<ArrayHierarchical>(ArrayHierarchical)(
     typia.createValidateEquals<ArrayHierarchical>(),
 );

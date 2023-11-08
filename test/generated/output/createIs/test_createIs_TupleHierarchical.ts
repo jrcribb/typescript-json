@@ -4,7 +4,7 @@ import { TupleHierarchical } from "../../../structures/TupleHierarchical";
 
 export const test_createIs_TupleHierarchical = _test_is(
     "TupleHierarchical",
-    TupleHierarchical.generate,
+)<TupleHierarchical>(TupleHierarchical)(
     (input: any): input is TupleHierarchical => {
         return (
             Array.isArray(input) &&
@@ -55,5 +55,4 @@ export const test_createIs_TupleHierarchical = _test_is(
             )
         );
     },
-    TupleHierarchical.SPOILERS,
 );

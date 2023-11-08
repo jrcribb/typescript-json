@@ -13,6 +13,8 @@ export interface DynamicComposite {
     [key: `between_${string}_and_${number}`]: boolean;
 }
 export namespace DynamicComposite {
+    export const BINARABLE = false;
+
     export function generate(): DynamicComposite {
         const number = () => Math.random() - 0.5;
         const string = () => TestRandomGenerator.string();
@@ -21,7 +23,7 @@ export namespace DynamicComposite {
             name: "name",
         };
 
-        ArrayUtil.repeat(TestRandomGenerator.integer(3, 10), () => {
+        ArrayUtil.repeat(TestRandomGenerator.integer(1, 1), () => {
             output[number()] = number();
             output[`prefix_${string()}`] = string();
             output[`${string()}_postfix`] = string();

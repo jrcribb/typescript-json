@@ -4,7 +4,4 @@ import { AtomicClass } from "../../structures/AtomicClass";
 
 export const test_createAssert_AtomicClass = _test_assert(
     "AtomicClass",
-    AtomicClass.generate,
-    typia.createAssert<AtomicClass>(),
-    AtomicClass.SPOILERS,
-);
+)<AtomicClass>(AtomicClass)(typia.createAssert<AtomicClass>());

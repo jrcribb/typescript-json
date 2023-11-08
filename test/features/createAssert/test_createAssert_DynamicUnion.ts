@@ -4,7 +4,4 @@ import { DynamicUnion } from "../../structures/DynamicUnion";
 
 export const test_createAssert_DynamicUnion = _test_assert(
     "DynamicUnion",
-    DynamicUnion.generate,
-    typia.createAssert<DynamicUnion>(),
-    DynamicUnion.SPOILERS,
-);
+)<DynamicUnion>(DynamicUnion)(typia.createAssert<DynamicUnion>());

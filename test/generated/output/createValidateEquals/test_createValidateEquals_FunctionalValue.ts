@@ -4,17 +4,17 @@ import { FunctionalValue } from "../../../structures/FunctionalValue";
 
 export const test_createValidateEquals_FunctionalValue = _test_validateEquals(
     "FunctionalValue",
-    FunctionalValue.generate,
+)<FunctionalValue>(FunctionalValue)(
     (input: any): typia.IValidation<FunctionalValue> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
         ): input is FunctionalValue => {
             return "function" === typeof input;
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -29,6 +29,7 @@ export const test_createValidateEquals_FunctionalValue = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

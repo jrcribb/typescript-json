@@ -4,7 +4,4 @@ import { DynamicUndefined } from "../../structures/DynamicUndefined";
 
 export const test_createValidate_DynamicUndefined = _test_validate(
     "DynamicUndefined",
-    DynamicUndefined.generate,
-    typia.createValidate<DynamicUndefined>(),
-    DynamicUndefined.SPOILERS,
-);
+)<DynamicUndefined>(DynamicUndefined)(typia.createValidate<DynamicUndefined>());

@@ -4,7 +4,7 @@ import { ArrayRepeatedNullable } from "../../../structures/ArrayRepeatedNullable
 
 export const test_createAssert_ArrayRepeatedNullable = _test_assert(
     "ArrayRepeatedNullable",
-    ArrayRepeatedNullable.generate,
+)<ArrayRepeatedNullable>(ArrayRepeatedNullable)(
     (input: any): ArrayRepeatedNullable => {
         const __is = (input: any): input is ArrayRepeatedNullable => {
             const $ia0 = (input: any): any =>
@@ -109,5 +109,4 @@ export const test_createAssert_ArrayRepeatedNullable = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ArrayRepeatedNullable.SPOILERS,
 );

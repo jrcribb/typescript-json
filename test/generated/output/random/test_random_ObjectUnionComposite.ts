@@ -4,10 +4,11 @@ import { ObjectUnionComposite } from "../../../structures/ObjectUnionComposite";
 
 export const test_random_ObjectUnionComposite = _test_random(
     "ObjectUnionComposite",
-    () =>
+)<ObjectUnionComposite>(ObjectUnionComposite)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectUnionComposite> => {
+        ): typia.Resolved<ObjectUnionComposite> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -92,11 +93,9 @@ export const test_random_ObjectUnionComposite = _test_random(
                     () => $ro7(),
                 ])(),
             );
-        })(),
-    (input: any): typia.Primitive<ObjectUnionComposite> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectUnionComposite> => {
+        })((ObjectUnionComposite as any).RANDOM),
+    assert: (input: any): ObjectUnionComposite => {
+        const __is = (input: any): input is ObjectUnionComposite => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
                 Number.isFinite(input.x) &&
@@ -198,9 +197,9 @@ export const test_random_ObjectUnionComposite = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.x) return $io0(input);
-                    if (undefined !== input.p4) return $io3(input);
-                    if (undefined !== input.points) return $io4(input);
-                    if (
+                    else if (undefined !== input.p4) return $io3(input);
+                    else if (undefined !== input.points) return $io4(input);
+                    else if (
                         Array.isArray(input.outer) &&
                         input.outer.every(
                             (elem: any) =>
@@ -210,17 +209,18 @@ export const test_random_ObjectUnionComposite = _test_random(
                         )
                     )
                         return $io6(input);
-                    if (
+                    else if (
                         "object" === typeof input.outer &&
                         null !== input.outer &&
                         $io4(input.outer)
                     )
                         return $io5(input);
-                    if (undefined !== input.centroid) return $io7(input);
-                    return (() => {
-                        if (undefined !== input.p3) return $io2(input);
-                        return $io1(input);
-                    })();
+                    else if (undefined !== input.centroid) return $io7(input);
+                    else
+                        return (() => {
+                            if (undefined !== input.p3) return $io2(input);
+                            else return $io1(input);
+                        })();
                 })();
             return (
                 Array.isArray(input) &&
@@ -235,7 +235,7 @@ export const test_random_ObjectUnionComposite = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectUnionComposite> => {
+            ): input is ObjectUnionComposite => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -593,11 +593,11 @@ export const test_random_ObjectUnionComposite = _test_random(
                     (() => {
                         if (undefined !== input.x)
                             return $ao0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p4)
+                        else if (undefined !== input.p4)
                             return $ao3(input, _path, true && _exceptionable);
-                        if (undefined !== input.points)
+                        else if (undefined !== input.points)
                             return $ao4(input, _path, true && _exceptionable);
-                        if (
+                        else if (
                             Array.isArray(input.outer) &&
                             input.outer.every(
                                 (elem: any, _index5: number) =>
@@ -611,7 +611,7 @@ export const test_random_ObjectUnionComposite = _test_random(
                             )
                         )
                             return $ao6(input, _path, true && _exceptionable);
-                        if (
+                        else if (
                             "object" === typeof input.outer &&
                             null !== input.outer &&
                             $ao4(
@@ -621,17 +621,23 @@ export const test_random_ObjectUnionComposite = _test_random(
                             )
                         )
                             return $ao5(input, _path, true && _exceptionable);
-                        if (undefined !== input.centroid)
+                        else if (undefined !== input.centroid)
                             return $ao7(input, _path, true && _exceptionable);
-                        return (() => {
-                            if (undefined !== input.p3)
-                                return $ao2(
-                                    input,
-                                    _path,
-                                    true && _exceptionable,
-                                );
-                            return $ao1(input, _path, true && _exceptionable);
-                        })();
+                        else
+                            return (() => {
+                                if (undefined !== input.p3)
+                                    return $ao2(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                                else
+                                    return $ao1(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                            })();
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -670,4 +676,4 @@ export const test_random_ObjectUnionComposite = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

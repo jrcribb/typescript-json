@@ -4,20 +4,18 @@ import { ConstantConstEnumeration } from "../../../structures/ConstantConstEnume
 
 export const test_is_ConstantConstEnumeration = _test_is(
     "ConstantConstEnumeration",
-    ConstantConstEnumeration.generate,
-    (input) =>
-        ((input: any): input is Array<ConstantConstEnumeration.Enumeration> => {
-            return (
-                Array.isArray(input) &&
-                input.every(
-                    (elem: any) =>
-                        0 === elem ||
-                        1 === elem ||
-                        2 === elem ||
-                        "Three" === elem ||
-                        "Four" === elem,
-                )
-            );
-        })(input),
-    ConstantConstEnumeration.SPOILERS,
+)<ConstantConstEnumeration>(ConstantConstEnumeration)((input) =>
+    ((input: any): input is ConstantConstEnumeration => {
+        return (
+            Array.isArray(input) &&
+            input.every(
+                (elem: any) =>
+                    0 === elem ||
+                    1 === elem ||
+                    2 === elem ||
+                    "Three" === elem ||
+                    "Four" === elem,
+            )
+        );
+    })(input),
 );

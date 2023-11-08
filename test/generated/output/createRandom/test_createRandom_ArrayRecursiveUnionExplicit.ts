@@ -4,9 +4,12 @@ import { ArrayRecursiveUnionExplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
     "ArrayRecursiveUnionExplicit",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayRecursiveUnionExplicit> => {
+)<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (
+            ArrayRecursiveUnionExplicit as any
+        ).RANDOM,
+    ): typia.Resolved<ArrayRecursiveUnionExplicit> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (_recursive: boolean = true, _depth: number = 0): any => ({
@@ -142,10 +145,8 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
             ])(),
         );
     },
-    (input: any): typia.Primitive<ArrayRecursiveUnionExplicit> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayRecursiveUnionExplicit> => {
+    assert: (input: any): ArrayRecursiveUnionExplicit => {
+        const __is = (input: any): input is ArrayRecursiveUnionExplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -205,11 +206,11 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ("directory" === input.type) return $io0(input);
-                    if ("jpg" === input.extension) return $io1(input);
-                    if ("txt" === input.extension) return $io2(input);
-                    if ("zip" === input.extension) return $io3(input);
-                    if ("lnk" === input.extension) return $io4(input);
-                    return false;
+                    else if ("jpg" === input.extension) return $io1(input);
+                    else if ("txt" === input.extension) return $io2(input);
+                    else if ("zip" === input.extension) return $io3(input);
+                    else if ("lnk" === input.extension) return $io4(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -224,7 +225,7 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRecursiveUnionExplicit> => {
+            ): input is ArrayRecursiveUnionExplicit => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -519,20 +520,21 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
                     (() => {
                         if ("directory" === input.type)
                             return $ao0(input, _path, true && _exceptionable);
-                        if ("jpg" === input.extension)
+                        else if ("jpg" === input.extension)
                             return $ao1(input, _path, true && _exceptionable);
-                        if ("txt" === input.extension)
+                        else if ("txt" === input.extension)
                             return $ao2(input, _path, true && _exceptionable);
-                        if ("zip" === input.extension)
+                        else if ("zip" === input.extension)
                             return $ao3(input, _path, true && _exceptionable);
-                        if ("lnk" === input.extension)
+                        else if ("lnk" === input.extension)
                             return $ao4(input, _path, true && _exceptionable);
-                        return $guard(_exceptionable, {
-                            path: _path,
-                            expected:
-                                "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
-                            value: input,
-                        });
+                        else
+                            return $guard(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -571,4 +573,4 @@ export const test_createRandom_ArrayRecursiveUnionExplicit = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

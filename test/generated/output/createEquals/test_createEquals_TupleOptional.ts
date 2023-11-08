@@ -4,7 +4,7 @@ import { TupleOptional } from "../../../structures/TupleOptional";
 
 export const test_createEquals_TupleOptional = _test_equals(
     "TupleOptional",
-    TupleOptional.generate,
+)<TupleOptional>(TupleOptional)(
     (input: any, _exceptionable: boolean = true): input is TupleOptional => {
         return (
             Array.isArray(input) &&

@@ -4,6 +4,8 @@ import { DynamicTemplate } from "../../structures/DynamicTemplate";
 
 export const test_random_DynamicTemplate = _test_random(
     "DynamicTemplate",
-    () => typia.random<DynamicTemplate>(),
-    typia.createAssert<typia.Primitive<DynamicTemplate>>(),
-);
+)<DynamicTemplate>(DynamicTemplate)({
+    random: () =>
+        typia.random<DynamicTemplate>((DynamicTemplate as any).RANDOM),
+    assert: typia.createAssert<DynamicTemplate>(),
+});

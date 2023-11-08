@@ -4,7 +4,7 @@ import { ToJsonNull } from "../../../structures/ToJsonNull";
 
 export const test_createEquals_ToJsonNull = _test_equals(
     "ToJsonNull",
-    ToJsonNull.generate,
+)<ToJsonNull>(ToJsonNull)(
     (input: any, _exceptionable: boolean = true): input is ToJsonNull => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "function" === typeof input.toJSON &&

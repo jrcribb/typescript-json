@@ -4,7 +4,7 @@ import { FunctionalValue } from "../../../structures/FunctionalValue";
 
 export const test_createEquals_FunctionalValue = _test_equals(
     "FunctionalValue",
-    FunctionalValue.generate,
+)<FunctionalValue>(FunctionalValue)(
     (input: any, _exceptionable: boolean = true): input is FunctionalValue => {
         return "function" === typeof input;
     },

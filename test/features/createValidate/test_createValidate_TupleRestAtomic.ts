@@ -4,7 +4,4 @@ import { TupleRestAtomic } from "../../structures/TupleRestAtomic";
 
 export const test_createValidate_TupleRestAtomic = _test_validate(
     "TupleRestAtomic",
-    TupleRestAtomic.generate,
-    typia.createValidate<TupleRestAtomic>(),
-    TupleRestAtomic.SPOILERS,
-);
+)<TupleRestAtomic>(TupleRestAtomic)(typia.createValidate<TupleRestAtomic>());

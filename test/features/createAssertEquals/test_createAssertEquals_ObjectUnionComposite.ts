@@ -4,6 +4,6 @@ import { ObjectUnionComposite } from "../../structures/ObjectUnionComposite";
 
 export const test_createAssertEquals_ObjectUnionComposite = _test_assertEquals(
     "ObjectUnionComposite",
-    ObjectUnionComposite.generate,
+)<ObjectUnionComposite>(ObjectUnionComposite)(
     typia.createAssertEquals<ObjectUnionComposite>(),
 );

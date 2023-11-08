@@ -4,7 +4,4 @@ import { ClassGetter } from "../../structures/ClassGetter";
 
 export const test_createAssert_ClassGetter = _test_assert(
     "ClassGetter",
-    ClassGetter.generate,
-    typia.createAssert<ClassGetter>(),
-    ClassGetter.SPOILERS,
-);
+)<ClassGetter>(ClassGetter)(typia.createAssert<ClassGetter>());

@@ -4,7 +4,4 @@ import { ArrayAtomicSimple } from "../../structures/ArrayAtomicSimple";
 
 export const test_createIs_ArrayAtomicSimple = _test_is(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
-    typia.createIs<ArrayAtomicSimple>(),
-    ArrayAtomicSimple.SPOILERS,
-);
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(typia.createIs<ArrayAtomicSimple>());

@@ -4,7 +4,7 @@ import { ClassPropertyAssignment } from "../../../structures/ClassPropertyAssign
 
 export const test_createEquals_ClassPropertyAssignment = _test_equals(
     "ClassPropertyAssignment",
-    ClassPropertyAssignment.generate,
+)<ClassPropertyAssignment>(ClassPropertyAssignment)(
     (
         input: any,
         _exceptionable: boolean = true,

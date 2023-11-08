@@ -4,7 +4,4 @@ import { ObjectSimple } from "../../structures/ObjectSimple";
 
 export const test_createIs_ObjectSimple = _test_is(
     "ObjectSimple",
-    ObjectSimple.generate,
-    typia.createIs<ObjectSimple>(),
-    ObjectSimple.SPOILERS,
-);
+)<ObjectSimple>(ObjectSimple)(typia.createIs<ObjectSimple>());

@@ -4,7 +4,4 @@ import { ObjectGenericArray } from "../../structures/ObjectGenericArray";
 
 export const test_createIs_ObjectGenericArray = _test_is(
     "ObjectGenericArray",
-    ObjectGenericArray.generate,
-    typia.createIs<ObjectGenericArray>(),
-    ObjectGenericArray.SPOILERS,
-);
+)<ObjectGenericArray>(ObjectGenericArray)(typia.createIs<ObjectGenericArray>());

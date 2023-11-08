@@ -4,6 +4,6 @@ import { FunctionalProperty } from "../../structures/FunctionalProperty";
 
 export const test_createEquals_FunctionalProperty = _test_equals(
     "FunctionalProperty",
-    FunctionalProperty.generate,
+)<FunctionalProperty>(FunctionalProperty)(
     typia.createEquals<FunctionalProperty>(),
 );

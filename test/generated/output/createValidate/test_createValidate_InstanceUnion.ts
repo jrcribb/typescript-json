@@ -4,10 +4,9 @@ import { InstanceUnion } from "../../../structures/InstanceUnion";
 
 export const test_createValidate_InstanceUnion = _test_validate(
     "InstanceUnion",
-    InstanceUnion.generate,
+)<InstanceUnion>(InstanceUnion)(
     (input: any): typia.IValidation<InstanceUnion> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is InstanceUnion => {
             const $ip0 = (input: any) => {
                 const array = input;
@@ -21,7 +20,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                             entire.length === 2 &&
                             "string" === typeof entire[0] &&
                             "string" === typeof entire[1],
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any =>
                             top.length === 3 &&
@@ -37,11 +36,11 @@ export const test_createValidate_InstanceUnion = _test_validate(
                             Number.isFinite(entire[1]) &&
                             "number" === typeof entire[2] &&
                             Number.isFinite(entire[2]),
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any => top.length === 0,
                         (entire: any[]): any => entire.length === 0,
-                    ],
+                    ] as const,
                 ];
                 for (const pred of tuplePredicators)
                     if (pred[0](array)) return pred[1](array);
@@ -49,7 +48,24 @@ export const test_createValidate_InstanceUnion = _test_validate(
                 if (0 === input.length) return true;
                 const arrayPredicators = [
                     [
-                        (top: any): any =>
+                        (top: any[]): any => "boolean" === typeof top,
+                        (entire: any[]): any =>
+                            entire.every(
+                                (elem: any) => "boolean" === typeof elem,
+                            ),
+                    ] as const,
+                    [
+                        (top: any[]): any =>
+                            "number" === typeof top && Number.isFinite(top),
+                        (entire: any[]): any =>
+                            entire.every(
+                                (elem: any) =>
+                                    "number" === typeof elem &&
+                                    Number.isFinite(elem),
+                            ),
+                    ] as const,
+                    [
+                        (top: any[]): any =>
                             "object" === typeof top &&
                             null !== top &&
                             $iu0(top),
@@ -60,29 +76,12 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                     null !== elem &&
                                     $iu0(elem),
                             ),
-                    ],
-                    [
-                        (top: any): any => "boolean" === typeof top,
-                        (entire: any[]): any =>
-                            entire.every(
-                                (elem: any) => "boolean" === typeof elem,
-                            ),
-                    ],
-                    [
-                        (top: any): any =>
-                            "number" === typeof top && Number.isFinite(top),
-                        (entire: any[]): any =>
-                            entire.every(
-                                (elem: any) =>
-                                    "number" === typeof elem &&
-                                    Number.isFinite(elem),
-                            ),
-                    ],
+                    ] as const,
                 ];
                 const passed = arrayPredicators.filter((pred: any) =>
                     pred[0](top),
                 );
-                if (1 === passed.length) return passed[0][1](array);
+                if (1 === passed.length) return passed[0]![1](array);
                 else if (1 < passed.length)
                     for (const pred of passed)
                         if (
@@ -231,13 +230,13 @@ export const test_createValidate_InstanceUnion = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ("point" === input.type) return $io2(input);
-                    if ("line" === input.type) return $io3(input);
-                    if ("triangle" === input.type) return $io5(input);
-                    if ("rectangle" === input.type) return $io6(input);
-                    if ("polyline" === input.type) return $io7(input);
-                    if ("polygon" === input.type) return $io8(input);
-                    if ("circle" === input.type) return $io10(input);
-                    return false;
+                    else if ("line" === input.type) return $io3(input);
+                    else if ("triangle" === input.type) return $io5(input);
+                    else if ("rectangle" === input.type) return $io6(input);
+                    else if ("polyline" === input.type) return $io7(input);
+                    else if ("polygon" === input.type) return $io8(input);
+                    else if ("circle" === input.type) return $io10(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -261,7 +260,8 @@ export const test_createValidate_InstanceUnion = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -302,7 +302,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                             value: entire[1],
                                         }),
                                 ].every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 3 &&
@@ -342,7 +342,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                             value: entire[2],
                                         }),
                                 ].every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 0 &&
@@ -355,7 +355,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                         value: entire,
                                     })) &&
                                 [].every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                     ];
                     for (const pred of tuplePredicators)
                         if (pred[0](array)) return pred[1](array);
@@ -363,25 +363,55 @@ export const test_createValidate_InstanceUnion = _test_validate(
                     if (0 === input.length) return true;
                     const arrayPredicators = [
                         [
-                            (top: any): any =>
-                                "object" === typeof top &&
-                                null !== top &&
-                                $vu0(
-                                    top,
-                                    _path + "[0]",
-                                    false && _exceptionable,
-                                ),
+                            (top: any[]): any => "boolean" === typeof top,
                             (entire: any[]): any =>
                                 entire
                                     .map(
                                         (elem: any, _index6: number) =>
+                                            "boolean" === typeof elem ||
+                                            $report(_exceptionable, {
+                                                path:
+                                                    _path + "[" + _index6 + "]",
+                                                expected: "boolean",
+                                                value: elem,
+                                            }),
+                                    )
+                                    .every((flag: boolean) => flag),
+                        ] as const,
+                        [
+                            (top: any[]): any =>
+                                "number" === typeof top && Number.isFinite(top),
+                            (entire: any[]): any =>
+                                entire
+                                    .map(
+                                        (elem: any, _index7: number) =>
+                                            ("number" === typeof elem &&
+                                                Number.isFinite(elem)) ||
+                                            $report(_exceptionable, {
+                                                path:
+                                                    _path + "[" + _index7 + "]",
+                                                expected: "number",
+                                                value: elem,
+                                            }),
+                                    )
+                                    .every((flag: boolean) => flag),
+                        ] as const,
+                        [
+                            (top: any[]): any =>
+                                "object" === typeof top &&
+                                null !== top &&
+                                $vu0(top, _path, false && _exceptionable),
+                            (entire: any[]): any =>
+                                entire
+                                    .map(
+                                        (elem: any, _index8: number) =>
                                             ((("object" === typeof elem &&
                                                 null !== elem) ||
                                                 $report(_exceptionable, {
                                                     path:
                                                         _path +
                                                         "[" +
-                                                        _index6 +
+                                                        _index8 +
                                                         "]",
                                                     expected:
                                                         '(ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>)',
@@ -389,58 +419,24 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                                 })) &&
                                                 $vu0(
                                                     elem,
-                                                    _path + "[" + _index6 + "]",
+                                                    _path + "[" + _index8 + "]",
                                                     true && _exceptionable,
                                                 )) ||
                                             $report(_exceptionable, {
                                                 path:
-                                                    _path + "[" + _index6 + "]",
+                                                    _path + "[" + _index8 + "]",
                                                 expected:
                                                     '(ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle>)',
                                                 value: elem,
                                             }),
                                     )
                                     .every((flag: boolean) => flag),
-                        ],
-                        [
-                            (top: any): any => "boolean" === typeof top,
-                            (entire: any[]): any =>
-                                entire
-                                    .map(
-                                        (elem: any, _index7: number) =>
-                                            "boolean" === typeof elem ||
-                                            $report(_exceptionable, {
-                                                path:
-                                                    _path + "[" + _index7 + "]",
-                                                expected: "boolean",
-                                                value: elem,
-                                            }),
-                                    )
-                                    .every((flag: boolean) => flag),
-                        ],
-                        [
-                            (top: any): any =>
-                                "number" === typeof top && Number.isFinite(top),
-                            (entire: any[]): any =>
-                                entire
-                                    .map(
-                                        (elem: any, _index8: number) =>
-                                            ("number" === typeof elem &&
-                                                Number.isFinite(elem)) ||
-                                            $report(_exceptionable, {
-                                                path:
-                                                    _path + "[" + _index8 + "]",
-                                                expected: "number",
-                                                value: elem,
-                                            }),
-                                    )
-                                    .every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                     ];
                     const passed = arrayPredicators.filter((pred: any) =>
                         pred[0](top),
                     );
-                    if (1 === passed.length) return passed[0][1](array);
+                    if (1 === passed.length) return passed[0]![1](array);
                     else if (1 < passed.length)
                         for (const pred of passed)
                             if (
@@ -452,7 +448,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                     return $report(_exceptionable, {
                         path: _path,
                         expected:
-                            "([string, string] | [boolean, number, number] | [] | ObjectUnionExplicit | Array<boolean> | Array<number>)",
+                            "([string, string] | [boolean, number, number] | [] | Array<boolean> | Array<number> | ObjectUnionExplicit)",
                         value: input,
                     });
                 };
@@ -1025,24 +1021,25 @@ export const test_createValidate_InstanceUnion = _test_validate(
                     (() => {
                         if ("point" === input.type)
                             return $vo2(input, _path, true && _exceptionable);
-                        if ("line" === input.type)
+                        else if ("line" === input.type)
                             return $vo3(input, _path, true && _exceptionable);
-                        if ("triangle" === input.type)
+                        else if ("triangle" === input.type)
                             return $vo5(input, _path, true && _exceptionable);
-                        if ("rectangle" === input.type)
+                        else if ("rectangle" === input.type)
                             return $vo6(input, _path, true && _exceptionable);
-                        if ("polyline" === input.type)
+                        else if ("polyline" === input.type)
                             return $vo7(input, _path, true && _exceptionable);
-                        if ("polygon" === input.type)
+                        else if ("polygon" === input.type)
                             return $vo8(input, _path, true && _exceptionable);
-                        if ("circle" === input.type)
+                        else if ("circle" === input.type)
                             return $vo10(input, _path, true && _exceptionable);
-                        return $report(_exceptionable, {
-                            path: _path,
-                            expected:
-                                '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
-                            value: input,
-                        });
+                        else
+                            return $report(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -1111,7 +1108,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                                                         _index1 +
                                                         "]",
                                                     expected:
-                                                        "[string, string] | [boolean, number, number] | [] | ObjectUnionExplicit | Array<boolean> | Array<number>",
+                                                        "[string, string] | [boolean, number, number] | [] | Array<boolean> | Array<number> | ObjectUnionExplicit",
                                                     value: elem,
                                                 }))) ||
                                         ("object" === typeof elem &&
@@ -1142,6 +1139,7 @@ export const test_createValidate_InstanceUnion = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

@@ -4,6 +4,4 @@ import { ObjectSimple } from "../../structures/ObjectSimple";
 
 export const test_createAssertEquals_ObjectSimple = _test_assertEquals(
     "ObjectSimple",
-    ObjectSimple.generate,
-    typia.createAssertEquals<ObjectSimple>(),
-);
+)<ObjectSimple>(ObjectSimple)(typia.createAssertEquals<ObjectSimple>());

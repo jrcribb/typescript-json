@@ -4,7 +4,6 @@ import { ObjectPropertyNullable } from "../../structures/ObjectPropertyNullable"
 
 export const test_createValidate_ObjectPropertyNullable = _test_validate(
     "ObjectPropertyNullable",
-    ObjectPropertyNullable.generate,
+)<ObjectPropertyNullable>(ObjectPropertyNullable)(
     typia.createValidate<ObjectPropertyNullable>(),
-    ObjectPropertyNullable.SPOILERS,
 );

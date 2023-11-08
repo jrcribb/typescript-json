@@ -4,7 +4,7 @@ import { ObjectGenericAlias } from "../../../structures/ObjectGenericAlias";
 
 export const test_createEquals_ObjectGenericAlias = _test_equals(
     "ObjectGenericAlias",
-    ObjectGenericAlias.generate,
+)<ObjectGenericAlias>(ObjectGenericAlias)(
     (
         input: any,
         _exceptionable: boolean = true,

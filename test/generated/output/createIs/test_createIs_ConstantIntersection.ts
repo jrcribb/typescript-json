@@ -4,7 +4,7 @@ import { ConstantIntersection } from "../../../structures/ConstantIntersection";
 
 export const test_createIs_ConstantIntersection = _test_is(
     "ConstantIntersection",
-    ConstantIntersection.generate,
+)<ConstantIntersection>(ConstantIntersection)(
     (input: any): input is ConstantIntersection => {
         return (
             Array.isArray(input) &&
@@ -14,5 +14,4 @@ export const test_createIs_ConstantIntersection = _test_is(
             "two" === input[2]
         );
     },
-    ConstantIntersection.SPOILERS,
 );

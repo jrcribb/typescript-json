@@ -4,6 +4,4 @@ import { ArraySimple } from "../../structures/ArraySimple";
 
 export const test_createEquals_ArraySimple = _test_equals(
     "ArraySimple",
-    ArraySimple.generate,
-    typia.createEquals<ArraySimple>(),
-);
+)<ArraySimple>(ArraySimple)(typia.createEquals<ArraySimple>());

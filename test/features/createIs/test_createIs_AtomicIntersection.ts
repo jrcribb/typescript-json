@@ -4,7 +4,4 @@ import { AtomicIntersection } from "../../structures/AtomicIntersection";
 
 export const test_createIs_AtomicIntersection = _test_is(
     "AtomicIntersection",
-    AtomicIntersection.generate,
-    typia.createIs<AtomicIntersection>(),
-    AtomicIntersection.SPOILERS,
-);
+)<AtomicIntersection>(AtomicIntersection)(typia.createIs<AtomicIntersection>());

@@ -4,6 +4,4 @@ import { ToJsonDouble } from "../../structures/ToJsonDouble";
 
 export const test_createValidate_ToJsonDouble = _test_validate(
     "ToJsonDouble",
-    ToJsonDouble.generate,
-    typia.createValidate<ToJsonDouble>(),
-);
+)<ToJsonDouble>(ToJsonDouble)(typia.createValidate<ToJsonDouble>());

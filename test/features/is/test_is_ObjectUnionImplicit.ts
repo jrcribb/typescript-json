@@ -4,7 +4,6 @@ import { ObjectUnionImplicit } from "../../structures/ObjectUnionImplicit";
 
 export const test_is_ObjectUnionImplicit = _test_is(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
-    (input) => typia.is(input),
-    ObjectUnionImplicit.SPOILERS,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)((input) =>
+    typia.is<ObjectUnionImplicit>(input),
 );

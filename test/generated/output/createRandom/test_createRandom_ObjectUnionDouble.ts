@@ -4,9 +4,11 @@ import { ObjectUnionDouble } from "../../../structures/ObjectUnionDouble";
 
 export const test_createRandom_ObjectUnionDouble = _test_random(
     "ObjectUnionDouble",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectUnionDouble> => {
+)<ObjectUnionDouble>(ObjectUnionDouble)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectUnionDouble as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectUnionDouble> => {
         const $pick = (typia.createRandom as any).pick;
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (
@@ -105,10 +107,8 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
             $pick([() => $ro6(), () => $ro0()])(),
         );
     },
-    (input: any): typia.Primitive<ObjectUnionDouble> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectUnionDouble> => {
+    assert: (input: any): ObjectUnionDouble => {
+        const __is = (input: any): input is ObjectUnionDouble => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.value &&
                 null !== input.value &&
@@ -150,20 +150,20 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ($io6(input)) return $io6(input);
-                    if ($io0(input)) return $io0(input);
-                    return false;
+                    else if ($io0(input)) return $io0(input);
+                    else return false;
                 })();
             const $iu1 = (input: any): any =>
                 (() => {
                     if ($io4(input)) return $io4(input);
-                    if ($io2(input)) return $io2(input);
-                    return false;
+                    else if ($io2(input)) return $io2(input);
+                    else return false;
                 })();
             const $iu2 = (input: any): any =>
                 (() => {
                     if ($io10(input)) return $io10(input);
-                    if ($io8(input)) return $io8(input);
-                    return false;
+                    else if ($io8(input)) return $io8(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -178,7 +178,7 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectUnionDouble> => {
+            ): input is ObjectUnionDouble => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -507,4 +507,4 @@ export const test_createRandom_ObjectUnionDouble = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

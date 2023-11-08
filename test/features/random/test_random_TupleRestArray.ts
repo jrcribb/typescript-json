@@ -4,6 +4,7 @@ import { TupleRestArray } from "../../structures/TupleRestArray";
 
 export const test_random_TupleRestArray = _test_random(
     "TupleRestArray",
-    () => typia.random<TupleRestArray>(),
-    typia.createAssert<typia.Primitive<TupleRestArray>>(),
-);
+)<TupleRestArray>(TupleRestArray)({
+    random: () => typia.random<TupleRestArray>((TupleRestArray as any).RANDOM),
+    assert: typia.createAssert<TupleRestArray>(),
+});

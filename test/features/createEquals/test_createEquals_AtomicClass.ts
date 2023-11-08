@@ -4,6 +4,4 @@ import { AtomicClass } from "../../structures/AtomicClass";
 
 export const test_createEquals_AtomicClass = _test_equals(
     "AtomicClass",
-    AtomicClass.generate,
-    typia.createEquals<AtomicClass>(),
-);
+)<AtomicClass>(AtomicClass)(typia.createEquals<AtomicClass>());

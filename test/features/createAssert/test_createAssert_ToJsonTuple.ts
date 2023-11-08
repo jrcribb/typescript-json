@@ -4,6 +4,4 @@ import { ToJsonTuple } from "../../structures/ToJsonTuple";
 
 export const test_createAssert_ToJsonTuple = _test_assert(
     "ToJsonTuple",
-    ToJsonTuple.generate,
-    typia.createAssert<ToJsonTuple>(),
-);
+)<ToJsonTuple>(ToJsonTuple)(typia.createAssert<ToJsonTuple>());

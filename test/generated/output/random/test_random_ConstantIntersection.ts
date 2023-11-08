@@ -4,16 +4,15 @@ import { ConstantIntersection } from "../../../structures/ConstantIntersection";
 
 export const test_random_ConstantIntersection = _test_random(
     "ConstantIntersection",
-    () =>
+)<ConstantIntersection>(ConstantIntersection)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ConstantIntersection> => {
+        ): typia.Resolved<ConstantIntersection> => {
             return [false, 1, "two"];
-        })(),
-    (input: any): typia.Primitive<ConstantIntersection> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ConstantIntersection> => {
+        })((ConstantIntersection as any).RANDOM),
+    assert: (input: any): ConstantIntersection => {
+        const __is = (input: any): input is ConstantIntersection => {
             return (
                 Array.isArray(input) &&
                 input.length === 3 &&
@@ -27,7 +26,7 @@ export const test_random_ConstantIntersection = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ConstantIntersection> => {
+            ): input is ConstantIntersection => {
                 const $guard = (typia.createAssert as any).guard;
                 return (
                     ((Array.isArray(input) ||
@@ -69,4 +68,4 @@ export const test_random_ConstantIntersection = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

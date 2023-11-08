@@ -4,6 +4,8 @@ export namespace FunctionalValue {
         return console.log;
     }
 
-    export const PRIMITIVE = false;
+    export const BINARABLE = false;
     export const JSONABLE = false;
+    export const RESOLVABLE = false;
+    export const PRIMITIVE = false;
 }

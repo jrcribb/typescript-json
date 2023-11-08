@@ -4,7 +4,7 @@ import { ObjectLiteralType } from "../../../structures/ObjectLiteralType";
 
 export const test_createIs_ObjectLiteralType = _test_is(
     "ObjectLiteralType",
-    ObjectLiteralType.generate,
+)<ObjectLiteralType>(ObjectLiteralType)(
     (input: any): input is ObjectLiteralType => {
         return (
             "object" === typeof input &&
@@ -15,5 +15,4 @@ export const test_createIs_ObjectLiteralType = _test_is(
             Number.isFinite((input as any).age)
         );
     },
-    ObjectLiteralType.SPOILERS,
 );

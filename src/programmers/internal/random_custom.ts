@@ -3,7 +3,7 @@ import ts from "typescript";
 import { ExpressionFactory } from "../../factories/ExpressionFactory";
 import { LiteralFactory } from "../../factories/LiteralFactory";
 
-import { ICommentTag } from "../../metadata/ICommentTag";
+import { IMetadataTypeTag } from "../../schemas/metadata/IMetadataTypeTag";
 
 import { Customizable } from "../../typings/Customizable";
 
@@ -13,7 +13,7 @@ import { Customizable } from "../../typings/Customizable";
 export const random_custom =
     (accessor: (name: string) => ts.Expression) =>
     (type: keyof Customizable) =>
-    (comments: ICommentTag[]) =>
+    (tags: IMetadataTypeTag[]) =>
     (expression: ts.Expression) =>
         ExpressionFactory.coalesce(
             ts.factory.createCallChain(
@@ -24,6 +24,14 @@ export const random_custom =
                 ),
                 ts.factory.createToken(ts.SyntaxKind.QuestionDotToken),
                 undefined,
-                [LiteralFactory.generate(comments)],
+                [
+                    LiteralFactory.generate(
+                        tags.map((t) => ({
+                            name: t.name,
+                            kind: t.kind,
+                            value: t.value,
+                        })),
+                    ),
+                ],
             ),
         )(expression);

@@ -4,6 +4,6 @@ import { ObjectIntersection } from "../../structures/ObjectIntersection";
 
 export const test_createAssertEquals_ObjectIntersection = _test_assertEquals(
     "ObjectIntersection",
-    ObjectIntersection.generate,
+)<ObjectIntersection>(ObjectIntersection)(
     typia.createAssertEquals<ObjectIntersection>(),
 );

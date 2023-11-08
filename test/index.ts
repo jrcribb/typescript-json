@@ -4,21 +4,25 @@ import { DynamicImportIterator } from "./helpers/DynamicImportIterator";
 import { IPointer } from "./helpers/IPointer";
 
 async function main(): Promise<void> {
+    const counter: IPointer<number> = { value: 0 };
+    const exceptions: Error[] = [];
+
     console.log("-------------------------------------------------------");
     console.log("  TRANSFORMATION TESTING");
     console.log("-------------------------------------------------------");
 
-    const counter: IPointer<number> = { value: 0 };
-    const exceptions: Error[] = await DynamicImportIterator.force(
-        __dirname + "/features",
-        {
+    exceptions.push(
+        ...(await DynamicImportIterator.force(__dirname + "/features", {
             prefix: "test",
             parameters: () => [],
             counter,
-        },
+        })),
     );
 
-    if (fs.existsSync(__dirname + "/generated/output")) {
+    if (
+        fs.existsSync(__dirname + "/generated/output") &&
+        process.argv.every((str) => str !== "--skipGenerated")
+    ) {
         console.log("-------------------------------------------------------");
         console.log("  GENERATION TESTING");
         console.log("-------------------------------------------------------");

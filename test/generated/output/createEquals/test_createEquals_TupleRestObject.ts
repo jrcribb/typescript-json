@@ -4,7 +4,7 @@ import { TupleRestObject } from "../../../structures/TupleRestObject";
 
 export const test_createEquals_TupleRestObject = _test_equals(
     "TupleRestObject",
-    TupleRestObject.generate,
+)<TupleRestObject>(TupleRestObject)(
     (input: any, _exceptionable: boolean = true): input is TupleRestObject => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.value &&

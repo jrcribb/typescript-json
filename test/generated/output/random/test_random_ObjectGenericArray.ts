@@ -4,10 +4,11 @@ import { ObjectGenericArray } from "../../../structures/ObjectGenericArray";
 
 export const test_random_ObjectGenericArray = _test_random(
     "ObjectGenericArray",
-    () =>
+)<ObjectGenericArray>(ObjectGenericArray)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectGenericArray> => {
+        ): typia.Resolved<ObjectGenericArray> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -47,29 +48,25 @@ export const test_random_ObjectGenericArray = _test_random(
                     (generator?.number ?? $generator.number)(0, 100),
             });
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<ObjectGenericArray> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectGenericArray> => {
+        })((ObjectGenericArray as any).RANDOM),
+    assert: (input: any): ObjectGenericArray => {
+        const __is = (input: any): input is ObjectGenericArray => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.pagination &&
                 null !== input.pagination &&
-                $io1(input.pagination) &&
+                "number" === typeof (input.pagination as any).page &&
+                Number.isFinite((input.pagination as any).page) &&
+                "number" === typeof (input.pagination as any).limit &&
+                Number.isFinite((input.pagination as any).limit) &&
+                "number" === typeof (input.pagination as any).total_count &&
+                Number.isFinite((input.pagination as any).total_count) &&
+                "number" === typeof (input.pagination as any).total_pages &&
+                Number.isFinite((input.pagination as any).total_pages) &&
                 Array.isArray(input.data) &&
                 input.data.every(
                     (elem: any) =>
                         "object" === typeof elem && null !== elem && $io2(elem),
                 );
-            const $io1 = (input: any): boolean =>
-                "number" === typeof input.page &&
-                Number.isFinite(input.page) &&
-                "number" === typeof input.limit &&
-                Number.isFinite(input.limit) &&
-                "number" === typeof input.total_count &&
-                Number.isFinite(input.total_count) &&
-                "number" === typeof input.total_pages &&
-                Number.isFinite(input.total_pages);
             const $io2 = (input: any): boolean =>
                 "string" === typeof input.name &&
                 "number" === typeof input.age &&
@@ -81,7 +78,7 @@ export const test_random_ObjectGenericArray = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectGenericArray> => {
+            ): input is ObjectGenericArray => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -203,4 +200,4 @@ export const test_random_ObjectGenericArray = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

@@ -4,7 +4,7 @@ import { ArraySimple } from "../../../structures/ArraySimple";
 
 export const test_createEquals_ArraySimple = _test_equals(
     "ArraySimple",
-    ArraySimple.generate,
+)<ArraySimple>(ArraySimple)(
     (input: any, _exceptionable: boolean = true): input is ArraySimple => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.name &&

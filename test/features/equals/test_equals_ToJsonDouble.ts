@@ -4,6 +4,4 @@ import { ToJsonDouble } from "../../structures/ToJsonDouble";
 
 export const test_equals_ToJsonDouble = _test_equals(
     "ToJsonDouble",
-    ToJsonDouble.generate,
-    (input) => typia.equals(input),
-);
+)<ToJsonDouble>(ToJsonDouble)((input) => typia.equals<ToJsonDouble>(input));

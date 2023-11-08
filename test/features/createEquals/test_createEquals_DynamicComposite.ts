@@ -4,6 +4,4 @@ import { DynamicComposite } from "../../structures/DynamicComposite";
 
 export const test_createEquals_DynamicComposite = _test_equals(
     "DynamicComposite",
-    DynamicComposite.generate,
-    typia.createEquals<DynamicComposite>(),
-);
+)<DynamicComposite>(DynamicComposite)(typia.createEquals<DynamicComposite>());

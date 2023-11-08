@@ -27,4 +27,5 @@ export namespace DynamicNever {
     ];
 
     export const ADDABLE = false;
+    export const BINARABLE = false;
 }

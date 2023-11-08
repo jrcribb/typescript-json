@@ -4,7 +4,7 @@ import { ConstantAtomicSimple } from "../../../structures/ConstantAtomicSimple";
 
 export const test_createIs_ConstantAtomicSimple = _test_is(
     "ConstantAtomicSimple",
-    ConstantAtomicSimple.generate,
+)<ConstantAtomicSimple>(ConstantAtomicSimple)(
     (input: any): input is ConstantAtomicSimple => {
         return (
             Array.isArray(input) &&
@@ -15,5 +15,4 @@ export const test_createIs_ConstantAtomicSimple = _test_is(
             "three" === input[3]
         );
     },
-    ConstantAtomicSimple.SPOILERS,
 );

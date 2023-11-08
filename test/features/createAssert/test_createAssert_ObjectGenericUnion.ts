@@ -4,7 +4,6 @@ import { ObjectGenericUnion } from "../../structures/ObjectGenericUnion";
 
 export const test_createAssert_ObjectGenericUnion = _test_assert(
     "ObjectGenericUnion",
-    ObjectGenericUnion.generate,
+)<ObjectGenericUnion>(ObjectGenericUnion)(
     typia.createAssert<ObjectGenericUnion>(),
-    ObjectGenericUnion.SPOILERS,
 );

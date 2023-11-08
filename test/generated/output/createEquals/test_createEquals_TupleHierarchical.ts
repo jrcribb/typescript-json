@@ -4,7 +4,7 @@ import { TupleHierarchical } from "../../../structures/TupleHierarchical";
 
 export const test_createEquals_TupleHierarchical = _test_equals(
     "TupleHierarchical",
-    TupleHierarchical.generate,
+)<TupleHierarchical>(TupleHierarchical)(
     (
         input: any,
         _exceptionable: boolean = true,

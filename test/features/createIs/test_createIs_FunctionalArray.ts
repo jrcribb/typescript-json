@@ -4,7 +4,4 @@ import { FunctionalArray } from "../../structures/FunctionalArray";
 
 export const test_createIs_FunctionalArray = _test_is(
     "FunctionalArray",
-    FunctionalArray.generate,
-    typia.createIs<FunctionalArray>(),
-    FunctionalArray.SPOILERS,
-);
+)<FunctionalArray>(FunctionalArray)(typia.createIs<FunctionalArray>());

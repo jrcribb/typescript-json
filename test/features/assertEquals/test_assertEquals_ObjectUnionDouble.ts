@@ -4,6 +4,6 @@ import { ObjectUnionDouble } from "../../structures/ObjectUnionDouble";
 
 export const test_assertEquals_ObjectUnionDouble = _test_assertEquals(
     "ObjectUnionDouble",
-    ObjectUnionDouble.generate,
-    (input) => typia.assertEquals(input),
+)<ObjectUnionDouble>(ObjectUnionDouble)((input) =>
+    typia.assertEquals<ObjectUnionDouble>(input),
 );

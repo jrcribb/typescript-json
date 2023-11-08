@@ -4,7 +4,7 @@ import { ArrayRepeatedUnionWithTuple } from "../../../structures/ArrayRepeatedUn
 
 export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
     "ArrayRepeatedUnionWithTuple",
-    ArrayRepeatedUnionWithTuple.generate,
+)<ArrayRepeatedUnionWithTuple>(ArrayRepeatedUnionWithTuple)(
     (input: any): ArrayRepeatedUnionWithTuple => {
         const __is = (input: any): input is ArrayRepeatedUnionWithTuple => {
             const $ip0 = (input: any) => {
@@ -23,7 +23,7 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                             "number" === typeof entire[1] &&
                             Number.isFinite(entire[1]) &&
                             "boolean" === typeof entire[2],
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any =>
                             top.length === 2 &&
@@ -41,7 +41,7 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                             "object" === typeof entire[1] &&
                             null !== entire[1] &&
                             $io1(entire[1]),
-                    ],
+                    ] as const,
                 ];
                 for (const pred of tuplePredicators)
                     if (pred[0](array)) return pred[1](array);
@@ -49,14 +49,14 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                 if (0 === input.length) return true;
                 const arrayPredicators = [
                     [
-                        (top: any): any => "string" === typeof top,
+                        (top: any[]): any => "string" === typeof top,
                         (entire: any[]): any =>
                             entire.every(
                                 (elem: any) => "string" === typeof elem,
                             ),
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             null !== top &&
                             undefined !== top &&
                             (("number" === typeof top &&
@@ -64,9 +64,9 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                 "boolean" === typeof top ||
                                 (Array.isArray(top) && ($ip0(top) || false))),
                         (entire: any[]): any => $ia0(entire) || false,
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             "object" === typeof top &&
                             null !== top &&
                             $io0(top),
@@ -77,12 +77,12 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                     null !== elem &&
                                     $io0(elem),
                             ),
-                    ],
+                    ] as const,
                 ];
                 const passed = arrayPredicators.filter((pred: any) =>
                     pred[0](top),
                 );
-                if (1 === passed.length) return passed[0][1](array);
+                if (1 === passed.length) return passed[0]![1](array);
                 else if (1 < passed.length)
                     for (const pred of passed)
                         if (
@@ -195,7 +195,7 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                         expected: "boolean",
                                         value: entire[2],
                                     })),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 2 &&
@@ -259,7 +259,7 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                             "ArrayRepeatedUnionWithTuple.IPoint3D",
                                         value: entire[1],
                                     })),
-                        ],
+                        ] as const,
                     ];
                     for (const pred of tuplePredicators)
                         if (pred[0](array)) return pred[1](array);
@@ -267,7 +267,7 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                     if (0 === input.length) return true;
                     const arrayPredicators = [
                         [
-                            (top: any): any => "string" === typeof top,
+                            (top: any[]): any => "string" === typeof top,
                             (entire: any[]): any =>
                                 entire.every(
                                     (elem: any, _index1: number) =>
@@ -278,9 +278,9 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 null !== top &&
                                 undefined !== top &&
                                 (("number" === typeof top &&
@@ -289,11 +289,11 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                     (Array.isArray(top) &&
                                         ($ap0(
                                             top,
-                                            _path + "[0]",
+                                            _path,
                                             false && _exceptionable,
                                         ) ||
                                             $guard(_exceptionable, {
-                                                path: _path + "[0]",
+                                                path: _path,
                                                 expected:
                                                     "[string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>",
                                                 value: top,
@@ -306,16 +306,12 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                         "Array<ArrayRepeatedUnionWithTuple>",
                                     value: entire,
                                 }),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 "object" === typeof top &&
                                 null !== top &&
-                                $ao0(
-                                    top,
-                                    _path + "[0]",
-                                    false && _exceptionable,
-                                ),
+                                $ao0(top, _path, false && _exceptionable),
                             (entire: any[]): any =>
                                 entire.every(
                                     (elem: any, _index2: number) =>
@@ -340,12 +336,12 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                     ];
                     const passed = arrayPredicators.filter((pred: any) =>
                         pred[0](top),
                     );
-                    if (1 === passed.length) return passed[0][1](array);
+                    if (1 === passed.length) return passed[0]![1](array);
                     else if (1 < passed.length)
                         for (const pred of passed)
                             if (
@@ -550,5 +546,4 @@ export const test_createAssert_ArrayRepeatedUnionWithTuple = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ArrayRepeatedUnionWithTuple.SPOILERS,
 );

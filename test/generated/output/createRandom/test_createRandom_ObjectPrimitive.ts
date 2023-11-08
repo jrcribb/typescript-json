@@ -4,9 +4,11 @@ import { ObjectPrimitive } from "../../../structures/ObjectPrimitive";
 
 export const test_createRandom_ObjectPrimitive = _test_random(
     "ObjectPrimitive",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectPrimitive> => {
+)<ObjectPrimitive>(ObjectPrimitive)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectPrimitive as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectPrimitive> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (
@@ -16,7 +18,7 @@ export const test_createRandom_ObjectPrimitive = _test_random(
             id:
                 (generator?.customs ?? $generator.customs)?.string?.([]) ??
                 (generator?.string ?? $generator.string)(),
-            extension: $pick([() => "md", () => "html", () => "txt"])(),
+            extension: $pick([() => "txt", () => "md", () => "html"])(),
             title:
                 (generator?.customs ?? $generator.customs)?.string?.([]) ??
                 (generator?.string ?? $generator.string)(),
@@ -53,15 +55,13 @@ export const test_createRandom_ObjectPrimitive = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectPrimitive> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectPrimitive> => {
+    assert: (input: any): ObjectPrimitive => {
+        const __is = (input: any): input is ObjectPrimitive => {
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.id &&
-                ("md" === input.extension ||
-                    "html" === input.extension ||
-                    "txt" === input.extension) &&
+                ("txt" === input.extension ||
+                    "md" === input.extension ||
+                    "html" === input.extension) &&
                 "string" === typeof input.title &&
                 "string" === typeof input.body &&
                 Array.isArray(input.files) &&
@@ -84,7 +84,7 @@ export const test_createRandom_ObjectPrimitive = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectPrimitive> => {
+            ): input is ObjectPrimitive => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -97,9 +97,9 @@ export const test_createRandom_ObjectPrimitive = _test_random(
                             expected: "string",
                             value: input.id,
                         })) &&
-                    ("md" === input.extension ||
+                    ("txt" === input.extension ||
+                        "md" === input.extension ||
                         "html" === input.extension ||
-                        "txt" === input.extension ||
                         $guard(_exceptionable, {
                             path: _path + ".extension",
                             expected: '("html" | "md" | "txt")',
@@ -211,4 +211,4 @@ export const test_createRandom_ObjectPrimitive = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

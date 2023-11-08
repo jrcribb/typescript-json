@@ -4,7 +4,6 @@ import { ArrayRepeatedUnionWithTuple } from "../../structures/ArrayRepeatedUnion
 
 export const test_createIs_ArrayRepeatedUnionWithTuple = _test_is(
     "ArrayRepeatedUnionWithTuple",
-    ArrayRepeatedUnionWithTuple.generate,
+)<ArrayRepeatedUnionWithTuple>(ArrayRepeatedUnionWithTuple)(
     typia.createIs<ArrayRepeatedUnionWithTuple>(),
-    ArrayRepeatedUnionWithTuple.SPOILERS,
 );

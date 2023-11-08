@@ -4,6 +4,9 @@ import { ConstantAtomicUnion } from "../../structures/ConstantAtomicUnion";
 
 export const test_createRandom_ConstantAtomicUnion = _test_random(
     "ConstantAtomicUnion",
-    typia.createRandom<ConstantAtomicUnion>(),
-    typia.createAssert<typia.Primitive<ConstantAtomicUnion>>(),
-);
+)<ConstantAtomicUnion>(ConstantAtomicUnion)({
+    random: typia.createRandom<ConstantAtomicUnion>(
+        (ConstantAtomicUnion as any).RANDOM,
+    ),
+    assert: typia.createAssert<ConstantAtomicUnion>(),
+});

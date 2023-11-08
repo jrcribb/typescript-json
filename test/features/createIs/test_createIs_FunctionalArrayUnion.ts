@@ -4,7 +4,6 @@ import { FunctionalArrayUnion } from "../../structures/FunctionalArrayUnion";
 
 export const test_createIs_FunctionalArrayUnion = _test_is(
     "FunctionalArrayUnion",
-    FunctionalArrayUnion.generate,
+)<FunctionalArrayUnion>(FunctionalArrayUnion)(
     typia.createIs<FunctionalArrayUnion>(),
-    FunctionalArrayUnion.SPOILERS,
 );

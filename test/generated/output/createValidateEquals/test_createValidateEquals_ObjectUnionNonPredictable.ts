@@ -5,10 +5,9 @@ import { ObjectUnionNonPredictable } from "../../../structures/ObjectUnionNonPre
 export const test_createValidateEquals_ObjectUnionNonPredictable =
     _test_validateEquals(
         "ObjectUnionNonPredictable",
-        ObjectUnionNonPredictable.generate,
+    )<ObjectUnionNonPredictable>(ObjectUnionNonPredictable)(
         (input: any): typia.IValidation<ObjectUnionNonPredictable> => {
             const errors = [] as any[];
-            const $report = (typia.createValidateEquals as any).report(errors);
             const __is = (
                 input: any,
                 _exceptionable: boolean = true,
@@ -17,9 +16,13 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
-                    "object" === typeof input.value &&
-                    null !== input.value &&
-                    $io1(input.value, true && _exceptionable) &&
+                    Array.isArray(input.value) &&
+                    input.value.every(
+                        (elem: any, _index1: number) =>
+                            "object" === typeof elem &&
+                            null !== elem &&
+                            $io1(elem, true && _exceptionable),
+                    ) &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -34,7 +37,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                 ): boolean =>
                     "object" === typeof input.value &&
                     null !== input.value &&
-                    $iu0(input.value, true && _exceptionable) &&
+                    $io2(input.value, true && _exceptionable) &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -49,7 +52,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                 ): boolean =>
                     "object" === typeof input.value &&
                     null !== input.value &&
-                    $io3(input.value, true && _exceptionable) &&
+                    $iu0(input.value, true && _exceptionable) &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -62,7 +65,9 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
-                    "boolean" === typeof input.value &&
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io4(input.value, true && _exceptionable) &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -75,9 +80,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
-                    "object" === typeof input.value &&
-                    null !== input.value &&
-                    $io5(input.value, true && _exceptionable) &&
+                    "boolean" === typeof input.value &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -87,6 +90,21 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                             return false;
                         }));
                 const $io5 = (
+                    input: any,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    "object" === typeof input.value &&
+                    null !== input.value &&
+                    $io6(input.value, true && _exceptionable) &&
+                    (1 === Object.keys(input).length ||
+                        Object.keys(input).every((key: any) => {
+                            if (["value"].some((prop: any) => key === prop))
+                                return true;
+                            const value = input[key];
+                            if (undefined === value) return true;
+                            return false;
+                        }));
+                const $io6 = (
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
@@ -100,13 +118,13 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                             if (undefined === value) return true;
                             return false;
                         }));
-                const $io6 = (
+                const $io7 = (
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
                     "object" === typeof input.value &&
                     null !== input.value &&
-                    $io7(input.value, true && _exceptionable) &&
+                    $io8(input.value, true && _exceptionable) &&
                     (1 === Object.keys(input).length ||
                         Object.keys(input).every((key: any) => {
                             if (["value"].some((prop: any) => key === prop))
@@ -115,7 +133,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                             if (undefined === value) return true;
                             return false;
                         }));
-                const $io7 = (
+                const $io8 = (
                     input: any,
                     _exceptionable: boolean = true,
                 ): boolean =>
@@ -133,25 +151,24 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                     _exceptionable: boolean = true,
                 ): any =>
                     (() => {
-                        if ($io6(input, false && _exceptionable))
-                            return $io6(input, true && _exceptionable);
-                        if ($io4(input, false && _exceptionable))
-                            return $io4(input, true && _exceptionable);
-                        if ($io2(input, false && _exceptionable))
-                            return $io2(input, true && _exceptionable);
-                        return false;
+                        if ($io7(input, false && _exceptionable))
+                            return $io7(input, true && _exceptionable);
+                        else if ($io5(input, false && _exceptionable))
+                            return $io5(input, true && _exceptionable);
+                        else if ($io3(input, false && _exceptionable))
+                            return $io3(input, true && _exceptionable);
+                        else return false;
                     })();
                 return (
-                    Array.isArray(input) &&
-                    input.every(
-                        (elem: any, _index1: number) =>
-                            "object" === typeof elem &&
-                            null !== elem &&
-                            $io0(elem, true),
-                    )
+                    "object" === typeof input &&
+                    null !== input &&
+                    $io0(input, true)
                 );
             };
-            if (false === __is(input))
+            if (false === __is(input)) {
+                const $report = (typia.createValidateEquals as any).report(
+                    errors,
+                );
                 ((
                     input: any,
                     _path: string,
@@ -164,23 +181,52 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                         _exceptionable: boolean = true,
                     ): boolean =>
                         [
-                            ((("object" === typeof input.value &&
-                                null !== input.value) ||
+                            ((Array.isArray(input.value) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
                                     expected:
-                                        "ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>",
+                                        "Array<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
                                     value: input.value,
                                 })) &&
-                                $vo1(
-                                    input.value,
-                                    _path + ".value",
-                                    true && _exceptionable,
-                                )) ||
+                                input.value
+                                    .map(
+                                        (elem: any, _index1: number) =>
+                                            ((("object" === typeof elem &&
+                                                null !== elem) ||
+                                                $report(_exceptionable, {
+                                                    path:
+                                                        _path +
+                                                        ".value[" +
+                                                        _index1 +
+                                                        "]",
+                                                    expected:
+                                                        "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
+                                                    value: elem,
+                                                })) &&
+                                                $vo1(
+                                                    elem,
+                                                    _path +
+                                                        ".value[" +
+                                                        _index1 +
+                                                        "]",
+                                                    true && _exceptionable,
+                                                )) ||
+                                            $report(_exceptionable, {
+                                                path:
+                                                    _path +
+                                                    ".value[" +
+                                                    _index1 +
+                                                    "]",
+                                                expected:
+                                                    "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
+                                                value: elem,
+                                            }),
+                                    )
+                                    .every((flag: boolean) => flag)) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
                                     expected:
-                                        "ObjectUnionNonPredictable.IPointer<ObjectUnionNonPredictable.IUnion>",
+                                        "Array<ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>>",
                                     value: input.value,
                                 }),
                             1 === Object.keys(input).length ||
@@ -204,6 +250,51 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
                     const $vo1 = (
+                        input: any,
+                        _path: string,
+                        _exceptionable: boolean = true,
+                    ): boolean =>
+                        [
+                            ((("object" === typeof input.value &&
+                                null !== input.value) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "IPointer<ObjectUnionNonPredictable.IUnion>",
+                                    value: input.value,
+                                })) &&
+                                $vo2(
+                                    input.value,
+                                    _path + ".value",
+                                    true && _exceptionable,
+                                )) ||
+                                $report(_exceptionable, {
+                                    path: _path + ".value",
+                                    expected:
+                                        "IPointer<ObjectUnionNonPredictable.IUnion>",
+                                    value: input.value,
+                                }),
+                            1 === Object.keys(input).length ||
+                                false === _exceptionable ||
+                                Object.keys(input)
+                                    .map((key: any) => {
+                                        if (
+                                            ["value"].some(
+                                                (prop: any) => key === prop,
+                                            )
+                                        )
+                                            return true;
+                                        const value = input[key];
+                                        if (undefined === value) return true;
+                                        return $report(_exceptionable, {
+                                            path: _path + $join(key),
+                                            expected: "undefined",
+                                            value: value,
+                                        });
+                                    })
+                                    .every((flag: boolean) => flag),
+                        ].every((flag: boolean) => flag);
+                    const $vo2 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -248,7 +339,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo2 = (
+                    const $vo3 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -258,19 +349,17 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                 null !== input.value) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<boolean>",
+                                    expected: "IPointer<boolean>",
                                     value: input.value,
                                 })) &&
-                                $vo3(
+                                $vo4(
                                     input.value,
                                     _path + ".value",
                                     true && _exceptionable,
                                 )) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<boolean>",
+                                    expected: "IPointer<boolean>",
                                     value: input.value,
                                 }),
                             1 === Object.keys(input).length ||
@@ -293,7 +382,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo3 = (
+                    const $vo4 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -325,7 +414,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo4 = (
+                    const $vo5 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -335,19 +424,17 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                 null !== input.value) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<number>",
+                                    expected: "IPointer<number>",
                                     value: input.value,
                                 })) &&
-                                $vo5(
+                                $vo6(
                                     input.value,
                                     _path + ".value",
                                     true && _exceptionable,
                                 )) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<number>",
+                                    expected: "IPointer<number>",
                                     value: input.value,
                                 }),
                             1 === Object.keys(input).length ||
@@ -370,7 +457,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo5 = (
+                    const $vo6 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -403,7 +490,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo6 = (
+                    const $vo7 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -413,19 +500,17 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                 null !== input.value) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<string>",
+                                    expected: "IPointer<string>",
                                     value: input.value,
                                 })) &&
-                                $vo7(
+                                $vo8(
                                     input.value,
                                     _path + ".value",
                                     true && _exceptionable,
                                 )) ||
                                 $report(_exceptionable, {
                                     path: _path + ".value",
-                                    expected:
-                                        "ObjectUnionNonPredictable.IPointer<string>",
+                                    expected: "IPointer<string>",
                                     value: input.value,
                                 }),
                             1 === Object.keys(input).length ||
@@ -448,7 +533,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                                     })
                                     .every((flag: boolean) => flag),
                         ].every((flag: boolean) => flag);
-                    const $vo7 = (
+                    const $vo8 = (
                         input: any,
                         _path: string,
                         _exceptionable: boolean = true,
@@ -486,63 +571,44 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                         _exceptionable: boolean = true,
                     ): any =>
                         (() => {
-                            if ($vo6(input, _path, false && _exceptionable))
-                                return $vo6(
+                            if ($vo7(input, _path, false && _exceptionable))
+                                return $vo7(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ($vo4(input, _path, false && _exceptionable))
-                                return $vo4(
+                            else if (
+                                $vo5(input, _path, false && _exceptionable)
+                            )
+                                return $vo5(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ($vo2(input, _path, false && _exceptionable))
-                                return $vo2(
+                            else if (
+                                $vo3(input, _path, false && _exceptionable)
+                            )
+                                return $vo3(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            return $report(_exceptionable, {
-                                path: _path,
-                                expected:
-                                    "(ObjectUnionNonPredictable.IWrapper<string> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<boolean>)",
-                                value: input,
-                            });
+                            else
+                                return $report(_exceptionable, {
+                                    path: _path,
+                                    expected:
+                                        "(ObjectUnionNonPredictable.IWrapper<string> | ObjectUnionNonPredictable.IWrapper<number> | ObjectUnionNonPredictable.IWrapper<boolean>)",
+                                    value: input,
+                                });
                         })();
                     return (
-                        ((Array.isArray(input) ||
+                        ((("object" === typeof input && null !== input) ||
                             $report(true, {
                                 path: _path + "",
                                 expected: "ObjectUnionNonPredictable",
                                 value: input,
                             })) &&
-                            input
-                                .map(
-                                    (elem: any, _index1: number) =>
-                                        ((("object" === typeof elem &&
-                                            null !== elem) ||
-                                            $report(true, {
-                                                path:
-                                                    _path + "[" + _index1 + "]",
-                                                expected:
-                                                    "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
-                                                value: elem,
-                                            })) &&
-                                            $vo0(
-                                                elem,
-                                                _path + "[" + _index1 + "]",
-                                                true,
-                                            )) ||
-                                        $report(true, {
-                                            path: _path + "[" + _index1 + "]",
-                                            expected:
-                                                "ObjectUnionNonPredictable.IWrapper<ObjectUnionNonPredictable.IUnion>",
-                                            value: elem,
-                                        }),
-                                )
-                                .every((flag: boolean) => flag)) ||
+                            $vo0(input, _path + "", true)) ||
                         $report(true, {
                             path: _path + "",
                             expected: "ObjectUnionNonPredictable",
@@ -550,6 +616,7 @@ export const test_createValidateEquals_ObjectUnionNonPredictable =
                         })
                     );
                 })(input, "$input", true);
+            }
             const success = 0 === errors.length;
             return {
                 success,

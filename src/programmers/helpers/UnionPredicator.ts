@@ -1,6 +1,6 @@
-import { Metadata } from "../../metadata/Metadata";
-import { MetadataObject } from "../../metadata/MetadataObject";
-import { MetadataProperty } from "../../metadata/MetadataProperty";
+import { Metadata } from "../../schemas/metadata/Metadata";
+import { MetadataObject } from "../../schemas/metadata/MetadataObject";
+import { MetadataProperty } from "../../schemas/metadata/MetadataProperty";
 
 import { ArrayUtil } from "../../utils/ArrayUtil";
 import { MapUtil } from "../../utils/MapUtil";
@@ -37,7 +37,7 @@ export namespace UnionPredicator {
             const children: ISpecializedProperty[] = [];
             obj.properties.forEach((prop) => {
                 // MUST BE REQUIRED
-                if (prop.value.required === false) return;
+                if (prop.value.isRequired() === false) return;
                 const key: string | null = prop.key.getSoleLiteral();
                 if (key === null) return;
 

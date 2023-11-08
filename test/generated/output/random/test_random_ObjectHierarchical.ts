@@ -4,10 +4,11 @@ import { ObjectHierarchical } from "../../../structures/ObjectHierarchical";
 
 export const test_random_ObjectHierarchical = _test_random(
     "ObjectHierarchical",
-    () =>
+)<ObjectHierarchical>(ObjectHierarchical)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectHierarchical> => {
+        ): typia.Resolved<ObjectHierarchical> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -127,11 +128,9 @@ export const test_random_ObjectHierarchical = _test_random(
                 created_at: $ro2(_recursive, _recursive ? 1 + _depth : _depth),
             });
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<ObjectHierarchical> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectHierarchical> => {
+        })((ObjectHierarchical as any).RANDOM),
+    assert: (input: any): ObjectHierarchical => {
+        const __is = (input: any): input is ObjectHierarchical => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -231,7 +230,7 @@ export const test_random_ObjectHierarchical = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectHierarchical> => {
+            ): input is ObjectHierarchical => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -655,4 +654,4 @@ export const test_random_ObjectHierarchical = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

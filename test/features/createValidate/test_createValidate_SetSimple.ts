@@ -4,7 +4,4 @@ import { SetSimple } from "../../structures/SetSimple";
 
 export const test_createValidate_SetSimple = _test_validate(
     "SetSimple",
-    SetSimple.generate,
-    typia.createValidate<SetSimple>(),
-    SetSimple.SPOILERS,
-);
+)<SetSimple>(SetSimple)(typia.createValidate<SetSimple>());

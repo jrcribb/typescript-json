@@ -4,7 +4,4 @@ import { TemplateUnion } from "../../structures/TemplateUnion";
 
 export const test_createAssert_TemplateUnion = _test_assert(
     "TemplateUnion",
-    TemplateUnion.generate,
-    typia.createAssert<TemplateUnion>(),
-    TemplateUnion.SPOILERS,
-);
+)<TemplateUnion>(TemplateUnion)(typia.createAssert<TemplateUnion>());

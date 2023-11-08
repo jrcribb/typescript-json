@@ -4,6 +4,6 @@ import { FunctionalObjectUnion } from "../../structures/FunctionalObjectUnion";
 
 export const test_createAssertEquals_FunctionalObjectUnion = _test_assertEquals(
     "FunctionalObjectUnion",
-    FunctionalObjectUnion.generate,
+)<FunctionalObjectUnion>(FunctionalObjectUnion)(
     typia.createAssertEquals<FunctionalObjectUnion>(),
 );

@@ -1,7 +1,9 @@
+import { IPointer } from "../helpers/IPointer";
 import { Spoiler } from "../helpers/Spoiler";
 import { TestRandomGenerator } from "../helpers/TestRandomGenerator";
 
-export type ObjectGenericUnion = ObjectGenericUnion.ISaleEntireArticle;
+export type ObjectGenericUnion =
+    IPointer<ObjectGenericUnion.ISaleEntireArticle>;
 export namespace ObjectGenericUnion {
     export function generate(): ObjectGenericUnion {
         const question: ISaleQuestion = {
@@ -12,7 +14,6 @@ export namespace ObjectGenericUnion {
                 title: TestRandomGenerator.string(),
                 body: TestRandomGenerator.string(),
                 files: TestRandomGenerator.array(() => ({
-                    // id: "id",
                     name: TestRandomGenerator.string(),
                     extension: TestRandomGenerator.string(),
                     url: TestRandomGenerator.string(),
@@ -23,7 +24,7 @@ export namespace ObjectGenericUnion {
             created_at: new Date().toString(),
             hit: 0,
         };
-        return question;
+        return { value: question };
     }
 
     // ENTIRE ARTICLE
@@ -68,13 +69,12 @@ export namespace ObjectGenericUnion {
         export interface IUpdate {
             title: string;
             body: string;
-            files: Omit<IAttachmentFile, "id">[];
+            files: IAttachmentFile[];
         }
     }
 
     // MISC
-    interface IAttachmentFile {
-        id: string;
+    export interface IAttachmentFile {
         name: string;
         extension: string | null;
         url: string;
@@ -82,16 +82,16 @@ export namespace ObjectGenericUnion {
 
     export const SPOILERS: Spoiler<ObjectGenericUnion>[] = [
         (input) => {
-            input.id = null!;
-            return ["$input"];
+            input.value.id = null!;
+            return ["$input.value"];
         },
         (input) => {
-            input.hit = undefined!;
-            return ["$input"];
+            input.value.hit = undefined!;
+            return ["$input.value"];
         },
         (input) => {
-            input.answer = {} as any;
-            return ["$input"];
+            input.value.answer = {} as any;
+            return ["$input.value"];
         },
     ];
 }

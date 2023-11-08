@@ -1,5 +1,4 @@
-import typia from "typia";
-
+import typia from "../../src";
 import { Spoiler } from "../helpers/Spoiler";
 
 export type ArrayRepeatedNullable =
@@ -38,4 +37,5 @@ export namespace ArrayRepeatedNullable {
     ];
 
     export const ADDABLE: boolean = false;
+    export const BINARABLE = false;
 }

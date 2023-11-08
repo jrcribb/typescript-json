@@ -4,10 +4,11 @@ import { ObjectUndefined } from "../../../structures/ObjectUndefined";
 
 export const test_random_ObjectUndefined = _test_random(
     "ObjectUndefined",
-    () =>
+)<ObjectUndefined>(ObjectUndefined)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectUndefined> => {
+        ): typia.Resolved<ObjectUndefined> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -40,7 +41,7 @@ export const test_random_ObjectUndefined = _test_random(
                         ) ?? (generator?.number ?? $generator.number)(0, 100),
                 ])(),
                 nothing: undefined,
-                unknown: "fucking any type exists...",
+                unknown: "any type used...",
                 never: undefined,
             });
             const $ro1 = (
@@ -55,11 +56,9 @@ export const test_random_ObjectUndefined = _test_random(
                     (generator?.string ?? $generator.string)(),
             });
             return (generator?.array ?? $generator.array)(() => $ro0());
-        })(),
-    (input: any): typia.Primitive<ObjectUndefined> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectUndefined> => {
+        })((ObjectUndefined as any).RANDOM),
+    assert: (input: any): ObjectUndefined => {
+        const __is = (input: any): input is ObjectUndefined => {
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.name &&
                 (undefined === input.professor ||
@@ -93,7 +92,7 @@ export const test_random_ObjectUndefined = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectUndefined> => {
+            ): input is ObjectUndefined => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -220,4 +219,4 @@ export const test_random_ObjectUndefined = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

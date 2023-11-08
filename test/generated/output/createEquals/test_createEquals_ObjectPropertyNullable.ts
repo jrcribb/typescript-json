@@ -4,7 +4,7 @@ import { ObjectPropertyNullable } from "../../../structures/ObjectPropertyNullab
 
 export const test_createEquals_ObjectPropertyNullable = _test_equals(
     "ObjectPropertyNullable",
-    ObjectPropertyNullable.generate,
+)<ObjectPropertyNullable>(ObjectPropertyNullable)(
     (
         input: any,
         _exceptionable: boolean = true,

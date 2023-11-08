@@ -4,6 +4,4 @@ import { ObjectTuple } from "../../structures/ObjectTuple";
 
 export const test_assertEquals_ObjectTuple = _test_assertEquals(
     "ObjectTuple",
-    ObjectTuple.generate,
-    (input) => typia.assertEquals(input),
-);
+)<ObjectTuple>(ObjectTuple)((input) => typia.assertEquals<ObjectTuple>(input));

@@ -4,7 +4,4 @@ import { ObjectSimple } from "../../structures/ObjectSimple";
 
 export const test_createValidate_ObjectSimple = _test_validate(
     "ObjectSimple",
-    ObjectSimple.generate,
-    typia.createValidate<ObjectSimple>(),
-    ObjectSimple.SPOILERS,
-);
+)<ObjectSimple>(ObjectSimple)(typia.createValidate<ObjectSimple>());

@@ -4,7 +4,7 @@ import { FunctionalProperty } from "../../../structures/FunctionalProperty";
 
 export const test_createEquals_FunctionalProperty = _test_equals(
     "FunctionalProperty",
-    FunctionalProperty.generate,
+)<FunctionalProperty>(FunctionalProperty)(
     (
         input: any,
         _exceptionable: boolean = true,

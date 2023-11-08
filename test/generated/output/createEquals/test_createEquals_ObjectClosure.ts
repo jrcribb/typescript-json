@@ -4,7 +4,7 @@ import { ObjectClosure } from "../../../structures/ObjectClosure";
 
 export const test_createEquals_ObjectClosure = _test_equals(
     "ObjectClosure",
-    ObjectClosure.generate,
+)<ObjectClosure>(ObjectClosure)(
     (input: any, _exceptionable: boolean = true): input is ObjectClosure => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.id &&

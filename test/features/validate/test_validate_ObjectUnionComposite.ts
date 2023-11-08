@@ -4,7 +4,6 @@ import { ObjectUnionComposite } from "../../structures/ObjectUnionComposite";
 
 export const test_validate_ObjectUnionComposite = _test_validate(
     "ObjectUnionComposite",
-    ObjectUnionComposite.generate,
-    (input) => typia.validate(input),
-    ObjectUnionComposite.SPOILERS,
+)<ObjectUnionComposite>(ObjectUnionComposite)((input) =>
+    typia.validate<ObjectUnionComposite>(input),
 );

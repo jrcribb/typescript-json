@@ -4,7 +4,6 @@ import { ObjectOptional } from "../../structures/ObjectOptional";
 
 export const test_validate_ObjectOptional = _test_validate(
     "ObjectOptional",
-    ObjectOptional.generate,
-    (input) => typia.validate(input),
-    ObjectOptional.SPOILERS,
+)<ObjectOptional>(ObjectOptional)((input) =>
+    typia.validate<ObjectOptional>(input),
 );

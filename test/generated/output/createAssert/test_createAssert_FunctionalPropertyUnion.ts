@@ -4,7 +4,7 @@ import { FunctionalPropertyUnion } from "../../../structures/FunctionalPropertyU
 
 export const test_createAssert_FunctionalPropertyUnion = _test_assert(
     "FunctionalPropertyUnion",
-    FunctionalPropertyUnion.generate,
+)<FunctionalPropertyUnion>(FunctionalPropertyUnion)(
     (input: any): FunctionalPropertyUnion => {
         const __is = (input: any): input is FunctionalPropertyUnion => {
             const $io0 = (input: any): boolean =>
@@ -88,5 +88,4 @@ export const test_createAssert_FunctionalPropertyUnion = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    FunctionalPropertyUnion.SPOILERS,
 );

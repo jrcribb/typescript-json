@@ -4,7 +4,6 @@ import { AtomicIntersection } from "../../structures/AtomicIntersection";
 
 export const test_createAssert_AtomicIntersection = _test_assert(
     "AtomicIntersection",
-    AtomicIntersection.generate,
+)<AtomicIntersection>(AtomicIntersection)(
     typia.createAssert<AtomicIntersection>(),
-    AtomicIntersection.SPOILERS,
 );

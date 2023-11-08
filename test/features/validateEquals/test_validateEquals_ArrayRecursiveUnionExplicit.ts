@@ -5,6 +5,6 @@ import { ArrayRecursiveUnionExplicit } from "../../structures/ArrayRecursiveUnio
 export const test_validateEquals_ArrayRecursiveUnionExplicit =
     _test_validateEquals(
         "ArrayRecursiveUnionExplicit",
-        ArrayRecursiveUnionExplicit.generate,
-        (input) => typia.validateEquals(input),
+    )<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)((input) =>
+        typia.validateEquals<ArrayRecursiveUnionExplicit>(input),
     );

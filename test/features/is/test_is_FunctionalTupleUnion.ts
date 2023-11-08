@@ -4,7 +4,6 @@ import { FunctionalTupleUnion } from "../../structures/FunctionalTupleUnion";
 
 export const test_is_FunctionalTupleUnion = _test_is(
     "FunctionalTupleUnion",
-    FunctionalTupleUnion.generate,
-    (input) => typia.is(input),
-    FunctionalTupleUnion.SPOILERS,
+)<FunctionalTupleUnion>(FunctionalTupleUnion)((input) =>
+    typia.is<FunctionalTupleUnion>(input),
 );

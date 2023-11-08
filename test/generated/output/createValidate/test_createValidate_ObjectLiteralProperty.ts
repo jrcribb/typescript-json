@@ -4,10 +4,9 @@ import { ObjectLiteralProperty } from "../../../structures/ObjectLiteralProperty
 
 export const test_createValidate_ObjectLiteralProperty = _test_validate(
     "ObjectLiteralProperty",
-    ObjectLiteralProperty.generate,
+)<ObjectLiteralProperty>(ObjectLiteralProperty)(
     (input: any): typia.IValidation<ObjectLiteralProperty> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ObjectLiteralProperty => {
             return (
                 "object" === typeof input &&
@@ -20,7 +19,8 @@ export const test_createValidate_ObjectLiteralProperty = _test_validate(
                     typeof (input as any)["or-something-crazy-do-you-want?"]
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -70,6 +70,7 @@ export const test_createValidate_ObjectLiteralProperty = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -77,5 +78,4 @@ export const test_createValidate_ObjectLiteralProperty = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ObjectLiteralProperty.SPOILERS,
 );

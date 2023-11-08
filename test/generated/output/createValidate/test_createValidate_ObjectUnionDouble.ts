@@ -4,10 +4,9 @@ import { ObjectUnionDouble } from "../../../structures/ObjectUnionDouble";
 
 export const test_createValidate_ObjectUnionDouble = _test_validate(
     "ObjectUnionDouble",
-    ObjectUnionDouble.generate,
+)<ObjectUnionDouble>(ObjectUnionDouble)(
     (input: any): typia.IValidation<ObjectUnionDouble> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ObjectUnionDouble => {
             const $io0 = (input: any): boolean =>
                 "object" === typeof input.value &&
@@ -50,20 +49,20 @@ export const test_createValidate_ObjectUnionDouble = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ($io6(input)) return $io6(input);
-                    if ($io0(input)) return $io0(input);
-                    return false;
+                    else if ($io0(input)) return $io0(input);
+                    else return false;
                 })();
             const $iu1 = (input: any): any =>
                 (() => {
                     if ($io4(input)) return $io4(input);
-                    if ($io2(input)) return $io2(input);
-                    return false;
+                    else if ($io2(input)) return $io2(input);
+                    else return false;
                 })();
             const $iu2 = (input: any): any =>
                 (() => {
                     if ($io10(input)) return $io10(input);
-                    if ($io8(input)) return $io8(input);
-                    return false;
+                    else if ($io8(input)) return $io8(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -73,7 +72,8 @@ export const test_createValidate_ObjectUnionDouble = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -417,6 +417,7 @@ export const test_createValidate_ObjectUnionDouble = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -424,5 +425,4 @@ export const test_createValidate_ObjectUnionDouble = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ObjectUnionDouble.SPOILERS,
 );

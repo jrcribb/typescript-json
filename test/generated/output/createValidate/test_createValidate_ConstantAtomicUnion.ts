@@ -4,28 +4,30 @@ import { ConstantAtomicUnion } from "../../../structures/ConstantAtomicUnion";
 
 export const test_createValidate_ConstantAtomicUnion = _test_validate(
     "ConstantAtomicUnion",
-    ConstantAtomicUnion.generate,
+)<ConstantAtomicUnion>(ConstantAtomicUnion)(
     (input: any): typia.IValidation<ConstantAtomicUnion> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ConstantAtomicUnion => {
             const $io0 = (input: any): boolean => "key" === input.key;
             return (
                 Array.isArray(input) &&
                 input.every(
                     (elem: any) =>
-                        false === elem ||
-                        1 === elem ||
-                        2 === elem ||
-                        "three" === elem ||
-                        "four" === elem ||
-                        ("object" === typeof elem &&
-                            null !== elem &&
-                            $io0(elem)),
+                        null !== elem &&
+                        undefined !== elem &&
+                        (false === elem ||
+                            2 === elem ||
+                            1 === elem ||
+                            "three" === elem ||
+                            "four" === elem ||
+                            ("object" === typeof elem &&
+                                null !== elem &&
+                                $io0(elem))),
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -54,30 +56,45 @@ export const test_createValidate_ConstantAtomicUnion = _test_validate(
                         input
                             .map(
                                 (elem: any, _index1: number) =>
-                                    false === elem ||
-                                    1 === elem ||
-                                    2 === elem ||
-                                    "three" === elem ||
-                                    "four" === elem ||
-                                    ((("object" === typeof elem &&
-                                        null !== elem) ||
+                                    (null !== elem ||
                                         $report(true, {
                                             path: _path + "[" + _index1 + "]",
                                             expected:
                                                 '("four" | "three" | 1 | 2 | __type | false)',
                                             value: elem,
                                         })) &&
-                                        $vo0(
-                                            elem,
-                                            _path + "[" + _index1 + "]",
-                                            true,
-                                        )) ||
-                                    $report(true, {
-                                        path: _path + "[" + _index1 + "]",
-                                        expected:
-                                            '("four" | "three" | 1 | 2 | __type | false)',
-                                        value: elem,
-                                    }),
+                                    (undefined !== elem ||
+                                        $report(true, {
+                                            path: _path + "[" + _index1 + "]",
+                                            expected:
+                                                '("four" | "three" | 1 | 2 | __type | false)',
+                                            value: elem,
+                                        })) &&
+                                    (false === elem ||
+                                        2 === elem ||
+                                        1 === elem ||
+                                        "three" === elem ||
+                                        "four" === elem ||
+                                        ((("object" === typeof elem &&
+                                            null !== elem) ||
+                                            $report(true, {
+                                                path:
+                                                    _path + "[" + _index1 + "]",
+                                                expected:
+                                                    '("four" | "three" | 1 | 2 | __type | false)',
+                                                value: elem,
+                                            })) &&
+                                            $vo0(
+                                                elem,
+                                                _path + "[" + _index1 + "]",
+                                                true,
+                                            )) ||
+                                        $report(true, {
+                                            path: _path + "[" + _index1 + "]",
+                                            expected:
+                                                '("four" | "three" | 1 | 2 | __type | false)',
+                                            value: elem,
+                                        })),
                             )
                             .every((flag: boolean) => flag)) ||
                     $report(true, {
@@ -87,6 +104,7 @@ export const test_createValidate_ConstantAtomicUnion = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -94,5 +112,4 @@ export const test_createValidate_ConstantAtomicUnion = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ConstantAtomicUnion.SPOILERS,
 );

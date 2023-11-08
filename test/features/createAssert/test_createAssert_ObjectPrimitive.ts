@@ -4,7 +4,4 @@ import { ObjectPrimitive } from "../../structures/ObjectPrimitive";
 
 export const test_createAssert_ObjectPrimitive = _test_assert(
     "ObjectPrimitive",
-    ObjectPrimitive.generate,
-    typia.createAssert<ObjectPrimitive>(),
-    ObjectPrimitive.SPOILERS,
-);
+)<ObjectPrimitive>(ObjectPrimitive)(typia.createAssert<ObjectPrimitive>());

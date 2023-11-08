@@ -4,7 +4,6 @@ import { ObjectUnionNonPredictable } from "../../structures/ObjectUnionNonPredic
 
 export const test_createValidate_ObjectUnionNonPredictable = _test_validate(
     "ObjectUnionNonPredictable",
-    ObjectUnionNonPredictable.generate,
+)<ObjectUnionNonPredictable>(ObjectUnionNonPredictable)(
     typia.createValidate<ObjectUnionNonPredictable>(),
-    ObjectUnionNonPredictable.SPOILERS,
 );

@@ -4,7 +4,7 @@ import { AtomicIntersection } from "../../../structures/AtomicIntersection";
 
 export const test_createIs_AtomicIntersection = _test_is(
     "AtomicIntersection",
-    AtomicIntersection.generate,
+)<AtomicIntersection>(AtomicIntersection)(
     (input: any): input is AtomicIntersection => {
         return (
             Array.isArray(input) &&
@@ -15,5 +15,4 @@ export const test_createIs_AtomicIntersection = _test_is(
             "string" === typeof input[2]
         );
     },
-    AtomicIntersection.SPOILERS,
 );

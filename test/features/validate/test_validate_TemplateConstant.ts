@@ -4,7 +4,6 @@ import { TemplateConstant } from "../../structures/TemplateConstant";
 
 export const test_validate_TemplateConstant = _test_validate(
     "TemplateConstant",
-    TemplateConstant.generate,
-    (input) => typia.validate(input),
-    TemplateConstant.SPOILERS,
+)<TemplateConstant>(TemplateConstant)((input) =>
+    typia.validate<TemplateConstant>(input),
 );

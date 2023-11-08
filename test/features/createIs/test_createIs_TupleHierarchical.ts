@@ -4,7 +4,4 @@ import { TupleHierarchical } from "../../structures/TupleHierarchical";
 
 export const test_createIs_TupleHierarchical = _test_is(
     "TupleHierarchical",
-    TupleHierarchical.generate,
-    typia.createIs<TupleHierarchical>(),
-    TupleHierarchical.SPOILERS,
-);
+)<TupleHierarchical>(TupleHierarchical)(typia.createIs<TupleHierarchical>());

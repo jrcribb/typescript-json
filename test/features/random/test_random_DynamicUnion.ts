@@ -4,6 +4,7 @@ import { DynamicUnion } from "../../structures/DynamicUnion";
 
 export const test_random_DynamicUnion = _test_random(
     "DynamicUnion",
-    () => typia.random<DynamicUnion>(),
-    typia.createAssert<typia.Primitive<DynamicUnion>>(),
-);
+)<DynamicUnion>(DynamicUnion)({
+    random: () => typia.random<DynamicUnion>((DynamicUnion as any).RANDOM),
+    assert: typia.createAssert<DynamicUnion>(),
+});

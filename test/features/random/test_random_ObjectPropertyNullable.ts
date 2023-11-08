@@ -4,6 +4,10 @@ import { ObjectPropertyNullable } from "../../structures/ObjectPropertyNullable"
 
 export const test_random_ObjectPropertyNullable = _test_random(
     "ObjectPropertyNullable",
-    () => typia.random<ObjectPropertyNullable>(),
-    typia.createAssert<typia.Primitive<ObjectPropertyNullable>>(),
-);
+)<ObjectPropertyNullable>(ObjectPropertyNullable)({
+    random: () =>
+        typia.random<ObjectPropertyNullable>(
+            (ObjectPropertyNullable as any).RANDOM,
+        ),
+    assert: typia.createAssert<ObjectPropertyNullable>(),
+});

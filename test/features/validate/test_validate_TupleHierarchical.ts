@@ -4,7 +4,6 @@ import { TupleHierarchical } from "../../structures/TupleHierarchical";
 
 export const test_validate_TupleHierarchical = _test_validate(
     "TupleHierarchical",
-    TupleHierarchical.generate,
-    (input) => typia.validate(input),
-    TupleHierarchical.SPOILERS,
+)<TupleHierarchical>(TupleHierarchical)((input) =>
+    typia.validate<TupleHierarchical>(input),
 );

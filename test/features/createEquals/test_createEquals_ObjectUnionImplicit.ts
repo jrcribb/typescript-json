@@ -4,6 +4,6 @@ import { ObjectUnionImplicit } from "../../structures/ObjectUnionImplicit";
 
 export const test_createEquals_ObjectUnionImplicit = _test_equals(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)(
     typia.createEquals<ObjectUnionImplicit>(),
 );

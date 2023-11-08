@@ -4,7 +4,6 @@ import { ObjectGeneric } from "../../structures/ObjectGeneric";
 
 export const test_validate_ObjectGeneric = _test_validate(
     "ObjectGeneric",
-    ObjectGeneric.generate,
-    (input) => typia.validate(input),
-    ObjectGeneric.SPOILERS,
+)<ObjectGeneric>(ObjectGeneric)((input) =>
+    typia.validate<ObjectGeneric>(input),
 );

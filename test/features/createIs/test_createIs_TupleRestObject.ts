@@ -4,7 +4,4 @@ import { TupleRestObject } from "../../structures/TupleRestObject";
 
 export const test_createIs_TupleRestObject = _test_is(
     "TupleRestObject",
-    TupleRestObject.generate,
-    typia.createIs<TupleRestObject>(),
-    TupleRestObject.SPOILERS,
-);
+)<TupleRestObject>(TupleRestObject)(typia.createIs<TupleRestObject>());

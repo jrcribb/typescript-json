@@ -20,7 +20,7 @@
             "type": "number"
           },
           "children": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_DynamicTree_gt_"
+            "$ref": "#/components/schemas/RecordstringDynamicTree"
           }
         },
         "nullable": false,
@@ -31,10 +31,11 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "Record_lt_string_comma__space_DynamicTree_gt_": {
+      "RecordstringDynamicTree": {
         "type": "object",
         "properties": {},
         "nullable": false,
+        "description": "Construct a type with a set of properties K of type T",
         "x-typia-jsDocTags": [],
         "x-typia-additionalProperties": {
           "$ref": "#/components/schemas/DynamicTree"

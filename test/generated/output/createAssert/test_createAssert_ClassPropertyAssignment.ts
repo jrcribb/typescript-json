@@ -4,7 +4,7 @@ import { ClassPropertyAssignment } from "../../../structures/ClassPropertyAssign
 
 export const test_createAssert_ClassPropertyAssignment = _test_assert(
     "ClassPropertyAssignment",
-    ClassPropertyAssignment.generate,
+)<ClassPropertyAssignment>(ClassPropertyAssignment)(
     (input: any): ClassPropertyAssignment => {
         const __is = (input: any): input is ClassPropertyAssignment => {
             const $io0 = (input: any): boolean =>
@@ -76,5 +76,4 @@ export const test_createAssert_ClassPropertyAssignment = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ClassPropertyAssignment.SPOILERS,
 );

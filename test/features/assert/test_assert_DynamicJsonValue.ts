@@ -4,7 +4,6 @@ import { DynamicJsonValue } from "../../structures/DynamicJsonValue";
 
 export const test_assert_DynamicJsonValue = _test_assert(
     "DynamicJsonValue",
-    DynamicJsonValue.generate,
-    (input) => typia.assert(input),
-    DynamicJsonValue.SPOILERS,
+)<DynamicJsonValue>(DynamicJsonValue)((input) =>
+    typia.assert<DynamicJsonValue>(input),
 );

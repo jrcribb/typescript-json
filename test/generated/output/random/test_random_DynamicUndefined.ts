@@ -4,10 +4,11 @@ import { DynamicUndefined } from "../../../structures/DynamicUndefined";
 
 export const test_random_DynamicUndefined = _test_random(
     "DynamicUndefined",
-    () =>
+)<DynamicUndefined>(DynamicUndefined)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<DynamicUndefined> => {
+        ): typia.Resolved<DynamicUndefined> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -27,18 +28,14 @@ export const test_random_DynamicUndefined = _test_random(
                 return output;
             };
             return $ro0();
-        })(),
-    (input: any): typia.Primitive<DynamicUndefined> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<DynamicUndefined> => {
-            const $join = (typia.createAssert as any).join;
+        })((DynamicUndefined as any).RANDOM),
+    assert: (input: any): DynamicUndefined => {
+        const __is = (input: any): input is DynamicUndefined => {
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/(.*)/).test(key))
-                        return null !== value && undefined === value;
+                    if (true) return null !== value && undefined === value;
                     return true;
                 });
             return (
@@ -53,7 +50,7 @@ export const test_random_DynamicUndefined = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<DynamicUndefined> => {
+            ): input is DynamicUndefined => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -65,7 +62,7 @@ export const test_random_DynamicUndefined = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/(.*)/).test(key))
+                        if (true)
                             return (
                                 (null !== value ||
                                     $guard(_exceptionable, {
@@ -101,4 +98,4 @@ export const test_random_DynamicUndefined = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

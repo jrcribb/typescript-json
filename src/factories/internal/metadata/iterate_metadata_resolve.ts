@@ -1,6 +1,7 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataEscaped } from "../../../schemas/metadata/MetadataEscaped";
 
 import { Writable } from "../../../typings/Writable";
 
@@ -9,30 +10,43 @@ import { MetadataFactory } from "../../MetadataFactory";
 import { TypeFactory } from "../../TypeFactory";
 import { iterate_metadata } from "./iterate_metadata";
 
-// import { iterate_metadata_coalesce } from "./iterate_metadata_coalesce";
-
 export const iterate_metadata_resolve =
     (checker: ts.TypeChecker) =>
     (options: MetadataFactory.IOptions) =>
     (collection: MetadataCollection) =>
+    (errors: MetadataFactory.IError[]) =>
     (
         meta: Metadata,
         type: ts.Type,
-        resolved: boolean,
-        aliased: boolean,
+        explore: MetadataFactory.IExplore,
     ): boolean => {
-        if (options.resolve === false || resolved === true) return false;
+        if (options.escape === false || explore.escaped === true) return false;
 
-        const escaped: ts.Type | null = TypeFactory.resolve(checker)(type);
+        const escaped: ts.Type | null =
+            TypeFactory.getReturnType(checker)(type)("toJSON");
         if (escaped === null) return false;
 
-        if (meta.resolved === null)
-            Writable(meta).resolved = Metadata.initialize();
-        iterate_metadata(checker)(options)(collection)(
-            meta.resolved!,
+        if (meta.escaped === null) {
+            Writable(meta).escaped = MetadataEscaped.create({
+                original: Metadata.initialize(),
+                returns: Metadata.initialize(),
+            });
+        }
+        iterate_metadata(checker)(options)(collection)(errors)(
+            meta.escaped!.original,
+            type,
+            {
+                ...explore,
+                escaped: true,
+            },
+        );
+        iterate_metadata(checker)(options)(collection)(errors)(
+            meta.escaped!.returns,
             escaped,
-            true,
-            aliased,
+            {
+                ...explore,
+                escaped: true,
+            },
         );
         return true;
     };

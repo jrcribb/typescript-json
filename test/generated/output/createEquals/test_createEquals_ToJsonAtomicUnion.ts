@@ -4,7 +4,7 @@ import { ToJsonAtomicUnion } from "../../../structures/ToJsonAtomicUnion";
 
 export const test_createEquals_ToJsonAtomicUnion = _test_equals(
     "ToJsonAtomicUnion",
-    ToJsonAtomicUnion.generate,
+)<ToJsonAtomicUnion>(ToJsonAtomicUnion)(
     (
         input: any,
         _exceptionable: boolean = true,

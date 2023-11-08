@@ -4,7 +4,7 @@ import { TupleRestAtomic } from "../../../structures/TupleRestAtomic";
 
 export const test_createEquals_TupleRestAtomic = _test_equals(
     "TupleRestAtomic",
-    TupleRestAtomic.generate,
+)<TupleRestAtomic>(TupleRestAtomic)(
     (input: any, _exceptionable: boolean = true): input is TupleRestAtomic => {
         return (
             Array.isArray(input) &&

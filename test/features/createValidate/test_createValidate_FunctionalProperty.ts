@@ -4,7 +4,6 @@ import { FunctionalProperty } from "../../structures/FunctionalProperty";
 
 export const test_createValidate_FunctionalProperty = _test_validate(
     "FunctionalProperty",
-    FunctionalProperty.generate,
+)<FunctionalProperty>(FunctionalProperty)(
     typia.createValidate<FunctionalProperty>(),
-    FunctionalProperty.SPOILERS,
 );

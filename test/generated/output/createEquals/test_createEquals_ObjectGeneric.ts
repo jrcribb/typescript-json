@@ -4,7 +4,7 @@ import { ObjectGeneric } from "../../../structures/ObjectGeneric";
 
 export const test_createEquals_ObjectGeneric = _test_equals(
     "ObjectGeneric",
-    ObjectGeneric.generate,
+)<ObjectGeneric>(ObjectGeneric)(
     (input: any, _exceptionable: boolean = true): input is ObjectGeneric => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "boolean" === typeof input.value &&

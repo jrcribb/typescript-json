@@ -4,7 +4,4 @@ import { SetUnion } from "../../structures/SetUnion";
 
 export const test_createValidate_SetUnion = _test_validate(
     "SetUnion",
-    SetUnion.generate,
-    typia.createValidate<SetUnion>(),
-    SetUnion.SPOILERS,
-);
+)<SetUnion>(SetUnion)(typia.createValidate<SetUnion>());

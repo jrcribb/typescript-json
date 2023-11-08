@@ -4,7 +4,7 @@ import { ArrayMatrix } from "../../../structures/ArrayMatrix";
 
 export const test_createEquals_ArrayMatrix = _test_equals(
     "ArrayMatrix",
-    ArrayMatrix.generate,
+)<ArrayMatrix>(ArrayMatrix)(
     (input: any, _exceptionable: boolean = true): input is ArrayMatrix => {
         return (
             Array.isArray(input) &&

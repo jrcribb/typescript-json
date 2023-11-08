@@ -4,6 +4,9 @@ import { DynamicJsonValue } from "../../structures/DynamicJsonValue";
 
 export const test_createRandom_DynamicJsonValue = _test_random(
     "DynamicJsonValue",
-    typia.createRandom<DynamicJsonValue>(),
-    typia.createAssert<typia.Primitive<DynamicJsonValue>>(),
-);
+)<DynamicJsonValue>(DynamicJsonValue)({
+    random: typia.createRandom<DynamicJsonValue>(
+        (DynamicJsonValue as any).RANDOM,
+    ),
+    assert: typia.createAssert<DynamicJsonValue>(),
+});

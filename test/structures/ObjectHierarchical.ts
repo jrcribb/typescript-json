@@ -3,6 +3,8 @@ import { TestRandomGenerator } from "../helpers/TestRandomGenerator";
 
 export type ObjectHierarchical = ObjectHierarchical.ICustomer;
 export namespace ObjectHierarchical {
+    export const BINARABLE = false;
+
     export interface ICustomer {
         id: number;
         channel: IChannel;

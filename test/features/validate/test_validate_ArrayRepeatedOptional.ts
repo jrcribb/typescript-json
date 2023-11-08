@@ -4,7 +4,6 @@ import { ArrayRepeatedOptional } from "../../structures/ArrayRepeatedOptional";
 
 export const test_validate_ArrayRepeatedOptional = _test_validate(
     "ArrayRepeatedOptional",
-    ArrayRepeatedOptional.generate,
-    (input) => typia.validate(input),
-    ArrayRepeatedOptional.SPOILERS,
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)((input) =>
+    typia.validate<ArrayRepeatedOptional>(input),
 );

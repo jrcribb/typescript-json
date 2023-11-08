@@ -4,6 +4,4 @@ import { ToJsonTuple } from "../../structures/ToJsonTuple";
 
 export const test_createValidate_ToJsonTuple = _test_validate(
     "ToJsonTuple",
-    ToJsonTuple.generate,
-    typia.createValidate<ToJsonTuple>(),
-);
+)<ToJsonTuple>(ToJsonTuple)(typia.createValidate<ToJsonTuple>());

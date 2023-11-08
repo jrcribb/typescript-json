@@ -4,7 +4,4 @@ import { ObjectTuple } from "../../structures/ObjectTuple";
 
 export const test_createAssert_ObjectTuple = _test_assert(
     "ObjectTuple",
-    ObjectTuple.generate,
-    typia.createAssert<ObjectTuple>(),
-    ObjectTuple.SPOILERS,
-);
+)<ObjectTuple>(ObjectTuple)(typia.createAssert<ObjectTuple>());

@@ -4,7 +4,6 @@ import { ObjectGenericAlias } from "../../structures/ObjectGenericAlias";
 
 export const test_createAssert_ObjectGenericAlias = _test_assert(
     "ObjectGenericAlias",
-    ObjectGenericAlias.generate,
+)<ObjectGenericAlias>(ObjectGenericAlias)(
     typia.createAssert<ObjectGenericAlias>(),
-    ObjectGenericAlias.SPOILERS,
 );

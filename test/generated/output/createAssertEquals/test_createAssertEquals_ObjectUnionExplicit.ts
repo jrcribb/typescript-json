@@ -4,7 +4,7 @@ import { ObjectUnionExplicit } from "../../../structures/ObjectUnionExplicit";
 
 export const test_createAssertEquals_ObjectUnionExplicit = _test_assertEquals(
     "ObjectUnionExplicit",
-    ObjectUnionExplicit.generate,
+)<ObjectUnionExplicit>(ObjectUnionExplicit)(
     (input: any): ObjectUnionExplicit => {
         const __is = (
             input: any,
@@ -217,19 +217,19 @@ export const test_createAssertEquals_ObjectUnionExplicit = _test_assertEquals(
                 (() => {
                     if ("point" === input.type)
                         return $io0(input, true && _exceptionable);
-                    if ("line" === input.type)
+                    else if ("line" === input.type)
                         return $io1(input, true && _exceptionable);
-                    if ("triangle" === input.type)
+                    else if ("triangle" === input.type)
                         return $io3(input, true && _exceptionable);
-                    if ("rectangle" === input.type)
+                    else if ("rectangle" === input.type)
                         return $io4(input, true && _exceptionable);
-                    if ("polyline" === input.type)
+                    else if ("polyline" === input.type)
                         return $io5(input, true && _exceptionable);
-                    if ("polygon" === input.type)
+                    else if ("polygon" === input.type)
                         return $io6(input, true && _exceptionable);
-                    if ("circle" === input.type)
+                    else if ("circle" === input.type)
                         return $io8(input, true && _exceptionable);
-                    return false;
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -795,24 +795,25 @@ export const test_createAssertEquals_ObjectUnionExplicit = _test_assertEquals(
                     (() => {
                         if ("point" === input.type)
                             return $ao0(input, _path, true && _exceptionable);
-                        if ("line" === input.type)
+                        else if ("line" === input.type)
                             return $ao1(input, _path, true && _exceptionable);
-                        if ("triangle" === input.type)
+                        else if ("triangle" === input.type)
                             return $ao3(input, _path, true && _exceptionable);
-                        if ("rectangle" === input.type)
+                        else if ("rectangle" === input.type)
                             return $ao4(input, _path, true && _exceptionable);
-                        if ("polyline" === input.type)
+                        else if ("polyline" === input.type)
                             return $ao5(input, _path, true && _exceptionable);
-                        if ("polygon" === input.type)
+                        else if ("polygon" === input.type)
                             return $ao6(input, _path, true && _exceptionable);
-                        if ("circle" === input.type)
+                        else if ("circle" === input.type)
                             return $ao8(input, _path, true && _exceptionable);
-                        return $guard(_exceptionable, {
-                            path: _path,
-                            expected:
-                                '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
-                            value: input,
-                        });
+                        else
+                            return $guard(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||

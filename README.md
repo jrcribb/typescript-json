@@ -12,24 +12,30 @@
 export function is<T>(input: unknown): input is T; // returns boolean
 export function assert<T>(input: unknown): T; // throws TypeGuardError
 export function validate<T>(input: unknown): IValidation<T>; // detailed
-export const customValidators: CustomValidatorMap; // can add custom validators
 
-// JSON
-export function application<T>(): IJsonApplication; // JSON schema
-export function assertParse<T>(input: string): T; // type safe parser
-export function assertStringify<T>(input: T): string; // safe and faster
-    // +) isParse, validateParse 
-    // +) stringify, isStringify, validateStringify
+// JSON FUNCTIONS
+export namespace json {
+    export function application<T>(): IJsonApplication; // JSON schema
+    export function assertParse<T>(input: string): T; // type safe parser
+    export function assertStringify<T>(input: T): string; // safe and faster
+}
 
-// MISC
-export function random<T>(g?: Partial<IRandomGenerator>): Primitive<T>;
+// PROTOCOL BUFFER
+export namespace protobuf {
+    export function message<T>(): string; // Protocol Buffer message
+    export function assertDecode<T>(buffer: Uint8Array): T; // safe decoder
+    export function assertEncode<T>(input: T): Uint8Array; // safe encoder
+}
+
+// RANDOM GENERATOR
+export function random<T>(g?: Partial<IRandomGenerator>): T;
 ```
 
 Typia is a transformer library supporting below features:
 
   - Super-fast Runtime Validators
-  - Safe JSON parse and fast stringify functions
-  - JSON schema generator
+  - Enhanced JSON functions
+  - Protocol Buffer encoder and decoder
   - Random data generator
 
 > **Note**
@@ -40,12 +46,23 @@ Typia is a transformer library supporting below features:
 
 
 
+
 ## Sponsors
 Thanks for your support.
 
-Your donation would encourage `typia` development.
+Your donation encourages `typia` development.
 
 [![Sponsers](https://opencollective.com/typia/badge.svg?avatarHeight=75&width=600)](https://opencollective.com/typia)
+
+
+
+## Playground
+You can experience how typia works by [playground website](https://typia.io/playground):
+
+  - 💻 https://typia.io/playground
+
+
+
 
 ## Guide Documents
 Check out the document in the [website](https://typia.io/docs/):
@@ -60,12 +77,17 @@ Check out the document in the [website](https://typia.io/docs/):
     - [`is()` function](https://typia.io/docs/validators/is/)
     - [`assert()` function](https://typia.io/docs/validators/assert/)
     - [`validate()` function](https://typia.io/docs/validators/validate/)
-    - [Comment Tags](https://typia.io/docs/validators/comment-tags/)
+    - [Special Tags](https://typia.io/docs/validators/tags/)
   - Enhanced JSON
     - [`stringify()` functions](https://typia.io/docs/json/stringify/)
     - [`parse()` functions](https://typia.io/docs/json/parse/)
     - [JSON Schema](https://typia.io/docs/json/schema)
+  - Protocol Buffer
+    - [Message Schema](https://typia.io/docs/protobuf/message)
+    - [`decode()` functions](https://typia.io/docs/protobuf/decode/)
+    - [`encode()` functions](https://typia.io/docs/protobuf/encode/)
   - [Random Generator](https://typia.io/docs/random/)
+  - [Miscellaneous](https://typia.io/docs/misc/)
 
 ### 🔗 Appendix
   - Utillization Cases

@@ -4,7 +4,4 @@ import { TupleUnion } from "../../structures/TupleUnion";
 
 export const test_createAssert_TupleUnion = _test_assert(
     "TupleUnion",
-    TupleUnion.generate,
-    typia.createAssert<TupleUnion>(),
-    TupleUnion.SPOILERS,
-);
+)<TupleUnion>(TupleUnion)(typia.createAssert<TupleUnion>());

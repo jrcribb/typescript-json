@@ -4,7 +4,6 @@ import { ConstantAtomicUnion } from "../../structures/ConstantAtomicUnion";
 
 export const test_createIs_ConstantAtomicUnion = _test_is(
     "ConstantAtomicUnion",
-    ConstantAtomicUnion.generate,
+)<ConstantAtomicUnion>(ConstantAtomicUnion)(
     typia.createIs<ConstantAtomicUnion>(),
-    ConstantAtomicUnion.SPOILERS,
 );

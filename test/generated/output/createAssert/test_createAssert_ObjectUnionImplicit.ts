@@ -4,7 +4,7 @@ import { ObjectUnionImplicit } from "../../../structures/ObjectUnionImplicit";
 
 export const test_createAssert_ObjectUnionImplicit = _test_assert(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)(
     (input: any): ObjectUnionImplicit => {
         const __is = (input: any): input is ObjectUnionImplicit => {
             const $io0 = (input: any): boolean =>
@@ -105,12 +105,12 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
                     ("number" === typeof input.area &&
                         Number.isFinite(input.area)));
             const $io6 = (input: any): boolean =>
+                "number" === typeof input.radius &&
+                Number.isFinite(input.radius) &&
                 (undefined === input.centroid ||
                     ("object" === typeof input.centroid &&
                         null !== input.centroid &&
                         $io0(input.centroid))) &&
-                "number" === typeof input.radius &&
-                Number.isFinite(input.radius) &&
                 (null === input.area ||
                     undefined === input.area ||
                     ("number" === typeof input.area &&
@@ -118,14 +118,15 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.x) return $io0(input);
-                    if (undefined !== input.p4) return $io3(input);
-                    if (undefined !== input.points) return $io4(input);
-                    if (undefined !== input.outer) return $io5(input);
-                    if (undefined !== input.radius) return $io6(input);
-                    return (() => {
-                        if (undefined !== input.p3) return $io2(input);
-                        return $io1(input);
-                    })();
+                    else if (undefined !== input.p4) return $io3(input);
+                    else if (undefined !== input.points) return $io4(input);
+                    else if (undefined !== input.outer) return $io5(input);
+                    else if (undefined !== input.radius) return $io6(input);
+                    else
+                        return (() => {
+                            if (undefined !== input.p3) return $io2(input);
+                            else return $io1(input);
+                        })();
                 })();
             return (
                 Array.isArray(input) &&
@@ -522,6 +523,13 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
                     _path: string,
                     _exceptionable: boolean = true,
                 ): boolean =>
+                    (("number" === typeof input.radius &&
+                        Number.isFinite(input.radius)) ||
+                        $guard(_exceptionable, {
+                            path: _path + ".radius",
+                            expected: "number",
+                            value: input.radius,
+                        })) &&
                     (undefined === input.centroid ||
                         ((("object" === typeof input.centroid &&
                             null !== input.centroid) ||
@@ -542,13 +550,6 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
                                 "(ObjectUnionImplicit.IPoint | undefined)",
                             value: input.centroid,
                         })) &&
-                    (("number" === typeof input.radius &&
-                        Number.isFinite(input.radius)) ||
-                        $guard(_exceptionable, {
-                            path: _path + ".radius",
-                            expected: "number",
-                            value: input.radius,
-                        })) &&
                     (null === input.area ||
                         undefined === input.area ||
                         ("number" === typeof input.area &&
@@ -566,23 +567,29 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
                     (() => {
                         if (undefined !== input.x)
                             return $ao0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p4)
+                        else if (undefined !== input.p4)
                             return $ao3(input, _path, true && _exceptionable);
-                        if (undefined !== input.points)
+                        else if (undefined !== input.points)
                             return $ao4(input, _path, true && _exceptionable);
-                        if (undefined !== input.outer)
+                        else if (undefined !== input.outer)
                             return $ao5(input, _path, true && _exceptionable);
-                        if (undefined !== input.radius)
+                        else if (undefined !== input.radius)
                             return $ao6(input, _path, true && _exceptionable);
-                        return (() => {
-                            if (undefined !== input.p3)
-                                return $ao2(
-                                    input,
-                                    _path,
-                                    true && _exceptionable,
-                                );
-                            return $ao1(input, _path, true && _exceptionable);
-                        })();
+                        else
+                            return (() => {
+                                if (undefined !== input.p3)
+                                    return $ao2(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                                else
+                                    return $ao1(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                            })();
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -621,5 +628,4 @@ export const test_createAssert_ObjectUnionImplicit = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ObjectUnionImplicit.SPOILERS,
 );

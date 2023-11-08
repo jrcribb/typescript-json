@@ -4,7 +4,6 @@ import { ClassNonPublic } from "../../structures/ClassNonPublic";
 
 export const test_validate_ClassNonPublic = _test_validate(
     "ClassNonPublic",
-    ClassNonPublic.generate,
-    (input) => typia.validate(input),
-    ClassNonPublic.SPOILERS,
+)<ClassNonPublic>(ClassNonPublic)((input) =>
+    typia.validate<ClassNonPublic>(input),
 );

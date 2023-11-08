@@ -4,6 +4,4 @@ import { ToJsonArray } from "../../structures/ToJsonArray";
 
 export const test_createValidate_ToJsonArray = _test_validate(
     "ToJsonArray",
-    ToJsonArray.generate,
-    typia.createValidate<ToJsonArray>(),
-);
+)<ToJsonArray>(ToJsonArray)(typia.createValidate<ToJsonArray>());

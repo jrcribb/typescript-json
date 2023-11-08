@@ -4,6 +4,4 @@ import { ToJsonNull } from "../../structures/ToJsonNull";
 
 export const test_createAssert_ToJsonNull = _test_assert(
     "ToJsonNull",
-    ToJsonNull.generate,
-    typia.createAssert<ToJsonNull>(),
-);
+)<ToJsonNull>(ToJsonNull)(typia.createAssert<ToJsonNull>());

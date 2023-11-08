@@ -4,6 +4,6 @@ import { ObjectPropertyNullable } from "../../structures/ObjectPropertyNullable"
 
 export const test_createEquals_ObjectPropertyNullable = _test_equals(
     "ObjectPropertyNullable",
-    ObjectPropertyNullable.generate,
+)<ObjectPropertyNullable>(ObjectPropertyNullable)(
     typia.createEquals<ObjectPropertyNullable>(),
 );

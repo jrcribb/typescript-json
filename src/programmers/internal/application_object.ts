@@ -1,14 +1,14 @@
 import { CommentFactory } from "../../factories/CommentFactory";
 
-import { IJsDocTagInfo } from "../../metadata/IJsDocTagInfo";
-import { Metadata } from "../../metadata/Metadata";
-import { MetadataObject } from "../../metadata/MetadataObject";
-import { IJsonComponents } from "../../schemas/IJsonComponents";
+import { IJsonComponents } from "../../schemas/json/IJsonComponents";
+import { IJsDocTagInfo } from "../../schemas/metadata/IJsDocTagInfo";
+import { Metadata } from "../../schemas/metadata/Metadata";
+import { MetadataObject } from "../../schemas/metadata/MetadataObject";
 
 import { PatternUtil } from "../../utils/PatternUtil";
 
 import { IJsonSchema } from "../../module";
-import { ApplicationProgrammer } from "../ApplicationProgrammer";
+import { JsonApplicationProgrammer } from "../json/JsonApplicationProgrammer";
 import { JSON_COMPONENTS_PREFIX } from "./JSON_SCHEMA_PREFIX";
 import { application_schema } from "./application_schema";
 import { metadata_to_pattern } from "./metadata_to_pattern";
@@ -17,24 +17,19 @@ import { metadata_to_pattern } from "./metadata_to_pattern";
  * @internal
  */
 export const application_object =
-    (options: ApplicationProgrammer.IOptions) =>
+    (options: JsonApplicationProgrammer.IOptions) =>
     (components: IJsonComponents) =>
     (obj: MetadataObject) =>
-    (
-        nullable: boolean,
-    ): IJsonSchema.IReference | IJsonSchema.IRecursiveReference => {
+    (nullable: boolean): IJsonSchema.IReference => {
         const key: string =
             options.purpose === "ajv"
                 ? obj.name
                 : `${obj.name}${nullable ? ".Nullable" : ""}`;
         const $id: string = `${JSON_COMPONENTS_PREFIX}/schemas/${key}`;
-        const out = () =>
-            options.purpose === "ajv" && obj.recursive
-                ? { $recursiveRef: $id }
-                : { $ref: $id };
+        const output = { $ref: $id };
 
         // TEMPORARY ASSIGNMENT
-        if (components.schemas?.[key] !== undefined) return out();
+        if (components.schemas?.[key] !== undefined) return output;
         components.schemas ??= {};
         components.schemas[key] = {} as any;
 
@@ -48,19 +43,22 @@ export const application_object =
 
         for (const property of obj.properties) {
             if (
+                // FUNCTIONAL TYPE
                 property.value.functional === true &&
                 property.value.nullable === false &&
-                property.value.required === true &&
+                property.value.isRequired() === true &&
                 property.value.size() === 0
             )
                 continue;
+            else if (property.jsDocTags.find((tag) => tag.name === "hidden"))
+                continue; // THE HIDDEN TAG
 
             const key: string | null = property.key.getSoleLiteral();
             const schema: IJsonSchema | null = application_schema(options)(
                 true,
             )(components)(property.value)({
                 deprecated:
-                    !!property.jsDocTags.find(
+                    property.jsDocTags.some(
                         (tag) => tag.name === "deprecated",
                     ) || undefined,
                 title: (() => {
@@ -71,9 +69,6 @@ export const application_object =
                         : undefined;
                 })(),
                 description: property.description ?? undefined,
-                "x-typia-metaTags": property.tags.length
-                    ? property.tags
-                    : undefined,
                 "x-typia-jsDocTags": property.jsDocTags.length
                     ? property.jsDocTags
                     : undefined,
@@ -84,7 +79,7 @@ export const application_object =
             if (schema === null) continue;
             else if (key !== null) {
                 properties[key] = schema;
-                if (property.value.required === true) required.push(key);
+                if (property.value.isRequired() === true) required.push(key);
             } else {
                 const pattern: string = metadata_to_pattern(true)(property.key);
                 if (pattern === PatternUtil.STRING)
@@ -112,8 +107,8 @@ export const application_object =
         };
         const schema: IJsonComponents.IObject = {
             $id: options.purpose === "ajv" ? $id : undefined,
-            $recursiveAnchor:
-                (options.purpose === "ajv" && obj.recursive) || undefined,
+            // $recursiveAnchor:
+            //     (options.purpose === "ajv" && obj.recursive) || undefined,
             type: "object",
             properties,
             nullable: options.purpose === "swagger" ? nullable : undefined,
@@ -132,11 +127,11 @@ export const application_object =
                   }),
         };
         components.schemas[key] = schema;
-        return out();
+        return output;
     };
 
 const join =
-    (options: ApplicationProgrammer.IOptions) =>
+    (options: JsonApplicationProgrammer.IOptions) =>
     (components: IJsonComponents) =>
     (extra: ISuperfluous): IJsonSchema | undefined => {
         // LIST UP METADATA
@@ -162,6 +157,6 @@ const join =
     };
 
 interface ISuperfluous {
-    additionalProperties?: [Metadata, IJsonSchema];
+    additionalProperties?: undefined | [Metadata, IJsonSchema];
     patternProperties: Record<string, [Metadata, IJsonSchema]>;
 }

@@ -4,7 +4,7 @@ import { ObjectGenericAlias } from "../../../structures/ObjectGenericAlias";
 
 export const test_createIs_ObjectGenericAlias = _test_is(
     "ObjectGenericAlias",
-    ObjectGenericAlias.generate,
+)<ObjectGenericAlias>(ObjectGenericAlias)(
     (input: any): input is ObjectGenericAlias => {
         return (
             "object" === typeof input &&
@@ -12,5 +12,4 @@ export const test_createIs_ObjectGenericAlias = _test_is(
             "string" === typeof (input as any).value
         );
     },
-    ObjectGenericAlias.SPOILERS,
 );

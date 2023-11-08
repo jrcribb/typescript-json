@@ -4,6 +4,4 @@ import { ObjectOptional } from "../../structures/ObjectOptional";
 
 export const test_createEquals_ObjectOptional = _test_equals(
     "ObjectOptional",
-    ObjectOptional.generate,
-    typia.createEquals<ObjectOptional>(),
-);
+)<ObjectOptional>(ObjectOptional)(typia.createEquals<ObjectOptional>());

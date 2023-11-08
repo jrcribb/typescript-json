@@ -4,7 +4,7 @@ import { ObjectIntersection } from "../../../structures/ObjectIntersection";
 
 export const test_createEquals_ObjectIntersection = _test_equals(
     "ObjectIntersection",
-    ObjectIntersection.generate,
+)<ObjectIntersection>(ObjectIntersection)(
     (
         input: any,
         _exceptionable: boolean = true,

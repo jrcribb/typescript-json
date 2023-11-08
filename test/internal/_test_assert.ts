@@ -1,16 +1,14 @@
 import { TypeGuardError } from "typia";
 
-import { Spoiler } from "../helpers/Spoiler";
+import { TestStructure } from "../helpers/TestStructure";
 
-export function _test_assert<T>(
-    name: string,
-    generator: () => T,
-    assert: (input: T) => T,
-    spoilers?: Spoiler<T>[],
-): () => void {
-    return () => {
+export const _test_assert =
+    (name: string) =>
+    <T>(factory: TestStructure<T>) =>
+    (assert: (input: T) => T) =>
+    () => {
         try {
-            const input: T = generator();
+            const input: T = factory.generate();
             const output: T = assert(input);
 
             if (input !== output)
@@ -26,8 +24,8 @@ export function _test_assert<T>(
             } else throw exp;
         }
 
-        for (const spoil of spoilers ?? []) {
-            const elem: T = generator();
+        for (const spoil of factory.SPOILERS ?? []) {
+            const elem: T = factory.generate();
             const expected: string[] = spoil(elem);
 
             try {
@@ -43,8 +41,7 @@ export function _test_assert<T>(
                         });
             }
             throw new Error(
-                `Bug on typia.assert(): failed to detect error on the ${name} type.`,
+                `Bug on typia.assert(): failed to detect error on the ${name} type - ${expected}.`,
             );
         }
     };
-}

@@ -4,7 +4,4 @@ import { NativeUnion } from "../../structures/NativeUnion";
 
 export const test_createValidate_NativeUnion = _test_validate(
     "NativeUnion",
-    NativeUnion.generate,
-    typia.createValidate<NativeUnion>(),
-    NativeUnion.SPOILERS,
-);
+)<NativeUnion>(NativeUnion)(typia.createValidate<NativeUnion>());

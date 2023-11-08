@@ -4,9 +4,12 @@ import { ArrayRecursiveUnionImplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
     "ArrayRecursiveUnionImplicit",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayRecursiveUnionImplicit> => {
+)<ArrayRecursiveUnionImplicit>(ArrayRecursiveUnionImplicit)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (
+            ArrayRecursiveUnionImplicit as any
+        ).RANDOM,
+    ): typia.Resolved<ArrayRecursiveUnionImplicit> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (_recursive: boolean = true, _depth: number = 0): any => ({
@@ -170,10 +173,8 @@ export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
             ])(),
         );
     },
-    (input: any): typia.Primitive<ArrayRecursiveUnionImplicit> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayRecursiveUnionImplicit> => {
+    assert: (input: any): ArrayRecursiveUnionImplicit => {
+        const __is = (input: any): input is ArrayRecursiveUnionImplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -235,11 +236,11 @@ export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.access) return $io1(input);
-                    if (undefined !== input.width) return $io2(input);
-                    if (undefined !== input.content) return $io3(input);
-                    if (undefined !== input.count) return $io4(input);
-                    if (undefined !== input.target) return $io5(input);
-                    return $io0(input);
+                    else if (undefined !== input.width) return $io2(input);
+                    else if (undefined !== input.content) return $io3(input);
+                    else if (undefined !== input.count) return $io4(input);
+                    else if (undefined !== input.target) return $io5(input);
+                    else return $io0(input);
                 })();
             return (
                 Array.isArray(input) &&
@@ -254,7 +255,7 @@ export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRecursiveUnionImplicit> => {
+            ): input is ArrayRecursiveUnionImplicit => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -564,15 +565,15 @@ export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
                     (() => {
                         if (undefined !== input.access)
                             return $ao1(input, _path, true && _exceptionable);
-                        if (undefined !== input.width)
+                        else if (undefined !== input.width)
                             return $ao2(input, _path, true && _exceptionable);
-                        if (undefined !== input.content)
+                        else if (undefined !== input.content)
                             return $ao3(input, _path, true && _exceptionable);
-                        if (undefined !== input.count)
+                        else if (undefined !== input.count)
                             return $ao4(input, _path, true && _exceptionable);
-                        if (undefined !== input.target)
+                        else if (undefined !== input.target)
                             return $ao5(input, _path, true && _exceptionable);
-                        return $ao0(input, _path, true && _exceptionable);
+                        else return $ao0(input, _path, true && _exceptionable);
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -611,4 +612,4 @@ export const test_createRandom_ArrayRecursiveUnionImplicit = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

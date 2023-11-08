@@ -4,7 +4,4 @@ import { DynamicNever } from "../../structures/DynamicNever";
 
 export const test_assert_DynamicNever = _test_assert(
     "DynamicNever",
-    DynamicNever.generate,
-    (input) => typia.assert(input),
-    DynamicNever.SPOILERS,
-);
+)<DynamicNever>(DynamicNever)((input) => typia.assert<DynamicNever>(input));

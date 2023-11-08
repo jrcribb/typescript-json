@@ -4,7 +4,6 @@ import { DynamicJsonValue } from "../../structures/DynamicJsonValue";
 
 export const test_validate_DynamicJsonValue = _test_validate(
     "DynamicJsonValue",
-    DynamicJsonValue.generate,
-    (input) => typia.validate(input),
-    DynamicJsonValue.SPOILERS,
+)<DynamicJsonValue>(DynamicJsonValue)((input) =>
+    typia.validate<DynamicJsonValue>(input),
 );

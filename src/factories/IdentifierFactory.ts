@@ -10,17 +10,26 @@ export namespace IdentifierFactory {
             ? ts.factory.createIdentifier(name)
             : ts.factory.createStringLiteral(name);
 
-    /**
-     * @deprecated Use `access()` function instead.
-     */
-    export const join = (prefix: ts.Expression, name: string) =>
-        access(prefix)(name);
-
     export const access = (target: ts.Expression) => (property: string) => {
         const postfix = identifier(property);
         return ts.isStringLiteral(postfix)
             ? ts.factory.createElementAccessExpression(target, postfix)
             : ts.factory.createPropertyAccessExpression(target, postfix);
+    };
+
+    export const getName = (input: ts.Expression): string => {
+        const value: any = (input as any).escapedText?.toString();
+        if (typeof value === "string") return value;
+
+        if (ts.isPropertyAccessExpression(input))
+            return `${getName(
+                input.expression,
+            )}.${input.name.escapedText.toString()}`;
+        else if (ts.isElementAccessExpression(input))
+            return `${getName(input.expression)}[${getName(
+                input.argumentExpression,
+            )}]`;
+        return "uknown";
     };
 
     export const postfix = (str: string): string =>

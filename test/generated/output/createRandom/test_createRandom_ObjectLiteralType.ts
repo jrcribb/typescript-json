@@ -4,9 +4,11 @@ import { ObjectLiteralType } from "../../../structures/ObjectLiteralType";
 
 export const test_createRandom_ObjectLiteralType = _test_random(
     "ObjectLiteralType",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectLiteralType> => {
+)<ObjectLiteralType>(ObjectLiteralType)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectLiteralType as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectLiteralType> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (
             _recursive: boolean = false,
@@ -24,10 +26,8 @@ export const test_createRandom_ObjectLiteralType = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectLiteralType> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectLiteralType> => {
+    assert: (input: any): ObjectLiteralType => {
+        const __is = (input: any): input is ObjectLiteralType => {
             return (
                 "object" === typeof input &&
                 null !== input &&
@@ -42,7 +42,7 @@ export const test_createRandom_ObjectLiteralType = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectLiteralType> => {
+            ): input is ObjectLiteralType => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -85,4 +85,4 @@ export const test_createRandom_ObjectLiteralType = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

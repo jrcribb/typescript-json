@@ -4,7 +4,6 @@ import { TupleRestArray } from "../../structures/TupleRestArray";
 
 export const test_assert_TupleRestArray = _test_assert(
     "TupleRestArray",
-    TupleRestArray.generate,
-    (input) => typia.assert(input),
-    TupleRestArray.SPOILERS,
+)<TupleRestArray>(TupleRestArray)((input) =>
+    typia.assert<TupleRestArray>(input),
 );

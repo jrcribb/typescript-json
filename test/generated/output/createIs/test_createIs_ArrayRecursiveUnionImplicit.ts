@@ -4,7 +4,7 @@ import { ArrayRecursiveUnionImplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createIs_ArrayRecursiveUnionImplicit = _test_is(
     "ArrayRecursiveUnionImplicit",
-    ArrayRecursiveUnionImplicit.generate,
+)<ArrayRecursiveUnionImplicit>(ArrayRecursiveUnionImplicit)(
     (input: any): input is ArrayRecursiveUnionImplicit => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.id &&
@@ -67,11 +67,11 @@ export const test_createIs_ArrayRecursiveUnionImplicit = _test_is(
         const $iu0 = (input: any): any =>
             (() => {
                 if (undefined !== input.access) return $io1(input);
-                if (undefined !== input.width) return $io2(input);
-                if (undefined !== input.content) return $io3(input);
-                if (undefined !== input.count) return $io4(input);
-                if (undefined !== input.target) return $io5(input);
-                return $io0(input);
+                else if (undefined !== input.width) return $io2(input);
+                else if (undefined !== input.content) return $io3(input);
+                else if (undefined !== input.count) return $io4(input);
+                else if (undefined !== input.target) return $io5(input);
+                else return $io0(input);
             })();
         return (
             Array.isArray(input) &&
@@ -81,5 +81,4 @@ export const test_createIs_ArrayRecursiveUnionImplicit = _test_is(
             )
         );
     },
-    ArrayRecursiveUnionImplicit.SPOILERS,
 );

@@ -4,10 +4,9 @@ import { TemplateConstant } from "../../../structures/TemplateConstant";
 
 export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
     "TemplateConstant",
-    TemplateConstant.generate,
+)<TemplateConstant>(TemplateConstant)(
     (input: any): typia.IValidation<TemplateConstant> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -16,21 +15,40 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
                 input: any,
                 _exceptionable: boolean = true,
             ): boolean =>
+                Array.isArray(input.value) &&
+                input.value.every(
+                    (elem: any, _index1: number) =>
+                        "object" === typeof elem &&
+                        null !== elem &&
+                        $io1(elem, true && _exceptionable),
+                ) &&
+                (1 === Object.keys(input).length ||
+                    Object.keys(input).every((key: any) => {
+                        if (["value"].some((prop: any) => key === prop))
+                            return true;
+                        const value = input[key];
+                        if (undefined === value) return true;
+                        return false;
+                    }));
+            const $io1 = (
+                input: any,
+                _exceptionable: boolean = true,
+            ): boolean =>
                 ("prefix_A" === input.prefix ||
                     "prefix_B" === input.prefix ||
                     "prefix_C" === input.prefix) &&
-                ("1_postfix" === input.postfix ||
-                    "3_postfix" === input.postfix ||
-                    "2_postfix" === input.postfix) &&
-                ("the_1_value_with_label_A" === input.combined ||
-                    "the_1_value_with_label_B" === input.combined ||
-                    "the_1_value_with_label_C" === input.combined ||
-                    "the_3_value_with_label_A" === input.combined ||
+                ("3_postfix" === input.postfix ||
+                    "2_postfix" === input.postfix ||
+                    "1_postfix" === input.postfix) &&
+                ("the_3_value_with_label_A" === input.combined ||
                     "the_3_value_with_label_B" === input.combined ||
                     "the_3_value_with_label_C" === input.combined ||
                     "the_2_value_with_label_A" === input.combined ||
                     "the_2_value_with_label_B" === input.combined ||
-                    "the_2_value_with_label_C" === input.combined) &&
+                    "the_2_value_with_label_C" === input.combined ||
+                    "the_1_value_with_label_A" === input.combined ||
+                    "the_1_value_with_label_B" === input.combined ||
+                    "the_1_value_with_label_C" === input.combined) &&
                 (3 === Object.keys(input).length ||
                     Object.keys(input).every((key: any) => {
                         if (
@@ -44,16 +62,11 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
                         return false;
                     }));
             return (
-                Array.isArray(input) &&
-                input.every(
-                    (elem: any, _index1: number) =>
-                        "object" === typeof elem &&
-                        null !== elem &&
-                        $io0(elem, true),
-                )
+                "object" === typeof input && null !== input && $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -61,6 +74,77 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
             ): input is TemplateConstant => {
                 const $join = (typia.createValidateEquals as any).join;
                 const $vo0 = (
+                    input: any,
+                    _path: string,
+                    _exceptionable: boolean = true,
+                ): boolean =>
+                    [
+                        ((Array.isArray(input.value) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "Array<TemplateConstant.Type>",
+                                value: input.value,
+                            })) &&
+                            input.value
+                                .map(
+                                    (elem: any, _index1: number) =>
+                                        ((("object" === typeof elem &&
+                                            null !== elem) ||
+                                            $report(_exceptionable, {
+                                                path:
+                                                    _path +
+                                                    ".value[" +
+                                                    _index1 +
+                                                    "]",
+                                                expected:
+                                                    "TemplateConstant.Type",
+                                                value: elem,
+                                            })) &&
+                                            $vo1(
+                                                elem,
+                                                _path +
+                                                    ".value[" +
+                                                    _index1 +
+                                                    "]",
+                                                true && _exceptionable,
+                                            )) ||
+                                        $report(_exceptionable, {
+                                            path:
+                                                _path +
+                                                ".value[" +
+                                                _index1 +
+                                                "]",
+                                            expected: "TemplateConstant.Type",
+                                            value: elem,
+                                        }),
+                                )
+                                .every((flag: boolean) => flag)) ||
+                            $report(_exceptionable, {
+                                path: _path + ".value",
+                                expected: "Array<TemplateConstant.Type>",
+                                value: input.value,
+                            }),
+                        1 === Object.keys(input).length ||
+                            false === _exceptionable ||
+                            Object.keys(input)
+                                .map((key: any) => {
+                                    if (
+                                        ["value"].some(
+                                            (prop: any) => key === prop,
+                                        )
+                                    )
+                                        return true;
+                                    const value = input[key];
+                                    if (undefined === value) return true;
+                                    return $report(_exceptionable, {
+                                        path: _path + $join(key),
+                                        expected: "undefined",
+                                        value: value,
+                                    });
+                                })
+                                .every((flag: boolean) => flag),
+                    ].every((flag: boolean) => flag);
+                const $vo1 = (
                     input: any,
                     _path: string,
                     _exceptionable: boolean = true,
@@ -75,24 +159,24 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
                                     '("prefix_A" | "prefix_B" | "prefix_C")',
                                 value: input.prefix,
                             }),
-                        "1_postfix" === input.postfix ||
-                            "3_postfix" === input.postfix ||
+                        "3_postfix" === input.postfix ||
                             "2_postfix" === input.postfix ||
+                            "1_postfix" === input.postfix ||
                             $report(_exceptionable, {
                                 path: _path + ".postfix",
                                 expected:
                                     '("1_postfix" | "2_postfix" | "3_postfix")',
                                 value: input.postfix,
                             }),
-                        "the_1_value_with_label_A" === input.combined ||
-                            "the_1_value_with_label_B" === input.combined ||
-                            "the_1_value_with_label_C" === input.combined ||
-                            "the_3_value_with_label_A" === input.combined ||
+                        "the_3_value_with_label_A" === input.combined ||
                             "the_3_value_with_label_B" === input.combined ||
                             "the_3_value_with_label_C" === input.combined ||
                             "the_2_value_with_label_A" === input.combined ||
                             "the_2_value_with_label_B" === input.combined ||
                             "the_2_value_with_label_C" === input.combined ||
+                            "the_1_value_with_label_A" === input.combined ||
+                            "the_1_value_with_label_B" === input.combined ||
+                            "the_1_value_with_label_C" === input.combined ||
                             $report(_exceptionable, {
                                 path: _path + ".combined",
                                 expected:
@@ -120,34 +204,13 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
                                 .every((flag: boolean) => flag),
                     ].every((flag: boolean) => flag);
                 return (
-                    ((Array.isArray(input) ||
+                    ((("object" === typeof input && null !== input) ||
                         $report(true, {
                             path: _path + "",
                             expected: "TemplateConstant",
                             value: input,
                         })) &&
-                        input
-                            .map(
-                                (elem: any, _index1: number) =>
-                                    ((("object" === typeof elem &&
-                                        null !== elem) ||
-                                        $report(true, {
-                                            path: _path + "[" + _index1 + "]",
-                                            expected: "TemplateConstant.Type",
-                                            value: elem,
-                                        })) &&
-                                        $vo0(
-                                            elem,
-                                            _path + "[" + _index1 + "]",
-                                            true,
-                                        )) ||
-                                    $report(true, {
-                                        path: _path + "[" + _index1 + "]",
-                                        expected: "TemplateConstant.Type",
-                                        value: elem,
-                                    }),
-                            )
-                            .every((flag: boolean) => flag)) ||
+                        $vo0(input, _path + "", true)) ||
                     $report(true, {
                         path: _path + "",
                         expected: "TemplateConstant",
@@ -155,6 +218,7 @@ export const test_createValidateEquals_TemplateConstant = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

@@ -4,7 +4,7 @@ import { ObjectLiteralProperty } from "../../../structures/ObjectLiteralProperty
 
 export const test_createIs_ObjectLiteralProperty = _test_is(
     "ObjectLiteralProperty",
-    ObjectLiteralProperty.generate,
+)<ObjectLiteralProperty>(ObjectLiteralProperty)(
     (input: any): input is ObjectLiteralProperty => {
         return (
             "object" === typeof input &&
@@ -15,5 +15,4 @@ export const test_createIs_ObjectLiteralProperty = _test_is(
                 typeof (input as any)["or-something-crazy-do-you-want?"]
         );
     },
-    ObjectLiteralProperty.SPOILERS,
 );

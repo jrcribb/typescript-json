@@ -4,7 +4,6 @@ import { FunctionalArrayUnion } from "../../structures/FunctionalArrayUnion";
 
 export const test_validate_FunctionalArrayUnion = _test_validate(
     "FunctionalArrayUnion",
-    FunctionalArrayUnion.generate,
-    (input) => typia.validate(input),
-    FunctionalArrayUnion.SPOILERS,
+)<FunctionalArrayUnion>(FunctionalArrayUnion)((input) =>
+    typia.validate<FunctionalArrayUnion>(input),
 );

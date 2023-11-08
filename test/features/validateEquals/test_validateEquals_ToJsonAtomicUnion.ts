@@ -4,6 +4,6 @@ import { ToJsonAtomicUnion } from "../../structures/ToJsonAtomicUnion";
 
 export const test_validateEquals_ToJsonAtomicUnion = _test_validateEquals(
     "ToJsonAtomicUnion",
-    ToJsonAtomicUnion.generate,
-    (input) => typia.validateEquals(input),
+)<ToJsonAtomicUnion>(ToJsonAtomicUnion)((input) =>
+    typia.validateEquals<ToJsonAtomicUnion>(input),
 );

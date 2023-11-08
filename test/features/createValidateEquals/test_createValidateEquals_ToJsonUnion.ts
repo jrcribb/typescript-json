@@ -4,6 +4,4 @@ import { ToJsonUnion } from "../../structures/ToJsonUnion";
 
 export const test_createValidateEquals_ToJsonUnion = _test_validateEquals(
     "ToJsonUnion",
-    ToJsonUnion.generate,
-    typia.createValidateEquals<ToJsonUnion>(),
-);
+)<ToJsonUnion>(ToJsonUnion)(typia.createValidateEquals<ToJsonUnion>());

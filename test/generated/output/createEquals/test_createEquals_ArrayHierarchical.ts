@@ -4,7 +4,7 @@ import { ArrayHierarchical } from "../../../structures/ArrayHierarchical";
 
 export const test_createEquals_ArrayHierarchical = _test_equals(
     "ArrayHierarchical",
-    ArrayHierarchical.generate,
+)<ArrayHierarchical>(ArrayHierarchical)(
     (
         input: any,
         _exceptionable: boolean = true,

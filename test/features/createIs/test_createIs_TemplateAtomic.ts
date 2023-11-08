@@ -4,7 +4,4 @@ import { TemplateAtomic } from "../../structures/TemplateAtomic";
 
 export const test_createIs_TemplateAtomic = _test_is(
     "TemplateAtomic",
-    TemplateAtomic.generate,
-    typia.createIs<TemplateAtomic>(),
-    TemplateAtomic.SPOILERS,
-);
+)<TemplateAtomic>(TemplateAtomic)(typia.createIs<TemplateAtomic>());

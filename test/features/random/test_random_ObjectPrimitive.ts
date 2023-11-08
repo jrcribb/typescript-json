@@ -4,6 +4,8 @@ import { ObjectPrimitive } from "../../structures/ObjectPrimitive";
 
 export const test_random_ObjectPrimitive = _test_random(
     "ObjectPrimitive",
-    () => typia.random<ObjectPrimitive>(),
-    typia.createAssert<typia.Primitive<ObjectPrimitive>>(),
-);
+)<ObjectPrimitive>(ObjectPrimitive)({
+    random: () =>
+        typia.random<ObjectPrimitive>((ObjectPrimitive as any).RANDOM),
+    assert: typia.createAssert<ObjectPrimitive>(),
+});

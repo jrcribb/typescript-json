@@ -4,7 +4,6 @@ import { FunctionalValueUnion } from "../../structures/FunctionalValueUnion";
 
 export const test_is_FunctionalValueUnion = _test_is(
     "FunctionalValueUnion",
-    FunctionalValueUnion.generate,
-    (input) => typia.is(input),
-    FunctionalValueUnion.SPOILERS,
+)<FunctionalValueUnion>(FunctionalValueUnion)((input) =>
+    typia.is<FunctionalValueUnion>(input),
 );

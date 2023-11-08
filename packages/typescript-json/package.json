@@ -1,6 +1,6 @@
 {
   "name": "typescript-json",
-  "version": "4.0.9",
+  "version": "5.2.6",
   "description": "Superfast runtime validators with only one line",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -12,7 +12,10 @@
     "----------------------------------------------": "",
     "build": "rimraf lib && tsc --removeComments --declaration false && tsc --emitDeclarationOnly",
     "build:test": "rimraf bin && tsc -p test/tsconfig.json",
+    "build:test:actions": "rimraf bin && tsc -p test/tsconfig.actions.json",
+    "build:test:issues": "rimraf bin && tsc -p test/tsconfig.issue.json",
     "build:benchmark": "rimraf measure && tsc -p benchmark/tsconfig.json",
+    "build:test:errors": "rimraf errors/bin && tsc -p errors/tsconfig.json",
     "build:test:prettier": "npm run build:test && prettier --write ./bin/**/*.js",
     "dev": "rimraf lib && tsc --watch",
     "dev:test": "rimraf bin && tsc -p test/tsconfig.json --watch",
@@ -23,6 +26,7 @@
     "issue": "node test/issue",
     "issue:generate": "ts-node src/executable/typia generate --input test/issues/generate/input --output test/issues/generate --project test/tsconfig.json",
     "test": "node bin/test",
+    "test:errors": "node errors",
     "test:manual": "node test/manual",
     "------------------------------------------------": "",
     "package:latest": "ts-node build/publish.ts latest",
@@ -68,13 +72,13 @@
   },
   "homepage": "https://typia.io",
   "dependencies": {
-    "typia": "4.0.9"
+    "typia": "5.2.6"
   },
   "peerDependencies": {
-    "typescript": ">= 4.7.4"
+    "typescript": ">=4.8.0 <5.3.0"
   },
   "stackblitzs": {
-    "startCommand": "npm run prepare && npm run build && npm run build:test && npm run test"
+    "startCommand": "npm run prepare && npm run build:test:actions && npm run build:test && npm run test"
   },
   "files": [
     "LICENSE",

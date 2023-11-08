@@ -4,7 +4,4 @@ import { TemplateUnion } from "../../structures/TemplateUnion";
 
 export const test_createIs_TemplateUnion = _test_is(
     "TemplateUnion",
-    TemplateUnion.generate,
-    typia.createIs<TemplateUnion>(),
-    TemplateUnion.SPOILERS,
-);
+)<TemplateUnion>(TemplateUnion)(typia.createIs<TemplateUnion>());

@@ -4,7 +4,7 @@ import { ObjectLiteralProperty } from "../../../structures/ObjectLiteralProperty
 
 export const test_createAssert_ObjectLiteralProperty = _test_assert(
     "ObjectLiteralProperty",
-    ObjectLiteralProperty.generate,
+)<ObjectLiteralProperty>(ObjectLiteralProperty)(
     (input: any): ObjectLiteralProperty => {
         const __is = (input: any): input is ObjectLiteralProperty => {
             return (
@@ -63,5 +63,4 @@ export const test_createAssert_ObjectLiteralProperty = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ObjectLiteralProperty.SPOILERS,
 );

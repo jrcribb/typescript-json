@@ -4,10 +4,9 @@ import { ArrayRecursiveUnionExplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
     "ArrayRecursiveUnionExplicit",
-    ArrayRecursiveUnionExplicit.generate,
+)<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)(
     (input: any): typia.IValidation<ArrayRecursiveUnionExplicit> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ArrayRecursiveUnionExplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
@@ -68,11 +67,11 @@ export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ("directory" === input.type) return $io0(input);
-                    if ("jpg" === input.extension) return $io1(input);
-                    if ("txt" === input.extension) return $io2(input);
-                    if ("zip" === input.extension) return $io3(input);
-                    if ("lnk" === input.extension) return $io4(input);
-                    return false;
+                    else if ("jpg" === input.extension) return $io1(input);
+                    else if ("txt" === input.extension) return $io2(input);
+                    else if ("zip" === input.extension) return $io3(input);
+                    else if ("lnk" === input.extension) return $io4(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -82,7 +81,8 @@ export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -401,20 +401,21 @@ export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
                     (() => {
                         if ("directory" === input.type)
                             return $vo0(input, _path, true && _exceptionable);
-                        if ("jpg" === input.extension)
+                        else if ("jpg" === input.extension)
                             return $vo1(input, _path, true && _exceptionable);
-                        if ("txt" === input.extension)
+                        else if ("txt" === input.extension)
                             return $vo2(input, _path, true && _exceptionable);
-                        if ("zip" === input.extension)
+                        else if ("zip" === input.extension)
                             return $vo3(input, _path, true && _exceptionable);
-                        if ("lnk" === input.extension)
+                        else if ("lnk" === input.extension)
                             return $vo4(input, _path, true && _exceptionable);
-                        return $report(_exceptionable, {
-                            path: _path,
-                            expected:
-                                "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
-                            value: input,
-                        });
+                        else
+                            return $report(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -454,6 +455,7 @@ export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -461,5 +463,4 @@ export const test_createValidate_ArrayRecursiveUnionExplicit = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ArrayRecursiveUnionExplicit.SPOILERS,
 );

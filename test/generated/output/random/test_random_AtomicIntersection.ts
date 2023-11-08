@@ -4,10 +4,11 @@ import { AtomicIntersection } from "../../../structures/AtomicIntersection";
 
 export const test_random_AtomicIntersection = _test_random(
     "AtomicIntersection",
-    () =>
+)<AtomicIntersection>(AtomicIntersection)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<AtomicIntersection> => {
+        ): typia.Resolved<AtomicIntersection> => {
             const $generator = (typia.random as any).generator;
             return [
                 (generator?.boolean ?? $generator.boolean)(),
@@ -16,11 +17,9 @@ export const test_random_AtomicIntersection = _test_random(
                 (generator?.customs ?? $generator.customs)?.string?.([]) ??
                     (generator?.string ?? $generator.string)(),
             ];
-        })(),
-    (input: any): typia.Primitive<AtomicIntersection> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<AtomicIntersection> => {
+        })((AtomicIntersection as any).RANDOM),
+    assert: (input: any): AtomicIntersection => {
+        const __is = (input: any): input is AtomicIntersection => {
             return (
                 Array.isArray(input) &&
                 input.length === 3 &&
@@ -35,7 +34,7 @@ export const test_random_AtomicIntersection = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<AtomicIntersection> => {
+            ): input is AtomicIntersection => {
                 const $guard = (typia.createAssert as any).guard;
                 return (
                     ((Array.isArray(input) ||
@@ -78,4 +77,4 @@ export const test_random_AtomicIntersection = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

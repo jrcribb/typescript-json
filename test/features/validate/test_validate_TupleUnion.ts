@@ -4,7 +4,4 @@ import { TupleUnion } from "../../structures/TupleUnion";
 
 export const test_validate_TupleUnion = _test_validate(
     "TupleUnion",
-    TupleUnion.generate,
-    (input) => typia.validate(input),
-    TupleUnion.SPOILERS,
-);
+)<TupleUnion>(TupleUnion)((input) => typia.validate<TupleUnion>(input));

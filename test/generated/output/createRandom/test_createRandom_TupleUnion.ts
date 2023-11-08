@@ -4,9 +4,10 @@ import { TupleUnion } from "../../../structures/TupleUnion";
 
 export const test_createRandom_TupleUnion = _test_random(
     "TupleUnion",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<TupleUnion> => {
+)<TupleUnion>(TupleUnion)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (TupleUnion as any).RANDOM,
+    ): typia.Resolved<TupleUnion> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         return (generator?.array ?? $generator.array)(() =>
@@ -27,8 +28,8 @@ export const test_createRandom_TupleUnion = _test_random(
             ])(),
         );
     },
-    (input: any): typia.Primitive<TupleUnion> => {
-        const __is = (input: any): input is typia.Primitive<TupleUnion> => {
+    assert: (input: any): TupleUnion => {
+        const __is = (input: any): input is TupleUnion => {
             const $ip0 = (input: any) => {
                 const array = input;
                 const tuplePredicators = [
@@ -45,7 +46,7 @@ export const test_createRandom_TupleUnion = _test_random(
                             Number.isFinite(entire[0]) &&
                             "string" === typeof entire[1] &&
                             "boolean" === typeof entire[2],
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any =>
                             top.length === 2 &&
@@ -57,11 +58,11 @@ export const test_createRandom_TupleUnion = _test_random(
                             "boolean" === typeof entire[0] &&
                             "number" === typeof entire[1] &&
                             Number.isFinite(entire[1]),
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any => top.length === 0,
                         (entire: any[]): any => entire.length === 0,
-                    ],
+                    ] as const,
                 ];
                 for (const pred of tuplePredicators)
                     if (pred[0](array)) return pred[1](array);
@@ -79,7 +80,7 @@ export const test_createRandom_TupleUnion = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<TupleUnion> => {
+            ): input is TupleUnion => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ap0 = (
                     input: any,
@@ -121,7 +122,7 @@ export const test_createRandom_TupleUnion = _test_random(
                                         expected: "boolean",
                                         value: entire[2],
                                     })),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 2 &&
@@ -148,7 +149,7 @@ export const test_createRandom_TupleUnion = _test_random(
                                         expected: "number",
                                         value: entire[1],
                                     })),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any => top.length === 0,
                             (entire: any[]): any =>
@@ -158,7 +159,7 @@ export const test_createRandom_TupleUnion = _test_random(
                                     expected: "[]",
                                     value: entire,
                                 }),
-                        ],
+                        ] as const,
                     ];
                     for (const pred of tuplePredicators)
                         if (pred[0](array)) return pred[1](array);
@@ -212,4 +213,4 @@ export const test_createRandom_TupleUnion = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

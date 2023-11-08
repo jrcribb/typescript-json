@@ -4,7 +4,4 @@ import { ArrayAtomicAlias } from "../../structures/ArrayAtomicAlias";
 
 export const test_createAssert_ArrayAtomicAlias = _test_assert(
     "ArrayAtomicAlias",
-    ArrayAtomicAlias.generate,
-    typia.createAssert<ArrayAtomicAlias>(),
-    ArrayAtomicAlias.SPOILERS,
-);
+)<ArrayAtomicAlias>(ArrayAtomicAlias)(typia.createAssert<ArrayAtomicAlias>());

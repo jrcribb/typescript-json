@@ -4,7 +4,7 @@ import { ObjectUnionImplicit } from "../../../structures/ObjectUnionImplicit";
 
 export const test_createIs_ObjectUnionImplicit = _test_is(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)(
     (input: any): input is ObjectUnionImplicit => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.x &&
@@ -104,12 +104,12 @@ export const test_createIs_ObjectUnionImplicit = _test_is(
                 ("number" === typeof input.area &&
                     Number.isFinite(input.area)));
         const $io6 = (input: any): boolean =>
+            "number" === typeof input.radius &&
+            Number.isFinite(input.radius) &&
             (undefined === input.centroid ||
                 ("object" === typeof input.centroid &&
                     null !== input.centroid &&
                     $io0(input.centroid))) &&
-            "number" === typeof input.radius &&
-            Number.isFinite(input.radius) &&
             (null === input.area ||
                 undefined === input.area ||
                 ("number" === typeof input.area &&
@@ -117,14 +117,15 @@ export const test_createIs_ObjectUnionImplicit = _test_is(
         const $iu0 = (input: any): any =>
             (() => {
                 if (undefined !== input.x) return $io0(input);
-                if (undefined !== input.p4) return $io3(input);
-                if (undefined !== input.points) return $io4(input);
-                if (undefined !== input.outer) return $io5(input);
-                if (undefined !== input.radius) return $io6(input);
-                return (() => {
-                    if (undefined !== input.p3) return $io2(input);
-                    return $io1(input);
-                })();
+                else if (undefined !== input.p4) return $io3(input);
+                else if (undefined !== input.points) return $io4(input);
+                else if (undefined !== input.outer) return $io5(input);
+                else if (undefined !== input.radius) return $io6(input);
+                else
+                    return (() => {
+                        if (undefined !== input.p3) return $io2(input);
+                        else return $io1(input);
+                    })();
             })();
         return (
             Array.isArray(input) &&
@@ -134,5 +135,4 @@ export const test_createIs_ObjectUnionImplicit = _test_is(
             )
         );
     },
-    ObjectUnionImplicit.SPOILERS,
 );

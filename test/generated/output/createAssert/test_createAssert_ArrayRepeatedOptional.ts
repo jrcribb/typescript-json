@@ -4,7 +4,7 @@ import { ArrayRepeatedOptional } from "../../../structures/ArrayRepeatedOptional
 
 export const test_createAssert_ArrayRepeatedOptional = _test_assert(
     "ArrayRepeatedOptional",
-    ArrayRepeatedOptional.generate,
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)(
     (input: any): ArrayRepeatedOptional => {
         const __is = (input: any): input is ArrayRepeatedOptional => {
             const $ia0 = (input: any): any =>
@@ -109,5 +109,4 @@ export const test_createAssert_ArrayRepeatedOptional = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ArrayRepeatedOptional.SPOILERS,
 );

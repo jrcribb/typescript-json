@@ -4,7 +4,7 @@ import { ObjectPropertyNullable } from "../../../structures/ObjectPropertyNullab
 
 export const test_createIs_ObjectPropertyNullable = _test_is(
     "ObjectPropertyNullable",
-    ObjectPropertyNullable.generate,
+)<ObjectPropertyNullable>(ObjectPropertyNullable)(
     (input: any): input is ObjectPropertyNullable => {
         const $io0 = (input: any): boolean =>
             null === input.value || "boolean" === typeof input.value;
@@ -54,5 +54,4 @@ export const test_createIs_ObjectPropertyNullable = _test_is(
             )
         );
     },
-    ObjectPropertyNullable.SPOILERS,
 );

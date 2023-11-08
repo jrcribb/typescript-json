@@ -9,7 +9,9 @@
     },
     "validators": "Runtime Validators",
     "json": "Enhanced JSON",
+    "protobuf": "Protocol Buffer",
     "random": "Random Generator",
+    "misc": "Miscellaneous",
 
     "-- appendix": {
         "type": "separator",

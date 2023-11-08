@@ -4,6 +4,6 @@ import { ConstantIntersection } from "../../structures/ConstantIntersection";
 
 export const test_createAssertEquals_ConstantIntersection = _test_assertEquals(
     "ConstantIntersection",
-    ConstantIntersection.generate,
+)<ConstantIntersection>(ConstantIntersection)(
     typia.createAssertEquals<ConstantIntersection>(),
 );

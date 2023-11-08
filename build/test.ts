@@ -3,8 +3,10 @@ import fs from "fs";
 
 import { TestApplicationGenerator } from "./internal/TestApplicationGenerator";
 import { TestFeature } from "./internal/TestFeature";
+import { TestMessageGenerator } from "./internal/TestMessageGenerator";
 import { TestStructure } from "./internal/TestStructure";
 import { __TypeRemover } from "./internal/__TypeRemover";
+import { write_common } from "./writers/write_common";
 
 const emit = process.emit;
 (process as any).emit = function (name: string, ...args: any[]) {
@@ -35,26 +37,37 @@ async function generate(
     create: boolean,
 ): Promise<void> {
     const method: string = create
-        ? `create${feat.method[0]!.toUpperCase()}${feat.method.substring(1)}`
+        ? `create${feat.method[0]!.toUpperCase()}${feat.method.slice(1)}`
         : feat.method;
-    const path: string = `${__dirname}/../test/features/${method}`;
+    const path: string = [
+        __dirname,
+        "..",
+        "test",
+        "features",
+        feat.module ? `${feat.module}.${method}` : method,
+    ].join("/");
 
     if (fs.existsSync(path)) cp.execSync(`npx rimraf ${path}`);
-    await fs.promises.mkdir(path);
+    await fs.promises.mkdir(path, { recursive: true });
 
     for (const s of structures) {
         if (s.generate === undefined) continue;
         else if (feat.jsonable && s.JSONABLE === false) continue;
-        else if (feat.primitive && s.PRIMITIVE === false) continue;
         else if (feat.strict && s.ADDABLE === false) continue;
-        else if (feat.method === "random" && s.RANDOM === false) continue;
+        else if (feat.module === "protobuf" && s.BINARABLE === false) continue;
+        else if (feat.query === true && s.QUERY !== true) continue;
+        else if (feat.headers === true && s.HEADERS !== true) continue;
+        else if (feat.primitive && s.PRIMITIVE === false) continue;
+        else if (feat.resolved && s.RESOLVABLE === false) continue;
         else if (
             feat.method.toLowerCase().includes("prune") &&
             s.ADDABLE === false
         )
             continue;
 
-        const location: string = `${path}/test_${method}_${s.name}.ts`;
+        const location: string = `${path}/test_${
+            feat.module ? `${feat.module}_` : ""
+        }${method}_${s.name}.ts`;
         await fs.promises.writeFile(
             location,
             script(feat, method, s, create),
@@ -69,38 +82,11 @@ function script(
     struct: TestStructure<any>,
     create: boolean,
 ): string {
-    const common: string = `_test_${feat.method}`;
-    const elements: Array<string | null> = [
-        `import typia from "../../../src";`,
-        "",
-        `import { ${struct.name} } from "../../structures/${struct.name}";`,
-        `import { ${common} } from "../../internal/${common}";`,
-        "",
-        `export const test_${method}_${struct.name} = ${common}(`,
-        `    "${struct.name}",`,
-        feat.random ? null : `    ${struct.name}.generate,`,
-        create
-            ? feat.random
-                ? `    typia.createRandom<${struct.name}>(${
-                      struct.RANDOM ? `${struct.name}.RANDOM` : ""
-                  }),`
-                : `    typia.${method}<${struct.name}>(),`
-            : feat.random
-            ? `    () => typia.random<${struct.name}>(${
-                  struct.RANDOM ? `${struct.name}.RANDOM` : ""
-              }),`
-            : `    (input) => typia.${method}${
-                  feat.explicit ? `<${struct.name}>` : ""
-              }(input),`,
-        feat.spoilable && struct.SPOILERS
-            ? `    ${struct.name}.SPOILERS,`
-            : null,
-        feat.random
-            ? `typia.createAssert<typia.Primitive<${struct.name}>>(),`
-            : null,
-        `);\n`,
-    ];
-    return elements.filter((e) => e !== null).join("\n");
+    if (feat.programmer) return feat.programmer(create)(struct.name);
+    return write_common({
+        module: feat.module,
+        method,
+    })(create)(struct.name);
 }
 
 async function main(): Promise<void> {
@@ -118,13 +104,16 @@ async function main(): Promise<void> {
     // SCHEMAS
     const schemas: string = `${__dirname}/../test/schemas`;
     if (fs.existsSync(schemas)) cp.execSync(`npx rimraf ${schemas}`);
-    await fs.promises.mkdir(schemas);
+    await fs.promises.mkdir(schemas, { recursive: true });
 
     await TestApplicationGenerator.generate(structures);
+    await TestMessageGenerator.generate(structures);
 
     // FILL SCHEMA CONTENTS
-    cp.execSync("npm run build:test");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    cp.execSync("npm run build:test", { stdio: "inherit" });
     await TestApplicationGenerator.schema();
+    await TestMessageGenerator.schema();
 
     // GENERATE TRANSFORMED FEATURES
     cp.execSync("npx rimraf test/generated");
@@ -135,6 +124,7 @@ async function main(): Promise<void> {
             "--output test/generated/output",
             "--project test/tsconfig.json",
         ].join(" "),
+        { stdio: "inherit" },
     );
     await __TypeRemover.remove(__dirname + "/../test/generated");
     cp.execSync("npm run prettier", { stdio: "inherit" });

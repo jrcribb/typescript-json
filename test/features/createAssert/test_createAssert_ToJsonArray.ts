@@ -4,6 +4,4 @@ import { ToJsonArray } from "../../structures/ToJsonArray";
 
 export const test_createAssert_ToJsonArray = _test_assert(
     "ToJsonArray",
-    ToJsonArray.generate,
-    typia.createAssert<ToJsonArray>(),
-);
+)<ToJsonArray>(ToJsonArray)(typia.createAssert<ToJsonArray>());

@@ -13,24 +13,14 @@ import { OptionPredicator } from "./helpers/OptionPredicator";
 import { check_object } from "./internal/check_object";
 
 export namespace AssertProgrammer {
-    /**
-     * @deprecated Use `write()` function instead
-     */
-    export const generate =
-        (
-            project: IProject,
-            modulo: ts.LeftHandSideExpression,
-            equals: boolean = false,
-        ) =>
-        (type: ts.Type, name?: string) =>
-            write(project)(modulo)(equals)(type, name);
-
     export const write =
         (project: IProject) =>
         (modulo: ts.LeftHandSideExpression) =>
         (equals: boolean) =>
         (type: ts.Type, name?: string) => {
-            const importer: FunctionImporter = new FunctionImporter();
+            const importer: FunctionImporter = new FunctionImporter(
+                modulo.getText(),
+            );
             const is = IsProgrammer.write(project)(modulo, true)(equals)(
                 type,
                 name ?? TypeFactory.getFullName(project.checker)(type),
@@ -41,32 +31,68 @@ export namespace AssertProgrammer {
                 trace: true,
                 numeric: OptionPredicator.numeric(project.options),
                 equals,
-                atomist: (explore) => (tuple) => (input) =>
+                atomist: (explore) => (entry) => (input) =>
                     [
-                        tuple.expression,
-                        ...tuple.tags.map((tag) =>
-                            ts.factory.createLogicalOr(
-                                tag.expression,
-                                create_guard_call(importer)(
-                                    explore.from === "top"
-                                        ? ts.factory.createTrue()
-                                        : ts.factory.createIdentifier(
-                                              "_exceptionable",
+                        ...(entry.expression ? [entry.expression] : []),
+                        ...(entry.conditions.length === 0
+                            ? []
+                            : entry.conditions.length === 1
+                            ? entry.conditions[0]!.map((cond) =>
+                                  ts.factory.createLogicalOr(
+                                      cond.expression,
+                                      create_guard_call(importer)(
+                                          explore.from === "top"
+                                              ? ts.factory.createTrue()
+                                              : ts.factory.createIdentifier(
+                                                    "_exceptionable",
+                                                ),
+                                      )(
+                                          ts.factory.createIdentifier(
+                                              explore.postfix
+                                                  ? `_path + ${explore.postfix}`
+                                                  : "_path",
                                           ),
-                                )(
-                                    ts.factory.createIdentifier(
-                                        explore.postfix
-                                            ? `_path + ${explore.postfix}`
-                                            : "_path",
-                                    ),
-                                    tag.expected,
-                                    input,
-                                ),
-                            ),
-                        ),
+                                          cond.expected,
+                                          input,
+                                      ),
+                                  ),
+                              )
+                            : [
+                                  ts.factory.createLogicalOr(
+                                      entry.conditions
+                                          .map((set) =>
+                                              set
+                                                  .map((s) => s.expression)
+                                                  .reduce((a, b) =>
+                                                      ts.factory.createLogicalAnd(
+                                                          a,
+                                                          b,
+                                                      ),
+                                                  ),
+                                          )
+                                          .reduce((a, b) =>
+                                              ts.factory.createLogicalOr(a, b),
+                                          ),
+                                      create_guard_call(importer)(
+                                          explore.from === "top"
+                                              ? ts.factory.createTrue()
+                                              : ts.factory.createIdentifier(
+                                                    "_exceptionable",
+                                                ),
+                                      )(
+                                          ts.factory.createIdentifier(
+                                              explore.postfix
+                                                  ? `_path + ${explore.postfix}`
+                                                  : "_path",
+                                          ),
+                                          entry.expected,
+                                          input,
+                                      ),
+                                  ),
+                              ]),
                     ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
-                combiner: combiner(equals)(importer),
-                joiner: joiner(equals)(importer),
+                combiner: combiner(equals)(project)(importer),
+                joiner: joiner(equals)(project)(importer),
                 success: ts.factory.createTrue(),
                 addition: () => importer.declare(modulo),
             })(importer)(type, name);
@@ -122,13 +148,14 @@ export namespace AssertProgrammer {
 
     const combiner =
         (equals: boolean) =>
+        (project: IProject) =>
         (importer: FunctionImporter): CheckerProgrammer.IConfig.Combiner =>
         (explore: CheckerProgrammer.IExplore) => {
             if (explore.tracable === false)
                 return IsProgrammer.configure({
-                    object: assert_object(equals)(importer),
+                    object: assert_object(equals)(project)(importer),
                     numeric: true,
-                })(importer).combiner(explore);
+                })(project)(importer).combiner(explore);
 
             const path: string = explore.postfix
                 ? `_path + ${explore.postfix}`
@@ -193,40 +220,44 @@ export namespace AssertProgrammer {
             //   })();
         };
 
-    const assert_object = (equals: boolean) => (importer: FunctionImporter) =>
-        check_object({
-            equals,
-            assert: true,
-            undefined: true,
-            reduce: ts.factory.createLogicalAnd,
-            positive: ts.factory.createTrue(),
-            superfluous: (value) =>
-                create_guard_call(importer)()(
-                    ts.factory.createAdd(
-                        ts.factory.createIdentifier("_path"),
-                        ts.factory.createCallExpression(
-                            importer.use("join"),
-                            undefined,
-                            [ts.factory.createIdentifier("key")],
+    const assert_object =
+        (equals: boolean) =>
+        (project: IProject) =>
+        (importer: FunctionImporter) =>
+            check_object({
+                equals,
+                assert: true,
+                undefined: true,
+                reduce: ts.factory.createLogicalAnd,
+                positive: ts.factory.createTrue(),
+                superfluous: (value) =>
+                    create_guard_call(importer)()(
+                        ts.factory.createAdd(
+                            ts.factory.createIdentifier("_path"),
+                            ts.factory.createCallExpression(
+                                importer.use("join"),
+                                undefined,
+                                [ts.factory.createIdentifier("key")],
+                            ),
                         ),
+                        "undefined",
+                        value,
                     ),
-                    "undefined",
-                    value,
-                ),
-            halt: (expr) =>
-                ts.factory.createLogicalOr(
-                    ts.factory.createStrictEquality(
-                        ts.factory.createFalse(),
-                        ts.factory.createIdentifier("_exceptionable"),
+                halt: (expr) =>
+                    ts.factory.createLogicalOr(
+                        ts.factory.createStrictEquality(
+                            ts.factory.createFalse(),
+                            ts.factory.createIdentifier("_exceptionable"),
+                        ),
+                        expr,
                     ),
-                    expr,
-                ),
-        })(importer);
+            })(project)(importer);
 
     const joiner =
         (equals: boolean) =>
+        (project: IProject) =>
         (importer: FunctionImporter): CheckerProgrammer.IConfig.IJoiner => ({
-            object: assert_object(equals)(importer),
+            object: assert_object(equals)(project)(importer),
             array: (input, arrow) =>
                 ts.factory.createCallExpression(
                     IdentifierFactory.access(input)("every"),

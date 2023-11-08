@@ -1,12 +1,13 @@
 import ts from "typescript";
 
+import { ExpressionFactory } from "../../factories/ExpressionFactory";
 import { IdentifierFactory } from "../../factories/IdentifierFactory";
 import { StatementFactory } from "../../factories/StatementFactory";
 import { TypeFactory } from "../../factories/TypeFactory";
 
-import { IMetadataTag } from "../../metadata/IMetadataTag";
-import { MetadataArray } from "../../metadata/MetadataArray";
-import { MetadataTuple } from "../../metadata/MetadataTuple";
+import { MetadataArray } from "../../schemas/metadata/MetadataArray";
+import { MetadataArrayType } from "../../schemas/metadata/MetadataArrayType";
+import { MetadataTuple } from "../../schemas/metadata/MetadataTuple";
 
 import { CheckerProgrammer } from "../CheckerProgrammer";
 import { FeatureProgrammer } from "../FeatureProgrammer";
@@ -25,8 +26,6 @@ export const check_union_array_like =
         input: ts.Expression,
         origins: Origin[],
         explore: FeatureProgrammer.IExplore,
-        tags: IMetadataTag[],
-        jsDocTags: ts.JSDocTagInfo[],
     ): ts.ArrowFunction => {
         // ONLY ONE TYPE
         const targets: Array<Category> = origins.map(accessor.transform);
@@ -37,13 +36,7 @@ export const check_union_array_like =
                 parameters,
                 undefined,
                 undefined,
-                props.decoder(
-                    accessor.array(input),
-                    targets[0]!,
-                    explore,
-                    tags,
-                    jsDocTags,
-                ),
+                props.decoder(accessor.array(input), targets[0]!, explore),
             );
 
         const array = ts.factory.createIdentifier("array");
@@ -57,64 +50,63 @@ export const check_union_array_like =
             (t) => t instanceof MetadataArray,
         ) as MetadataArray[];
 
-        const predicate = (meta: Category): ts.ArrayLiteralExpression =>
-            ts.factory.createArrayLiteralExpression(
-                [
-                    ts.factory.createArrowFunction(
-                        undefined,
-                        undefined,
-                        [
-                            IdentifierFactory.parameter(
-                                "top",
-                                meta instanceof MetadataArray
-                                    ? TypeFactory.keyword("any")
-                                    : ts.factory.createTypeReferenceNode(
-                                          "any[]",
-                                      ),
+        const predicate = (meta: Category): ts.Expression =>
+            ts.factory.createAsExpression(
+                ts.factory.createArrayLiteralExpression(
+                    [
+                        ts.factory.createArrowFunction(
+                            undefined,
+                            undefined,
+                            [
+                                IdentifierFactory.parameter(
+                                    "top",
+                                    meta instanceof MetadataArrayType
+                                        ? TypeFactory.keyword("any")
+                                        : ts.factory.createTypeReferenceNode(
+                                              "any[]",
+                                          ),
+                                ),
+                            ],
+                            TypeFactory.keyword("any"),
+                            undefined,
+                            props.checker(
+                                ts.factory.createIdentifier("top"),
+                                accessor.element(meta),
+                                {
+                                    ...explore,
+                                    tracable: false,
+                                    postfix:
+                                        meta instanceof MetadataArrayType
+                                            ? `"[0]"`
+                                            : "",
+                                },
+                                array,
                             ),
-                        ],
-                        TypeFactory.keyword("any"),
-                        undefined,
-                        props.checker(
-                            ts.factory.createIdentifier("top"),
-                            accessor.element(meta),
-                            {
-                                ...explore,
-                                tracable: false,
-                                postfix:
-                                    meta instanceof MetadataArray
-                                        ? `"[0]"`
-                                        : "",
-                            },
-                            tags,
-                            jsDocTags,
-                            array,
                         ),
-                    ),
-                    ts.factory.createArrowFunction(
-                        undefined,
-                        undefined,
-                        [
-                            IdentifierFactory.parameter(
-                                "entire",
-                                ts.factory.createTypeReferenceNode("any[]"),
+                        ts.factory.createArrowFunction(
+                            undefined,
+                            undefined,
+                            [
+                                IdentifierFactory.parameter(
+                                    "entire",
+                                    ts.factory.createTypeReferenceNode("any[]"),
+                                ),
+                            ],
+                            TypeFactory.keyword("any"),
+                            undefined,
+                            props.decoder(
+                                ts.factory.createIdentifier("entire"),
+                                meta,
+                                {
+                                    ...explore,
+                                    tracable: true,
+                                },
                             ),
-                        ],
-                        TypeFactory.keyword("any"),
-                        undefined,
-                        props.decoder(
-                            ts.factory.createIdentifier("entire"),
-                            meta,
-                            {
-                                ...explore,
-                                tracable: true,
-                            },
-                            tags,
-                            jsDocTags,
                         ),
-                    ),
-                ],
-                true,
+                    ],
+                    true,
+                ),
+                ts.factory.createTypeReferenceNode("const"),
             );
         const iterate =
             (init: string) =>
@@ -168,7 +160,7 @@ export const check_union_array_like =
                 StatementFactory.constant("top", accessor.front(input)),
                 ts.factory.createIfStatement(
                     ts.factory.createStrictEquality(
-                        ts.factory.createNumericLiteral(0),
+                        ExpressionFactory.number(0),
                         accessor.size(input),
                     ),
                     ts.isReturnStatement(props.empty)
@@ -207,19 +199,24 @@ export const check_union_array_like =
                 ),
                 ts.factory.createIfStatement(
                     ts.factory.createStrictEquality(
-                        ts.factory.createNumericLiteral(1),
+                        ExpressionFactory.number(1),
                         ts.factory.createIdentifier("passed.length"),
                     ),
                     ts.factory.createReturnStatement(
                         ts.factory.createCallExpression(
-                            ts.factory.createIdentifier(`passed[0][1]`),
+                            ts.factory.createElementAccessExpression(
+                                ts.factory.createNonNullExpression(
+                                    ts.factory.createIdentifier("passed[0]"),
+                                ),
+                                1,
+                            ),
                             undefined,
                             [array],
                         ),
                     ),
                     ts.factory.createIfStatement(
                         ts.factory.createLessThan(
-                            ts.factory.createNumericLiteral(1),
+                            ExpressionFactory.number(1),
                             ts.factory.createIdentifier("passed.length"),
                         ),
                         iterate("pred")(ts.factory.createIdentifier("passed"))(
@@ -300,8 +297,6 @@ export namespace check_union_array_like {
             front: ts.Expression,
             target: Element,
             explore: FeatureProgrammer.IExplore,
-            tags: IMetadataTag[],
-            jsDocTags: ts.JSDocTagInfo[],
             container: ts.Expression,
         ): ts.Expression;
         decoder: UnionExplorer.Decoder<Category>;

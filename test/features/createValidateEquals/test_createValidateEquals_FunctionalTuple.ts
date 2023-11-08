@@ -4,6 +4,6 @@ import { FunctionalTuple } from "../../structures/FunctionalTuple";
 
 export const test_createValidateEquals_FunctionalTuple = _test_validateEquals(
     "FunctionalTuple",
-    FunctionalTuple.generate,
+)<FunctionalTuple>(FunctionalTuple)(
     typia.createValidateEquals<FunctionalTuple>(),
 );

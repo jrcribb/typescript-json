@@ -4,7 +4,7 @@ import { FunctionalObjectUnion } from "../../../structures/FunctionalObjectUnion
 
 export const test_createIs_FunctionalObjectUnion = _test_is(
     "FunctionalObjectUnion",
-    FunctionalObjectUnion.generate,
+)<FunctionalObjectUnion>(FunctionalObjectUnion)(
     (input: any): input is FunctionalObjectUnion => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.x &&
@@ -38,9 +38,9 @@ export const test_createIs_FunctionalObjectUnion = _test_is(
         const $iu0 = (input: any): any =>
             (() => {
                 if (undefined !== input.x) return $io0(input);
-                if (undefined !== input.p1) return $io1(input);
-                if (undefined !== input.area) return $io3(input);
-                return $io2(input);
+                else if (undefined !== input.p1) return $io1(input);
+                else if (undefined !== input.area) return $io3(input);
+                else return $io2(input);
             })();
         return (
             Array.isArray(input) &&
@@ -50,5 +50,4 @@ export const test_createIs_FunctionalObjectUnion = _test_is(
             )
         );
     },
-    FunctionalObjectUnion.SPOILERS,
 );

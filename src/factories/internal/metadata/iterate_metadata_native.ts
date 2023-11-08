@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
+import { Metadata } from "../../../schemas/metadata/Metadata";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
@@ -18,12 +18,6 @@ export const iterate_metadata_native =
         const simple = SIMPLES.get(name);
         if (simple && validator(simple)) {
             ArrayUtil.set(meta.natives, name, (str) => str);
-            return true;
-        }
-
-        const complicate = COMPLICATES.get(name);
-        if (complicate && validator(complicate)) {
-            ArrayUtil.set(meta.natives, complicate.name ?? name, (str) => str);
             return true;
         }
 
@@ -189,9 +183,6 @@ const SIMPLES: Map<string, IClassInfo> = new Map([
             })),
         },
     ],
-]);
-const COMPLICATES: Map<string, IClassInfo> = new Map([
-    [`'buffer'.global.Buffer`, getBinaryProps("Buffer")],
 ]);
 const GENERICS: Array<IClassInfo & { name: string }> = [
     "WeakMap",

@@ -4,6 +4,6 @@ import { ToJsonAtomicSimple } from "../../structures/ToJsonAtomicSimple";
 
 export const test_createAssert_ToJsonAtomicSimple = _test_assert(
     "ToJsonAtomicSimple",
-    ToJsonAtomicSimple.generate,
+)<ToJsonAtomicSimple>(ToJsonAtomicSimple)(
     typia.createAssert<ToJsonAtomicSimple>(),
 );

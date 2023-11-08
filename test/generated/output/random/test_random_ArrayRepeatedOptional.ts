@@ -4,10 +4,11 @@ import { ArrayRepeatedOptional } from "../../../structures/ArrayRepeatedOptional
 
 export const test_random_ArrayRepeatedOptional = _test_random(
     "ArrayRepeatedOptional",
-    () =>
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ArrayRepeatedOptional> => {
+        ): typia.Resolved<ArrayRepeatedOptional> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ra0 = (
@@ -58,11 +59,9 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                     (generator?.number ?? $generator.number)(0, 100),
                 () => $ra0(generator?.length ?? $generator.length, true, 0),
             ])();
-        })(),
-    (input: any): typia.Primitive<ArrayRepeatedOptional> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayRepeatedOptional> => {
+        })((ArrayRepeatedOptional as any).RANDOM),
+    assert: (input: any): ArrayRepeatedOptional => {
+        const __is = (input: any): input is ArrayRepeatedOptional => {
             const $ia0 = (input: any): any =>
                 input.every(
                     (elem: any) =>
@@ -86,7 +85,7 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRepeatedOptional> => {
+            ): input is ArrayRepeatedOptional => {
                 const $guard = (typia.createAssert as any).guard;
                 const $aa0 = (
                     input: any,
@@ -99,7 +98,7 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                        "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                                     value: elem,
                                 })) &&
                             (undefined === elem ||
@@ -110,7 +109,7 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                                     $guard(_exceptionable, {
                                         path: _path + "[" + _index1 + "]",
                                         expected:
-                                            "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                            "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                                         value: elem,
                                     })) &&
                                     ($aa0(
@@ -121,13 +120,13 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                                         $guard(_exceptionable, {
                                             path: _path + "[" + _index1 + "]",
                                             expected:
-                                                "Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...>",
+                                                "Array<ArrayRepeatedOptional>",
                                             value: elem,
                                         }))) ||
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                        "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                                     value: elem,
                                 })),
                     );
@@ -136,7 +135,7 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                             value: input,
                         })) &&
                     (undefined === input ||
@@ -146,24 +145,23 @@ export const test_random_ArrayRepeatedOptional = _test_random(
                             $guard(true, {
                                 path: _path + "",
                                 expected:
-                                    "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                    "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                                 value: input,
                             })) &&
                             ($aa0(input, _path + "", true && _exceptionable) ||
                                 $guard(_exceptionable, {
                                     path: _path + "",
-                                    expected:
-                                        "Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...>",
+                                    expected: "Array<ArrayRepeatedOptional>",
                                     value: input,
                                 }))) ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | undefined)[] | ...> | number | string | undefined)",
+                                "(Array<ArrayRepeatedOptional> | number | string | undefined)",
                             value: input,
                         }))
                 );
             })(input, "$input", true);
         return input;
     },
-);
+});

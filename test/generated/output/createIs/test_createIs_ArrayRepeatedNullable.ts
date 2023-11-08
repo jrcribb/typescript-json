@@ -4,7 +4,7 @@ import { ArrayRepeatedNullable } from "../../../structures/ArrayRepeatedNullable
 
 export const test_createIs_ArrayRepeatedNullable = _test_is(
     "ArrayRepeatedNullable",
-    ArrayRepeatedNullable.generate,
+)<ArrayRepeatedNullable>(ArrayRepeatedNullable)(
     (input: any): input is ArrayRepeatedNullable => {
         const $ia0 = (input: any): any =>
             input.every(
@@ -23,5 +23,4 @@ export const test_createIs_ArrayRepeatedNullable = _test_is(
                 (Array.isArray(input) && ($ia0(input) || false)))
         );
     },
-    ArrayRepeatedNullable.SPOILERS,
 );

@@ -2,9 +2,7 @@ import typia from "../../../../src";
 import { _test_is } from "../../../internal/_test_is";
 import { ArrayAny } from "../../../structures/ArrayAny";
 
-export const test_is_ArrayAny = _test_is(
-    "ArrayAny",
-    ArrayAny.generate,
+export const test_is_ArrayAny = _test_is("ArrayAny")<ArrayAny>(ArrayAny)(
     (input) =>
         ((input: any): input is ArrayAny => {
             const $io0 = (input: any): boolean =>
@@ -29,5 +27,4 @@ export const test_is_ArrayAny = _test_is(
                 Array.isArray(input.union);
             return "object" === typeof input && null !== input && $io0(input);
         })(input),
-    ArrayAny.SPOILERS,
 );

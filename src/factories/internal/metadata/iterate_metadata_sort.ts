@@ -1,5 +1,5 @@
-import { Metadata } from "../../../metadata/Metadata";
-import { MetadataObject } from "../../../metadata/MetadataObject";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataObject } from "../../../schemas/metadata/MetadataObject";
 
 import { MetadataCollection } from "../../MetadataCollection";
 
@@ -27,7 +27,8 @@ const iterate =
         // ITERATE CHILDREN
         for (const map of meta.maps) iterate(visited)(collection)(map.value);
         for (const set of meta.sets) iterate(visited)(collection)(set);
-        if (meta.resolved !== null) iterate(visited)(collection)(meta.resolved);
+        if (meta.escaped !== null)
+            iterate(visited)(collection)(meta.escaped.returns);
         if (meta.rest !== null) iterate(visited)(collection)(meta.rest);
 
         // SORT OBJECTS
@@ -45,9 +46,9 @@ const iterate =
         // SORT ARRAYS AND TUPLES
         if (meta.arrays.length > 1)
             meta.arrays.sort((x, y) =>
-                Metadata.covers(x.value, y.value)
+                Metadata.covers(x.type.value, y.type.value)
                     ? -1
-                    : Metadata.covers(y.value, x.value)
+                    : Metadata.covers(y.type.value, x.type.value)
                     ? 1
                     : 0,
             );

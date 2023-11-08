@@ -4,7 +4,4 @@ import { FunctionalTuple } from "../../structures/FunctionalTuple";
 
 export const test_createValidate_FunctionalTuple = _test_validate(
     "FunctionalTuple",
-    FunctionalTuple.generate,
-    typia.createValidate<FunctionalTuple>(),
-    FunctionalTuple.SPOILERS,
-);
+)<FunctionalTuple>(FunctionalTuple)(typia.createValidate<FunctionalTuple>());

@@ -4,10 +4,11 @@ import { ConstantAtomicWrapper } from "../../../structures/ConstantAtomicWrapper
 
 export const test_random_ConstantAtomicWrapper = _test_random(
     "ConstantAtomicWrapper",
-    () =>
+)<ConstantAtomicWrapper>(ConstantAtomicWrapper)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ConstantAtomicWrapper> => {
+        ): typia.Resolved<ConstantAtomicWrapper> => {
             const $generator = (typia.random as any).generator;
             const $ro0 = (
                 _recursive: boolean = false,
@@ -32,11 +33,9 @@ export const test_random_ConstantAtomicWrapper = _test_random(
                     (generator?.string ?? $generator.string)(),
             });
             return [$ro0(), $ro1(), $ro2()];
-        })(),
-    (input: any): typia.Primitive<ConstantAtomicWrapper> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ConstantAtomicWrapper> => {
+        })((ConstantAtomicWrapper as any).RANDOM),
+    assert: (input: any): ConstantAtomicWrapper => {
+        const __is = (input: any): input is ConstantAtomicWrapper => {
             const $io0 = (input: any): boolean =>
                 "boolean" === typeof input.value;
             const $io1 = (input: any): boolean =>
@@ -62,7 +61,7 @@ export const test_random_ConstantAtomicWrapper = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ConstantAtomicWrapper> => {
+            ): input is ConstantAtomicWrapper => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -166,4 +165,4 @@ export const test_random_ConstantAtomicWrapper = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

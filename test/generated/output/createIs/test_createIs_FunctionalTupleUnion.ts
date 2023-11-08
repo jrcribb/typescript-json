@@ -4,7 +4,7 @@ import { FunctionalTupleUnion } from "../../../structures/FunctionalTupleUnion";
 
 export const test_createIs_FunctionalTupleUnion = _test_is(
     "FunctionalTupleUnion",
-    FunctionalTupleUnion.generate,
+)<FunctionalTupleUnion>(FunctionalTupleUnion)(
     (input: any): input is FunctionalTupleUnion => {
         return (
             Array.isArray(input) &&
@@ -31,5 +31,4 @@ export const test_createIs_FunctionalTupleUnion = _test_is(
                 ("number" === typeof input[3] && Number.isFinite(input[3])))
         );
     },
-    FunctionalTupleUnion.SPOILERS,
 );

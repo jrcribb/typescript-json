@@ -4,7 +4,7 @@ import { FunctionalPropertyUnion } from "../../../structures/FunctionalPropertyU
 
 export const test_createEquals_FunctionalPropertyUnion = _test_equals(
     "FunctionalPropertyUnion",
-    FunctionalPropertyUnion.generate,
+)<FunctionalPropertyUnion>(FunctionalPropertyUnion)(
     (
         input: any,
         _exceptionable: boolean = true,

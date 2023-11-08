@@ -4,9 +4,11 @@ import { ArrayHierarchical } from "../../../structures/ArrayHierarchical";
 
 export const test_createRandom_ArrayHierarchical = _test_random(
     "ArrayHierarchical",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayHierarchical> => {
+)<ArrayHierarchical>(ArrayHierarchical)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ArrayHierarchical as any)
+            .RANDOM,
+    ): typia.Resolved<ArrayHierarchical> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (
             _recursive: boolean = false,
@@ -75,10 +77,8 @@ export const test_createRandom_ArrayHierarchical = _test_random(
         });
         return (generator?.array ?? $generator.array)(() => $ro0());
     },
-    (input: any): typia.Primitive<ArrayHierarchical> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayHierarchical> => {
+    assert: (input: any): ArrayHierarchical => {
+        const __is = (input: any): input is ArrayHierarchical => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
                 Number.isFinite(input.id) &&
@@ -140,7 +140,7 @@ export const test_createRandom_ArrayHierarchical = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayHierarchical> => {
+            ): input is ArrayHierarchical => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -399,4 +399,4 @@ export const test_createRandom_ArrayHierarchical = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

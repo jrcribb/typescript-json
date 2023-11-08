@@ -4,9 +4,11 @@ import { ArrayRecursive } from "../../../structures/ArrayRecursive";
 
 export const test_createRandom_ArrayRecursive = _test_random(
     "ArrayRecursive",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayRecursive> => {
+)<ArrayRecursive>(ArrayRecursive)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ArrayRecursive as any)
+            .RANDOM,
+    ): typia.Resolved<ArrayRecursive> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (_recursive: boolean = true, _depth: number = 0): any => ({
             children:
@@ -41,8 +43,8 @@ export const test_createRandom_ArrayRecursive = _test_random(
         });
         return $ro0();
     },
-    (input: any): typia.Primitive<ArrayRecursive> => {
-        const __is = (input: any): input is typia.Primitive<ArrayRecursive> => {
+    assert: (input: any): ArrayRecursive => {
+        const __is = (input: any): input is ArrayRecursive => {
             const $io0 = (input: any): boolean =>
                 Array.isArray(input.children) &&
                 input.children.every(
@@ -67,7 +69,7 @@ export const test_createRandom_ArrayRecursive = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRecursive> => {
+            ): input is ArrayRecursive => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -181,4 +183,4 @@ export const test_createRandom_ArrayRecursive = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

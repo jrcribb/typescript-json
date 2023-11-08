@@ -4,6 +4,6 @@ import { ObjectUndefined } from "../../structures/ObjectUndefined";
 
 export const test_createValidateEquals_ObjectUndefined = _test_validateEquals(
     "ObjectUndefined",
-    ObjectUndefined.generate,
+)<ObjectUndefined>(ObjectUndefined)(
     typia.createValidateEquals<ObjectUndefined>(),
 );

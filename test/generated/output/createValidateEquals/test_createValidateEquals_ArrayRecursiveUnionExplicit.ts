@@ -5,10 +5,9 @@ import { ArrayRecursiveUnionExplicit } from "../../../structures/ArrayRecursiveU
 export const test_createValidateEquals_ArrayRecursiveUnionExplicit =
     _test_validateEquals(
         "ArrayRecursiveUnionExplicit",
-        ArrayRecursiveUnionExplicit.generate,
+    )<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)(
         (input: any): typia.IValidation<ArrayRecursiveUnionExplicit> => {
             const errors = [] as any[];
-            const $report = (typia.createValidateEquals as any).report(errors);
             const __is = (
                 input: any,
                 _exceptionable: boolean = true,
@@ -178,15 +177,15 @@ export const test_createValidateEquals_ArrayRecursiveUnionExplicit =
                     (() => {
                         if ("directory" === input.type)
                             return $io0(input, true && _exceptionable);
-                        if ("jpg" === input.extension)
+                        else if ("jpg" === input.extension)
                             return $io1(input, true && _exceptionable);
-                        if ("txt" === input.extension)
+                        else if ("txt" === input.extension)
                             return $io2(input, true && _exceptionable);
-                        if ("zip" === input.extension)
+                        else if ("zip" === input.extension)
                             return $io3(input, true && _exceptionable);
-                        if ("lnk" === input.extension)
+                        else if ("lnk" === input.extension)
                             return $io4(input, true && _exceptionable);
-                        return false;
+                        else return false;
                     })();
                 return (
                     Array.isArray(input) &&
@@ -198,7 +197,10 @@ export const test_createValidateEquals_ArrayRecursiveUnionExplicit =
                     )
                 );
             };
-            if (false === __is(input))
+            if (false === __is(input)) {
+                const $report = (typia.createValidateEquals as any).report(
+                    errors,
+                );
                 ((
                     input: any,
                     _path: string,
@@ -646,36 +648,37 @@ export const test_createValidateEquals_ArrayRecursiveUnionExplicit =
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ("jpg" === input.extension)
+                            else if ("jpg" === input.extension)
                                 return $vo1(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ("txt" === input.extension)
+                            else if ("txt" === input.extension)
                                 return $vo2(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ("zip" === input.extension)
+                            else if ("zip" === input.extension)
                                 return $vo3(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            if ("lnk" === input.extension)
+                            else if ("lnk" === input.extension)
                                 return $vo4(
                                     input,
                                     _path,
                                     true && _exceptionable,
                                 );
-                            return $report(_exceptionable, {
-                                path: _path,
-                                expected:
-                                    "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
-                                value: input,
-                            });
+                            else
+                                return $report(_exceptionable, {
+                                    path: _path,
+                                    expected:
+                                        "(ArrayRecursiveUnionExplicit.IDirectory | ArrayRecursiveUnionExplicit.IImageFile | ArrayRecursiveUnionExplicit.ITextFile | ArrayRecursiveUnionExplicit.IZipFile | ArrayRecursiveUnionExplicit.IShortcut)",
+                                    value: input,
+                                });
                         })();
                     return (
                         ((Array.isArray(input) ||
@@ -716,6 +719,7 @@ export const test_createValidateEquals_ArrayRecursiveUnionExplicit =
                         })
                     );
                 })(input, "$input", true);
+            }
             const success = 0 === errors.length;
             return {
                 success,

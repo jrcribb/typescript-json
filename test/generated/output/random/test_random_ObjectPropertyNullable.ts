@@ -4,10 +4,11 @@ import { ObjectPropertyNullable } from "../../../structures/ObjectPropertyNullab
 
 export const test_random_ObjectPropertyNullable = _test_random(
     "ObjectPropertyNullable",
-    () =>
+)<ObjectPropertyNullable>(ObjectPropertyNullable)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectPropertyNullable> => {
+        ): typia.Resolved<ObjectPropertyNullable> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -92,11 +93,9 @@ export const test_random_ObjectPropertyNullable = _test_random(
                 (generator?.array ?? $generator.array)(() => $ro2()),
                 (generator?.array ?? $generator.array)(() => $ro3()),
             ];
-        })(),
-    (input: any): typia.Primitive<ObjectPropertyNullable> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectPropertyNullable> => {
+        })((ObjectPropertyNullable as any).RANDOM),
+    assert: (input: any): ObjectPropertyNullable => {
+        const __is = (input: any): input is ObjectPropertyNullable => {
             const $io0 = (input: any): boolean =>
                 null === input.value || "boolean" === typeof input.value;
             const $io1 = (input: any): boolean =>
@@ -152,7 +151,7 @@ export const test_random_ObjectPropertyNullable = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectPropertyNullable> => {
+            ): input is ObjectPropertyNullable => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -423,4 +422,4 @@ export const test_random_ObjectPropertyNullable = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

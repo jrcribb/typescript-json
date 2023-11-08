@@ -23,40 +23,39 @@ export namespace TypiaSetupWizard {
         // INSTALL TYPESCRIPT COMPILERS
         pack.install({ dev: true, modulo: "ts-patch", version: "latest" });
         pack.install({ dev: true, modulo: "ts-node", version: "latest" });
-        pack.install({
-            dev: true,
-            modulo: "typescript",
-            version: (() => {
-                const version: string = (() => {
-                    try {
-                        return require("ts-patch/package.json")?.version ?? "";
-                    } catch {
-                        return "";
-                    }
-                })();
-                return Number(version.split(".")[0] ?? "") >= 3
-                    ? "latest"
-                    : "4.9.5";
-            })(),
-        });
+        pack.install({ dev: true, modulo: "typescript", version: "5.2.2" });
         args.project ??= (() => {
-            CommandExecutor.run("npx tsc --init");
+            const runner: string =
+                pack.manager === "npm" ? "npx" : pack.manager;
+            CommandExecutor.run(`${runner} tsc --init`);
             return (args.project = "tsconfig.json");
         })();
 
         // SETUP TRANSFORMER
         await pack.save((data) => {
+            // COMPOSE PREPARE COMMAND
             data.scripts ??= {};
             if (
                 typeof data.scripts.prepare === "string" &&
-                data.scripts.prepare.length
+                data.scripts.prepare.trim().length
             ) {
                 if (data.scripts.prepare.indexOf("ts-patch install") === -1)
                     data.scripts.prepare =
                         "ts-patch install && " + data.scripts.prepare;
             } else data.scripts.prepare = "ts-patch install";
+
+            // FOR OLDER VERSIONS
+            if (typeof data.scripts.postinstall === "string") {
+                data.scripts.postinstall = data.scripts.postinstall
+                    .split("&&")
+                    .map((str) => str.trim())
+                    .filter((str) => str.indexOf("ts-patch install") === -1)
+                    .join(" && ");
+                if (data.scripts.postinstall.length === 0)
+                    delete data.scripts.postinstall;
+            }
         });
-        CommandExecutor.run("npm run prepare");
+        CommandExecutor.run(`${pack.manager} run prepare`);
 
         // CONFIGURE TYPIA
         await PluginConfigurator.configure(args);
@@ -79,6 +78,7 @@ export namespace TypiaSetupWizard {
             (message: string) =>
             async <Choice extends string>(
                 choices: Choice[],
+                filter?: (choice: string) => Choice,
             ): Promise<Choice> => {
                 questioned.value = true;
                 return (
@@ -87,10 +87,15 @@ export namespace TypiaSetupWizard {
                         name: name,
                         message: message,
                         choices: choices,
+                        ...(filter
+                            ? {
+                                  filter,
+                              }
+                            : {}),
                     })
                 )[name];
             };
-        const configure = async () => {
+        const configure = async (): Promise<string | null> => {
             const fileList: string[] = await (
                 await fs.promises.readdir(process.cwd())
             )
@@ -110,20 +115,24 @@ export namespace TypiaSetupWizard {
                 );
             if (fileList.length === 0) {
                 if (process.cwd() !== pack.directory)
-                    throw new Error(`Unable to find "tsconfig.json" file.`);
+                    throw new URIError(`Unable to find "tsconfig.json" file.`);
                 return null;
-            } else if (fileList.length === 1) return fileList[0];
+            } else if (fileList.length === 1) return fileList[0]!;
             return select("tsconfig")("TS Config File")(fileList);
         };
 
         // DO CONSTRUCT
         return action(async (options) => {
-            options.manager ??= await select("manager")("Package Manager")([
-                "npm" as const,
-                "pnpm" as const,
-                "yarn" as const,
-            ]);
-            pack.manager = options.manager;
+            pack.manager = options.manager ??= await select("manager")(
+                "Package Manager",
+            )(
+                [
+                    "npm" as const,
+                    "pnpm" as const,
+                    "yarn (berry is not supported)" as "yarn",
+                ],
+                (value) => value.split(" ")[0] as "yarn",
+            );
             options.project ??= await configure();
 
             if (questioned.value) console.log("");

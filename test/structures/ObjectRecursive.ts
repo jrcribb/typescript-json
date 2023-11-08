@@ -3,6 +3,8 @@ import { TestRandomGenerator } from "../helpers/TestRandomGenerator";
 
 export type ObjectRecursive = ObjectRecursive.IDepartment;
 export namespace ObjectRecursive {
+    export const BINARABLE = false;
+
     export interface IDepartment {
         parent: IDepartment | null;
         id: number;
@@ -35,7 +37,7 @@ export namespace ObjectRecursive {
 
     export function trail(): ObjectRecursive {
         const data: ObjectRecursive = ObjectRecursive.generate();
-        SPOILERS[1](data);
+        SPOILERS[1]!(data);
         return data;
     }
 

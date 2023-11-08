@@ -4,6 +4,6 @@ import { ObjectRecursive } from "../../structures/ObjectRecursive";
 
 export const test_createValidateEquals_ObjectRecursive = _test_validateEquals(
     "ObjectRecursive",
-    ObjectRecursive.generate,
+)<ObjectRecursive>(ObjectRecursive)(
     typia.createValidateEquals<ObjectRecursive>(),
 );

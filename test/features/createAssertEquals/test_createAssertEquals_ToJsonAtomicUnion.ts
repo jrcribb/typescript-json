@@ -4,6 +4,6 @@ import { ToJsonAtomicUnion } from "../../structures/ToJsonAtomicUnion";
 
 export const test_createAssertEquals_ToJsonAtomicUnion = _test_assertEquals(
     "ToJsonAtomicUnion",
-    ToJsonAtomicUnion.generate,
+)<ToJsonAtomicUnion>(ToJsonAtomicUnion)(
     typia.createAssertEquals<ToJsonAtomicUnion>(),
 );

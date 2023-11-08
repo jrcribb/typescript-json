@@ -49,13 +49,13 @@
         "$id": "#/components/schemas/IJsonSchema",
         "oneOf": [
           {
-            "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_boolean_doublequote__gt_"
+            "$ref": "#/components/schemas/IJsonSchema.IEnumerationboolean"
           },
           {
-            "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_number_doublequote__gt_"
+            "$ref": "#/components/schemas/IJsonSchema.IEnumerationnumber"
           },
           {
-            "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_string_doublequote__gt_"
+            "$ref": "#/components/schemas/IJsonSchema.IEnumerationstring"
           },
           {
             "$ref": "#/components/schemas/IJsonSchema.IBoolean"
@@ -70,19 +70,16 @@
             "$ref": "#/components/schemas/IJsonSchema.IString"
           },
           {
-            "$recursiveRef": "#/components/schemas/IJsonSchema.IArray"
+            "$ref": "#/components/schemas/IJsonSchema.IArray"
           },
           {
-            "$recursiveRef": "#/components/schemas/IJsonSchema.ITuple"
+            "$ref": "#/components/schemas/IJsonSchema.ITuple"
           },
           {
-            "$recursiveRef": "#/components/schemas/IJsonSchema.IOneOf"
+            "$ref": "#/components/schemas/IJsonSchema.IOneOf"
           },
           {
             "$ref": "#/components/schemas/IJsonSchema.IReference"
-          },
-          {
-            "$ref": "#/components/schemas/IJsonSchema.IRecursiveReference"
           },
           {
             "$ref": "#/components/schemas/IJsonSchema.INullOnly"
@@ -92,8 +89,8 @@
           }
         ]
       },
-      "IJsonSchema.IEnumeration_lt__doublequote_boolean_doublequote__gt_": {
-        "$id": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_boolean_doublequote__gt_",
+      "IJsonSchema.IEnumerationboolean": {
+        "$id": "#/components/schemas/IJsonSchema.IEnumerationboolean",
         "type": "object",
         "properties": {
           "enum": {
@@ -140,14 +137,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -178,429 +167,6 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IMetadataTag": {
-        "$id": "#/components/schemas/IMetadataTag",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IType"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMinimum"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMaximum"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IExclusiveMinimum"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IExclusiveMaximum"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMultipleOf"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IStep"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IFormat"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IPattern"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.ILength"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMinLength"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMaxLength"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IItems"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMinItems"
-          },
-          {
-            "$ref": "#/components/schemas/IMetadataTag.IMaxItems"
-          }
-        ]
-      },
-      "IMetadataTag.IType": {
-        "$id": "#/components/schemas/IMetadataTag.IType",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "type"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "int",
-              "uint"
-            ]
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMinimum": {
-        "$id": "#/components/schemas/IMetadataTag.IMinimum",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "minimum"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMaximum": {
-        "$id": "#/components/schemas/IMetadataTag.IMaximum",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "maximum"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IExclusiveMinimum": {
-        "$id": "#/components/schemas/IMetadataTag.IExclusiveMinimum",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "exclusiveMinimum"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IExclusiveMaximum": {
-        "$id": "#/components/schemas/IMetadataTag.IExclusiveMaximum",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "exclusiveMaximum"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMultipleOf": {
-        "$id": "#/components/schemas/IMetadataTag.IMultipleOf",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "multipleOf"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IStep": {
-        "$id": "#/components/schemas/IMetadataTag.IStep",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "step"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IFormat": {
-        "$id": "#/components/schemas/IMetadataTag.IFormat",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "format"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "uuid",
-              "email",
-              "url",
-              "ipv4",
-              "ipv6",
-              "date",
-              "datetime"
-            ]
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IPattern": {
-        "$id": "#/components/schemas/IMetadataTag.IPattern",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "pattern"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.ILength": {
-        "$id": "#/components/schemas/IMetadataTag.ILength",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "length"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMinLength": {
-        "$id": "#/components/schemas/IMetadataTag.IMinLength",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "minLength"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMaxLength": {
-        "$id": "#/components/schemas/IMetadataTag.IMaxLength",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "maxLength"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IItems": {
-        "$id": "#/components/schemas/IMetadataTag.IItems",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "items"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMinItems": {
-        "$id": "#/components/schemas/IMetadataTag.IMinItems",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "minItems"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IMetadataTag.IMaxItems": {
-        "$id": "#/components/schemas/IMetadataTag.IMaxItems",
-        "type": "object",
-        "properties": {
-          "kind": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "maxItems"
-            ]
-          },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          }
-        },
-        "required": [
-          "kind",
-          "value"
-        ],
-        "x-typia-jsDocTags": []
-      },
       "IJsDocTagInfo": {
         "$id": "#/components/schemas/IJsDocTagInfo",
         "type": "object",
@@ -611,7 +177,7 @@
             "type": "string"
           },
           "text": {
-            "x-typia-required": false,
+            "x-typia-required": true,
             "x-typia-optional": true,
             "type": "array",
             "items": {
@@ -645,8 +211,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IJsonSchema.IEnumeration_lt__doublequote_number_doublequote__gt_": {
-        "$id": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_number_doublequote__gt_",
+      "IJsonSchema.IEnumerationnumber": {
+        "$id": "#/components/schemas/IJsonSchema.IEnumerationnumber",
         "type": "object",
         "properties": {
           "enum": {
@@ -693,14 +259,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -731,8 +289,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IJsonSchema.IEnumeration_lt__doublequote_string_doublequote__gt_": {
-        "$id": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_string_doublequote__gt_",
+      "IJsonSchema.IEnumerationstring": {
+        "$id": "#/components/schemas/IJsonSchema.IEnumerationstring",
         "type": "object",
         "properties": {
           "enum": {
@@ -779,14 +337,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -821,6 +371,14 @@
         "$id": "#/components/schemas/IJsonSchema.IBoolean",
         "type": "object",
         "properties": {
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
+          },
           "default": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -855,14 +413,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -892,55 +442,105 @@
         ],
         "x-typia-jsDocTags": []
       },
+      "IMetadataTypeTag": {
+        "$id": "#/components/schemas/IMetadataTypeTag",
+        "type": "object",
+        "properties": {
+          "target": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "bigint",
+              "boolean",
+              "array"
+            ]
+          },
+          "name": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "kind": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "value": {
+            "x-typia-required": true,
+            "x-typia-optional": false
+          },
+          "validate": {
+            "x-typia-required": false,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "exclusive": {
+            "oneOf": [
+              {
+                "x-typia-required": true,
+                "x-typia-optional": false,
+                "type": "boolean"
+              },
+              {
+                "x-typia-required": true,
+                "x-typia-optional": false,
+                "type": "array",
+                "items": {
+                  "x-typia-required": true,
+                  "x-typia-optional": false,
+                  "type": "string"
+                }
+              }
+            ],
+            "x-typia-required": true,
+            "x-typia-optional": false
+          }
+        },
+        "required": [
+          "target",
+          "name",
+          "kind",
+          "value",
+          "exclusive"
+        ],
+        "x-typia-jsDocTags": []
+      },
       "IJsonSchema.IInteger": {
         "$id": "#/components/schemas/IJsonSchema.IInteger",
         "type": "object",
         "properties": {
           "minimum": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
           },
           "maximum": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
           },
           "exclusiveMinimum": {
             "x-typia-required": false,
@@ -953,27 +553,27 @@
             "type": "boolean"
           },
           "multipleOf": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -1009,14 +609,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1044,7 +636,6 @@
         "required": [
           "type"
         ],
-        "description": "@type int",
         "x-typia-jsDocTags": []
       },
       "IJsonSchema.INumber": {
@@ -1075,6 +666,14 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "number"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -1110,14 +709,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1152,52 +743,34 @@
         "type": "object",
         "properties": {
           "minLength": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "maxLength": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "pattern": {
             "x-typia-required": false,
@@ -1208,6 +781,14 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -1243,14 +824,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1278,67 +851,47 @@
         "required": [
           "type"
         ],
-        "description": "@type uint",
         "x-typia-jsDocTags": []
       },
       "IJsonSchema.IArray": {
         "$id": "#/components/schemas/IJsonSchema.IArray",
-        "$recursiveAnchor": true,
         "type": "object",
         "properties": {
           "items": {
             "$ref": "#/components/schemas/IJsonSchema"
           },
           "minItems": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "maxItems": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "x-typia-tuple": {
-            "$recursiveRef": "#/components/schemas/IJsonSchema.ITuple"
+            "$ref": "#/components/schemas/IJsonSchema.ITuple"
           },
           "type": {
             "x-typia-required": true,
@@ -1369,14 +922,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1405,12 +950,10 @@
           "items",
           "type"
         ],
-        "description": "@type uint",
         "x-typia-jsDocTags": []
       },
       "IJsonSchema.ITuple": {
         "$id": "#/components/schemas/IJsonSchema.ITuple",
-        "$recursiveAnchor": true,
         "type": "object",
         "properties": {
           "items": {
@@ -1421,6 +964,36 @@
               "$ref": "#/components/schemas/IJsonSchema"
             }
           },
+          "minItems": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
+          },
+          "maxItems": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
+          },
           "type": {
             "x-typia-required": true,
             "x-typia-optional": false,
@@ -1450,14 +1023,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1484,13 +1049,13 @@
         },
         "required": [
           "items",
+          "minItems",
           "type"
         ],
         "x-typia-jsDocTags": []
       },
       "IJsonSchema.IOneOf": {
         "$id": "#/components/schemas/IJsonSchema.IOneOf",
-        "$recursiveAnchor": true,
         "type": "object",
         "properties": {
           "oneOf": {
@@ -1515,14 +1080,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -1577,14 +1134,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1614,67 +1163,6 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IJsonSchema.IRecursiveReference": {
-        "$id": "#/components/schemas/IJsonSchema.IRecursiveReference",
-        "type": "object",
-        "properties": {
-          "$recursiveRef": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "deprecated": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
-          "x-typia-jsDocTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IJsDocTagInfo"
-            }
-          },
-          "x-typia-required": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "x-typia-optional": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "x-typia-rest": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "$recursiveRef"
-        ],
-        "x-typia-jsDocTags": []
-      },
       "IJsonSchema.INullOnly": {
         "$id": "#/components/schemas/IJsonSchema.INullOnly",
         "type": "object",
@@ -1701,14 +1189,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -1758,14 +1238,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -1797,15 +1269,16 @@
         "type": "object",
         "properties": {
           "schemas": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_IObject_space__or__space_IAlias_gt_"
+            "$ref": "#/components/schemas/RecordstringIObjectIAlias"
           }
         },
         "x-typia-jsDocTags": []
       },
-      "Record_lt_string_comma__space_IObject_space__or__space_IAlias_gt_": {
-        "$id": "#/components/schemas/Record_lt_string_comma__space_IObject_space__or__space_IAlias_gt_",
+      "RecordstringIObjectIAlias": {
+        "$id": "#/components/schemas/RecordstringIObjectIAlias",
         "type": "object",
         "properties": {},
+        "description": "Construct a type with a set of properties K of type T",
         "x-typia-jsDocTags": [],
         "additionalProperties": {
           "oneOf": [
@@ -1813,46 +1286,43 @@
               "$ref": "#/components/schemas/IJsonComponents.IObject"
             },
             {
-              "$ref": "#/components/schemas/IEnumeration_lt__doublequote_string_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IEnumerationstringIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IEnumeration_lt__doublequote_number_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IEnumerationnumberIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IEnumeration_lt__doublequote_boolean_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IEnumerationbooleanIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IBoolean_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IBooleanIIdentified"
             },
             {
-              "$ref": "#/components/schemas/INumber_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/INumberIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IInteger_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IIntegerIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IString_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IStringIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IArray_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IArrayIIdentified"
             },
             {
-              "$ref": "#/components/schemas/ITuple_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/ITupleIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IOneOf_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IOneOfIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IReferenceIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IRecursiveReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/IUnknownIIdentified"
             },
             {
-              "$ref": "#/components/schemas/IUnknown_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
-            },
-            {
-              "$ref": "#/components/schemas/INullOnly_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_"
+              "$ref": "#/components/schemas/INullOnlyIIdentified"
             }
           ],
           "x-typia-required": true,
@@ -1867,11 +1337,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "$recursiveAnchor": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
           },
           "type": {
             "x-typia-required": true,
@@ -1888,21 +1353,21 @@
             "type": "boolean"
           },
           "properties": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_IJsonSchema_gt_"
+            "$ref": "#/components/schemas/RecordstringIJsonSchema"
           },
           "patternProperties": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_IJsonSchema_gt_"
+            "$ref": "#/components/schemas/RecordstringIJsonSchema"
           },
           "additionalProperties": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_string_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationstring"
               },
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_number_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationnumber"
               },
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_boolean_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationboolean"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IBoolean"
@@ -1917,19 +1382,16 @@
                 "$ref": "#/components/schemas/IJsonSchema.IString"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.IArray"
+                "$ref": "#/components/schemas/IJsonSchema.IArray"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.ITuple"
+                "$ref": "#/components/schemas/IJsonSchema.ITuple"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.IOneOf"
+                "$ref": "#/components/schemas/IJsonSchema.IOneOf"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IReference"
-              },
-              {
-                "$ref": "#/components/schemas/IJsonSchema.IRecursiveReference"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IUnknown"
@@ -1965,18 +1427,18 @@
             }
           },
           "x-typia-patternProperties": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_IJsonSchema_gt_"
+            "$ref": "#/components/schemas/RecordstringIJsonSchema"
           },
           "x-typia-additionalProperties": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_string_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationstring"
               },
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_number_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationnumber"
               },
               {
-                "$ref": "#/components/schemas/IJsonSchema.IEnumeration_lt__doublequote_boolean_doublequote__gt_"
+                "$ref": "#/components/schemas/IJsonSchema.IEnumerationboolean"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IBoolean"
@@ -1991,19 +1453,16 @@
                 "$ref": "#/components/schemas/IJsonSchema.IString"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.IArray"
+                "$ref": "#/components/schemas/IJsonSchema.IArray"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.ITuple"
+                "$ref": "#/components/schemas/IJsonSchema.ITuple"
               },
               {
-                "$recursiveRef": "#/components/schemas/IJsonSchema.IOneOf"
+                "$ref": "#/components/schemas/IJsonSchema.IOneOf"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IReference"
-              },
-              {
-                "$ref": "#/components/schemas/IJsonSchema.IRecursiveReference"
               },
               {
                 "$ref": "#/components/schemas/IJsonSchema.IUnknown"
@@ -2020,20 +1479,20 @@
           "type",
           "properties"
         ],
-        "description": "Only when swagger mode.",
         "x-typia-jsDocTags": []
       },
-      "Record_lt_string_comma__space_IJsonSchema_gt_": {
-        "$id": "#/components/schemas/Record_lt_string_comma__space_IJsonSchema_gt_",
+      "RecordstringIJsonSchema": {
+        "$id": "#/components/schemas/RecordstringIJsonSchema",
         "type": "object",
         "properties": {},
+        "description": "Construct a type with a set of properties K of type T",
         "x-typia-jsDocTags": [],
         "additionalProperties": {
           "$ref": "#/components/schemas/IJsonSchema"
         }
       },
-      "IEnumeration_lt__doublequote_string_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IEnumeration_lt__doublequote_string_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IEnumerationstringIIdentified": {
+        "$id": "#/components/schemas/IEnumerationstringIIdentified",
         "type": "object",
         "properties": {
           "enum": {
@@ -2080,14 +1539,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2128,8 +1579,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IEnumeration_lt__doublequote_number_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IEnumeration_lt__doublequote_number_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IEnumerationnumberIIdentified": {
+        "$id": "#/components/schemas/IEnumerationnumberIIdentified",
         "type": "object",
         "properties": {
           "enum": {
@@ -2176,14 +1627,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2224,8 +1667,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IEnumeration_lt__doublequote_boolean_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IEnumeration_lt__doublequote_boolean_doublequote__gt__space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IEnumerationbooleanIIdentified": {
+        "$id": "#/components/schemas/IEnumerationbooleanIIdentified",
         "type": "object",
         "properties": {
           "enum": {
@@ -2272,14 +1715,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2320,10 +1755,18 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IBoolean_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IBoolean_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IBooleanIIdentified": {
+        "$id": "#/components/schemas/IBooleanIIdentified",
         "type": "object",
         "properties": {
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
+          },
           "default": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2357,14 +1800,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -2405,8 +1840,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "INumber_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/INumber_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "INumberIIdentified": {
+        "$id": "#/components/schemas/INumberIIdentified",
         "type": "object",
         "properties": {
           "minimum": {
@@ -2433,6 +1868,14 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "number"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -2468,14 +1911,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2515,55 +1950,39 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IInteger_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IInteger_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IIntegerIIdentified": {
+        "$id": "#/components/schemas/IIntegerIIdentified",
         "type": "object",
         "properties": {
           "minimum": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
           },
           "maximum": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
           },
           "exclusiveMinimum": {
             "x-typia-required": false,
@@ -2576,27 +1995,27 @@
             "type": "boolean"
           },
           "multipleOf": {
-            "description": "@type int",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "int"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "int",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "integer"
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"int32\">",
+                "kind": "type",
+                "value": "int32",
+                "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
+                "exclusive": true
+              }
+            ]
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -2632,14 +2051,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2679,57 +2090,39 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IString_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IString_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IStringIIdentified": {
+        "$id": "#/components/schemas/IStringIIdentified",
         "type": "object",
         "properties": {
           "minLength": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "maxLength": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "pattern": {
             "x-typia-required": false,
@@ -2740,6 +2133,14 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "default": {
             "x-typia-required": false,
@@ -2775,14 +2176,6 @@
             "x-typia-optional": true,
             "type": "string"
           },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
             "x-typia-optional": true,
@@ -2822,63 +2215,45 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IArray_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IArray_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IArrayIIdentified": {
+        "$id": "#/components/schemas/IArrayIIdentified",
         "type": "object",
         "properties": {
           "items": {
             "$ref": "#/components/schemas/IJsonSchema"
           },
           "minItems": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "maxItems": {
-            "description": "@type uint",
-            "x-typia-metaTags": [
-              {
-                "kind": "type",
-                "value": "uint"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "type",
-                "text": [
-                  {
-                    "text": "uint",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "integer",
-            "minimum": 0
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
           },
           "x-typia-tuple": {
-            "$recursiveRef": "#/components/schemas/IJsonSchema.ITuple"
+            "$ref": "#/components/schemas/IJsonSchema.ITuple"
           },
           "type": {
             "x-typia-required": true,
@@ -2908,14 +2283,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -2957,8 +2324,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ITuple_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/ITuple_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "ITupleIIdentified": {
+        "$id": "#/components/schemas/ITupleIIdentified",
         "type": "object",
         "properties": {
           "items": {
@@ -2969,6 +2336,36 @@
               "$ref": "#/components/schemas/IJsonSchema"
             }
           },
+          "minItems": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
+          },
+          "maxItems": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
+          },
           "type": {
             "x-typia-required": true,
             "x-typia-optional": false,
@@ -2997,14 +2394,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -3042,12 +2431,13 @@
         },
         "required": [
           "items",
+          "minItems",
           "type"
         ],
         "x-typia-jsDocTags": []
       },
-      "IOneOf_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IOneOf_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IOneOfIIdentified": {
+        "$id": "#/components/schemas/IOneOfIIdentified",
         "type": "object",
         "properties": {
           "oneOf": {
@@ -3072,14 +2462,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -3120,8 +2502,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IReferenceIIdentified": {
+        "$id": "#/components/schemas/IReferenceIIdentified",
         "type": "object",
         "properties": {
           "$ref": {
@@ -3143,14 +2525,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -3191,79 +2565,8 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "IRecursiveReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IRecursiveReference_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
-        "type": "object",
-        "properties": {
-          "$recursiveRef": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "deprecated": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
-          },
-          "x-typia-jsDocTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IJsDocTagInfo"
-            }
-          },
-          "x-typia-required": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "x-typia-optional": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "x-typia-rest": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "$id": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "$recursiveAnchor": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "$recursiveRef"
-        ],
-        "x-typia-jsDocTags": []
-      },
-      "IUnknown_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/IUnknown_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "IUnknownIIdentified": {
+        "$id": "#/components/schemas/IUnknownIIdentified",
         "type": "object",
         "properties": {
           "deprecated": {
@@ -3280,14 +2583,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -3325,8 +2620,8 @@
         },
         "x-typia-jsDocTags": []
       },
-      "INullOnly_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_": {
-        "$id": "#/components/schemas/INullOnly_space__and__space__blt__space__dollar_id?:_space_string_space__or__space_undefined;_space__dollar_recursiveAnchor?:_space_boolean_space__or__space_undefined;_space__bgt_",
+      "INullOnlyIIdentified": {
+        "$id": "#/components/schemas/INullOnlyIIdentified",
         "type": "object",
         "properties": {
           "type": {
@@ -3351,14 +2646,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string"
-          },
-          "x-typia-metaTags": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IMetadataTag"
-            }
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,

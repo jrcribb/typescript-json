@@ -4,9 +4,11 @@ import { AtomicAlias } from "../../../structures/AtomicAlias";
 
 export const test_createRandom_AtomicAlias = _test_random(
     "AtomicAlias",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<AtomicAlias> => {
+)<AtomicAlias>(AtomicAlias)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (AtomicAlias as any)
+            .RANDOM,
+    ): typia.Resolved<AtomicAlias> => {
         const $generator = (typia.createRandom as any).generator;
         return [
             (generator?.boolean ?? $generator.boolean)(),
@@ -16,8 +18,8 @@ export const test_createRandom_AtomicAlias = _test_random(
                 (generator?.string ?? $generator.string)(),
         ];
     },
-    (input: any): typia.Primitive<AtomicAlias> => {
-        const __is = (input: any): input is typia.Primitive<AtomicAlias> => {
+    assert: (input: any): AtomicAlias => {
+        const __is = (input: any): input is AtomicAlias => {
             return (
                 Array.isArray(input) &&
                 input.length === 3 &&
@@ -32,7 +34,7 @@ export const test_createRandom_AtomicAlias = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<AtomicAlias> => {
+            ): input is AtomicAlias => {
                 const $guard = (typia.createAssert as any).guard;
                 return (
                     ((Array.isArray(input) ||
@@ -75,4 +77,4 @@ export const test_createRandom_AtomicAlias = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

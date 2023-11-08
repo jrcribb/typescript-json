@@ -4,7 +4,4 @@ import { ObjectInternal } from "../../structures/ObjectInternal";
 
 export const test_createValidate_ObjectInternal = _test_validate(
     "ObjectInternal",
-    ObjectInternal.generate,
-    typia.createValidate<ObjectInternal>(),
-    ObjectInternal.SPOILERS,
-);
+)<ObjectInternal>(ObjectInternal)(typia.createValidate<ObjectInternal>());

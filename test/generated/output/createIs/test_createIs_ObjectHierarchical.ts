@@ -4,7 +4,7 @@ import { ObjectHierarchical } from "../../../structures/ObjectHierarchical";
 
 export const test_createIs_ObjectHierarchical = _test_is(
     "ObjectHierarchical",
-    ObjectHierarchical.generate,
+)<ObjectHierarchical>(ObjectHierarchical)(
     (input: any): input is ObjectHierarchical => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.id &&
@@ -100,5 +100,4 @@ export const test_createIs_ObjectHierarchical = _test_is(
             Number.isFinite((input.created_at as any).zone);
         return "object" === typeof input && null !== input && $io0(input);
     },
-    ObjectHierarchical.SPOILERS,
 );

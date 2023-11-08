@@ -4,10 +4,9 @@ import { TupleOptional } from "../../../structures/TupleOptional";
 
 export const test_createValidate_TupleOptional = _test_validate(
     "TupleOptional",
-    TupleOptional.generate,
+)<TupleOptional>(TupleOptional)(
     (input: any): typia.IValidation<TupleOptional> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is TupleOptional => {
             return (
                 Array.isArray(input) &&
@@ -30,7 +29,8 @@ export const test_createValidate_TupleOptional = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -137,6 +137,7 @@ export const test_createValidate_TupleOptional = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -144,5 +145,4 @@ export const test_createValidate_TupleOptional = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    TupleOptional.SPOILERS,
 );

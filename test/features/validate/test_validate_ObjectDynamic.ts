@@ -4,7 +4,6 @@ import { ObjectDynamic } from "../../structures/ObjectDynamic";
 
 export const test_validate_ObjectDynamic = _test_validate(
     "ObjectDynamic",
-    ObjectDynamic.generate,
-    (input) => typia.validate(input),
-    ObjectDynamic.SPOILERS,
+)<ObjectDynamic>(ObjectDynamic)((input) =>
+    typia.validate<ObjectDynamic>(input),
 );

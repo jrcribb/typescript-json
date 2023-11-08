@@ -4,21 +4,21 @@ import { DynamicConstant } from "../../../structures/DynamicConstant";
 
 export const test_is_DynamicConstant = _test_is(
     "DynamicConstant",
-    DynamicConstant.generate,
-    (input) =>
-        ((
-            input: any,
-        ): input is { a: number; b: number; c: number; d: number } => {
-            const $io0 = (input: any): boolean =>
-                "number" === typeof input.a &&
-                Number.isFinite(input.a) &&
-                "number" === typeof input.b &&
-                Number.isFinite(input.b) &&
-                "number" === typeof input.c &&
-                Number.isFinite(input.c) &&
-                "number" === typeof input.d &&
-                Number.isFinite(input.d);
-            return "object" === typeof input && null !== input && $io0(input);
-        })(input),
-    DynamicConstant.SPOILERS,
+)<DynamicConstant>(DynamicConstant)((input) =>
+    ((input: any): input is DynamicConstant => {
+        return (
+            "object" === typeof input &&
+            null !== input &&
+            "object" === typeof (input as any).value &&
+            null !== (input as any).value &&
+            "number" === typeof ((input as any).value as any).a &&
+            Number.isFinite(((input as any).value as any).a) &&
+            "number" === typeof ((input as any).value as any).b &&
+            Number.isFinite(((input as any).value as any).b) &&
+            "number" === typeof ((input as any).value as any).c &&
+            Number.isFinite(((input as any).value as any).c) &&
+            "number" === typeof ((input as any).value as any).d &&
+            Number.isFinite(((input as any).value as any).d)
+        );
+    })(input),
 );

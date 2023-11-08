@@ -4,15 +4,16 @@ import { ConstantAtomicSimple } from "../../../structures/ConstantAtomicSimple";
 
 export const test_createRandom_ConstantAtomicSimple = _test_random(
     "ConstantAtomicSimple",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ConstantAtomicSimple> => {
+)<ConstantAtomicSimple>(ConstantAtomicSimple)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (
+            ConstantAtomicSimple as any
+        ).RANDOM,
+    ): typia.Resolved<ConstantAtomicSimple> => {
         return [false, true, 2, "three"];
     },
-    (input: any): typia.Primitive<ConstantAtomicSimple> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ConstantAtomicSimple> => {
+    assert: (input: any): ConstantAtomicSimple => {
+        const __is = (input: any): input is ConstantAtomicSimple => {
             return (
                 Array.isArray(input) &&
                 input.length === 4 &&
@@ -27,7 +28,7 @@ export const test_createRandom_ConstantAtomicSimple = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ConstantAtomicSimple> => {
+            ): input is ConstantAtomicSimple => {
                 const $guard = (typia.createAssert as any).guard;
                 return (
                     ((Array.isArray(input) ||
@@ -75,4 +76,4 @@ export const test_createRandom_ConstantAtomicSimple = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

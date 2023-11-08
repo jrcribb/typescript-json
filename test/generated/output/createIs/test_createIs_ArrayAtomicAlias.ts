@@ -4,7 +4,7 @@ import { ArrayAtomicAlias } from "../../../structures/ArrayAtomicAlias";
 
 export const test_createIs_ArrayAtomicAlias = _test_is(
     "ArrayAtomicAlias",
-    ArrayAtomicAlias.generate,
+)<ArrayAtomicAlias>(ArrayAtomicAlias)(
     (input: any): input is ArrayAtomicAlias => {
         return (
             Array.isArray(input) &&
@@ -20,5 +20,4 @@ export const test_createIs_ArrayAtomicAlias = _test_is(
             input[2].every((elem: any) => "string" === typeof elem)
         );
     },
-    ArrayAtomicAlias.SPOILERS,
 );

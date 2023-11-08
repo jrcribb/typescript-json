@@ -4,6 +4,6 @@ import { TemplateConstant } from "../../structures/TemplateConstant";
 
 export const test_createAssertEquals_TemplateConstant = _test_assertEquals(
     "TemplateConstant",
-    TemplateConstant.generate,
+)<TemplateConstant>(TemplateConstant)(
     typia.createAssertEquals<TemplateConstant>(),
 );

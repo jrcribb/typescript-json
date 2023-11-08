@@ -4,10 +4,11 @@ import { ObjectUnionImplicit } from "../../../structures/ObjectUnionImplicit";
 
 export const test_random_ObjectUnionImplicit = _test_random(
     "ObjectUnionImplicit",
-    () =>
+)<ObjectUnionImplicit>(ObjectUnionImplicit)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectUnionImplicit> => {
+        ): typia.Resolved<ObjectUnionImplicit> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -158,13 +159,13 @@ export const test_random_ObjectUnionImplicit = _test_random(
                 _recursive: boolean = false,
                 _depth: number = 0,
             ): any => ({
+                radius:
+                    (generator?.customs ?? $generator.customs)?.number?.([]) ??
+                    (generator?.number ?? $generator.number)(0, 100),
                 centroid: $pick([
                     () => undefined,
                     () => $ro0(_recursive, _recursive ? 1 + _depth : _depth),
                 ])(),
-                radius:
-                    (generator?.customs ?? $generator.customs)?.number?.([]) ??
-                    (generator?.number ?? $generator.number)(0, 100),
                 area: $pick([
                     () => undefined,
                     () => null,
@@ -185,11 +186,9 @@ export const test_random_ObjectUnionImplicit = _test_random(
                     () => $ro6(),
                 ])(),
             );
-        })(),
-    (input: any): typia.Primitive<ObjectUnionImplicit> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectUnionImplicit> => {
+        })((ObjectUnionImplicit as any).RANDOM),
+    assert: (input: any): ObjectUnionImplicit => {
+        const __is = (input: any): input is ObjectUnionImplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
                 Number.isFinite(input.x) &&
@@ -288,12 +287,12 @@ export const test_random_ObjectUnionImplicit = _test_random(
                     ("number" === typeof input.area &&
                         Number.isFinite(input.area)));
             const $io6 = (input: any): boolean =>
+                "number" === typeof input.radius &&
+                Number.isFinite(input.radius) &&
                 (undefined === input.centroid ||
                     ("object" === typeof input.centroid &&
                         null !== input.centroid &&
                         $io0(input.centroid))) &&
-                "number" === typeof input.radius &&
-                Number.isFinite(input.radius) &&
                 (null === input.area ||
                     undefined === input.area ||
                     ("number" === typeof input.area &&
@@ -301,14 +300,15 @@ export const test_random_ObjectUnionImplicit = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.x) return $io0(input);
-                    if (undefined !== input.p4) return $io3(input);
-                    if (undefined !== input.points) return $io4(input);
-                    if (undefined !== input.outer) return $io5(input);
-                    if (undefined !== input.radius) return $io6(input);
-                    return (() => {
-                        if (undefined !== input.p3) return $io2(input);
-                        return $io1(input);
-                    })();
+                    else if (undefined !== input.p4) return $io3(input);
+                    else if (undefined !== input.points) return $io4(input);
+                    else if (undefined !== input.outer) return $io5(input);
+                    else if (undefined !== input.radius) return $io6(input);
+                    else
+                        return (() => {
+                            if (undefined !== input.p3) return $io2(input);
+                            else return $io1(input);
+                        })();
                 })();
             return (
                 Array.isArray(input) &&
@@ -323,7 +323,7 @@ export const test_random_ObjectUnionImplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectUnionImplicit> => {
+            ): input is ObjectUnionImplicit => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -705,6 +705,13 @@ export const test_random_ObjectUnionImplicit = _test_random(
                     _path: string,
                     _exceptionable: boolean = true,
                 ): boolean =>
+                    (("number" === typeof input.radius &&
+                        Number.isFinite(input.radius)) ||
+                        $guard(_exceptionable, {
+                            path: _path + ".radius",
+                            expected: "number",
+                            value: input.radius,
+                        })) &&
                     (undefined === input.centroid ||
                         ((("object" === typeof input.centroid &&
                             null !== input.centroid) ||
@@ -725,13 +732,6 @@ export const test_random_ObjectUnionImplicit = _test_random(
                                 "(ObjectUnionImplicit.IPoint | undefined)",
                             value: input.centroid,
                         })) &&
-                    (("number" === typeof input.radius &&
-                        Number.isFinite(input.radius)) ||
-                        $guard(_exceptionable, {
-                            path: _path + ".radius",
-                            expected: "number",
-                            value: input.radius,
-                        })) &&
                     (null === input.area ||
                         undefined === input.area ||
                         ("number" === typeof input.area &&
@@ -749,23 +749,29 @@ export const test_random_ObjectUnionImplicit = _test_random(
                     (() => {
                         if (undefined !== input.x)
                             return $ao0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p4)
+                        else if (undefined !== input.p4)
                             return $ao3(input, _path, true && _exceptionable);
-                        if (undefined !== input.points)
+                        else if (undefined !== input.points)
                             return $ao4(input, _path, true && _exceptionable);
-                        if (undefined !== input.outer)
+                        else if (undefined !== input.outer)
                             return $ao5(input, _path, true && _exceptionable);
-                        if (undefined !== input.radius)
+                        else if (undefined !== input.radius)
                             return $ao6(input, _path, true && _exceptionable);
-                        return (() => {
-                            if (undefined !== input.p3)
-                                return $ao2(
-                                    input,
-                                    _path,
-                                    true && _exceptionable,
-                                );
-                            return $ao1(input, _path, true && _exceptionable);
-                        })();
+                        else
+                            return (() => {
+                                if (undefined !== input.p3)
+                                    return $ao2(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                                else
+                                    return $ao1(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                            })();
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -804,4 +810,4 @@ export const test_random_ObjectUnionImplicit = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

@@ -4,9 +4,11 @@ import { ObjectDynamic } from "../../../structures/ObjectDynamic";
 
 export const test_createRandom_ObjectDynamic = _test_random(
     "ObjectDynamic",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ObjectDynamic> => {
+)<ObjectDynamic>(ObjectDynamic)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (ObjectDynamic as any)
+            .RANDOM,
+    ): typia.Resolved<ObjectDynamic> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (_recursive: boolean = false, _depth: number = 0): any => {
@@ -36,14 +38,13 @@ export const test_createRandom_ObjectDynamic = _test_random(
         };
         return $ro0();
     },
-    (input: any): typia.Primitive<ObjectDynamic> => {
-        const __is = (input: any): input is typia.Primitive<ObjectDynamic> => {
-            const $join = (typia.createAssert as any).join;
+    assert: (input: any): ObjectDynamic => {
+        const __is = (input: any): input is ObjectDynamic => {
             const $io0 = (input: any): boolean =>
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/(.*)/).test(key))
+                    if (true)
                         return (
                             "string" === typeof value ||
                             ("number" === typeof value &&
@@ -64,7 +65,7 @@ export const test_createRandom_ObjectDynamic = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectDynamic> => {
+            ): input is ObjectDynamic => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -76,7 +77,7 @@ export const test_createRandom_ObjectDynamic = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/(.*)/).test(key))
+                        if (true)
                             return (
                                 "string" === typeof value ||
                                 ("number" === typeof value &&
@@ -109,4 +110,4 @@ export const test_createRandom_ObjectDynamic = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

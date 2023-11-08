@@ -4,6 +4,6 @@ import { TupleHierarchical } from "../../structures/TupleHierarchical";
 
 export const test_createEquals_TupleHierarchical = _test_equals(
     "TupleHierarchical",
-    TupleHierarchical.generate,
+)<TupleHierarchical>(TupleHierarchical)(
     typia.createEquals<TupleHierarchical>(),
 );

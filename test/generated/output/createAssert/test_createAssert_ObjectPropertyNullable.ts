@@ -4,7 +4,7 @@ import { ObjectPropertyNullable } from "../../../structures/ObjectPropertyNullab
 
 export const test_createAssert_ObjectPropertyNullable = _test_assert(
     "ObjectPropertyNullable",
-    ObjectPropertyNullable.generate,
+)<ObjectPropertyNullable>(ObjectPropertyNullable)(
     (input: any): ObjectPropertyNullable => {
         const __is = (input: any): input is ObjectPropertyNullable => {
             const $io0 = (input: any): boolean =>
@@ -333,5 +333,4 @@ export const test_createAssert_ObjectPropertyNullable = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ObjectPropertyNullable.SPOILERS,
 );

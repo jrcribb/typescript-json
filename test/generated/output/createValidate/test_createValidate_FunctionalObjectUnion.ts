@@ -4,10 +4,9 @@ import { FunctionalObjectUnion } from "../../../structures/FunctionalObjectUnion
 
 export const test_createValidate_FunctionalObjectUnion = _test_validate(
     "FunctionalObjectUnion",
-    FunctionalObjectUnion.generate,
+)<FunctionalObjectUnion>(FunctionalObjectUnion)(
     (input: any): typia.IValidation<FunctionalObjectUnion> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is FunctionalObjectUnion => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
@@ -41,9 +40,9 @@ export const test_createValidate_FunctionalObjectUnion = _test_validate(
             const $iu0 = (input: any): any =>
                 (() => {
                     if (undefined !== input.x) return $io0(input);
-                    if (undefined !== input.p1) return $io1(input);
-                    if (undefined !== input.area) return $io3(input);
-                    return $io2(input);
+                    else if (undefined !== input.p1) return $io1(input);
+                    else if (undefined !== input.area) return $io3(input);
+                    else return $io2(input);
                 })();
             return (
                 Array.isArray(input) &&
@@ -53,7 +52,8 @@ export const test_createValidate_FunctionalObjectUnion = _test_validate(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -263,11 +263,11 @@ export const test_createValidate_FunctionalObjectUnion = _test_validate(
                     (() => {
                         if (undefined !== input.x)
                             return $vo0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p1)
+                        else if (undefined !== input.p1)
                             return $vo1(input, _path, true && _exceptionable);
-                        if (undefined !== input.area)
+                        else if (undefined !== input.area)
                             return $vo3(input, _path, true && _exceptionable);
-                        return $vo2(input, _path, true && _exceptionable);
+                        else return $vo2(input, _path, true && _exceptionable);
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -307,6 +307,7 @@ export const test_createValidate_FunctionalObjectUnion = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -314,5 +315,4 @@ export const test_createValidate_FunctionalObjectUnion = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    FunctionalObjectUnion.SPOILERS,
 );

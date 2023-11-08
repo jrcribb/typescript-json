@@ -4,6 +4,4 @@ import { AtomicSimple } from "../../structures/AtomicSimple";
 
 export const test_equals_AtomicSimple = _test_equals(
     "AtomicSimple",
-    AtomicSimple.generate,
-    (input) => typia.equals(input),
-);
+)<AtomicSimple>(AtomicSimple)((input) => typia.equals<AtomicSimple>(input));

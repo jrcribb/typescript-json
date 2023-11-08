@@ -4,6 +4,4 @@ import { ObjectNullable } from "../../structures/ObjectNullable";
 
 export const test_createValidateEquals_ObjectNullable = _test_validateEquals(
     "ObjectNullable",
-    ObjectNullable.generate,
-    typia.createValidateEquals<ObjectNullable>(),
-);
+)<ObjectNullable>(ObjectNullable)(typia.createValidateEquals<ObjectNullable>());

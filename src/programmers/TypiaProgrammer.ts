@@ -20,7 +20,7 @@ export namespace TypiaProgrammer {
         props.output = path.resolve(props.output);
 
         if ((await is_directory(props.input)) === false)
-            throw new Error(
+            throw new URIError(
                 "Error on TypiaGenerator.generate(): input path is not a directory.",
             );
         else if (fs.existsSync(props.output) === false)
@@ -28,7 +28,7 @@ export namespace TypiaProgrammer {
         else if ((await is_directory(props.output)) === false) {
             const parent: string = path.join(props.output, "..");
             if ((await is_directory(parent)) === false)
-                throw new Error(
+                throw new URIError(
                     "Error on TypiaGenerator.generate(): output path is not a directory.",
                 );
             await fs.promises.mkdir(props.output);
@@ -56,6 +56,7 @@ export namespace TypiaProgrammer {
         );
 
         // DO TRANSFORM
+        const diagnostics: ts.Diagnostic[] = [];
         const result: ts.TransformationResult<ts.SourceFile> = ts.transform(
             program
                 .getSourceFiles()
@@ -73,10 +74,43 @@ export namespace TypiaProgrammer {
                             p.transform === "typia/lib/transform" ||
                             p.transform === "../src/transform.ts",
                     ) ?? {},
+                    {
+                        addDiagnostic: (diag) => diagnostics.push(diag),
+                    },
                 ),
             ],
             program.getCompilerOptions(),
         );
+
+        // TRACE ERRORS
+        for (const diag of diagnostics) {
+            const file: string = diag.file
+                ? path.relative(diag.file.fileName, process.cwd())
+                : "(unknown file)";
+            const category: string =
+                diag.category === ts.DiagnosticCategory.Warning
+                    ? "warning"
+                    : diag.category === ts.DiagnosticCategory.Error
+                    ? "error"
+                    : diag.category === ts.DiagnosticCategory.Suggestion
+                    ? "suggestion"
+                    : diag.category === ts.DiagnosticCategory.Message
+                    ? "message"
+                    : "unkown";
+            const [line, pos] = diag.file
+                ? (() => {
+                      const lines: string[] = diag
+                          .file!.text.substring(0, diag.start)
+                          .split("\n");
+                      if (lines.length === 0) return [0, 0];
+                      return [lines.length, lines.at(-1)!.length + 1];
+                  })()
+                : [0, 0];
+            console.error(
+                `${file}:${line}:${pos} - ${category} TS${diag.code}: ${diag.messageText}`,
+            );
+        }
+        if (diagnostics.length) process.exit(-1);
 
         // ARCHIVE TRANSFORMED FILES
         const printer: ts.Printer = ts.createPrinter({
@@ -122,8 +156,14 @@ export namespace TypiaProgrammer {
                 if (stat.isDirectory()) {
                     await gather(props)(container)(next)(path.join(to, file));
                     continue;
-                } else if (file.substring(file.length - 3) === ".ts")
-                    container.push(next);
+                } else if (is_supported_extension(file)) container.push(next);
             }
         };
+
+    const is_supported_extension = (filename: string): boolean => {
+        return (
+            (filename.endsWith(".ts") && !filename.endsWith(".d.ts")) ||
+            (filename.endsWith(".tsx") && !filename.endsWith(".d.tsx"))
+        );
+    };
 }

@@ -4,7 +4,7 @@ import { TupleRestArray } from "../../../structures/TupleRestArray";
 
 export const test_createEquals_TupleRestArray = _test_equals(
     "TupleRestArray",
-    TupleRestArray.generate,
+)<TupleRestArray>(TupleRestArray)(
     (input: any, _exceptionable: boolean = true): input is TupleRestArray => {
         return (
             Array.isArray(input) &&

@@ -4,7 +4,6 @@ import { FunctionalObjectUnion } from "../../structures/FunctionalObjectUnion";
 
 export const test_createIs_FunctionalObjectUnion = _test_is(
     "FunctionalObjectUnion",
-    FunctionalObjectUnion.generate,
+)<FunctionalObjectUnion>(FunctionalObjectUnion)(
     typia.createIs<FunctionalObjectUnion>(),
-    FunctionalObjectUnion.SPOILERS,
 );

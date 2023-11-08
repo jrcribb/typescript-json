@@ -4,7 +4,4 @@ import { ObjectDynamic } from "../../structures/ObjectDynamic";
 
 export const test_assert_ObjectDynamic = _test_assert(
     "ObjectDynamic",
-    ObjectDynamic.generate,
-    (input) => typia.assert(input),
-    ObjectDynamic.SPOILERS,
-);
+)<ObjectDynamic>(ObjectDynamic)((input) => typia.assert<ObjectDynamic>(input));

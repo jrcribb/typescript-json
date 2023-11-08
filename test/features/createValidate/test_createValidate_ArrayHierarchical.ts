@@ -4,7 +4,6 @@ import { ArrayHierarchical } from "../../structures/ArrayHierarchical";
 
 export const test_createValidate_ArrayHierarchical = _test_validate(
     "ArrayHierarchical",
-    ArrayHierarchical.generate,
+)<ArrayHierarchical>(ArrayHierarchical)(
     typia.createValidate<ArrayHierarchical>(),
-    ArrayHierarchical.SPOILERS,
 );

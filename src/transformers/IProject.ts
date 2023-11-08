@@ -8,4 +8,8 @@ export interface IProject {
     checker: ts.TypeChecker;
     printer: ts.Printer;
     options: ITransformOptions;
+    context: ts.TransformationContext;
+    extras: {
+        addDiagnostic: (diag: ts.Diagnostic) => number;
+    };
 }

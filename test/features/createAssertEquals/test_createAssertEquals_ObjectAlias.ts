@@ -4,6 +4,4 @@ import { ObjectAlias } from "../../structures/ObjectAlias";
 
 export const test_createAssertEquals_ObjectAlias = _test_assertEquals(
     "ObjectAlias",
-    ObjectAlias.generate,
-    typia.createAssertEquals<ObjectAlias>(),
-);
+)<ObjectAlias>(ObjectAlias)(typia.createAssertEquals<ObjectAlias>());

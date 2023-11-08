@@ -4,17 +4,15 @@ import { ClassPropertyAssignment } from "../../../structures/ClassPropertyAssign
 
 export const test_is_ClassPropertyAssignment = _test_is(
     "ClassPropertyAssignment",
-    ClassPropertyAssignment.generate,
-    (input) =>
-        ((input: any): input is ClassPropertyAssignment => {
-            const $io0 = (input: any): boolean =>
-                "number" === typeof input.id &&
-                Number.isFinite(input.id) &&
-                "string" === typeof input.name &&
-                "assignment" === input.note &&
-                false === input.editable &&
-                "boolean" === typeof input.incremental;
-            return "object" === typeof input && null !== input && $io0(input);
-        })(input),
-    ClassPropertyAssignment.SPOILERS,
+)<ClassPropertyAssignment>(ClassPropertyAssignment)((input) =>
+    ((input: any): input is ClassPropertyAssignment => {
+        const $io0 = (input: any): boolean =>
+            "number" === typeof input.id &&
+            Number.isFinite(input.id) &&
+            "string" === typeof input.name &&
+            "assignment" === input.note &&
+            false === input.editable &&
+            "boolean" === typeof input.incremental;
+        return "object" === typeof input && null !== input && $io0(input);
+    })(input),
 );

@@ -4,7 +4,7 @@ import { ConstantAtomicWrapper } from "../../../structures/ConstantAtomicWrapper
 
 export const test_createEquals_ConstantAtomicWrapper = _test_equals(
     "ConstantAtomicWrapper",
-    ConstantAtomicWrapper.generate,
+)<ConstantAtomicWrapper>(ConstantAtomicWrapper)(
     (
         input: any,
         _exceptionable: boolean = true,

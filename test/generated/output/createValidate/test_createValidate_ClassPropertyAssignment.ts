@@ -4,10 +4,9 @@ import { ClassPropertyAssignment } from "../../../structures/ClassPropertyAssign
 
 export const test_createValidate_ClassPropertyAssignment = _test_validate(
     "ClassPropertyAssignment",
-    ClassPropertyAssignment.generate,
+)<ClassPropertyAssignment>(ClassPropertyAssignment)(
     (input: any): typia.IValidation<ClassPropertyAssignment> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ClassPropertyAssignment => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.id &&
@@ -18,7 +17,8 @@ export const test_createValidate_ClassPropertyAssignment = _test_validate(
                 "boolean" === typeof input.incremental;
             return "object" === typeof input && null !== input && $io0(input);
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -77,6 +77,7 @@ export const test_createValidate_ClassPropertyAssignment = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -84,5 +85,4 @@ export const test_createValidate_ClassPropertyAssignment = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ClassPropertyAssignment.SPOILERS,
 );

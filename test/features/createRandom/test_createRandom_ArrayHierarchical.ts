@@ -4,6 +4,9 @@ import { ArrayHierarchical } from "../../structures/ArrayHierarchical";
 
 export const test_createRandom_ArrayHierarchical = _test_random(
     "ArrayHierarchical",
-    typia.createRandom<ArrayHierarchical>(),
-    typia.createAssert<typia.Primitive<ArrayHierarchical>>(),
-);
+)<ArrayHierarchical>(ArrayHierarchical)({
+    random: typia.createRandom<ArrayHierarchical>(
+        (ArrayHierarchical as any).RANDOM,
+    ),
+    assert: typia.createAssert<ArrayHierarchical>(),
+});

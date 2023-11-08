@@ -4,6 +4,4 @@ import { ObjectTuple } from "../../structures/ObjectTuple";
 
 export const test_createValidateEquals_ObjectTuple = _test_validateEquals(
     "ObjectTuple",
-    ObjectTuple.generate,
-    typia.createValidateEquals<ObjectTuple>(),
-);
+)<ObjectTuple>(ObjectTuple)(typia.createValidateEquals<ObjectTuple>());

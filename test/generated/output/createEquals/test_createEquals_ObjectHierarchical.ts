@@ -4,7 +4,7 @@ import { ObjectHierarchical } from "../../../structures/ObjectHierarchical";
 
 export const test_createEquals_ObjectHierarchical = _test_equals(
     "ObjectHierarchical",
-    ObjectHierarchical.generate,
+)<ObjectHierarchical>(ObjectHierarchical)(
     (
         input: any,
         _exceptionable: boolean = true,

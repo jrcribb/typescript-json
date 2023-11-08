@@ -4,7 +4,4 @@ import { AtomicClass } from "../../structures/AtomicClass";
 
 export const test_createValidate_AtomicClass = _test_validate(
     "AtomicClass",
-    AtomicClass.generate,
-    typia.createValidate<AtomicClass>(),
-    AtomicClass.SPOILERS,
-);
+)<AtomicClass>(AtomicClass)(typia.createValidate<AtomicClass>());

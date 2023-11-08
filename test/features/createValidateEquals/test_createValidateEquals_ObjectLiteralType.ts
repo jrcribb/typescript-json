@@ -4,6 +4,6 @@ import { ObjectLiteralType } from "../../structures/ObjectLiteralType";
 
 export const test_createValidateEquals_ObjectLiteralType = _test_validateEquals(
     "ObjectLiteralType",
-    ObjectLiteralType.generate,
+)<ObjectLiteralType>(ObjectLiteralType)(
     typia.createValidateEquals<ObjectLiteralType>(),
 );

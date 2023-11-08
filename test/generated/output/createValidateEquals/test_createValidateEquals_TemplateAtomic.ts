@@ -4,10 +4,9 @@ import { TemplateAtomic } from "../../../structures/TemplateAtomic";
 
 export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
     "TemplateAtomic",
-    TemplateAtomic.generate,
+)<TemplateAtomic>(TemplateAtomic)(
     (input: any): typia.IValidation<TemplateAtomic> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -25,12 +24,14 @@ export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
                 "string" === typeof input.middle_string_empty &&
                 RegExp(/^the_(.*)_value$/).test(input.middle_string_empty) &&
                 "string" === typeof input.middle_numeric &&
-                RegExp(/^the_-?\d+\.?\d*_value$/).test(input.middle_numeric) &&
+                RegExp(/^the_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_value$/).test(
+                    input.middle_numeric,
+                ) &&
                 ("the_false_value" === input.middle_boolean ||
                     "the_true_value" === input.middle_boolean) &&
                 "string" === typeof input.ipv4 &&
                 RegExp(
-                    /^-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*$/,
+                    /^[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                 ).test(input.ipv4) &&
                 "string" === typeof input.email &&
                 RegExp(/(.*)@(.*)\.(.*)/).test(input.email) &&
@@ -57,7 +58,8 @@ export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
                 "object" === typeof input && null !== input && $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -103,9 +105,9 @@ export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
                                 value: input.middle_string_empty,
                             }),
                         ("string" === typeof input.middle_numeric &&
-                            RegExp(/^the_-?\d+\.?\d*_value$/).test(
-                                input.middle_numeric,
-                            )) ||
+                            RegExp(
+                                /^the_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?_value$/,
+                            ).test(input.middle_numeric)) ||
                             $report(_exceptionable, {
                                 path: _path + ".middle_numeric",
                                 expected: "`the_${number}_value`",
@@ -121,7 +123,7 @@ export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
                             }),
                         ("string" === typeof input.ipv4 &&
                             RegExp(
-                                /^-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*\.-?\d+\.?\d*$/,
+                                /^[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\.[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                             ).test(input.ipv4)) ||
                             $report(_exceptionable, {
                                 path: _path + ".ipv4",
@@ -178,6 +180,7 @@ export const test_createValidateEquals_TemplateAtomic = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

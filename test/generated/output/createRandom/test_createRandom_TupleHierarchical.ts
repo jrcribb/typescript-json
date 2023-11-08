@@ -4,9 +4,11 @@ import { TupleHierarchical } from "../../../structures/TupleHierarchical";
 
 export const test_createRandom_TupleHierarchical = _test_random(
     "TupleHierarchical",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<TupleHierarchical> => {
+)<TupleHierarchical>(TupleHierarchical)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (TupleHierarchical as any)
+            .RANDOM,
+    ): typia.Resolved<TupleHierarchical> => {
         const $generator = (typia.createRandom as any).generator;
         return [
             (generator?.boolean ?? $generator.boolean)(),
@@ -53,10 +55,8 @@ export const test_createRandom_TupleHierarchical = _test_random(
             ],
         ];
     },
-    (input: any): typia.Primitive<TupleHierarchical> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<TupleHierarchical> => {
+    assert: (input: any): TupleHierarchical => {
+        const __is = (input: any): input is TupleHierarchical => {
             return (
                 Array.isArray(input) &&
                 input.length === 5 &&
@@ -111,7 +111,7 @@ export const test_createRandom_TupleHierarchical = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<TupleHierarchical> => {
+            ): input is TupleHierarchical => {
                 const $guard = (typia.createAssert as any).guard;
                 return (
                     ((Array.isArray(input) ||
@@ -526,4 +526,4 @@ export const test_createRandom_TupleHierarchical = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

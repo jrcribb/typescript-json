@@ -4,7 +4,6 @@ import { ObjectGenericUnion } from "../../structures/ObjectGenericUnion";
 
 export const test_createValidate_ObjectGenericUnion = _test_validate(
     "ObjectGenericUnion",
-    ObjectGenericUnion.generate,
+)<ObjectGenericUnion>(ObjectGenericUnion)(
     typia.createValidate<ObjectGenericUnion>(),
-    ObjectGenericUnion.SPOILERS,
 );

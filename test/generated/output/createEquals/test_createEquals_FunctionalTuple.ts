@@ -4,7 +4,7 @@ import { FunctionalTuple } from "../../../structures/FunctionalTuple";
 
 export const test_createEquals_FunctionalTuple = _test_equals(
     "FunctionalTuple",
-    FunctionalTuple.generate,
+)<FunctionalTuple>(FunctionalTuple)(
     (input: any, _exceptionable: boolean = true): input is FunctionalTuple => {
         return (
             Array.isArray(input) &&

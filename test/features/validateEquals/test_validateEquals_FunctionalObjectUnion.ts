@@ -4,6 +4,6 @@ import { FunctionalObjectUnion } from "../../structures/FunctionalObjectUnion";
 
 export const test_validateEquals_FunctionalObjectUnion = _test_validateEquals(
     "FunctionalObjectUnion",
-    FunctionalObjectUnion.generate,
-    (input) => typia.validateEquals(input),
+)<FunctionalObjectUnion>(FunctionalObjectUnion)((input) =>
+    typia.validateEquals<FunctionalObjectUnion>(input),
 );

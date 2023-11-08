@@ -4,6 +4,4 @@ import { ArrayUnion } from "../../structures/ArrayUnion";
 
 export const test_createValidateEquals_ArrayUnion = _test_validateEquals(
     "ArrayUnion",
-    ArrayUnion.generate,
-    typia.createValidateEquals<ArrayUnion>(),
-);
+)<ArrayUnion>(ArrayUnion)(typia.createValidateEquals<ArrayUnion>());

@@ -1,5 +1,4 @@
-import typia from "typia";
-
+import typia from "../../src";
 import { Spoiler } from "../helpers/Spoiler";
 
 export type ArrayRepeatedRequired = number | string | ArrayRepeatedRequired[];
@@ -34,4 +33,5 @@ export namespace ArrayRepeatedRequired {
     ];
 
     export const ADDABLE: boolean = false;
+    export const BINARABLE = false;
 }

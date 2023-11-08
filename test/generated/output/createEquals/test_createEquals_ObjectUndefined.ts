@@ -4,7 +4,7 @@ import { ObjectUndefined } from "../../../structures/ObjectUndefined";
 
 export const test_createEquals_ObjectUndefined = _test_equals(
     "ObjectUndefined",
-    ObjectUndefined.generate,
+)<ObjectUndefined>(ObjectUndefined)(
     (input: any, _exceptionable: boolean = true): input is ObjectUndefined => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.name &&

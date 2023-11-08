@@ -4,7 +4,6 @@ import { DynamicConstant } from "../../structures/DynamicConstant";
 
 export const test_validate_DynamicConstant = _test_validate(
     "DynamicConstant",
-    DynamicConstant.generate,
-    (input) => typia.validate(input),
-    DynamicConstant.SPOILERS,
+)<DynamicConstant>(DynamicConstant)((input) =>
+    typia.validate<DynamicConstant>(input),
 );

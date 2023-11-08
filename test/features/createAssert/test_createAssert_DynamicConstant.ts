@@ -4,7 +4,4 @@ import { DynamicConstant } from "../../structures/DynamicConstant";
 
 export const test_createAssert_DynamicConstant = _test_assert(
     "DynamicConstant",
-    DynamicConstant.generate,
-    typia.createAssert<DynamicConstant>(),
-    DynamicConstant.SPOILERS,
-);
+)<DynamicConstant>(DynamicConstant)(typia.createAssert<DynamicConstant>());

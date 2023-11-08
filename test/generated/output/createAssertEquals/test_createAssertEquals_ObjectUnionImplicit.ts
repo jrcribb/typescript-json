@@ -4,7 +4,7 @@ import { ObjectUnionImplicit } from "../../../structures/ObjectUnionImplicit";
 
 export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)(
     (input: any): ObjectUnionImplicit => {
         const __is = (
             input: any,
@@ -209,12 +209,12 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                 input: any,
                 _exceptionable: boolean = true,
             ): boolean =>
+                "number" === typeof input.radius &&
+                Number.isFinite(input.radius) &&
                 (undefined === input.centroid ||
                     ("object" === typeof input.centroid &&
                         null !== input.centroid &&
                         $io0(input.centroid, true && _exceptionable))) &&
-                "number" === typeof input.radius &&
-                Number.isFinite(input.radius) &&
                 (null === input.area ||
                     undefined === input.area ||
                     ("number" === typeof input.area &&
@@ -222,7 +222,7 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                 (1 === Object.keys(input).length ||
                     Object.keys(input).every((key: any) => {
                         if (
-                            ["centroid", "radius", "area"].some(
+                            ["radius", "centroid", "area"].some(
                                 (prop: any) => key === prop,
                             )
                         )
@@ -235,19 +235,20 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                 (() => {
                     if (undefined !== input.x)
                         return $io0(input, true && _exceptionable);
-                    if (undefined !== input.p4)
+                    else if (undefined !== input.p4)
                         return $io3(input, true && _exceptionable);
-                    if (undefined !== input.points)
+                    else if (undefined !== input.points)
                         return $io4(input, true && _exceptionable);
-                    if (undefined !== input.outer)
+                    else if (undefined !== input.outer)
                         return $io5(input, true && _exceptionable);
-                    if (undefined !== input.radius)
+                    else if (undefined !== input.radius)
                         return $io6(input, true && _exceptionable);
-                    return (() => {
-                        if (undefined !== input.p3)
-                            return $io2(input, true && _exceptionable);
-                        return $io1(input, true && _exceptionable);
-                    })();
+                    else
+                        return (() => {
+                            if (undefined !== input.p3)
+                                return $io2(input, true && _exceptionable);
+                            else return $io1(input, true && _exceptionable);
+                        })();
                 })();
             return (
                 Array.isArray(input) &&
@@ -760,6 +761,13 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                     _path: string,
                     _exceptionable: boolean = true,
                 ): boolean =>
+                    (("number" === typeof input.radius &&
+                        Number.isFinite(input.radius)) ||
+                        $guard(_exceptionable, {
+                            path: _path + ".radius",
+                            expected: "number",
+                            value: input.radius,
+                        })) &&
                     (undefined === input.centroid ||
                         ((("object" === typeof input.centroid &&
                             null !== input.centroid) ||
@@ -780,13 +788,6 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                                 "(ObjectUnionImplicit.IPoint | undefined)",
                             value: input.centroid,
                         })) &&
-                    (("number" === typeof input.radius &&
-                        Number.isFinite(input.radius)) ||
-                        $guard(_exceptionable, {
-                            path: _path + ".radius",
-                            expected: "number",
-                            value: input.radius,
-                        })) &&
                     (null === input.area ||
                         undefined === input.area ||
                         ("number" === typeof input.area &&
@@ -800,7 +801,7 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                         false === _exceptionable ||
                         Object.keys(input).every((key: any) => {
                             if (
-                                ["centroid", "radius", "area"].some(
+                                ["radius", "centroid", "area"].some(
                                     (prop: any) => key === prop,
                                 )
                             )
@@ -821,23 +822,29 @@ export const test_createAssertEquals_ObjectUnionImplicit = _test_assertEquals(
                     (() => {
                         if (undefined !== input.x)
                             return $ao0(input, _path, true && _exceptionable);
-                        if (undefined !== input.p4)
+                        else if (undefined !== input.p4)
                             return $ao3(input, _path, true && _exceptionable);
-                        if (undefined !== input.points)
+                        else if (undefined !== input.points)
                             return $ao4(input, _path, true && _exceptionable);
-                        if (undefined !== input.outer)
+                        else if (undefined !== input.outer)
                             return $ao5(input, _path, true && _exceptionable);
-                        if (undefined !== input.radius)
+                        else if (undefined !== input.radius)
                             return $ao6(input, _path, true && _exceptionable);
-                        return (() => {
-                            if (undefined !== input.p3)
-                                return $ao2(
-                                    input,
-                                    _path,
-                                    true && _exceptionable,
-                                );
-                            return $ao1(input, _path, true && _exceptionable);
-                        })();
+                        else
+                            return (() => {
+                                if (undefined !== input.p3)
+                                    return $ao2(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                                else
+                                    return $ao1(
+                                        input,
+                                        _path,
+                                        true && _exceptionable,
+                                    );
+                            })();
                     })();
                 return (
                     ((Array.isArray(input) ||

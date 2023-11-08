@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
+import { Metadata } from "../../../schemas/metadata/Metadata";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
@@ -13,7 +13,12 @@ export const iterate_metadata_set =
     (checker: ts.TypeChecker) =>
     (options: MetadataFactory.IOptions) =>
     (collection: MetadataCollection) =>
-    (meta: Metadata, type: ts.Type): boolean => {
+    (errors: MetadataFactory.IError[]) =>
+    (
+        meta: Metadata,
+        type: ts.Type,
+        explore: MetadataFactory.IExplore,
+    ): boolean => {
         type = checker.getApparentType(type);
 
         const name = TypeFactory.getFullName(checker)(type, type.getSymbol());
@@ -26,7 +31,11 @@ export const iterate_metadata_set =
         const key: ts.Type = generic[0]!;
         ArrayUtil.set(
             meta.sets,
-            explore_metadata(checker)(options)(collection)(key, false),
+            explore_metadata(checker)(options)(collection)(errors)(key, {
+                ...explore,
+                escaped: false,
+                aliased: false,
+            }),
             (elem) => elem.getName(),
         );
         return true;

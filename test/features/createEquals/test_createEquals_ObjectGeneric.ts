@@ -4,6 +4,4 @@ import { ObjectGeneric } from "../../structures/ObjectGeneric";
 
 export const test_createEquals_ObjectGeneric = _test_equals(
     "ObjectGeneric",
-    ObjectGeneric.generate,
-    typia.createEquals<ObjectGeneric>(),
-);
+)<ObjectGeneric>(ObjectGeneric)(typia.createEquals<ObjectGeneric>());

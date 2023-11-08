@@ -1,25 +1,48 @@
 import ts from "typescript";
 
-import { IMetadataTag } from "../../metadata/IMetadataTag";
+import { ExpressionFactory } from "../../factories/ExpressionFactory";
 
-import { FunctionImporter } from "../helpers/FunctionImporeter";
-import { check_custom } from "./check_custom";
-import { check_string_tags } from "./check_string_tags";
+import { MetadataAtomic } from "../../schemas/metadata/MetadataAtomic";
+
+import { IProject } from "../../transformers/IProject";
+
+import { ICheckEntry } from "../helpers/ICheckEntry";
 
 /**
  * @internal
  */
 export const check_string =
-    (importer: FunctionImporter) =>
-    (metaTags: IMetadataTag[]) =>
-    (jsDocTags: ts.JSDocTagInfo[]) =>
-    (input: ts.Expression) => ({
-        expression: ts.factory.createStrictEquality(
-            ts.factory.createStringLiteral("string"),
-            ts.factory.createTypeOfExpression(input),
-        ),
-        tags: [
-            ...check_string_tags(importer)(metaTags)(input),
-            ...check_custom("string")(importer)(jsDocTags)(input),
-        ],
-    });
+    (project: IProject) =>
+    (atomic: MetadataAtomic) =>
+    (input: ts.Expression): ICheckEntry => {
+        const conditions: ICheckEntry.ICondition[][] =
+            check_string_type_tags(project)(atomic)(input);
+
+        return {
+            expected: atomic.getName(),
+            expression: ts.factory.createStrictEquality(
+                ts.factory.createStringLiteral("string"),
+                ts.factory.createTypeOfExpression(input),
+            ),
+            conditions,
+        };
+    };
+
+/**
+ * @internal
+ */
+const check_string_type_tags =
+    (project: IProject) =>
+    (atomic: MetadataAtomic) =>
+    (input: ts.Expression): ICheckEntry.ICondition[][] =>
+        atomic.tags
+            .map((row) => row.filter((tag) => !!tag.validate))
+            .filter((row) => !!row.length)
+            .map((row) =>
+                row.map((tag) => ({
+                    expected: `string & ${tag.name}`,
+                    expression: ExpressionFactory.transpile(project.context)(
+                        tag.validate!,
+                    )(input),
+                })),
+            );

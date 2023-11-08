@@ -4,7 +4,4 @@ import { UltimateUnion } from "../../structures/UltimateUnion";
 
 export const test_createIs_UltimateUnion = _test_is(
     "UltimateUnion",
-    UltimateUnion.generate,
-    typia.createIs<UltimateUnion>(),
-    UltimateUnion.SPOILERS,
-);
+)<UltimateUnion>(UltimateUnion)(typia.createIs<UltimateUnion>());

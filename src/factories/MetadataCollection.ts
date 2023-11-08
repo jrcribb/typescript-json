@@ -1,11 +1,11 @@
 import ts from "typescript";
 
-import { IMetadataCollection } from "../metadata/IMetadataCollection";
-import { Metadata } from "../metadata/Metadata";
-import { MetadataAlias } from "../metadata/MetadataAlias";
-import { MetadataArray } from "../metadata/MetadataArray";
-import { MetadataObject } from "../metadata/MetadataObject";
-import { MetadataTuple } from "../metadata/MetadataTuple";
+import { IMetadataCollection } from "../schemas/metadata/IMetadataCollection";
+import { Metadata } from "../schemas/metadata/Metadata";
+import { MetadataAlias } from "../schemas/metadata/MetadataAlias";
+import { MetadataArrayType } from "../schemas/metadata/MetadataArrayType";
+import { MetadataObject } from "../schemas/metadata/MetadataObject";
+import { MetadataTupleType } from "../schemas/metadata/MetadataTupleType";
 
 import { Writable } from "../typings/Writable";
 
@@ -18,8 +18,8 @@ export class MetadataCollection {
     private readonly objects_: Map<ts.Type, MetadataObject>;
     private readonly object_unions_: Map<string, MetadataObject[]>;
     private readonly aliases_: Map<ts.Type, MetadataAlias>;
-    private readonly arrays_: Map<ts.Type, MetadataArray>;
-    private readonly tuples_: Map<ts.Type, MetadataTuple>;
+    private readonly arrays_: Map<ts.Type, MetadataArrayType>;
+    private readonly tuples_: Map<ts.Type, MetadataTupleType>;
 
     private readonly names_: Map<string, Map<ts.Type, string>>;
     private object_index_: number;
@@ -56,11 +56,11 @@ export class MetadataCollection {
         return [...this.object_unions_.values()];
     }
 
-    public arrays(): MetadataArray[] {
+    public arrays(): MetadataArrayType[] {
         return [...this.arrays_.values()];
     }
 
-    public tuples(): MetadataTuple[] {
+    public tuples(): MetadataTupleType[] {
         return [...this.tuples_.values()];
     }
 
@@ -103,14 +103,28 @@ export class MetadataCollection {
         const oldbie = this.objects_.get(type);
         if (oldbie !== undefined) return [oldbie, false];
 
+        // const displays = type.symbol.getDocumentationComment(checker);
+        // const tags = type.symbol.getJsDocTags(checker);
+
+        // console.log(
+        //     ts.displayPartsToString(displays),
+        //     tags.map((tag) => tag.name),
+        //     tags.map((tag) => ts.displayPartsToString(tag.text)),
+        // );
+
         const $id: string = this.getName(checker, type);
         const obj: MetadataObject = MetadataObject.create({
             name: $id,
             properties: [],
             description:
+                (type.aliasSymbol &&
+                    CommentFactory.description(type.aliasSymbol)) ??
                 (type.symbol && CommentFactory.description(type.symbol)) ??
                 undefined,
-            jsDocTags: type.symbol?.getJsDocTags() ?? [],
+            jsDocTags:
+                type.aliasSymbol?.getJsDocTags() ??
+                type.symbol?.getJsDocTags() ??
+                [],
             validated: false,
             index: this.object_index_++,
             recursive: null!,
@@ -144,12 +158,12 @@ export class MetadataCollection {
     public emplaceArray(
         checker: ts.TypeChecker,
         type: ts.Type,
-    ): [MetadataArray, boolean, (meta: Metadata) => void] {
+    ): [MetadataArrayType, boolean, (meta: Metadata) => void] {
         const oldbie = this.arrays_.get(type);
         if (oldbie !== undefined) return [oldbie, false, () => {}];
 
         const $id = this.getName(checker, type);
-        const array: MetadataArray = MetadataArray.create({
+        const array: MetadataArrayType = MetadataArrayType.create({
             name: $id,
             value: null!,
             index: null,
@@ -163,12 +177,12 @@ export class MetadataCollection {
     public emplaceTuple(
         checker: ts.TypeChecker,
         type: ts.TupleType,
-    ): [MetadataTuple, boolean, (elements: Metadata[]) => void] {
+    ): [MetadataTupleType, boolean, (elements: Metadata[]) => void] {
         const oldbie = this.tuples_.get(type);
         if (oldbie !== undefined) return [oldbie, false, () => {}];
 
         const $id = this.getName(checker, type);
-        const tuple: MetadataTuple = MetadataTuple.create({
+        const tuple: MetadataTupleType = MetadataTupleType.create({
             name: $id,
             elements: null!,
             index: null,
@@ -200,12 +214,18 @@ export class MetadataCollection {
     /**
      * @internal
      */
-    public setArrayRecursive(array: MetadataArray, recursive: boolean): void {
+    public setArrayRecursive(
+        array: MetadataArrayType,
+        recursive: boolean,
+    ): void {
         Writable(array).recursive = recursive;
         if (recursive) Writable(array).index = this.recursive_array_index_++;
     }
 
-    public setTupleRecursive(tuple: MetadataTuple, recursive: boolean): void {
+    public setTupleRecursive(
+        tuple: MetadataTupleType,
+        recursive: boolean,
+    ): void {
         Writable(tuple).recursive = recursive;
         if (recursive) Writable(tuple).index = this.recursive_tuple_index_++;
     }
@@ -225,6 +245,11 @@ export namespace MetadataCollection {
     }
 
     export const replace = (str: string): string => {
+        let replaced: string = str;
+        for (const [before] of REPLACERS)
+            replaced = replaced.split(before).join("");
+        if (replaced.length !== 0) return replaced;
+
         for (const [before, after] of REPLACERS)
             str = str.split(before).join(after);
         return str;
@@ -251,4 +276,7 @@ const REPLACERS: [string, string][] = [
     ["'", "_singlequote_"],
     ['"', "_doublequote_"],
     [" ", "_space_"],
+    ["?", "_question_"],
+    [":", "_colon_"],
+    [";", "_semicolon_"],
 ];

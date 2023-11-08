@@ -4,7 +4,4 @@ import { ArrayMatrix } from "../../structures/ArrayMatrix";
 
 export const test_createAssert_ArrayMatrix = _test_assert(
     "ArrayMatrix",
-    ArrayMatrix.generate,
-    typia.createAssert<ArrayMatrix>(),
-    ArrayMatrix.SPOILERS,
-);
+)<ArrayMatrix>(ArrayMatrix)(typia.createAssert<ArrayMatrix>());

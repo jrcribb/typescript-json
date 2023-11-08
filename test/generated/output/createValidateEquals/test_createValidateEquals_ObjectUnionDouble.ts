@@ -4,10 +4,9 @@ import { ObjectUnionDouble } from "../../../structures/ObjectUnionDouble";
 
 export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
     "ObjectUnionDouble",
-    ObjectUnionDouble.generate,
+)<ObjectUnionDouble>(ObjectUnionDouble)(
     (input: any): typia.IValidation<ObjectUnionDouble> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -200,25 +199,25 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                 (() => {
                     if ($io6(input, false && _exceptionable))
                         return $io6(input, true && _exceptionable);
-                    if ($io0(input, false && _exceptionable))
+                    else if ($io0(input, false && _exceptionable))
                         return $io0(input, true && _exceptionable);
-                    return false;
+                    else return false;
                 })();
             const $iu1 = (input: any, _exceptionable: boolean = true): any =>
                 (() => {
                     if ($io4(input, false && _exceptionable))
                         return $io4(input, true && _exceptionable);
-                    if ($io2(input, false && _exceptionable))
+                    else if ($io2(input, false && _exceptionable))
                         return $io2(input, true && _exceptionable);
-                    return false;
+                    else return false;
                 })();
             const $iu2 = (input: any, _exceptionable: boolean = true): any =>
                 (() => {
                     if ($io10(input, false && _exceptionable))
                         return $io10(input, true && _exceptionable);
-                    if ($io8(input, false && _exceptionable))
+                    else if ($io8(input, false && _exceptionable))
                         return $io8(input, true && _exceptionable);
-                    return false;
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -230,7 +229,8 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                 )
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -728,14 +728,15 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                     (() => {
                         if ($vo6(input, _path, false && _exceptionable))
                             return $vo6(input, _path, true && _exceptionable);
-                        if ($vo0(input, _path, false && _exceptionable))
+                        else if ($vo0(input, _path, false && _exceptionable))
                             return $vo0(input, _path, true && _exceptionable);
-                        return $report(_exceptionable, {
-                            path: _path,
-                            expected:
-                                "(ObjectUnionDouble.IB | ObjectUnionDouble.IA)",
-                            value: input,
-                        });
+                        else
+                            return $report(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    "(ObjectUnionDouble.IB | ObjectUnionDouble.IA)",
+                                value: input,
+                            });
                     })();
                 const $vu1 = (
                     input: any,
@@ -745,14 +746,15 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                     (() => {
                         if ($vo4(input, _path, false && _exceptionable))
                             return $vo4(input, _path, true && _exceptionable);
-                        if ($vo2(input, _path, false && _exceptionable))
+                        else if ($vo2(input, _path, false && _exceptionable))
                             return $vo2(input, _path, true && _exceptionable);
-                        return $report(_exceptionable, {
-                            path: _path,
-                            expected:
-                                "(ObjectUnionDouble.IAB | ObjectUnionDouble.IAA)",
-                            value: input,
-                        });
+                        else
+                            return $report(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    "(ObjectUnionDouble.IAB | ObjectUnionDouble.IAA)",
+                                value: input,
+                            });
                     })();
                 const $vu2 = (
                     input: any,
@@ -762,14 +764,15 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                     (() => {
                         if ($vo10(input, _path, false && _exceptionable))
                             return $vo10(input, _path, true && _exceptionable);
-                        if ($vo8(input, _path, false && _exceptionable))
+                        else if ($vo8(input, _path, false && _exceptionable))
                             return $vo8(input, _path, true && _exceptionable);
-                        return $report(_exceptionable, {
-                            path: _path,
-                            expected:
-                                "(ObjectUnionDouble.IBB | ObjectUnionDouble.IBA)",
-                            value: input,
-                        });
+                        else
+                            return $report(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    "(ObjectUnionDouble.IBB | ObjectUnionDouble.IBA)",
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -809,6 +812,7 @@ export const test_createValidateEquals_ObjectUnionDouble = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

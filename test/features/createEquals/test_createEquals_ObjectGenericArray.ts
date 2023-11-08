@@ -4,6 +4,6 @@ import { ObjectGenericArray } from "../../structures/ObjectGenericArray";
 
 export const test_createEquals_ObjectGenericArray = _test_equals(
     "ObjectGenericArray",
-    ObjectGenericArray.generate,
+)<ObjectGenericArray>(ObjectGenericArray)(
     typia.createEquals<ObjectGenericArray>(),
 );

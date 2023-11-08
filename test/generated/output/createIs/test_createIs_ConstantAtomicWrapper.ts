@@ -4,7 +4,7 @@ import { ConstantAtomicWrapper } from "../../../structures/ConstantAtomicWrapper
 
 export const test_createIs_ConstantAtomicWrapper = _test_is(
     "ConstantAtomicWrapper",
-    ConstantAtomicWrapper.generate,
+)<ConstantAtomicWrapper>(ConstantAtomicWrapper)(
     (input: any): input is ConstantAtomicWrapper => {
         const $io0 = (input: any): boolean => "boolean" === typeof input.value;
         const $io1 = (input: any): boolean =>
@@ -24,5 +24,4 @@ export const test_createIs_ConstantAtomicWrapper = _test_is(
             $io2(input[2])
         );
     },
-    ConstantAtomicWrapper.SPOILERS,
 );

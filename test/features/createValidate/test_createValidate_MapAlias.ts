@@ -4,7 +4,4 @@ import { MapAlias } from "../../structures/MapAlias";
 
 export const test_createValidate_MapAlias = _test_validate(
     "MapAlias",
-    MapAlias.generate,
-    typia.createValidate<MapAlias>(),
-    MapAlias.SPOILERS,
-);
+)<MapAlias>(MapAlias)(typia.createValidate<MapAlias>());

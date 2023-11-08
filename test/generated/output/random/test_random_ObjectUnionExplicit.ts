@@ -4,10 +4,11 @@ import { ObjectUnionExplicit } from "../../../structures/ObjectUnionExplicit";
 
 export const test_random_ObjectUnionExplicit = _test_random(
     "ObjectUnionExplicit",
-    () =>
+)<ObjectUnionExplicit>(ObjectUnionExplicit)({
+    random: () =>
         ((
             generator?: Partial<typia.IRandomGenerator>,
-        ): typia.Primitive<ObjectUnionExplicit> => {
+        ): typia.Resolved<ObjectUnionExplicit> => {
             const $generator = (typia.random as any).generator;
             const $pick = (typia.random as any).pick;
             const $ro0 = (
@@ -108,11 +109,9 @@ export const test_random_ObjectUnionExplicit = _test_random(
                     () => $ro8(),
                 ])(),
             );
-        })(),
-    (input: any): typia.Primitive<ObjectUnionExplicit> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ObjectUnionExplicit> => {
+        })((ObjectUnionExplicit as any).RANDOM),
+    assert: (input: any): ObjectUnionExplicit => {
+        const __is = (input: any): input is ObjectUnionExplicit => {
             const $io0 = (input: any): boolean =>
                 "number" === typeof input.x &&
                 Number.isFinite(input.x) &&
@@ -220,13 +219,13 @@ export const test_random_ObjectUnionExplicit = _test_random(
             const $iu0 = (input: any): any =>
                 (() => {
                     if ("point" === input.type) return $io0(input);
-                    if ("line" === input.type) return $io1(input);
-                    if ("triangle" === input.type) return $io3(input);
-                    if ("rectangle" === input.type) return $io4(input);
-                    if ("polyline" === input.type) return $io5(input);
-                    if ("polygon" === input.type) return $io6(input);
-                    if ("circle" === input.type) return $io8(input);
-                    return false;
+                    else if ("line" === input.type) return $io1(input);
+                    else if ("triangle" === input.type) return $io3(input);
+                    else if ("rectangle" === input.type) return $io4(input);
+                    else if ("polyline" === input.type) return $io5(input);
+                    else if ("polygon" === input.type) return $io6(input);
+                    else if ("circle" === input.type) return $io8(input);
+                    else return false;
                 })();
             return (
                 Array.isArray(input) &&
@@ -241,7 +240,7 @@ export const test_random_ObjectUnionExplicit = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ObjectUnionExplicit> => {
+            ): input is ObjectUnionExplicit => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ao0 = (
                     input: any,
@@ -644,24 +643,25 @@ export const test_random_ObjectUnionExplicit = _test_random(
                     (() => {
                         if ("point" === input.type)
                             return $ao0(input, _path, true && _exceptionable);
-                        if ("line" === input.type)
+                        else if ("line" === input.type)
                             return $ao1(input, _path, true && _exceptionable);
-                        if ("triangle" === input.type)
+                        else if ("triangle" === input.type)
                             return $ao3(input, _path, true && _exceptionable);
-                        if ("rectangle" === input.type)
+                        else if ("rectangle" === input.type)
                             return $ao4(input, _path, true && _exceptionable);
-                        if ("polyline" === input.type)
+                        else if ("polyline" === input.type)
                             return $ao5(input, _path, true && _exceptionable);
-                        if ("polygon" === input.type)
+                        else if ("polygon" === input.type)
                             return $ao6(input, _path, true && _exceptionable);
-                        if ("circle" === input.type)
+                        else if ("circle" === input.type)
                             return $ao8(input, _path, true && _exceptionable);
-                        return $guard(_exceptionable, {
-                            path: _path,
-                            expected:
-                                '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
-                            value: input,
-                        });
+                        else
+                            return $guard(_exceptionable, {
+                                path: _path,
+                                expected:
+                                    '(ObjectUnionExplicit.Discriminator<"point", ObjectUnionExplicit.IPoint> | ObjectUnionExplicit.Discriminator<"line", ObjectUnionExplicit.ILine> | ObjectUnionExplicit.Discriminator<"triangle", ObjectUnionExplicit.ITriangle> | ObjectUnionExplicit.Discriminator<"rectangle", ObjectUnionExplicit.IRectangle> | ObjectUnionExplicit.Discriminator<"polyline", ObjectUnionExplicit.IPolyline> | ObjectUnionExplicit.Discriminator<"polygon", ObjectUnionExplicit.IPolygon> | ObjectUnionExplicit.Discriminator<"circle", ObjectUnionExplicit.ICircle>)',
+                                value: input,
+                            });
                     })();
                 return (
                     ((Array.isArray(input) ||
@@ -700,4 +700,4 @@ export const test_random_ObjectUnionExplicit = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

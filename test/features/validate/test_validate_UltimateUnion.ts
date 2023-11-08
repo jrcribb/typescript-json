@@ -4,7 +4,6 @@ import { UltimateUnion } from "../../structures/UltimateUnion";
 
 export const test_validate_UltimateUnion = _test_validate(
     "UltimateUnion",
-    UltimateUnion.generate,
-    (input) => typia.validate(input),
-    UltimateUnion.SPOILERS,
+)<UltimateUnion>(UltimateUnion)((input) =>
+    typia.validate<UltimateUnion>(input),
 );

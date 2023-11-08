@@ -4,7 +4,6 @@ import { ArrayRepeatedOptional } from "../../structures/ArrayRepeatedOptional";
 
 export const test_createIs_ArrayRepeatedOptional = _test_is(
     "ArrayRepeatedOptional",
-    ArrayRepeatedOptional.generate,
+)<ArrayRepeatedOptional>(ArrayRepeatedOptional)(
     typia.createIs<ArrayRepeatedOptional>(),
-    ArrayRepeatedOptional.SPOILERS,
 );

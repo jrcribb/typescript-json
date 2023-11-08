@@ -4,7 +4,6 @@ import { ObjectHierarchical } from "../../structures/ObjectHierarchical";
 
 export const test_is_ObjectHierarchical = _test_is(
     "ObjectHierarchical",
-    ObjectHierarchical.generate,
-    (input) => typia.is(input),
-    ObjectHierarchical.SPOILERS,
+)<ObjectHierarchical>(ObjectHierarchical)((input) =>
+    typia.is<ObjectHierarchical>(input),
 );

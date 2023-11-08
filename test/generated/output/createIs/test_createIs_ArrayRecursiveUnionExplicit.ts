@@ -4,7 +4,7 @@ import { ArrayRecursiveUnionExplicit } from "../../../structures/ArrayRecursiveU
 
 export const test_createIs_ArrayRecursiveUnionExplicit = _test_is(
     "ArrayRecursiveUnionExplicit",
-    ArrayRecursiveUnionExplicit.generate,
+)<ArrayRecursiveUnionExplicit>(ArrayRecursiveUnionExplicit)(
     (input: any): input is ArrayRecursiveUnionExplicit => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.id &&
@@ -65,11 +65,11 @@ export const test_createIs_ArrayRecursiveUnionExplicit = _test_is(
         const $iu0 = (input: any): any =>
             (() => {
                 if ("directory" === input.type) return $io0(input);
-                if ("jpg" === input.extension) return $io1(input);
-                if ("txt" === input.extension) return $io2(input);
-                if ("zip" === input.extension) return $io3(input);
-                if ("lnk" === input.extension) return $io4(input);
-                return false;
+                else if ("jpg" === input.extension) return $io1(input);
+                else if ("txt" === input.extension) return $io2(input);
+                else if ("zip" === input.extension) return $io3(input);
+                else if ("lnk" === input.extension) return $io4(input);
+                else return false;
             })();
         return (
             Array.isArray(input) &&
@@ -79,5 +79,4 @@ export const test_createIs_ArrayRecursiveUnionExplicit = _test_is(
             )
         );
     },
-    ArrayRecursiveUnionExplicit.SPOILERS,
 );

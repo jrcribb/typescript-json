@@ -4,7 +4,7 @@ import { ArrayRepeatedRequired } from "../../../structures/ArrayRepeatedRequired
 
 export const test_createIs_ArrayRepeatedRequired = _test_is(
     "ArrayRepeatedRequired",
-    ArrayRepeatedRequired.generate,
+)<ArrayRepeatedRequired>(ArrayRepeatedRequired)(
     (input: any): input is ArrayRepeatedRequired => {
         const $ia0 = (input: any): any =>
             input.every(
@@ -23,5 +23,4 @@ export const test_createIs_ArrayRepeatedRequired = _test_is(
                 (Array.isArray(input) && ($ia0(input) || false)))
         );
     },
-    ArrayRepeatedRequired.SPOILERS,
 );

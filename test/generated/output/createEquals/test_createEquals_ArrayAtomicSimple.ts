@@ -4,7 +4,7 @@ import { ArrayAtomicSimple } from "../../../structures/ArrayAtomicSimple";
 
 export const test_createEquals_ArrayAtomicSimple = _test_equals(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(
     (
         input: any,
         _exceptionable: boolean = true,

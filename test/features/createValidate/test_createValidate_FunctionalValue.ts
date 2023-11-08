@@ -4,6 +4,4 @@ import { FunctionalValue } from "../../structures/FunctionalValue";
 
 export const test_createValidate_FunctionalValue = _test_validate(
     "FunctionalValue",
-    FunctionalValue.generate,
-    typia.createValidate<FunctionalValue>(),
-);
+)<FunctionalValue>(FunctionalValue)(typia.createValidate<FunctionalValue>());

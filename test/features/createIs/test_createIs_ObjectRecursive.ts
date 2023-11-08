@@ -4,7 +4,4 @@ import { ObjectRecursive } from "../../structures/ObjectRecursive";
 
 export const test_createIs_ObjectRecursive = _test_is(
     "ObjectRecursive",
-    ObjectRecursive.generate,
-    typia.createIs<ObjectRecursive>(),
-    ObjectRecursive.SPOILERS,
-);
+)<ObjectRecursive>(ObjectRecursive)(typia.createIs<ObjectRecursive>());

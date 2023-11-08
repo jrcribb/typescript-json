@@ -4,9 +4,11 @@ import { DynamicTree } from "../../../structures/DynamicTree";
 
 export const test_createRandom_DynamicTree = _test_random(
     "DynamicTree",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<DynamicTree> => {
+)<DynamicTree>(DynamicTree)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (DynamicTree as any)
+            .RANDOM,
+    ): typia.Resolved<DynamicTree> => {
         const $generator = (typia.createRandom as any).generator;
         const $ro0 = (_recursive: boolean = true, _depth: number = 0): any => ({
             id:
@@ -35,9 +37,8 @@ export const test_createRandom_DynamicTree = _test_random(
         };
         return $ro0();
     },
-    (input: any): typia.Primitive<DynamicTree> => {
-        const __is = (input: any): input is typia.Primitive<DynamicTree> => {
-            const $join = (typia.createAssert as any).join;
+    assert: (input: any): DynamicTree => {
+        const __is = (input: any): input is DynamicTree => {
             const $io0 = (input: any): boolean =>
                 "string" === typeof input.id &&
                 "number" === typeof input.sequence &&
@@ -50,7 +51,7 @@ export const test_createRandom_DynamicTree = _test_random(
                 Object.keys(input).every((key: any) => {
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/(.*)/).test(key))
+                    if (true)
                         return (
                             "object" === typeof value &&
                             null !== value &&
@@ -65,7 +66,7 @@ export const test_createRandom_DynamicTree = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<DynamicTree> => {
+            ): input is DynamicTree => {
                 const $guard = (typia.createAssert as any).guard;
                 const $join = (typia.createAssert as any).join;
                 const $ao0 = (
@@ -113,7 +114,7 @@ export const test_createRandom_DynamicTree = _test_random(
                     Object.keys(input).every((key: any) => {
                         const value = input[key];
                         if (undefined === value) return true;
-                        if (RegExp(/(.*)/).test(key))
+                        if (true)
                             return (
                                 ((("object" === typeof value &&
                                     null !== value) ||
@@ -152,4 +153,4 @@ export const test_createRandom_DynamicTree = _test_random(
             })(input, "$input", true);
         return input;
     },
-);
+});

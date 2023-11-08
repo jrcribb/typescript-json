@@ -4,6 +4,8 @@ import { ObjectIntersection } from "../../structures/ObjectIntersection";
 
 export const test_random_ObjectIntersection = _test_random(
     "ObjectIntersection",
-    () => typia.random<ObjectIntersection>(),
-    typia.createAssert<typia.Primitive<ObjectIntersection>>(),
-);
+)<ObjectIntersection>(ObjectIntersection)({
+    random: () =>
+        typia.random<ObjectIntersection>((ObjectIntersection as any).RANDOM),
+    assert: typia.createAssert<ObjectIntersection>(),
+});

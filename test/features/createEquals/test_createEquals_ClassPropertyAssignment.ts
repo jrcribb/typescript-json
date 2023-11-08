@@ -4,6 +4,6 @@ import { ClassPropertyAssignment } from "../../structures/ClassPropertyAssignmen
 
 export const test_createEquals_ClassPropertyAssignment = _test_equals(
     "ClassPropertyAssignment",
-    ClassPropertyAssignment.generate,
+)<ClassPropertyAssignment>(ClassPropertyAssignment)(
     typia.createEquals<ClassPropertyAssignment>(),
 );

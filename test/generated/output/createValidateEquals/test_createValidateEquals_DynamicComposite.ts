@@ -4,10 +4,9 @@ import { DynamicComposite } from "../../../structures/DynamicComposite";
 
 export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
     "DynamicComposite",
-    DynamicComposite.generate,
+)<DynamicComposite>(DynamicComposite)(
     (input: any): typia.IValidation<DynamicComposite> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -24,22 +23,41 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                         return true;
                     const value = input[key];
                     if (undefined === value) return true;
-                    if (RegExp(/^-?\d+\.?\d*$/).test(key))
+                    if (
+                        "number" === typeof Number(key) &&
+                        Number.isFinite(Number(key))
+                    )
                         return (
                             "number" === typeof value && Number.isFinite(value)
                         );
-                    if (RegExp(/^(prefix_(.*))/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/^prefix_(.*)/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/((.*)_postfix)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(/(.*)_postfix$/).test(key)
+                    )
                         return "string" === typeof value;
-                    if (RegExp(/^(value_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return (
                             "string" === typeof value ||
                             ("number" === typeof value &&
                                 Number.isFinite(value)) ||
                             "boolean" === typeof value
                         );
-                    if (RegExp(/^(between_(.*)_and_-?\d+\.?\d*)$/).test(key))
+                    if (
+                        "string" === typeof key &&
+                        RegExp(
+                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                        ).test(key)
+                    )
                         return "boolean" === typeof value;
                     return false;
                 });
@@ -47,7 +65,8 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                 "object" === typeof input && null !== input && $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -83,7 +102,10 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                                         return true;
                                     const value = input[key];
                                     if (undefined === value) return true;
-                                    if (RegExp(/^-?\d+\.?\d*$/).test(key))
+                                    if (
+                                        "number" === typeof Number(key) &&
+                                        Number.isFinite(Number(key))
+                                    )
                                         return (
                                             ("number" === typeof value &&
                                                 Number.isFinite(value)) ||
@@ -93,16 +115,10 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                                                 value: value,
                                             })
                                         );
-                                    if (RegExp(/^(prefix_(.*))/).test(key))
-                                        return (
-                                            "string" === typeof value ||
-                                            $report(_exceptionable, {
-                                                path: _path + $join(key),
-                                                expected: "string",
-                                                value: value,
-                                            })
-                                        );
-                                    if (RegExp(/((.*)_postfix)$/).test(key))
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(/^prefix_(.*)/).test(key)
+                                    )
                                         return (
                                             "string" === typeof value ||
                                             $report(_exceptionable, {
@@ -112,9 +128,22 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                                             })
                                         );
                                     if (
-                                        RegExp(/^(value_-?\d+\.?\d*)$/).test(
-                                            key,
-                                        )
+                                        "string" === typeof key &&
+                                        RegExp(/(.*)_postfix$/).test(key)
+                                    )
+                                        return (
+                                            "string" === typeof value ||
+                                            $report(_exceptionable, {
+                                                path: _path + $join(key),
+                                                expected: "string",
+                                                value: value,
+                                            })
+                                        );
+                                    if (
+                                        "string" === typeof key &&
+                                        RegExp(
+                                            /^value_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
+                                        ).test(key)
                                     )
                                         return (
                                             "string" === typeof value ||
@@ -129,8 +158,9 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                                             })
                                         );
                                     if (
+                                        "string" === typeof key &&
                                         RegExp(
-                                            /^(between_(.*)_and_-?\d+\.?\d*)$/,
+                                            /^between_(.*)_and_[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/,
                                         ).test(key)
                                     )
                                         return (
@@ -164,6 +194,7 @@ export const test_createValidateEquals_DynamicComposite = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

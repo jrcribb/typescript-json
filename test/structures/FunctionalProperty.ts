@@ -5,8 +5,10 @@ export interface FunctionalProperty {
     closure: (value: number) => boolean;
 }
 export namespace FunctionalProperty {
-    export const PRIMITIVE = false;
+    export const BINARABLE = false;
     export const JSONABLE = false;
+    export const PRIMITIVE = false;
+    export const RESOLVABLE = false;
 
     export function generate(): FunctionalProperty {
         return {

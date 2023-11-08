@@ -4,6 +4,9 @@ import { ObjectGenericUnion } from "../../structures/ObjectGenericUnion";
 
 export const test_createRandom_ObjectGenericUnion = _test_random(
     "ObjectGenericUnion",
-    typia.createRandom<ObjectGenericUnion>(),
-    typia.createAssert<typia.Primitive<ObjectGenericUnion>>(),
-);
+)<ObjectGenericUnion>(ObjectGenericUnion)({
+    random: typia.createRandom<ObjectGenericUnion>(
+        (ObjectGenericUnion as any).RANDOM,
+    ),
+    assert: typia.createAssert<ObjectGenericUnion>(),
+});

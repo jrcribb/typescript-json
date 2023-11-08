@@ -4,6 +4,4 @@ import { ObjectSimple } from "../../structures/ObjectSimple";
 
 export const test_createEquals_ObjectSimple = _test_equals(
     "ObjectSimple",
-    ObjectSimple.generate,
-    typia.createEquals<ObjectSimple>(),
-);
+)<ObjectSimple>(ObjectSimple)(typia.createEquals<ObjectSimple>());

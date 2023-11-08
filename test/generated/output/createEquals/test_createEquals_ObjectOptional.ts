@@ -4,7 +4,7 @@ import { ObjectOptional } from "../../../structures/ObjectOptional";
 
 export const test_createEquals_ObjectOptional = _test_equals(
     "ObjectOptional",
-    ObjectOptional.generate,
+)<ObjectOptional>(ObjectOptional)(
     (input: any, _exceptionable: boolean = true): input is ObjectOptional => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             (undefined === input.id || "string" === typeof input.id) &&

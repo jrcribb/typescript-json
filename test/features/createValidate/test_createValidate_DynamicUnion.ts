@@ -4,7 +4,4 @@ import { DynamicUnion } from "../../structures/DynamicUnion";
 
 export const test_createValidate_DynamicUnion = _test_validate(
     "DynamicUnion",
-    DynamicUnion.generate,
-    typia.createValidate<DynamicUnion>(),
-    DynamicUnion.SPOILERS,
-);
+)<DynamicUnion>(DynamicUnion)(typia.createValidate<DynamicUnion>());

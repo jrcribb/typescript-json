@@ -4,9 +4,12 @@ import { ArrayRepeatedUnionWithTuple } from "../../../structures/ArrayRepeatedUn
 
 export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
     "ArrayRepeatedUnionWithTuple",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayRepeatedUnionWithTuple> => {
+)<ArrayRepeatedUnionWithTuple>(ArrayRepeatedUnionWithTuple)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (
+            ArrayRepeatedUnionWithTuple as any
+        ).RANDOM,
+    ): typia.Resolved<ArrayRepeatedUnionWithTuple> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ro0 = (
@@ -135,10 +138,8 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
             () => [$ro0(), $ro1()],
         ])();
     },
-    (input: any): typia.Primitive<ArrayRepeatedUnionWithTuple> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayRepeatedUnionWithTuple> => {
+    assert: (input: any): ArrayRepeatedUnionWithTuple => {
+        const __is = (input: any): input is ArrayRepeatedUnionWithTuple => {
             const $ip0 = (input: any) => {
                 const array = input;
                 const tuplePredicators = [
@@ -155,7 +156,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                             "number" === typeof entire[1] &&
                             Number.isFinite(entire[1]) &&
                             "boolean" === typeof entire[2],
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any =>
                             top.length === 2 &&
@@ -173,7 +174,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                             "object" === typeof entire[1] &&
                             null !== entire[1] &&
                             $io1(entire[1]),
-                    ],
+                    ] as const,
                 ];
                 for (const pred of tuplePredicators)
                     if (pred[0](array)) return pred[1](array);
@@ -181,14 +182,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                 if (0 === input.length) return true;
                 const arrayPredicators = [
                     [
-                        (top: any): any => "string" === typeof top,
+                        (top: any[]): any => "string" === typeof top,
                         (entire: any[]): any =>
                             entire.every(
                                 (elem: any) => "string" === typeof elem,
                             ),
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             null !== top &&
                             undefined !== top &&
                             (("number" === typeof top &&
@@ -196,9 +197,9 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                 "boolean" === typeof top ||
                                 (Array.isArray(top) && ($ip0(top) || false))),
                         (entire: any[]): any => $ia0(entire) || false,
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             "object" === typeof top &&
                             null !== top &&
                             $io0(top),
@@ -209,12 +210,12 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                     null !== elem &&
                                     $io0(elem),
                             ),
-                    ],
+                    ] as const,
                 ];
                 const passed = arrayPredicators.filter((pred: any) =>
                     pred[0](top),
                 );
-                if (1 === passed.length) return passed[0][1](array);
+                if (1 === passed.length) return passed[0]![1](array);
                 else if (1 < passed.length)
                     for (const pred of passed)
                         if (
@@ -285,7 +286,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRepeatedUnionWithTuple> => {
+            ): input is ArrayRepeatedUnionWithTuple => {
                 const $guard = (typia.createAssert as any).guard;
                 const $ap0 = (
                     input: any,
@@ -327,7 +328,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                         expected: "boolean",
                                         value: entire[2],
                                     })),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 2 &&
@@ -349,14 +350,16 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                 (entire.length === 2 ||
                                     $guard(_exceptionable, {
                                         path: _path,
-                                        expected: "[__type, __type.o1]",
+                                        expected:
+                                            "[ArrayRepeatedUnionWithTuple.IBox3D, ArrayRepeatedUnionWithTuple.IPoint3D]",
                                         value: entire,
                                     })) &&
                                 (((("object" === typeof entire[0] &&
                                     null !== entire[0]) ||
                                     $guard(_exceptionable, {
                                         path: _path + "[0]",
-                                        expected: "__type",
+                                        expected:
+                                            "ArrayRepeatedUnionWithTuple.IBox3D",
                                         value: entire[0],
                                     })) &&
                                     $ao0(
@@ -366,14 +369,16 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                     )) ||
                                     $guard(_exceptionable, {
                                         path: _path + "[0]",
-                                        expected: "__type",
+                                        expected:
+                                            "ArrayRepeatedUnionWithTuple.IBox3D",
                                         value: entire[0],
                                     })) &&
                                 (((("object" === typeof entire[1] &&
                                     null !== entire[1]) ||
                                     $guard(_exceptionable, {
                                         path: _path + "[1]",
-                                        expected: "__type.o1",
+                                        expected:
+                                            "ArrayRepeatedUnionWithTuple.IPoint3D",
                                         value: entire[1],
                                     })) &&
                                     $ao1(
@@ -383,10 +388,11 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                     )) ||
                                     $guard(_exceptionable, {
                                         path: _path + "[1]",
-                                        expected: "__type.o1",
+                                        expected:
+                                            "ArrayRepeatedUnionWithTuple.IPoint3D",
                                         value: entire[1],
                                     })),
-                        ],
+                        ] as const,
                     ];
                     for (const pred of tuplePredicators)
                         if (pred[0](array)) return pred[1](array);
@@ -394,7 +400,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                     if (0 === input.length) return true;
                     const arrayPredicators = [
                         [
-                            (top: any): any => "string" === typeof top,
+                            (top: any[]): any => "string" === typeof top,
                             (entire: any[]): any =>
                                 entire.every(
                                     (elem: any, _index1: number) =>
@@ -405,9 +411,9 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 null !== top &&
                                 undefined !== top &&
                                 (("number" === typeof top &&
@@ -416,13 +422,13 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                     (Array.isArray(top) &&
                                         ($ap0(
                                             top,
-                                            _path + "[0]",
+                                            _path,
                                             false && _exceptionable,
                                         ) ||
                                             $guard(_exceptionable, {
-                                                path: _path + "[0]",
+                                                path: _path,
                                                 expected:
-                                                    "[string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | Array<string> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<__type>",
+                                                    "[string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>",
                                                 value: top,
                                             })))),
                             (entire: any[]): any =>
@@ -430,19 +436,15 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                 $guard(_exceptionable, {
                                     path: _path,
                                     expected:
-                                        "Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]>",
+                                        "Array<ArrayRepeatedUnionWithTuple>",
                                     value: entire,
                                 }),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 "object" === typeof top &&
                                 null !== top &&
-                                $ao0(
-                                    top,
-                                    _path + "[0]",
-                                    false && _exceptionable,
-                                ),
+                                $ao0(top, _path, false && _exceptionable),
                             (entire: any[]): any =>
                                 entire.every(
                                     (elem: any, _index2: number) =>
@@ -451,7 +453,8 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                             $guard(_exceptionable, {
                                                 path:
                                                     _path + "[" + _index2 + "]",
-                                                expected: "__type",
+                                                expected:
+                                                    "ArrayRepeatedUnionWithTuple.IBox3D",
                                                 value: elem,
                                             })) &&
                                             $ao0(
@@ -461,16 +464,17 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                             )) ||
                                         $guard(_exceptionable, {
                                             path: _path + "[" + _index2 + "]",
-                                            expected: "__type",
+                                            expected:
+                                                "ArrayRepeatedUnionWithTuple.IBox3D",
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                     ];
                     const passed = arrayPredicators.filter((pred: any) =>
                         pred[0](top),
                     );
-                    if (1 === passed.length) return passed[0][1](array);
+                    if (1 === passed.length) return passed[0]![1](array);
                     else if (1 < passed.length)
                         for (const pred of passed)
                             if (
@@ -482,7 +486,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                     return $guard(_exceptionable, {
                         path: _path,
                         expected:
-                            "([string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | Array<string> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<__type>)",
+                            "([string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>)",
                         value: input,
                     });
                 };
@@ -495,7 +499,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         null !== input.scale) ||
                         $guard(_exceptionable, {
                             path: _path + ".scale",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.scale,
                         })) &&
                         $ao1(
@@ -505,14 +509,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         )) ||
                         $guard(_exceptionable, {
                             path: _path + ".scale",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.scale,
                         })) &&
                     (((("object" === typeof input.position &&
                         null !== input.position) ||
                         $guard(_exceptionable, {
                             path: _path + ".position",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.position,
                         })) &&
                         $ao1(
@@ -522,14 +526,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         )) ||
                         $guard(_exceptionable, {
                             path: _path + ".position",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.position,
                         })) &&
                     (((("object" === typeof input.rotate &&
                         null !== input.rotate) ||
                         $guard(_exceptionable, {
                             path: _path + ".rotate",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.rotate,
                         })) &&
                         $ao1(
@@ -539,14 +543,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         )) ||
                         $guard(_exceptionable, {
                             path: _path + ".rotate",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.rotate,
                         })) &&
                     (((("object" === typeof input.pivot &&
                         null !== input.pivot) ||
                         $guard(_exceptionable, {
                             path: _path + ".pivot",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.pivot,
                         })) &&
                         $ao1(
@@ -556,7 +560,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         )) ||
                         $guard(_exceptionable, {
                             path: _path + ".pivot",
-                            expected: "__type.o1",
+                            expected: "ArrayRepeatedUnionWithTuple.IPoint3D",
                             value: input.pivot,
                         }));
                 const $ao1 = (
@@ -596,14 +600,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index3 + "]",
                                     expected:
-                                        "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                        "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                                     value: elem,
                                 })) &&
                             (undefined !== elem ||
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index3 + "]",
                                     expected:
-                                        "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                        "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                                     value: elem,
                                 })) &&
                             (("number" === typeof elem &&
@@ -613,7 +617,7 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                     $guard(_exceptionable, {
                                         path: _path + "[" + _index3 + "]",
                                         expected:
-                                            "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                            "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                                         value: elem,
                                     })) &&
                                     ($ap0(
@@ -624,13 +628,13 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                                         $guard(_exceptionable, {
                                             path: _path + "[" + _index3 + "]",
                                             expected:
-                                                "[string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | Array<string> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<__type>",
+                                                "[string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>",
                                             value: elem,
                                         }))) ||
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index3 + "]",
                                     expected:
-                                        "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                        "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                                     value: elem,
                                 })),
                     );
@@ -639,14 +643,14 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                             value: input,
                         })) &&
                     (undefined !== input ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                             value: input,
                         })) &&
                     (("number" === typeof input && Number.isFinite(input)) ||
@@ -655,24 +659,24 @@ export const test_createRandom_ArrayRepeatedUnionWithTuple = _test_random(
                             $guard(true, {
                                 path: _path + "",
                                 expected:
-                                    "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                    "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                                 value: input,
                             })) &&
                             ($ap0(input, _path + "", true && _exceptionable) ||
                                 $guard(_exceptionable, {
                                     path: _path + "",
                                     expected:
-                                        "[string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | Array<string> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<__type>",
+                                        "[string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>",
                                     value: input,
                                 }))) ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<__type> | Array<number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | boolean | [string, number, boolean] | string[] | (number | ... 5 more ... | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...])[] | { ...; }[] | [...]> | Array<string> | [string, number, boolean] | [{ scale: { x: number; y: number; z: number; }; position: { x: number; y: number; z: number; }; rotate: { x: number; y: number; z: number; }; pivot: { x: number; y: number; z: number; }; }, { x: number; y: number; z: number; }] | boolean | number)",
+                                "(Array<ArrayRepeatedUnionWithTuple.IBox3D> | Array<ArrayRepeatedUnionWithTuple> | Array<string> | [IBox3D, IPoint3D] | [string, number, boolean] | boolean | number)",
                             value: input,
                         }))
                 );
             })(input, "$input", true);
         return input;
     },
-);
+});

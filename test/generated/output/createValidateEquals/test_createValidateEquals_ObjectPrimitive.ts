@@ -4,10 +4,9 @@ import { ObjectPrimitive } from "../../../structures/ObjectPrimitive";
 
 export const test_createValidateEquals_ObjectPrimitive = _test_validateEquals(
     "ObjectPrimitive",
-    ObjectPrimitive.generate,
+)<ObjectPrimitive>(ObjectPrimitive)(
     (input: any): typia.IValidation<ObjectPrimitive> => {
         const errors = [] as any[];
-        const $report = (typia.createValidateEquals as any).report(errors);
         const __is = (
             input: any,
             _exceptionable: boolean = true,
@@ -17,9 +16,9 @@ export const test_createValidateEquals_ObjectPrimitive = _test_validateEquals(
                 _exceptionable: boolean = true,
             ): boolean =>
                 "string" === typeof input.id &&
-                ("md" === input.extension ||
-                    "html" === input.extension ||
-                    "txt" === input.extension) &&
+                ("txt" === input.extension ||
+                    "md" === input.extension ||
+                    "html" === input.extension) &&
                 "string" === typeof input.title &&
                 "string" === typeof input.body &&
                 Array.isArray(input.files) &&
@@ -78,7 +77,8 @@ export const test_createValidateEquals_ObjectPrimitive = _test_validateEquals(
                 "object" === typeof input && null !== input && $io0(input, true)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidateEquals as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -97,9 +97,9 @@ export const test_createValidateEquals_ObjectPrimitive = _test_validateEquals(
                                 expected: "string",
                                 value: input.id,
                             }),
-                        "md" === input.extension ||
+                        "txt" === input.extension ||
+                            "md" === input.extension ||
                             "html" === input.extension ||
-                            "txt" === input.extension ||
                             $report(_exceptionable, {
                                 path: _path + ".extension",
                                 expected: '("html" | "md" | "txt")',
@@ -275,6 +275,7 @@ export const test_createValidateEquals_ObjectPrimitive = _test_validateEquals(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,

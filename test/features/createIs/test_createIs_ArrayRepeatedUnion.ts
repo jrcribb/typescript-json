@@ -4,7 +4,4 @@ import { ArrayRepeatedUnion } from "../../structures/ArrayRepeatedUnion";
 
 export const test_createIs_ArrayRepeatedUnion = _test_is(
     "ArrayRepeatedUnion",
-    ArrayRepeatedUnion.generate,
-    typia.createIs<ArrayRepeatedUnion>(),
-    ArrayRepeatedUnion.SPOILERS,
-);
+)<ArrayRepeatedUnion>(ArrayRepeatedUnion)(typia.createIs<ArrayRepeatedUnion>());

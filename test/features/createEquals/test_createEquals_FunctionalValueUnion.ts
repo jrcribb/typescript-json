@@ -4,6 +4,6 @@ import { FunctionalValueUnion } from "../../structures/FunctionalValueUnion";
 
 export const test_createEquals_FunctionalValueUnion = _test_equals(
     "FunctionalValueUnion",
-    FunctionalValueUnion.generate,
+)<FunctionalValueUnion>(FunctionalValueUnion)(
     typia.createEquals<FunctionalValueUnion>(),
 );

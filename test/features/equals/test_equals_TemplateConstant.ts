@@ -4,6 +4,6 @@ import { TemplateConstant } from "../../structures/TemplateConstant";
 
 export const test_equals_TemplateConstant = _test_equals(
     "TemplateConstant",
-    TemplateConstant.generate,
-    (input) => typia.equals(input),
+)<TemplateConstant>(TemplateConstant)((input) =>
+    typia.equals<TemplateConstant>(input),
 );

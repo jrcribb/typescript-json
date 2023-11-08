@@ -4,7 +4,4 @@ import { DynamicTemplate } from "../../structures/DynamicTemplate";
 
 export const test_createIs_DynamicTemplate = _test_is(
     "DynamicTemplate",
-    DynamicTemplate.generate,
-    typia.createIs<DynamicTemplate>(),
-    DynamicTemplate.SPOILERS,
-);
+)<DynamicTemplate>(DynamicTemplate)(typia.createIs<DynamicTemplate>());

@@ -4,6 +4,6 @@ import { ArrayAtomicSimple } from "../../structures/ArrayAtomicSimple";
 
 export const test_createValidateEquals_ArrayAtomicSimple = _test_validateEquals(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(
     typia.createValidateEquals<ArrayAtomicSimple>(),
 );

@@ -4,7 +4,7 @@ import { FunctionalTupleUnion } from "../../../structures/FunctionalTupleUnion";
 
 export const test_createAssert_FunctionalTupleUnion = _test_assert(
     "FunctionalTupleUnion",
-    FunctionalTupleUnion.generate,
+)<FunctionalTupleUnion>(FunctionalTupleUnion)(
     (input: any): FunctionalTupleUnion => {
         const __is = (input: any): input is FunctionalTupleUnion => {
             return (
@@ -129,5 +129,4 @@ export const test_createAssert_FunctionalTupleUnion = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    FunctionalTupleUnion.SPOILERS,
 );

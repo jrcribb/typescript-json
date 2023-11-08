@@ -4,7 +4,7 @@ import { ObjectIntersection } from "../../../structures/ObjectIntersection";
 
 export const test_createIs_ObjectIntersection = _test_is(
     "ObjectIntersection",
-    ObjectIntersection.generate,
+)<ObjectIntersection>(ObjectIntersection)(
     (input: any): input is ObjectIntersection => {
         return (
             "object" === typeof input &&
@@ -14,5 +14,4 @@ export const test_createIs_ObjectIntersection = _test_is(
             "boolean" === typeof (input as any).vulnerable
         );
     },
-    ObjectIntersection.SPOILERS,
 );

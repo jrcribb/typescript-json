@@ -4,7 +4,7 @@ import { FunctionalArrayUnion } from "../../../structures/FunctionalArrayUnion";
 
 export const test_createAssert_FunctionalArrayUnion = _test_assert(
     "FunctionalArrayUnion",
-    FunctionalArrayUnion.generate,
+)<FunctionalArrayUnion>(FunctionalArrayUnion)(
     (input: any): FunctionalArrayUnion => {
         const __is = (input: any): input is FunctionalArrayUnion => {
             const $ip0 = (input: any) => {
@@ -13,14 +13,7 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                 if (0 === input.length) return true;
                 const arrayPredicators = [
                     [
-                        (top: any): any => "string" === typeof top,
-                        (entire: any[]): any =>
-                            entire.every(
-                                (elem: any) => "string" === typeof elem,
-                            ),
-                    ],
-                    [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             "number" === typeof top && Number.isFinite(top),
                         (entire: any[]): any =>
                             entire.every(
@@ -28,27 +21,34 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                                     "number" === typeof elem &&
                                     Number.isFinite(elem),
                             ),
-                    ],
+                    ] as const,
                     [
-                        (top: any): any => "function" === typeof top,
+                        (top: any[]): any => "string" === typeof top,
+                        (entire: any[]): any =>
+                            entire.every(
+                                (elem: any) => "string" === typeof elem,
+                            ),
+                    ] as const,
+                    [
+                        (top: any[]): any => "function" === typeof top,
                         (entire: any[]): any =>
                             entire.every(
                                 (elem: any) => "function" === typeof elem,
                             ),
-                    ],
+                    ] as const,
                     [
-                        (top: any): any => undefined !== top && null === top,
+                        (top: any[]): any => undefined !== top && null === top,
                         (entire: any[]): any =>
                             entire.every(
                                 (elem: any) =>
                                     undefined !== elem && null === elem,
                             ),
-                    ],
+                    ] as const,
                 ];
                 const passed = arrayPredicators.filter((pred: any) =>
                     pred[0](top),
                 );
-                if (1 === passed.length) return passed[0][1](array);
+                if (1 === passed.length) return passed[0]![1](array);
                 else if (1 < passed.length)
                     for (const pred of passed)
                         if (
@@ -81,35 +81,35 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                     if (0 === input.length) return true;
                     const arrayPredicators = [
                         [
-                            (top: any): any => "string" === typeof top,
-                            (entire: any[]): any =>
-                                entire.every(
-                                    (elem: any, _index6: number) =>
-                                        "string" === typeof elem ||
-                                        $guard(_exceptionable, {
-                                            path: _path + "[" + _index6 + "]",
-                                            expected: "string",
-                                            value: elem,
-                                        }),
-                                ),
-                        ],
-                        [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 "number" === typeof top && Number.isFinite(top),
                             (entire: any[]): any =>
                                 entire.every(
-                                    (elem: any, _index7: number) =>
+                                    (elem: any, _index6: number) =>
                                         ("number" === typeof elem &&
                                             Number.isFinite(elem)) ||
                                         $guard(_exceptionable, {
-                                            path: _path + "[" + _index7 + "]",
+                                            path: _path + "[" + _index6 + "]",
                                             expected: "number",
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any => "function" === typeof top,
+                            (top: any[]): any => "string" === typeof top,
+                            (entire: any[]): any =>
+                                entire.every(
+                                    (elem: any, _index7: number) =>
+                                        "string" === typeof elem ||
+                                        $guard(_exceptionable, {
+                                            path: _path + "[" + _index7 + "]",
+                                            expected: "string",
+                                            value: elem,
+                                        }),
+                                ),
+                        ] as const,
+                        [
+                            (top: any[]): any => "function" === typeof top,
                             (entire: any[]): any =>
                                 entire.every(
                                     (elem: any, _index8: number) =>
@@ -120,9 +120,9 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                                             value: elem,
                                         }),
                                 ),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 undefined !== top && null === top,
                             (entire: any[]): any =>
                                 entire.every(
@@ -142,12 +142,12 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                                                 value: elem,
                                             })),
                                 ),
-                        ],
+                        ] as const,
                     ];
                     const passed = arrayPredicators.filter((pred: any) =>
                         pred[0](top),
                     );
-                    if (1 === passed.length) return passed[0][1](array);
+                    if (1 === passed.length) return passed[0]![1](array);
                     else if (1 < passed.length)
                         for (const pred of passed)
                             if (
@@ -159,7 +159,7 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                     return $guard(_exceptionable, {
                         path: _path,
                         expected:
-                            "(Array<string> | Array<number> | Array<__type> | Array<null>)",
+                            "(Array<number> | Array<string> | Array<__type> | Array<null>)",
                         value: input,
                     });
                 };
@@ -187,7 +187,7 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
                                         $guard(_exceptionable, {
                                             path: _path + "[" + _index1 + "]",
                                             expected:
-                                                "Array<string> | Array<number> | Array<__type> | Array<null>",
+                                                "Array<number> | Array<string> | Array<__type> | Array<null>",
                                             value: elem,
                                         }))) ||
                                 $guard(true, {
@@ -206,5 +206,4 @@ export const test_createAssert_FunctionalArrayUnion = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    FunctionalArrayUnion.SPOILERS,
 );

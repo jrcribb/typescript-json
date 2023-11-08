@@ -4,10 +4,9 @@ import { ArrayRepeatedUnionWithTuple } from "../../../structures/ArrayRepeatedUn
 
 export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
     "ArrayRepeatedUnionWithTuple",
-    ArrayRepeatedUnionWithTuple.generate,
+)<ArrayRepeatedUnionWithTuple>(ArrayRepeatedUnionWithTuple)(
     (input: any): typia.IValidation<ArrayRepeatedUnionWithTuple> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ArrayRepeatedUnionWithTuple => {
             const $ip0 = (input: any) => {
                 const array = input;
@@ -25,7 +24,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                             "number" === typeof entire[1] &&
                             Number.isFinite(entire[1]) &&
                             "boolean" === typeof entire[2],
-                    ],
+                    ] as const,
                     [
                         (top: any[]): any =>
                             top.length === 2 &&
@@ -43,7 +42,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                             "object" === typeof entire[1] &&
                             null !== entire[1] &&
                             $io1(entire[1]),
-                    ],
+                    ] as const,
                 ];
                 for (const pred of tuplePredicators)
                     if (pred[0](array)) return pred[1](array);
@@ -51,14 +50,14 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                 if (0 === input.length) return true;
                 const arrayPredicators = [
                     [
-                        (top: any): any => "string" === typeof top,
+                        (top: any[]): any => "string" === typeof top,
                         (entire: any[]): any =>
                             entire.every(
                                 (elem: any) => "string" === typeof elem,
                             ),
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             null !== top &&
                             undefined !== top &&
                             (("number" === typeof top &&
@@ -66,9 +65,9 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                 "boolean" === typeof top ||
                                 (Array.isArray(top) && ($ip0(top) || false))),
                         (entire: any[]): any => $ia0(entire) || false,
-                    ],
+                    ] as const,
                     [
-                        (top: any): any =>
+                        (top: any[]): any =>
                             "object" === typeof top &&
                             null !== top &&
                             $io0(top),
@@ -79,12 +78,12 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                     null !== elem &&
                                     $io0(elem),
                             ),
-                    ],
+                    ] as const,
                 ];
                 const passed = arrayPredicators.filter((pred: any) =>
                     pred[0](top),
                 );
-                if (1 === passed.length) return passed[0][1](array);
+                if (1 === passed.length) return passed[0]![1](array);
                 else if (1 < passed.length)
                     for (const pred of passed)
                         if (
@@ -150,7 +149,8 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                     (Array.isArray(input) && ($ip0(input) || false)))
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -200,7 +200,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                             value: entire[2],
                                         }),
                                 ].every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                         [
                             (top: any[]): any =>
                                 top.length === 2 &&
@@ -268,7 +268,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                             value: entire[1],
                                         }),
                                 ].every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                     ];
                     for (const pred of tuplePredicators)
                         if (pred[0](array)) return pred[1](array);
@@ -276,7 +276,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                     if (0 === input.length) return true;
                     const arrayPredicators = [
                         [
-                            (top: any): any => "string" === typeof top,
+                            (top: any[]): any => "string" === typeof top,
                             (entire: any[]): any =>
                                 entire
                                     .map(
@@ -290,9 +290,9 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                             }),
                                     )
                                     .every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 null !== top &&
                                 undefined !== top &&
                                 (("number" === typeof top &&
@@ -301,11 +301,11 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                     (Array.isArray(top) &&
                                         ($vp0(
                                             top,
-                                            _path + "[0]",
+                                            _path,
                                             false && _exceptionable,
                                         ) ||
                                             $report(_exceptionable, {
-                                                path: _path + "[0]",
+                                                path: _path,
                                                 expected:
                                                     "[string, number, boolean] | [IBox3D, IPoint3D] | Array<string> | Array<ArrayRepeatedUnionWithTuple> | Array<ArrayRepeatedUnionWithTuple.IBox3D>",
                                                 value: top,
@@ -318,16 +318,12 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                         "Array<ArrayRepeatedUnionWithTuple>",
                                     value: entire,
                                 }),
-                        ],
+                        ] as const,
                         [
-                            (top: any): any =>
+                            (top: any[]): any =>
                                 "object" === typeof top &&
                                 null !== top &&
-                                $vo0(
-                                    top,
-                                    _path + "[0]",
-                                    false && _exceptionable,
-                                ),
+                                $vo0(top, _path, false && _exceptionable),
                             (entire: any[]): any =>
                                 entire
                                     .map(
@@ -358,12 +354,12 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                                             }),
                                     )
                                     .every((flag: boolean) => flag),
-                        ],
+                        ] as const,
                     ];
                     const passed = arrayPredicators.filter((pred: any) =>
                         pred[0](top),
                     );
-                    if (1 === passed.length) return passed[0][1](array);
+                    if (1 === passed.length) return passed[0]![1](array);
                     else if (1 < passed.length)
                         for (const pred of passed)
                             if (
@@ -581,6 +577,7 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
                         }))
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -588,5 +585,4 @@ export const test_createValidate_ArrayRepeatedUnionWithTuple = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ArrayRepeatedUnionWithTuple.SPOILERS,
 );

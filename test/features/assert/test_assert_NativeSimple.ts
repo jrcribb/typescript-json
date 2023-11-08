@@ -4,7 +4,4 @@ import { NativeSimple } from "../../structures/NativeSimple";
 
 export const test_assert_NativeSimple = _test_assert(
     "NativeSimple",
-    NativeSimple.generate,
-    (input) => typia.assert(input),
-    NativeSimple.SPOILERS,
-);
+)<NativeSimple>(NativeSimple)((input) => typia.assert<NativeSimple>(input));

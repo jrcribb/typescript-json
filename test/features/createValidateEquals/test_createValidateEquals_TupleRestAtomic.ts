@@ -4,6 +4,6 @@ import { TupleRestAtomic } from "../../structures/TupleRestAtomic";
 
 export const test_createValidateEquals_TupleRestAtomic = _test_validateEquals(
     "TupleRestAtomic",
-    TupleRestAtomic.generate,
+)<TupleRestAtomic>(TupleRestAtomic)(
     typia.createValidateEquals<TupleRestAtomic>(),
 );

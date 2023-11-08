@@ -4,6 +4,6 @@ import { ObjectNullable } from "../../structures/ObjectNullable";
 
 export const test_assertEquals_ObjectNullable = _test_assertEquals(
     "ObjectNullable",
-    ObjectNullable.generate,
-    (input) => typia.assertEquals(input),
+)<ObjectNullable>(ObjectNullable)((input) =>
+    typia.assertEquals<ObjectNullable>(input),
 );

@@ -4,6 +4,7 @@ import { ArrayUnion } from "../../structures/ArrayUnion";
 
 export const test_createRandom_ArrayUnion = _test_random(
     "ArrayUnion",
-    typia.createRandom<ArrayUnion>(),
-    typia.createAssert<typia.Primitive<ArrayUnion>>(),
-);
+)<ArrayUnion>(ArrayUnion)({
+    random: typia.createRandom<ArrayUnion>((ArrayUnion as any).RANDOM),
+    assert: typia.createAssert<ArrayUnion>(),
+});

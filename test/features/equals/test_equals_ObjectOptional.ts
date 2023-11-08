@@ -4,6 +4,6 @@ import { ObjectOptional } from "../../structures/ObjectOptional";
 
 export const test_equals_ObjectOptional = _test_equals(
     "ObjectOptional",
-    ObjectOptional.generate,
-    (input) => typia.equals(input),
+)<ObjectOptional>(ObjectOptional)((input) =>
+    typia.equals<ObjectOptional>(input),
 );

@@ -1,11 +1,12 @@
 import ts from "typescript";
 
 export interface ICheckEntry {
-    expression: ts.Expression;
-    tags: ICheckEntry.ITag[];
+    expected: string;
+    expression: ts.Expression | null;
+    conditions: ICheckEntry.ICondition[][];
 }
 export namespace ICheckEntry {
-    export interface ITag {
+    export interface ICondition {
         expected: string;
         expression: ts.Expression;
     }

@@ -4,7 +4,4 @@ import { ObjectDynamic } from "../../structures/ObjectDynamic";
 
 export const test_createIs_ObjectDynamic = _test_is(
     "ObjectDynamic",
-    ObjectDynamic.generate,
-    typia.createIs<ObjectDynamic>(),
-    ObjectDynamic.SPOILERS,
-);
+)<ObjectDynamic>(ObjectDynamic)(typia.createIs<ObjectDynamic>());

@@ -4,9 +4,12 @@ import { ArrayRepeatedNullable } from "../../../structures/ArrayRepeatedNullable
 
 export const test_createRandom_ArrayRepeatedNullable = _test_random(
     "ArrayRepeatedNullable",
-    (
-        generator?: Partial<typia.IRandomGenerator>,
-    ): typia.Primitive<ArrayRepeatedNullable> => {
+)<ArrayRepeatedNullable>(ArrayRepeatedNullable)({
+    random: (
+        generator: Partial<typia.IRandomGenerator> = (
+            ArrayRepeatedNullable as any
+        ).RANDOM,
+    ): typia.Resolved<ArrayRepeatedNullable> => {
         const $generator = (typia.createRandom as any).generator;
         const $pick = (typia.createRandom as any).pick;
         const $ra0 = (
@@ -53,10 +56,8 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
             () => $ra0(generator?.length ?? $generator.length, true, 0),
         ])();
     },
-    (input: any): typia.Primitive<ArrayRepeatedNullable> => {
-        const __is = (
-            input: any,
-        ): input is typia.Primitive<ArrayRepeatedNullable> => {
+    assert: (input: any): ArrayRepeatedNullable => {
+        const __is = (input: any): input is ArrayRepeatedNullable => {
             const $ia0 = (input: any): any =>
                 input.every(
                     (elem: any) =>
@@ -80,7 +81,7 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                 input: any,
                 _path: string,
                 _exceptionable: boolean = true,
-            ): input is typia.Primitive<ArrayRepeatedNullable> => {
+            ): input is ArrayRepeatedNullable => {
                 const $guard = (typia.createAssert as any).guard;
                 const $aa0 = (
                     input: any,
@@ -93,7 +94,7 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                        "(Array<ArrayRepeatedNullable> | null | number | string)",
                                     value: elem,
                                 })) &&
                             (null === elem ||
@@ -104,7 +105,7 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                                     $guard(_exceptionable, {
                                         path: _path + "[" + _index1 + "]",
                                         expected:
-                                            "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                            "(Array<ArrayRepeatedNullable> | null | number | string)",
                                         value: elem,
                                     })) &&
                                     ($aa0(
@@ -115,13 +116,13 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                                         $guard(_exceptionable, {
                                             path: _path + "[" + _index1 + "]",
                                             expected:
-                                                "Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null>",
+                                                "Array<ArrayRepeatedNullable>",
                                             value: elem,
                                         }))) ||
                                 $guard(_exceptionable, {
                                     path: _path + "[" + _index1 + "]",
                                     expected:
-                                        "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                        "(Array<ArrayRepeatedNullable> | null | number | string)",
                                     value: elem,
                                 })),
                     );
@@ -130,7 +131,7 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                "(Array<ArrayRepeatedNullable> | null | number | string)",
                             value: input,
                         })) &&
                     (null === input ||
@@ -140,24 +141,23 @@ export const test_createRandom_ArrayRepeatedNullable = _test_random(
                             $guard(true, {
                                 path: _path + "",
                                 expected:
-                                    "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                    "(Array<ArrayRepeatedNullable> | null | number | string)",
                                 value: input,
                             })) &&
                             ($aa0(input, _path + "", true && _exceptionable) ||
                                 $guard(_exceptionable, {
                                     path: _path + "",
-                                    expected:
-                                        "Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null>",
+                                    expected: "Array<ArrayRepeatedNullable>",
                                     value: input,
                                 }))) ||
                         $guard(true, {
                             path: _path + "",
                             expected:
-                                "(Array<string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | number | (string | ... 2 more ... | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null)[] | null> | null | number | string)",
+                                "(Array<ArrayRepeatedNullable> | null | number | string)",
                             value: input,
                         }))
                 );
             })(input, "$input", true);
         return input;
     },
-);
+});

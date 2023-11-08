@@ -4,7 +4,7 @@ import { ArrayHierarchical } from "../../../structures/ArrayHierarchical";
 
 export const test_createIs_ArrayHierarchical = _test_is(
     "ArrayHierarchical",
-    ArrayHierarchical.generate,
+)<ArrayHierarchical>(ArrayHierarchical)(
     (input: any): input is ArrayHierarchical => {
         const $io0 = (input: any): boolean =>
             "number" === typeof input.id &&
@@ -62,5 +62,4 @@ export const test_createIs_ArrayHierarchical = _test_is(
             )
         );
     },
-    ArrayHierarchical.SPOILERS,
 );

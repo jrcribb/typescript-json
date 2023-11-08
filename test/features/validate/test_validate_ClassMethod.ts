@@ -4,7 +4,4 @@ import { ClassMethod } from "../../structures/ClassMethod";
 
 export const test_validate_ClassMethod = _test_validate(
     "ClassMethod",
-    ClassMethod.generate,
-    (input) => typia.validate(input),
-    ClassMethod.SPOILERS,
-);
+)<ClassMethod>(ClassMethod)((input) => typia.validate<ClassMethod>(input));

@@ -4,6 +4,4 @@ import { ClassGetter } from "../../structures/ClassGetter";
 
 export const test_createEquals_ClassGetter = _test_equals(
     "ClassGetter",
-    ClassGetter.generate,
-    typia.createEquals<ClassGetter>(),
-);
+)<ClassGetter>(ClassGetter)(typia.createEquals<ClassGetter>());

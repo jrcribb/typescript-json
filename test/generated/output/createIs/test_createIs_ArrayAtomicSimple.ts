@@ -4,7 +4,7 @@ import { ArrayAtomicSimple } from "../../../structures/ArrayAtomicSimple";
 
 export const test_createIs_ArrayAtomicSimple = _test_is(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(
     (input: any): input is ArrayAtomicSimple => {
         return (
             Array.isArray(input) &&
@@ -20,5 +20,4 @@ export const test_createIs_ArrayAtomicSimple = _test_is(
             input[2].every((elem: any) => "string" === typeof elem)
         );
     },
-    ArrayAtomicSimple.SPOILERS,
 );

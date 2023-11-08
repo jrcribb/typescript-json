@@ -4,7 +4,6 @@ import { ConstantAtomicSimple } from "../../structures/ConstantAtomicSimple";
 
 export const test_createIs_ConstantAtomicSimple = _test_is(
     "ConstantAtomicSimple",
-    ConstantAtomicSimple.generate,
+)<ConstantAtomicSimple>(ConstantAtomicSimple)(
     typia.createIs<ConstantAtomicSimple>(),
-    ConstantAtomicSimple.SPOILERS,
 );

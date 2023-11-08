@@ -1,11 +1,14 @@
-import { Metadata } from "../../../metadata/Metadata";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataAtomic } from "../../../schemas/metadata/MetadataAtomic";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
 export const emend_metadata_atomics = (meta: Metadata) => {
     // ATOMICS
-    for (const type of meta.atomics) {
-        const index: number = meta.constants.findIndex((c) => c.type === type);
+    for (const a of meta.atomics) {
+        const index: number = meta.constants.findIndex(
+            (c) => c.type === a.type,
+        );
         if (index !== -1) meta.constants.splice(index, 1);
     }
 
@@ -15,19 +18,24 @@ export const emend_metadata_atomics = (meta: Metadata) => {
             (c) => c.type === "boolean",
         );
         if (index !== -1 && meta.constants[index]!.values.length === 2) {
-            meta.constants.splice(index, 1);
+            const temp = meta.constants.splice(index, 1)[0]!;
             ArrayUtil.take(
                 meta.atomics,
-                (type) => type === "boolean",
-                () => "boolean",
+                (a) => a.type === "boolean",
+                () =>
+                    MetadataAtomic.create({
+                        type: "boolean" as const,
+                        tags: temp.tags ?? [],
+                    }),
             );
+            temp.tags = undefined;
         }
     }
 
     // TEMPLATE
     if (
         meta.templates.length &&
-        meta.atomics.find((type) => type === "string") !== undefined
+        meta.atomics.find((a) => a.type === "string") !== undefined
     )
         meta.templates.splice(0, meta.templates.length);
 };

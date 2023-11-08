@@ -4,10 +4,9 @@ import { AtomicIntersection } from "../../../structures/AtomicIntersection";
 
 export const test_createValidate_AtomicIntersection = _test_validate(
     "AtomicIntersection",
-    AtomicIntersection.generate,
+)<AtomicIntersection>(AtomicIntersection)(
     (input: any): typia.IValidation<AtomicIntersection> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is AtomicIntersection => {
             return (
                 Array.isArray(input) &&
@@ -18,7 +17,8 @@ export const test_createValidate_AtomicIntersection = _test_validate(
                 "string" === typeof input[2]
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -65,6 +65,7 @@ export const test_createValidate_AtomicIntersection = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -72,5 +73,4 @@ export const test_createValidate_AtomicIntersection = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    AtomicIntersection.SPOILERS,
 );

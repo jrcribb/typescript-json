@@ -4,7 +4,7 @@ import { ObjectInternal } from "../../../structures/ObjectInternal";
 
 export const test_createEquals_ObjectInternal = _test_equals(
     "ObjectInternal",
-    ObjectInternal.generate,
+)<ObjectInternal>(ObjectInternal)(
     (input: any, _exceptionable: boolean = true): input is ObjectInternal => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.id &&

@@ -4,7 +4,7 @@ import { ConstantIntersection } from "../../../structures/ConstantIntersection";
 
 export const test_createAssert_ConstantIntersection = _test_assert(
     "ConstantIntersection",
-    ConstantIntersection.generate,
+)<ConstantIntersection>(ConstantIntersection)(
     (input: any): ConstantIntersection => {
         const __is = (input: any): input is ConstantIntersection => {
             return (
@@ -62,5 +62,4 @@ export const test_createAssert_ConstantIntersection = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ConstantIntersection.SPOILERS,
 );

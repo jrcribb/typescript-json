@@ -4,7 +4,4 @@ import { DynamicNever } from "../../structures/DynamicNever";
 
 export const test_createValidate_DynamicNever = _test_validate(
     "DynamicNever",
-    DynamicNever.generate,
-    typia.createValidate<DynamicNever>(),
-    DynamicNever.SPOILERS,
-);
+)<DynamicNever>(DynamicNever)(typia.createValidate<DynamicNever>());

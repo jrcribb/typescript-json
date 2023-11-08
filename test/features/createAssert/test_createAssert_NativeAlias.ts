@@ -4,7 +4,4 @@ import { NativeAlias } from "../../structures/NativeAlias";
 
 export const test_createAssert_NativeAlias = _test_assert(
     "NativeAlias",
-    NativeAlias.generate,
-    typia.createAssert<NativeAlias>(),
-    NativeAlias.SPOILERS,
-);
+)<NativeAlias>(NativeAlias)(typia.createAssert<NativeAlias>());

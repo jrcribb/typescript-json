@@ -2,9 +2,7 @@ import typia from "../../../../src";
 import { _test_is } from "../../../internal/_test_is";
 import { SetUnion } from "../../../structures/SetUnion";
 
-export const test_createIs_SetUnion = _test_is(
-    "SetUnion",
-    SetUnion.generate,
+export const test_createIs_SetUnion = _test_is("SetUnion")<SetUnion>(SetUnion)(
     (input: any): input is SetUnion => {
         const $io0 = (input: any): boolean =>
             "string" === typeof input.id &&
@@ -22,15 +20,15 @@ export const test_createIs_SetUnion = _test_is(
                         if (0 === elem.size) return true;
                         const arrayPredicators = [
                             [
-                                (top: any): any => "boolean" === typeof top,
+                                (top: any[]): any => "boolean" === typeof top,
                                 (entire: any[]): any =>
                                     entire.every(
                                         (elem: any) =>
                                             "boolean" === typeof elem,
                                     ),
-                            ],
+                            ] as const,
                             [
-                                (top: any): any =>
+                                (top: any[]): any =>
                                     "number" === typeof top &&
                                     Number.isFinite(top),
                                 (entire: any[]): any =>
@@ -39,16 +37,16 @@ export const test_createIs_SetUnion = _test_is(
                                             "number" === typeof elem &&
                                             Number.isFinite(elem),
                                     ),
-                            ],
+                            ] as const,
                             [
-                                (top: any): any => "string" === typeof top,
+                                (top: any[]): any => "string" === typeof top,
                                 (entire: any[]): any =>
                                     entire.every(
                                         (elem: any) => "string" === typeof elem,
                                     ),
-                            ],
+                            ] as const,
                             [
-                                (top: any): any =>
+                                (top: any[]): any =>
                                     Array.isArray(top) &&
                                     top.every(
                                         (elem: any) =>
@@ -65,9 +63,9 @@ export const test_createIs_SetUnion = _test_is(
                                                     Number.isFinite(elem),
                                             ),
                                     ),
-                            ],
+                            ] as const,
                             [
-                                (top: any): any =>
+                                (top: any[]): any =>
                                     "object" === typeof top &&
                                     null !== top &&
                                     $io0(top),
@@ -78,12 +76,12 @@ export const test_createIs_SetUnion = _test_is(
                                             null !== elem &&
                                             $io0(elem),
                                     ),
-                            ],
+                            ] as const,
                         ];
                         const passed = arrayPredicators.filter((pred: any) =>
                             pred[0](top),
                         );
-                        if (1 === passed.length) return passed[0][1](array);
+                        if (1 === passed.length) return passed[0]![1](array);
                         else if (1 < passed.length)
                             for (const pred of passed)
                                 if (
@@ -97,5 +95,4 @@ export const test_createIs_SetUnion = _test_is(
             )
         );
     },
-    SetUnion.SPOILERS,
 );

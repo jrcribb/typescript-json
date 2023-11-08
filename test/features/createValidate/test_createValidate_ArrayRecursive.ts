@@ -4,7 +4,4 @@ import { ArrayRecursive } from "../../structures/ArrayRecursive";
 
 export const test_createValidate_ArrayRecursive = _test_validate(
     "ArrayRecursive",
-    ArrayRecursive.generate,
-    typia.createValidate<ArrayRecursive>(),
-    ArrayRecursive.SPOILERS,
-);
+)<ArrayRecursive>(ArrayRecursive)(typia.createValidate<ArrayRecursive>());

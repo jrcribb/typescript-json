@@ -4,7 +4,7 @@ import { ClassGetter } from "../../../structures/ClassGetter";
 
 export const test_createEquals_ClassGetter = _test_equals(
     "ClassGetter",
-    ClassGetter.generate,
+)<ClassGetter>(ClassGetter)(
     (input: any, _exceptionable: boolean = true): input is ClassGetter => {
         const $io0 = (input: any, _exceptionable: boolean = true): boolean =>
             "string" === typeof input.id &&

@@ -1,7 +1,8 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
-import { MetadataTuple } from "../../../metadata/MetadataTuple";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataTuple } from "../../../schemas/metadata/MetadataTuple";
+import { MetadataTupleType } from "../../../schemas/metadata/MetadataTupleType";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
@@ -13,12 +14,24 @@ export const iterate_metadata_tuple =
     (checker: ts.TypeChecker) =>
     (options: MetadataFactory.IOptions) =>
     (collection: MetadataCollection) =>
-    (meta: Metadata, type: ts.TupleType): boolean => {
+    (errors: MetadataFactory.IError[]) =>
+    (
+        meta: Metadata,
+        type: ts.TupleType,
+        explore: MetadataFactory.IExplore,
+    ): boolean => {
         if (!checker.isTupleType(type)) return false;
 
-        const tuple: MetadataTuple = emplace_metadata_tuple(checker)(options)(
-            collection,
-        )(type, meta.nullable);
-        ArrayUtil.add(meta.tuples, tuple, (elem) => elem.name === tuple.name);
+        const tupleType: MetadataTupleType = emplace_metadata_tuple(checker)(
+            options,
+        )(collection)(errors)(type, meta.nullable, explore);
+        ArrayUtil.add(
+            meta.tuples,
+            MetadataTuple.create({
+                type: tupleType,
+                tags: [],
+            }),
+            (elem) => elem.type.name === tupleType.name,
+        );
         return true;
     };

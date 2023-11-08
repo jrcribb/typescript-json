@@ -4,7 +4,6 @@ import { ObjectLiteralProperty } from "../../structures/ObjectLiteralProperty";
 
 export const test_createValidate_ObjectLiteralProperty = _test_validate(
     "ObjectLiteralProperty",
-    ObjectLiteralProperty.generate,
+)<ObjectLiteralProperty>(ObjectLiteralProperty)(
     typia.createValidate<ObjectLiteralProperty>(),
-    ObjectLiteralProperty.SPOILERS,
 );

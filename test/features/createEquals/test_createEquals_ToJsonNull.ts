@@ -4,6 +4,4 @@ import { ToJsonNull } from "../../structures/ToJsonNull";
 
 export const test_createEquals_ToJsonNull = _test_equals(
     "ToJsonNull",
-    ToJsonNull.generate,
-    typia.createEquals<ToJsonNull>(),
-);
+)<ToJsonNull>(ToJsonNull)(typia.createEquals<ToJsonNull>());

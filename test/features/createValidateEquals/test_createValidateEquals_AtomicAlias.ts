@@ -4,6 +4,4 @@ import { AtomicAlias } from "../../structures/AtomicAlias";
 
 export const test_createValidateEquals_AtomicAlias = _test_validateEquals(
     "AtomicAlias",
-    AtomicAlias.generate,
-    typia.createValidateEquals<AtomicAlias>(),
-);
+)<AtomicAlias>(AtomicAlias)(typia.createValidateEquals<AtomicAlias>());

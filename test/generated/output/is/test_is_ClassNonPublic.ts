@@ -4,15 +4,13 @@ import { ClassNonPublic } from "../../../structures/ClassNonPublic";
 
 export const test_is_ClassNonPublic = _test_is(
     "ClassNonPublic",
-    ClassNonPublic.generate,
-    (input) =>
-        ((input: any): input is ClassNonPublic.Accessor => {
-            return (
-                "object" === typeof input &&
-                null !== input &&
-                "string" === typeof (input as any).implicit &&
-                "string" === typeof (input as any).shown
-            );
-        })(input),
-    ClassNonPublic.SPOILERS,
+)<ClassNonPublic>(ClassNonPublic)((input) =>
+    ((input: any): input is ClassNonPublic => {
+        return (
+            "object" === typeof input &&
+            null !== input &&
+            "string" === typeof (input as any).implicit &&
+            "string" === typeof (input as any).shown
+        );
+    })(input),
 );

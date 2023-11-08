@@ -4,7 +4,7 @@ import { ConstantAtomicSimple } from "../../../structures/ConstantAtomicSimple";
 
 export const test_createAssert_ConstantAtomicSimple = _test_assert(
     "ConstantAtomicSimple",
-    ConstantAtomicSimple.generate,
+)<ConstantAtomicSimple>(ConstantAtomicSimple)(
     (input: any): ConstantAtomicSimple => {
         const __is = (input: any): input is ConstantAtomicSimple => {
             return (
@@ -69,5 +69,4 @@ export const test_createAssert_ConstantAtomicSimple = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ConstantAtomicSimple.SPOILERS,
 );

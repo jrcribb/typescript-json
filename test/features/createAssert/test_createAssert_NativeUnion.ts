@@ -4,7 +4,4 @@ import { NativeUnion } from "../../structures/NativeUnion";
 
 export const test_createAssert_NativeUnion = _test_assert(
     "NativeUnion",
-    NativeUnion.generate,
-    typia.createAssert<NativeUnion>(),
-    NativeUnion.SPOILERS,
-);
+)<NativeUnion>(NativeUnion)(typia.createAssert<NativeUnion>());

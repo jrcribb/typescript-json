@@ -1,8 +1,7 @@
 import ts from "typescript";
 
-import { Metadata } from "../../../metadata/Metadata";
-
-import { Atomic } from "../../../typings/Atomic";
+import { Metadata } from "../../../schemas/metadata/Metadata";
+import { MetadataAtomic } from "../../../schemas/metadata/MetadataAtomic";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
@@ -19,7 +18,11 @@ export const iterate_metadata_atomic = (
     const filter = same(type);
     const check = (info: IAtomicInfo) => {
         if (filter(info.atomic) || filter(info.literal)) {
-            ArrayUtil.add(meta.atomics, info.name);
+            ArrayUtil.add(
+                meta.atomics,
+                MetadataAtomic.create({ type: info.name, tags: [] }),
+                (x, y) => x.type === y.type,
+            );
             return true;
         }
         return false;
@@ -53,7 +56,7 @@ const ATOMICS: IAtomicInfo[] = [
 ];
 
 interface IAtomicInfo {
-    name: Atomic.Literal;
+    name: "boolean" | "number" | "bigint" | "string";
     atomic: ts.TypeFlags;
     literal: ts.TypeFlags;
 }

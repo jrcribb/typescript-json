@@ -4,6 +4,6 @@ import { ArrayAtomicSimple } from "../../structures/ArrayAtomicSimple";
 
 export const test_createAssertEquals_ArrayAtomicSimple = _test_assertEquals(
     "ArrayAtomicSimple",
-    ArrayAtomicSimple.generate,
+)<ArrayAtomicSimple>(ArrayAtomicSimple)(
     typia.createAssertEquals<ArrayAtomicSimple>(),
 );

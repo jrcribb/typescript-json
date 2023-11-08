@@ -4,6 +4,4 @@ import { ArrayRecursive } from "../../structures/ArrayRecursive";
 
 export const test_createEquals_ArrayRecursive = _test_equals(
     "ArrayRecursive",
-    ArrayRecursive.generate,
-    typia.createEquals<ArrayRecursive>(),
-);
+)<ArrayRecursive>(ArrayRecursive)(typia.createEquals<ArrayRecursive>());

@@ -4,6 +4,4 @@ import { DynamicConstant } from "../../structures/DynamicConstant";
 
 export const test_createEquals_DynamicConstant = _test_equals(
     "DynamicConstant",
-    DynamicConstant.generate,
-    typia.createEquals<DynamicConstant>(),
-);
+)<DynamicConstant>(DynamicConstant)(typia.createEquals<DynamicConstant>());

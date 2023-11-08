@@ -4,7 +4,7 @@ import { ObjectUnionImplicit } from "../../../structures/ObjectUnionImplicit";
 
 export const test_createEquals_ObjectUnionImplicit = _test_equals(
     "ObjectUnionImplicit",
-    ObjectUnionImplicit.generate,
+)<ObjectUnionImplicit>(ObjectUnionImplicit)(
     (
         input: any,
         _exceptionable: boolean = true,
@@ -179,12 +179,12 @@ export const test_createEquals_ObjectUnionImplicit = _test_equals(
                     return false;
                 }));
         const $io6 = (input: any, _exceptionable: boolean = true): boolean =>
+            "number" === typeof input.radius &&
+            Number.isFinite(input.radius) &&
             (undefined === input.centroid ||
                 ("object" === typeof input.centroid &&
                     null !== input.centroid &&
                     $io0(input.centroid, true && _exceptionable))) &&
-            "number" === typeof input.radius &&
-            Number.isFinite(input.radius) &&
             (null === input.area ||
                 undefined === input.area ||
                 ("number" === typeof input.area &&
@@ -192,7 +192,7 @@ export const test_createEquals_ObjectUnionImplicit = _test_equals(
             (1 === Object.keys(input).length ||
                 Object.keys(input).every((key: any) => {
                     if (
-                        ["centroid", "radius", "area"].some(
+                        ["radius", "centroid", "area"].some(
                             (prop: any) => key === prop,
                         )
                     )
@@ -205,19 +205,20 @@ export const test_createEquals_ObjectUnionImplicit = _test_equals(
             (() => {
                 if (undefined !== input.x)
                     return $io0(input, true && _exceptionable);
-                if (undefined !== input.p4)
+                else if (undefined !== input.p4)
                     return $io3(input, true && _exceptionable);
-                if (undefined !== input.points)
+                else if (undefined !== input.points)
                     return $io4(input, true && _exceptionable);
-                if (undefined !== input.outer)
+                else if (undefined !== input.outer)
                     return $io5(input, true && _exceptionable);
-                if (undefined !== input.radius)
+                else if (undefined !== input.radius)
                     return $io6(input, true && _exceptionable);
-                return (() => {
-                    if (undefined !== input.p3)
-                        return $io2(input, true && _exceptionable);
-                    return $io1(input, true && _exceptionable);
-                })();
+                else
+                    return (() => {
+                        if (undefined !== input.p3)
+                            return $io2(input, true && _exceptionable);
+                        else return $io1(input, true && _exceptionable);
+                    })();
             })();
         return (
             Array.isArray(input) &&

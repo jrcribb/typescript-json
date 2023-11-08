@@ -1,13 +1,15 @@
-import { Metadata } from "../../metadata/Metadata";
-import { IJsonComponents } from "../../schemas/IJsonComponents";
-import { IJsonSchema } from "../../schemas/IJsonSchema";
+import { IJsonComponents } from "../../schemas/json/IJsonComponents";
+import { IJsonSchema } from "../../schemas/json/IJsonSchema";
+import { Metadata } from "../../schemas/metadata/Metadata";
+import { MetadataAtomic } from "../../schemas/metadata/MetadataAtomic";
 
-import { ApplicationProgrammer } from "../ApplicationProgrammer";
 import { AtomicPredicator } from "../helpers/AtomicPredicator";
+import { JsonApplicationProgrammer } from "../json/JsonApplicationProgrammer";
 import { application_alias } from "./application_alias";
 import { application_array } from "./application_array";
 import { application_boolean } from "./application_boolean";
 import { application_constant } from "./application_constant";
+import { application_escaped } from "./application_escaped";
 import { application_native } from "./application_native";
 import { application_number } from "./application_number";
 import { application_object } from "./application_object";
@@ -19,7 +21,7 @@ import { application_tuple } from "./application_tuple";
  * @internal
  */
 export const application_schema =
-    (options: ApplicationProgrammer.IOptions) =>
+    (options: JsonApplicationProgrammer.IOptions) =>
     <BlockNever extends boolean>(blockNever: BlockNever) =>
     (components: IJsonComponents) =>
     (meta: Metadata) =>
@@ -57,39 +59,38 @@ export const application_schema =
                 : (schema: IJsonSchema) => union.push(schema);
 
         // toJSON() METHOD
-        if (meta.resolved !== null) {
-            const resolved = application_schema(options)(blockNever)(
-                components,
-            )(meta.resolved)(attribute);
-            if (resolved !== null) union.push(resolved);
-        }
+        if (meta.escaped !== null)
+            union.push(
+                ...application_escaped(options)(blockNever)(components)(
+                    meta.escaped,
+                )(attribute),
+            );
 
         // ATOMIC TYPES
         if (meta.templates.length && AtomicPredicator.template(meta))
             insert(application_templates(meta)(attribute));
         for (const constant of meta.constants)
-            if (constant.type === "bigint") throw new Error(NO_BIGINT);
+            if (constant.type === "bigint") throw new TypeError(NO_BIGINT);
             else if (
                 (constant.type === "string" && meta.templates.length) ||
                 AtomicPredicator.constant(meta)(constant.type) === false
             )
                 continue;
             else insert(application_constant(constant)(attribute));
-        for (const type of meta.atomics)
-            if (type === "bigint") throw new Error(NO_BIGINT);
-            else if (AtomicPredicator.atomic(meta)(type) === false) continue;
-            else
-                insert(
-                    type === "string"
-                        ? application_string(meta)(attribute)
-                        : type === "boolean"
-                        ? application_boolean(attribute)
-                        : application_number(attribute),
-                );
+        for (const a of meta.atomics)
+            if (a.type === "bigint") throw new TypeError(NO_BIGINT);
+            else if (a.type === "boolean")
+                application_boolean(a)(attribute).forEach(insert);
+            else if (a.type === "number")
+                application_number(a)(attribute).forEach(insert);
+            else if (a.type === "string")
+                application_string(meta)(a)(attribute).forEach(insert);
 
         // ARRAY
         for (const array of meta.arrays)
-            insert(application_array(options)(components)(array)(attribute));
+            application_array(options)(components)(array)(attribute).forEach(
+                (s) => insert(s),
+            );
 
         // TUPLE
         for (const tuple of meta.tuples)
@@ -97,15 +98,38 @@ export const application_schema =
 
         // NATIVES
         for (const native of meta.natives)
-            if (AtomicPredicator.native(native))
-                insert(
-                    native === "String"
-                        ? application_string(meta)(attribute)
-                        : native === "Boolean"
-                        ? application_boolean(attribute)
-                        : application_number(attribute),
-                );
-            else
+            if (AtomicPredicator.native(native)) {
+                const type: string = native.toLowerCase();
+                if (meta.atomics.some((a) => a.type === type)) continue;
+                else if (type === "bigint") throw new TypeError(NO_BIGINT);
+                else if (type === "boolean")
+                    insert(
+                        application_boolean(
+                            MetadataAtomic.create({
+                                type: "boolean",
+                                tags: [],
+                            }),
+                        )(attribute)[0]!,
+                    );
+                else if (type === "number")
+                    insert(
+                        application_number(
+                            MetadataAtomic.create({
+                                type: "number",
+                                tags: [],
+                            }),
+                        )(attribute)[0]!,
+                    );
+                else if (type === "string")
+                    insert(
+                        application_string(meta)(
+                            MetadataAtomic.create({
+                                type: "string",
+                                tags: [],
+                            }),
+                        )(attribute)[0]!,
+                    );
+            } else
                 insert(
                     application_native(options)(components)(native)({
                         nullable: meta.nullable,

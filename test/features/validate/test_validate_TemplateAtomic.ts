@@ -4,7 +4,6 @@ import { TemplateAtomic } from "../../structures/TemplateAtomic";
 
 export const test_validate_TemplateAtomic = _test_validate(
     "TemplateAtomic",
-    TemplateAtomic.generate,
-    (input) => typia.validate(input),
-    TemplateAtomic.SPOILERS,
+)<TemplateAtomic>(TemplateAtomic)((input) =>
+    typia.validate<TemplateAtomic>(input),
 );

@@ -3,11 +3,12 @@ import ts from "typescript";
 import { ExpressionFactory } from "../../factories/ExpressionFactory";
 import { IdentifierFactory } from "../../factories/IdentifierFactory";
 
-import { IMetadataTag } from "../../metadata/IMetadataTag";
-import { Metadata } from "../../metadata/Metadata";
-import { MetadataArray } from "../../metadata/MetadataArray";
-import { MetadataObject } from "../../metadata/MetadataObject";
-import { MetadataTuple } from "../../metadata/MetadataTuple";
+import { Metadata } from "../../schemas/metadata/Metadata";
+import { MetadataArray } from "../../schemas/metadata/MetadataArray";
+import { MetadataArrayType } from "../../schemas/metadata/MetadataArrayType";
+import { MetadataObject } from "../../schemas/metadata/MetadataObject";
+import { MetadataTuple } from "../../schemas/metadata/MetadataTuple";
+import { MetadataTupleType } from "../../schemas/metadata/MetadataTupleType";
 
 import { FeatureProgrammer } from "../FeatureProgrammer";
 import { check_union_array_like } from "../internal/check_union_array_like";
@@ -19,8 +20,6 @@ export namespace UnionExplorer {
             input: ts.Expression,
             target: T,
             explore: FeatureProgrammer.IExplore,
-            tags: IMetadataTag[],
-            jsDocTags: ts.JSDocTagInfo[],
         ): ts.Expression;
     }
     export type ObjectCombiner = Decoder<MetadataObject[]>;
@@ -34,18 +33,10 @@ export namespace UnionExplorer {
             input: ts.Expression,
             targets: MetadataObject[],
             explore: FeatureProgrammer.IExplore,
-            tags: IMetadataTag[],
-            jsDocTags: ts.JSDocTagInfo[],
         ): ts.Expression => {
             // BREAKER
             if (targets.length === 1)
-                return config.objector.decoder()(
-                    input,
-                    targets[0]!,
-                    explore,
-                    tags,
-                    jsDocTags,
-                );
+                return config.objector.decoder()(input, targets[0]!, explore);
 
             const expected: string = `(${targets
                 .map((t) => t.name)
@@ -61,8 +52,6 @@ export namespace UnionExplorer {
                         ...explore,
                         tracable: false,
                     },
-                    tags,
-                    jsDocTags,
                 );
                 return config.objector.full
                     ? config.objector.full(condition)(input, expected, explore)
@@ -73,9 +62,9 @@ export namespace UnionExplorer {
             );
 
             // DO SPECIALIZE
-            const conditions: ts.IfStatement[] = specList
+            const condition: ts.IfStatement = specList
                 .filter((spec) => spec.property.key.getSoleLiteral() !== null)
-                .map((spec) => {
+                .map((spec, i, array) => {
                     const key: string = spec.property.key.getSoleLiteral()!;
                     const accessor: ts.Expression =
                         IdentifierFactory.access(input)(key);
@@ -88,8 +77,6 @@ export namespace UnionExplorer {
                                   tracable: false,
                                   postfix: IdentifierFactory.postfix(key),
                               },
-                              tags,
-                              jsDocTags,
                           )
                         : (config.objector.required || ((exp) => exp))(
                               ExpressionFactory.isRequired(accessor),
@@ -101,12 +88,33 @@ export namespace UnionExplorer {
                                 input,
                                 spec.object,
                                 explore,
-                                tags,
-                                jsDocTags,
                             ),
                         ),
+                        i === array.length - 1
+                            ? remained.length
+                                ? ts.factory.createReturnStatement(
+                                      object(config, level + 1)(
+                                          input,
+                                          remained,
+                                          explore,
+                                      ),
+                                  )
+                                : config.objector.failure(
+                                      input,
+                                      expected,
+                                      explore,
+                                  )
+                            : undefined,
                     );
-                });
+                })
+                .reverse()
+                .reduce((a, b) =>
+                    ts.factory.createIfStatement(
+                        b.expression,
+                        b.thenStatement,
+                        a,
+                    ),
+                );
 
             // RETURNS WITH CONDITIONS
             return ts.factory.createCallExpression(
@@ -116,27 +124,7 @@ export namespace UnionExplorer {
                     [],
                     undefined,
                     undefined,
-                    ts.factory.createBlock(
-                        [
-                            ...conditions,
-                            remained.length
-                                ? ts.factory.createReturnStatement(
-                                      object(config, level + 1)(
-                                          input,
-                                          remained,
-                                          explore,
-                                          tags,
-                                          jsDocTags,
-                                      ),
-                                  )
-                                : config.objector.failure(
-                                      input,
-                                      expected,
-                                      explore,
-                                  ),
-                        ],
-                        true,
-                    ),
+                    ts.factory.createBlock([condition], true),
                 ),
                 undefined,
                 undefined,
@@ -155,7 +143,7 @@ export namespace UnionExplorer {
             size: null!,
             front: (input) => input,
             array: (input) => input,
-            name: (t) => t.name,
+            name: (t) => t.type.name,
         })(props);
     export namespace tuple {
         export type IProps = check_union_array_like.IProps<
@@ -167,12 +155,12 @@ export namespace UnionExplorer {
     export const array = (props: array.IProps) =>
         check_union_array_like<MetadataArray, MetadataArray, Metadata>({
             transform: (x) => x,
-            element: (x) => x.value,
+            element: (x) => x.type.value,
             size: (input) => IdentifierFactory.access(input)("length"),
             front: (input) =>
                 ts.factory.createElementAccessExpression(input, 0),
             array: (input) => input,
-            name: (t) => t.name,
+            name: (t) => t.type.name,
         })(props);
     export namespace array {
         export type IProps = check_union_array_like.IProps<
@@ -188,12 +176,12 @@ export namespace UnionExplorer {
             Metadata | MetadataTuple
         >({
             transform: (x) => x,
-            element: (x) => (x instanceof MetadataArray ? x.value : x),
+            element: (x) => (x instanceof MetadataArray ? x.type.value : x),
             size: (input) => IdentifierFactory.access(input)("length"),
             front: (input) =>
                 ts.factory.createElementAccessExpression(input, 0),
             array: (input) => input,
-            name: (m) => m.name,
+            name: (m) => m.type.name,
         })(props);
     export namespace array_or_tuple {
         export type IProps = check_union_array_like.IProps<
@@ -206,13 +194,16 @@ export namespace UnionExplorer {
         check_union_array_like<Metadata, MetadataArray, Metadata>({
             transform: (value: Metadata) =>
                 MetadataArray.create({
-                    name: `Set<${value.getName()}>`,
-                    index: null,
-                    recursive: false,
-                    nullables: [],
-                    value,
+                    tags: [],
+                    type: MetadataArrayType.create({
+                        name: `Set<${value.getName()}>`,
+                        index: null,
+                        recursive: false,
+                        nullables: [],
+                        value,
+                    }),
                 }),
-            element: (array) => array.value,
+            element: (array) => array.type.value,
             size: (input) => IdentifierFactory.access(input)("size"),
             front: (input) =>
                 IdentifierFactory.access(
@@ -249,7 +240,10 @@ export namespace UnionExplorer {
             [Metadata, Metadata]
         >({
             element: (array) =>
-                array.value.tuples[0]!.elements as [Metadata, Metadata],
+                array.type.value.tuples[0]!.type.elements as [
+                    Metadata,
+                    Metadata,
+                ],
             size: (input) => IdentifierFactory.access(input)("size"),
             front: (input) =>
                 IdentifierFactory.access(
@@ -273,21 +267,31 @@ export namespace UnionExplorer {
             name: (_m, [k, v]) => `Map<${k.getName()}, ${v.getName()}>`,
             transform: (m: Metadata.Entry) =>
                 MetadataArray.create({
-                    name: `Map<${m.key.getName()}, ${m.value.getName()}>`,
-                    index: null,
-                    recursive: false,
-                    nullables: [],
-                    value: Metadata.create({
-                        ...Metadata.initialize(),
-                        tuples: [
-                            MetadataTuple.create({
-                                name: `[${m.key.getName()}, ${m.value.getName()}]`,
-                                index: null,
-                                recursive: false,
-                                nullables: [],
-                                elements: [m.key, m.value],
-                            }),
-                        ],
+                    tags: [],
+                    type: MetadataArrayType.create({
+                        name: `Map<${m.key.getName()}, ${m.value.getName()}>`,
+                        index: null,
+                        recursive: false,
+                        nullables: [],
+                        value: Metadata.create({
+                            ...Metadata.initialize(),
+                            tuples: [
+                                (() => {
+                                    const tuple = MetadataTuple.create({
+                                        tags: [],
+                                        type: MetadataTupleType.create({
+                                            name: `[${m.key.getName()}, ${m.value.getName()}]`,
+                                            index: null,
+                                            recursive: false,
+                                            nullables: [],
+                                            elements: [m.key, m.value],
+                                        }),
+                                    });
+                                    tuple.type.of_map = true;
+                                    return tuple;
+                                })(),
+                            ],
+                        }),
                     }),
                 }),
         })(props);

@@ -1,4 +1,5 @@
 import typia from "typia";
 
-type Intersection = typia.Primitive<number & { __x: string }>;
-console.log(typia.createIs<Intersection>().toString());
+type INT32 = number & (typia.tags.Type<"int32"> | typia.tags.Type<"int64">);
+
+typia.assert<INT32>(1.5);

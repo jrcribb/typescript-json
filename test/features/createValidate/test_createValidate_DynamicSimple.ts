@@ -4,7 +4,4 @@ import { DynamicSimple } from "../../structures/DynamicSimple";
 
 export const test_createValidate_DynamicSimple = _test_validate(
     "DynamicSimple",
-    DynamicSimple.generate,
-    typia.createValidate<DynamicSimple>(),
-    DynamicSimple.SPOILERS,
-);
+)<DynamicSimple>(DynamicSimple)(typia.createValidate<DynamicSimple>());

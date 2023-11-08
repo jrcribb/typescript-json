@@ -4,10 +4,9 @@ import { ObjectOptional } from "../../../structures/ObjectOptional";
 
 export const test_createValidate_ObjectOptional = _test_validate(
     "ObjectOptional",
-    ObjectOptional.generate,
+)<ObjectOptional>(ObjectOptional)(
     (input: any): typia.IValidation<ObjectOptional> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ObjectOptional => {
             const $io0 = (input: any): boolean =>
                 (undefined === input.id || "string" === typeof input.id) &&
@@ -24,7 +23,8 @@ export const test_createValidate_ObjectOptional = _test_validate(
                 $io0(input)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -83,6 +83,7 @@ export const test_createValidate_ObjectOptional = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -90,5 +91,4 @@ export const test_createValidate_ObjectOptional = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ObjectOptional.SPOILERS,
 );

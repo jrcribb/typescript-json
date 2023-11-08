@@ -4,10 +4,9 @@ import { ArrayAtomicAlias } from "../../../structures/ArrayAtomicAlias";
 
 export const test_createValidate_ArrayAtomicAlias = _test_validate(
     "ArrayAtomicAlias",
-    ArrayAtomicAlias.generate,
+)<ArrayAtomicAlias>(ArrayAtomicAlias)(
     (input: any): typia.IValidation<ArrayAtomicAlias> => {
         const errors = [] as any[];
-        const $report = (typia.createValidate as any).report(errors);
         const __is = (input: any): input is ArrayAtomicAlias => {
             return (
                 Array.isArray(input) &&
@@ -23,7 +22,8 @@ export const test_createValidate_ArrayAtomicAlias = _test_validate(
                 input[2].every((elem: any) => "string" === typeof elem)
             );
         };
-        if (false === __is(input))
+        if (false === __is(input)) {
+            const $report = (typia.createValidate as any).report(errors);
             ((
                 input: any,
                 _path: string,
@@ -131,6 +131,7 @@ export const test_createValidate_ArrayAtomicAlias = _test_validate(
                     })
                 );
             })(input, "$input", true);
+        }
         const success = 0 === errors.length;
         return {
             success,
@@ -138,5 +139,4 @@ export const test_createValidate_ArrayAtomicAlias = _test_validate(
             data: success ? input : undefined,
         } as any;
     },
-    ArrayAtomicAlias.SPOILERS,
 );

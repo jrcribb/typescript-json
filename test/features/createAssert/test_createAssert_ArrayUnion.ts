@@ -4,7 +4,4 @@ import { ArrayUnion } from "../../structures/ArrayUnion";
 
 export const test_createAssert_ArrayUnion = _test_assert(
     "ArrayUnion",
-    ArrayUnion.generate,
-    typia.createAssert<ArrayUnion>(),
-    ArrayUnion.SPOILERS,
-);
+)<ArrayUnion>(ArrayUnion)(typia.createAssert<ArrayUnion>());

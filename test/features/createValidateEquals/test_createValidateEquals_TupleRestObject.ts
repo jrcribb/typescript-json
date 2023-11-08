@@ -4,6 +4,6 @@ import { TupleRestObject } from "../../structures/TupleRestObject";
 
 export const test_createValidateEquals_TupleRestObject = _test_validateEquals(
     "TupleRestObject",
-    TupleRestObject.generate,
+)<TupleRestObject>(TupleRestObject)(
     typia.createValidateEquals<TupleRestObject>(),
 );

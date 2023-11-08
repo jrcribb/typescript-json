@@ -4,7 +4,7 @@ import { ArrayRepeatedUnion } from "../../../structures/ArrayRepeatedUnion";
 
 export const test_createIs_ArrayRepeatedUnion = _test_is(
     "ArrayRepeatedUnion",
-    ArrayRepeatedUnion.generate,
+)<ArrayRepeatedUnion>(ArrayRepeatedUnion)(
     (input: any): input is ArrayRepeatedUnion => {
         const $ip0 = (input: any) => {
             const array = input;
@@ -12,21 +12,21 @@ export const test_createIs_ArrayRepeatedUnion = _test_is(
             if (0 === input.length) return true;
             const arrayPredicators = [
                 [
-                    (top: any): any => "string" === typeof top,
+                    (top: any[]): any => "string" === typeof top,
                     (entire: any[]): any =>
                         entire.every((elem: any) => "string" === typeof elem),
-                ],
+                ] as const,
                 [
-                    (top: any): any =>
+                    (top: any[]): any =>
                         null !== top &&
                         undefined !== top &&
                         (("number" === typeof top && Number.isFinite(top)) ||
                             "boolean" === typeof top ||
                             (Array.isArray(top) && ($ip0(top) || false))),
                     (entire: any[]): any => $ia0(entire) || false,
-                ],
+                ] as const,
                 [
-                    (top: any): any =>
+                    (top: any[]): any =>
                         "object" === typeof top && null !== top && $io0(top),
                     (entire: any[]): any =>
                         entire.every(
@@ -35,10 +35,10 @@ export const test_createIs_ArrayRepeatedUnion = _test_is(
                                 null !== elem &&
                                 $io0(elem),
                         ),
-                ],
+                ] as const,
             ];
             const passed = arrayPredicators.filter((pred: any) => pred[0](top));
-            if (1 === passed.length) return passed[0][1](array);
+            if (1 === passed.length) return passed[0]![1](array);
             else if (1 < passed.length)
                 for (const pred of passed)
                     if (array.every((value: any) => true === pred[0](value)))
@@ -95,5 +95,4 @@ export const test_createIs_ArrayRepeatedUnion = _test_is(
                 (Array.isArray(input) && ($ip0(input) || false)))
         );
     },
-    ArrayRepeatedUnion.SPOILERS,
 );

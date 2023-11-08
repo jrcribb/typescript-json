@@ -4,6 +4,4 @@ import { AtomicUnion } from "../../structures/AtomicUnion";
 
 export const test_createValidateEquals_AtomicUnion = _test_validateEquals(
     "AtomicUnion",
-    AtomicUnion.generate,
-    typia.createValidateEquals<AtomicUnion>(),
-);
+)<AtomicUnion>(AtomicUnion)(typia.createValidateEquals<AtomicUnion>());

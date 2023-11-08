@@ -4,7 +4,6 @@ import { ArrayRepeatedUnion } from "../../structures/ArrayRepeatedUnion";
 
 export const test_createAssert_ArrayRepeatedUnion = _test_assert(
     "ArrayRepeatedUnion",
-    ArrayRepeatedUnion.generate,
+)<ArrayRepeatedUnion>(ArrayRepeatedUnion)(
     typia.createAssert<ArrayRepeatedUnion>(),
-    ArrayRepeatedUnion.SPOILERS,
 );

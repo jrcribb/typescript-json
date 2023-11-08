@@ -4,7 +4,7 @@ import { ArrayRepeatedRequired } from "../../../structures/ArrayRepeatedRequired
 
 export const test_createAssert_ArrayRepeatedRequired = _test_assert(
     "ArrayRepeatedRequired",
-    ArrayRepeatedRequired.generate,
+)<ArrayRepeatedRequired>(ArrayRepeatedRequired)(
     (input: any): ArrayRepeatedRequired => {
         const __is = (input: any): input is ArrayRepeatedRequired => {
             const $ia0 = (input: any): any =>
@@ -121,5 +121,4 @@ export const test_createAssert_ArrayRepeatedRequired = _test_assert(
             })(input, "$input", true);
         return input;
     },
-    ArrayRepeatedRequired.SPOILERS,
 );

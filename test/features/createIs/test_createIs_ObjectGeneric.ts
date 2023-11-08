@@ -4,7 +4,4 @@ import { ObjectGeneric } from "../../structures/ObjectGeneric";
 
 export const test_createIs_ObjectGeneric = _test_is(
     "ObjectGeneric",
-    ObjectGeneric.generate,
-    typia.createIs<ObjectGeneric>(),
-    ObjectGeneric.SPOILERS,
-);
+)<ObjectGeneric>(ObjectGeneric)(typia.createIs<ObjectGeneric>());

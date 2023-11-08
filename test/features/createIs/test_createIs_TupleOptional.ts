@@ -4,7 +4,4 @@ import { TupleOptional } from "../../structures/TupleOptional";
 
 export const test_createIs_TupleOptional = _test_is(
     "TupleOptional",
-    TupleOptional.generate,
-    typia.createIs<TupleOptional>(),
-    TupleOptional.SPOILERS,
-);
+)<TupleOptional>(TupleOptional)(typia.createIs<TupleOptional>());

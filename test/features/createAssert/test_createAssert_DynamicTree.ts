@@ -4,7 +4,4 @@ import { DynamicTree } from "../../structures/DynamicTree";
 
 export const test_createAssert_DynamicTree = _test_assert(
     "DynamicTree",
-    DynamicTree.generate,
-    typia.createAssert<DynamicTree>(),
-    DynamicTree.SPOILERS,
-);
+)<DynamicTree>(DynamicTree)(typia.createAssert<DynamicTree>());

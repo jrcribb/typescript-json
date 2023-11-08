@@ -2,9 +2,7 @@ import typia from "../../../../src";
 import { _test_is } from "../../../internal/_test_is";
 import { SetAlias } from "../../../structures/SetAlias";
 
-export const test_is_SetAlias = _test_is(
-    "SetAlias",
-    SetAlias.generate,
+export const test_is_SetAlias = _test_is("SetAlias")<SetAlias>(SetAlias)(
     (input) =>
         ((input: any): input is SetAlias => {
             const $io0 = (input: any): boolean =>
@@ -50,5 +48,4 @@ export const test_is_SetAlias = _test_is(
                 Number.isFinite(input.age);
             return "object" === typeof input && null !== input && $io0(input);
         })(input),
-    SetAlias.SPOILERS,
 );

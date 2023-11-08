@@ -4,7 +4,4 @@ import { FunctionalArray } from "../../structures/FunctionalArray";
 
 export const test_createAssert_FunctionalArray = _test_assert(
     "FunctionalArray",
-    FunctionalArray.generate,
-    typia.createAssert<FunctionalArray>(),
-    FunctionalArray.SPOILERS,
-);
+)<FunctionalArray>(FunctionalArray)(typia.createAssert<FunctionalArray>());

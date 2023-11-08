@@ -4,12 +4,11 @@ import { FunctionalProperty } from "../../../structures/FunctionalProperty";
 
 export const test_createIs_FunctionalProperty = _test_is(
     "FunctionalProperty",
-    FunctionalProperty.generate,
+)<FunctionalProperty>(FunctionalProperty)(
     (input: any): input is FunctionalProperty => {
         const $io0 = (input: any): boolean =>
             "string" === typeof input.name &&
             "function" === typeof input.closure;
         return "object" === typeof input && null !== input && $io0(input);
     },
-    FunctionalProperty.SPOILERS,
 );
