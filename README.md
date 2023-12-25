@@ -11,6 +11,7 @@
 // RUNTIME VALIDATORS
 export function is<T>(input: unknown): input is T; // returns boolean
 export function assert<T>(input: unknown): T; // throws TypeGuardError
+export function assertGuard<T>(input: unknown): asserts input is T;
 export function validate<T>(input: unknown): IValidation<T>; // detailed
 
 // JSON FUNCTIONS
@@ -74,8 +75,8 @@ Check out the document in the [website](https://typia.io/docs/):
   
 ### 📖 Features
   - Runtime Validators
-    - [`is()` function](https://typia.io/docs/validators/is/)
     - [`assert()` function](https://typia.io/docs/validators/assert/)
+    - [`is()` function](https://typia.io/docs/validators/is/)
     - [`validate()` function](https://typia.io/docs/validators/validate/)
     - [Special Tags](https://typia.io/docs/validators/tags/)
   - Enhanced JSON
@@ -94,5 +95,5 @@ Check out the document in the [website](https://typia.io/docs/):
     - [NestJS](https://typia.io/docs/utilization/nestjs/)
     - [Prisma](https://typia.io/docs/utilization/prisma/)
     - [tRPC](https://typia.io/docs/utilization/trpc/)
-  - [⇲ Benchmark Result](https://github.com/samchon/typia/tree/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz)
+  - [⇲ Benchmark Result](https://github.com/samchon/typia/tree/master/packages/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz)
   - [⇲ `dev.to` Articles](https://dev.to/samchon/series/22474)

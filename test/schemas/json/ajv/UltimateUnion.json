@@ -33,8 +33,8 @@
             "x-typia-optional": false,
             "type": "string",
             "enum": [
-              "swagger",
-              "ajv"
+              "ajv",
+              "swagger"
             ]
           }
         },
@@ -116,6 +116,16 @@
               "boolean"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -126,16 +136,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -238,6 +238,16 @@
               "number"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -248,16 +258,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -316,6 +316,16 @@
               "string"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -326,16 +336,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -468,15 +468,6 @@
             "x-typia-optional": false,
             "type": "string"
           },
-          "value": {
-            "x-typia-required": true,
-            "x-typia-optional": false
-          },
-          "validate": {
-            "x-typia-required": false,
-            "x-typia-optional": false,
-            "type": "string"
-          },
           "exclusive": {
             "oneOf": [
               {
@@ -497,13 +488,21 @@
             ],
             "x-typia-required": true,
             "x-typia-optional": false
+          },
+          "value": {
+            "x-typia-required": true,
+            "x-typia-optional": true
+          },
+          "validate": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
           }
         },
         "required": [
           "target",
           "name",
           "kind",
-          "value",
           "exclusive"
         ],
         "x-typia-jsDocTags": []
@@ -892,6 +891,14 @@
           },
           "x-typia-tuple": {
             "$ref": "#/components/schemas/IJsonSchema.ITuple"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "type": {
             "x-typia-required": true,
@@ -1518,6 +1525,16 @@
               "string"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -1528,16 +1545,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -1606,6 +1613,16 @@
               "number"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -1616,16 +1633,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -1694,6 +1701,16 @@
               "boolean"
             ]
           },
+          "description": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
           "nullable": {
             "description": "Only when swagger mode.",
             "x-typia-required": false,
@@ -1704,16 +1721,6 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "boolean"
-          },
-          "title": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "description": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
           },
           "x-typia-jsDocTags": {
             "x-typia-required": false,
@@ -2254,6 +2261,14 @@
           },
           "x-typia-tuple": {
             "$ref": "#/components/schemas/IJsonSchema.ITuple"
+          },
+          "x-typia-typeTags": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IMetadataTypeTag"
+            }
           },
           "type": {
             "x-typia-required": true,
