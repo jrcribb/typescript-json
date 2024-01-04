@@ -25,8 +25,9 @@ export const test_notation_createValidateCamel_UltimateUnion =
             "object" === typeof input.components &&
             null !== input.components &&
             false === Array.isArray(input.components) &&
-            $io17(input.components) &&
-            ("swagger" === input.purpose || "ajv" === input.purpose);
+            $io19(input.components) &&
+            ("swagger" === input.purpose || "ajv" === input.purpose) &&
+            "boolean" === typeof input.surplus;
           const $io1 = (input: any): boolean =>
             Array.isArray(input["enum"]) &&
             input["enum"].every((elem: any) => "boolean" === typeof elem) &&
@@ -380,6 +381,108 @@ export const test_notation_createValidateCamel_UltimateUnion =
             (undefined === input["x-typia-rest"] ||
               "boolean" === typeof input["x-typia-rest"]);
           const $io13 = (input: any): boolean =>
+            "object" === typeof input.properties &&
+            null !== input.properties &&
+            false === Array.isArray(input.properties) &&
+            $io14(input.properties) &&
+            (undefined === input.required ||
+              (Array.isArray(input.required) &&
+                input.required.every(
+                  (elem: any) => "string" === typeof elem,
+                ))) &&
+            (undefined === input.patternProperties ||
+              ("object" === typeof input.patternProperties &&
+                null !== input.patternProperties &&
+                false === Array.isArray(input.patternProperties) &&
+                $io14(input.patternProperties))) &&
+            (undefined === input.additionalProperties ||
+              ("object" === typeof input.additionalProperties &&
+                null !== input.additionalProperties &&
+                false === Array.isArray(input.additionalProperties) &&
+                $iu0(input.additionalProperties))) &&
+            (undefined === input["x-typia-patternProperties"] ||
+              ("object" === typeof input["x-typia-patternProperties"] &&
+                null !== input["x-typia-patternProperties"] &&
+                false === Array.isArray(input["x-typia-patternProperties"]) &&
+                $io14(input["x-typia-patternProperties"]))) &&
+            (undefined === input["x-typia-additionalProperties"] ||
+              ("object" === typeof input["x-typia-additionalProperties"] &&
+                null !== input["x-typia-additionalProperties"] &&
+                false ===
+                  Array.isArray(input["x-typia-additionalProperties"]) &&
+                $iu0(input["x-typia-additionalProperties"]))) &&
+            "object" === input.type &&
+            (undefined === input.nullable ||
+              "boolean" === typeof input.nullable) &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated) &&
+            (undefined === input.title || "string" === typeof input.title) &&
+            (undefined === input.description ||
+              "string" === typeof input.description) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              (Array.isArray(input["x-typia-jsDocTags"]) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any) =>
+                    "object" === typeof elem && null !== elem && $io2(elem),
+                ))) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"]) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"]) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"]);
+          const $io14 = (input: any): boolean =>
+            Object.keys(input).every((key: any) => {
+              const value = input[key];
+              if (undefined === value) return true;
+              if (true)
+                return (
+                  "object" === typeof value &&
+                  null !== value &&
+                  false === Array.isArray(value) &&
+                  $iu0(value)
+                );
+              return true;
+            });
+          const $io15 = (input: any): boolean =>
+            "string" === typeof input.$ref &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated) &&
+            (undefined === input.title || "string" === typeof input.title) &&
+            (undefined === input.description ||
+              "string" === typeof input.description) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              (Array.isArray(input["x-typia-jsDocTags"]) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any) =>
+                    "object" === typeof elem && null !== elem && $io2(elem),
+                ))) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"]) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"]) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"]);
+          const $io16 = (input: any): boolean =>
+            "null" === input.type &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated) &&
+            (undefined === input.title || "string" === typeof input.title) &&
+            (undefined === input.description ||
+              "string" === typeof input.description) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              (Array.isArray(input["x-typia-jsDocTags"]) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any) =>
+                    "object" === typeof elem && null !== elem && $io2(elem),
+                ))) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"]) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"]) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"]);
+          const $io17 = (input: any): boolean =>
             Array.isArray(input.oneOf) &&
             input.oneOf.every(
               (elem: any) =>
@@ -405,45 +508,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
               "boolean" === typeof input["x-typia-optional"]) &&
             (undefined === input["x-typia-rest"] ||
               "boolean" === typeof input["x-typia-rest"]);
-          const $io14 = (input: any): boolean =>
-            "string" === typeof input.$ref &&
-            (undefined === input.deprecated ||
-              "boolean" === typeof input.deprecated) &&
-            (undefined === input.title || "string" === typeof input.title) &&
-            (undefined === input.description ||
-              "string" === typeof input.description) &&
-            (undefined === input["x-typia-jsDocTags"] ||
-              (Array.isArray(input["x-typia-jsDocTags"]) &&
-                input["x-typia-jsDocTags"].every(
-                  (elem: any) =>
-                    "object" === typeof elem && null !== elem && $io2(elem),
-                ))) &&
-            (undefined === input["x-typia-required"] ||
-              "boolean" === typeof input["x-typia-required"]) &&
-            (undefined === input["x-typia-optional"] ||
-              "boolean" === typeof input["x-typia-optional"]) &&
-            (undefined === input["x-typia-rest"] ||
-              "boolean" === typeof input["x-typia-rest"]);
-          const $io15 = (input: any): boolean =>
-            "null" === input.type &&
-            (undefined === input.deprecated ||
-              "boolean" === typeof input.deprecated) &&
-            (undefined === input.title || "string" === typeof input.title) &&
-            (undefined === input.description ||
-              "string" === typeof input.description) &&
-            (undefined === input["x-typia-jsDocTags"] ||
-              (Array.isArray(input["x-typia-jsDocTags"]) &&
-                input["x-typia-jsDocTags"].every(
-                  (elem: any) =>
-                    "object" === typeof elem && null !== elem && $io2(elem),
-                ))) &&
-            (undefined === input["x-typia-required"] ||
-              "boolean" === typeof input["x-typia-required"]) &&
-            (undefined === input["x-typia-optional"] ||
-              "boolean" === typeof input["x-typia-optional"]) &&
-            (undefined === input["x-typia-rest"] ||
-              "boolean" === typeof input["x-typia-rest"]);
-          const $io16 = (input: any): boolean =>
+          const $io18 = (input: any): boolean =>
             null !== input.type &&
             undefined === input.type &&
             (undefined === input.deprecated ||
@@ -463,68 +528,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
               "boolean" === typeof input["x-typia-optional"]) &&
             (undefined === input["x-typia-rest"] ||
               "boolean" === typeof input["x-typia-rest"]);
-          const $io17 = (input: any): boolean =>
+          const $io19 = (input: any): boolean =>
             undefined === input.schemas ||
             ("object" === typeof input.schemas &&
               null !== input.schemas &&
               false === Array.isArray(input.schemas) &&
-              $io18(input.schemas));
-          const $io18 = (input: any): boolean =>
-            Object.keys(input).every((key: any) => {
-              const value = input[key];
-              if (undefined === value) return true;
-              if (true)
-                return (
-                  "object" === typeof value &&
-                  null !== value &&
-                  false === Array.isArray(value) &&
-                  $iu1(value)
-                );
-              return true;
-            });
-          const $io19 = (input: any): boolean =>
-            (undefined === input.$id || "string" === typeof input.$id) &&
-            "object" === input.type &&
-            (undefined === input.nullable ||
-              "boolean" === typeof input.nullable) &&
-            "object" === typeof input.properties &&
-            null !== input.properties &&
-            false === Array.isArray(input.properties) &&
-            $io20(input.properties) &&
-            (undefined === input.patternProperties ||
-              ("object" === typeof input.patternProperties &&
-                null !== input.patternProperties &&
-                false === Array.isArray(input.patternProperties) &&
-                $io20(input.patternProperties))) &&
-            (undefined === input.additionalProperties ||
-              ("object" === typeof input.additionalProperties &&
-                null !== input.additionalProperties &&
-                false === Array.isArray(input.additionalProperties) &&
-                $iu0(input.additionalProperties))) &&
-            (undefined === input.required ||
-              (Array.isArray(input.required) &&
-                input.required.every(
-                  (elem: any) => "string" === typeof elem,
-                ))) &&
-            (undefined === input.description ||
-              "string" === typeof input.description) &&
-            (undefined === input["x-typia-jsDocTags"] ||
-              (Array.isArray(input["x-typia-jsDocTags"]) &&
-                input["x-typia-jsDocTags"].every(
-                  (elem: any) =>
-                    "object" === typeof elem && null !== elem && $io2(elem),
-                ))) &&
-            (undefined === input["x-typia-patternProperties"] ||
-              ("object" === typeof input["x-typia-patternProperties"] &&
-                null !== input["x-typia-patternProperties"] &&
-                false === Array.isArray(input["x-typia-patternProperties"]) &&
-                $io20(input["x-typia-patternProperties"]))) &&
-            (undefined === input["x-typia-additionalProperties"] ||
-              ("object" === typeof input["x-typia-additionalProperties"] &&
-                null !== input["x-typia-additionalProperties"] &&
-                false ===
-                  Array.isArray(input["x-typia-additionalProperties"]) &&
-                $iu0(input["x-typia-additionalProperties"])));
+              $io20(input.schemas));
           const $io20 = (input: any): boolean =>
             Object.keys(input).every((key: any) => {
               const value = input[key];
@@ -534,7 +543,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   "object" === typeof value &&
                   null !== value &&
                   false === Array.isArray(value) &&
-                  $iu0(value)
+                  $iu1(value)
                 );
               return true;
             });
@@ -890,14 +899,39 @@ export const test_notation_createValidateCamel_UltimateUnion =
             (undefined === input.$recursiveAnchor ||
               "boolean" === typeof input.$recursiveAnchor);
           const $io30 = (input: any): boolean =>
-            Array.isArray(input.oneOf) &&
-            input.oneOf.every(
-              (elem: any) =>
-                "object" === typeof elem &&
-                null !== elem &&
-                false === Array.isArray(elem) &&
-                $iu0(elem),
-            ) &&
+            "object" === typeof input.properties &&
+            null !== input.properties &&
+            false === Array.isArray(input.properties) &&
+            $io14(input.properties) &&
+            (undefined === input.required ||
+              (Array.isArray(input.required) &&
+                input.required.every(
+                  (elem: any) => "string" === typeof elem,
+                ))) &&
+            (undefined === input.patternProperties ||
+              ("object" === typeof input.patternProperties &&
+                null !== input.patternProperties &&
+                false === Array.isArray(input.patternProperties) &&
+                $io14(input.patternProperties))) &&
+            (undefined === input.additionalProperties ||
+              ("object" === typeof input.additionalProperties &&
+                null !== input.additionalProperties &&
+                false === Array.isArray(input.additionalProperties) &&
+                $iu0(input.additionalProperties))) &&
+            (undefined === input["x-typia-patternProperties"] ||
+              ("object" === typeof input["x-typia-patternProperties"] &&
+                null !== input["x-typia-patternProperties"] &&
+                false === Array.isArray(input["x-typia-patternProperties"]) &&
+                $io14(input["x-typia-patternProperties"]))) &&
+            (undefined === input["x-typia-additionalProperties"] ||
+              ("object" === typeof input["x-typia-additionalProperties"] &&
+                null !== input["x-typia-additionalProperties"] &&
+                false ===
+                  Array.isArray(input["x-typia-additionalProperties"]) &&
+                $iu0(input["x-typia-additionalProperties"]))) &&
+            "object" === input.type &&
+            (undefined === input.nullable ||
+              "boolean" === typeof input.nullable) &&
             (undefined === input.deprecated ||
               "boolean" === typeof input.deprecated) &&
             (undefined === input.title || "string" === typeof input.title) &&
@@ -963,6 +997,35 @@ export const test_notation_createValidateCamel_UltimateUnion =
             (undefined === input.$recursiveAnchor ||
               "boolean" === typeof input.$recursiveAnchor);
           const $io33 = (input: any): boolean =>
+            Array.isArray(input.oneOf) &&
+            input.oneOf.every(
+              (elem: any) =>
+                "object" === typeof elem &&
+                null !== elem &&
+                false === Array.isArray(elem) &&
+                $iu0(elem),
+            ) &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated) &&
+            (undefined === input.title || "string" === typeof input.title) &&
+            (undefined === input.description ||
+              "string" === typeof input.description) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              (Array.isArray(input["x-typia-jsDocTags"]) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any) =>
+                    "object" === typeof elem && null !== elem && $io2(elem),
+                ))) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"]) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"]) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"]) &&
+            (undefined === input.$id || "string" === typeof input.$id) &&
+            (undefined === input.$recursiveAnchor ||
+              "boolean" === typeof input.$recursiveAnchor);
+          const $io34 = (input: any): boolean =>
             null !== input.type &&
             undefined === input.type &&
             (undefined === input.deprecated ||
@@ -1006,9 +1069,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 )
               )
                 return $io12(input);
-              else if (undefined !== input.oneOf) return $io13(input);
-              else if (undefined !== input.$ref) return $io14(input);
-              else if ("null" === input.type) return $io15(input);
+              else if ("object" === input.type) return $io13(input);
+              else if (undefined !== input.$ref) return $io15(input);
+              else if ("null" === input.type) return $io16(input);
+              else if (undefined !== input.oneOf) return $io17(input);
               else
                 return (() => {
                   if ($io5(input)) return $io5(input);
@@ -1017,14 +1081,13 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   else if ($io6(input)) return $io6(input);
                   else if ($io9(input)) return $io9(input);
                   else if ($io10(input)) return $io10(input);
-                  else if ($io16(input)) return $io16(input);
+                  else if ($io18(input)) return $io18(input);
                   else return false;
                 })();
             })();
           const $iu1 = (input: any): any =>
             (() => {
-              if ("object" === input.type) return $io19(input);
-              else if ("integer" === input.type) return $io25(input);
+              if ("integer" === input.type) return $io25(input);
               else if (
                 "object" === typeof input.items &&
                 null !== input.items &&
@@ -1043,9 +1106,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 )
               )
                 return $io29(input);
-              else if (undefined !== input.oneOf) return $io30(input);
+              else if ("object" === input.type) return $io30(input);
               else if (undefined !== input.$ref) return $io31(input);
               else if ("null" === input.type) return $io32(input);
+              else if (undefined !== input.oneOf) return $io33(input);
               else
                 return (() => {
                   if ($io23(input)) return $io23(input);
@@ -1054,7 +1118,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   else if ($io24(input)) return $io24(input);
                   else if ($io26(input)) return $io26(input);
                   else if ($io27(input)) return $io27(input);
-                  else if ($io33(input)) return $io33(input);
+                  else if ($io34(input)) return $io34(input);
                   else return false;
                 })();
             })();
@@ -1097,7 +1161,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                           $report(_exceptionable, {
                             path: _path + ".schemas[" + _index2 + "]",
                             expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                             value: elem,
                           })) &&
                           $vu0(
@@ -1108,7 +1172,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                         $report(_exceptionable, {
                           path: _path + ".schemas[" + _index2 + "]",
                           expected:
-                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                           value: elem,
                         }),
                     )
@@ -1126,7 +1190,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     expected: "IJsonComponents",
                     value: input.components,
                   })) &&
-                  $vo17(
+                  $vo19(
                     input.components,
                     _path + ".components",
                     true && _exceptionable,
@@ -1142,6 +1206,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     path: _path + ".purpose",
                     expected: '("ajv" | "swagger")',
                     value: input.purpose,
+                  }),
+                "boolean" === typeof input.surplus ||
+                  $report(_exceptionable, {
+                    path: _path + ".surplus",
+                    expected: "boolean",
+                    value: input.surplus,
                   }),
               ].every((flag: boolean) => flag);
             const $vo1 = (
@@ -2405,7 +2475,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $report(_exceptionable, {
                     path: _path + ".items",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: input.items,
                   })) &&
                   $vu0(
@@ -2416,7 +2486,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $report(_exceptionable, {
                     path: _path + ".items",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: input.items,
                   }),
                 undefined === input.minItems ||
@@ -2620,7 +2690,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                           $report(_exceptionable, {
                             path: _path + ".items[" + _index21 + "]",
                             expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                             value: elem,
                           })) &&
                           $vu0(
@@ -2631,7 +2701,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                         $report(_exceptionable, {
                           path: _path + ".items[" + _index21 + "]",
                           expected:
-                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                           value: elem,
                         }),
                     )
@@ -2770,41 +2840,142 @@ export const test_notation_createValidateCamel_UltimateUnion =
               _exceptionable: boolean = true,
             ): boolean =>
               [
-                ((Array.isArray(input.oneOf) ||
+                ((("object" === typeof input.properties &&
+                  null !== input.properties &&
+                  false === Array.isArray(input.properties)) ||
                   $report(_exceptionable, {
-                    path: _path + ".oneOf",
-                    expected: "Array<IJsonSchema>",
-                    value: input.oneOf,
+                    path: _path + ".properties",
+                    expected: "Record<string, IJsonSchema>",
+                    value: input.properties,
                   })) &&
-                  input.oneOf
-                    .map(
-                      (elem: any, _index23: number) =>
-                        ((("object" === typeof elem &&
-                          null !== elem &&
-                          false === Array.isArray(elem)) ||
-                          $report(_exceptionable, {
-                            path: _path + ".oneOf[" + _index23 + "]",
-                            expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                            value: elem,
-                          })) &&
-                          $vu0(
-                            elem,
-                            _path + ".oneOf[" + _index23 + "]",
-                            true && _exceptionable,
-                          )) ||
-                        $report(_exceptionable, {
-                          path: _path + ".oneOf[" + _index23 + "]",
-                          expected:
-                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                          value: elem,
-                        }),
-                    )
-                    .every((flag: boolean) => flag)) ||
+                  $vo14(
+                    input.properties,
+                    _path + ".properties",
+                    true && _exceptionable,
+                  )) ||
                   $report(_exceptionable, {
-                    path: _path + ".oneOf",
-                    expected: "Array<IJsonSchema>",
-                    value: input.oneOf,
+                    path: _path + ".properties",
+                    expected: "Record<string, IJsonSchema>",
+                    value: input.properties,
+                  }),
+                undefined === input.required ||
+                  ((Array.isArray(input.required) ||
+                    $report(_exceptionable, {
+                      path: _path + ".required",
+                      expected: "(Array<string> | undefined)",
+                      value: input.required,
+                    })) &&
+                    input.required
+                      .map(
+                        (elem: any, _index23: number) =>
+                          "string" === typeof elem ||
+                          $report(_exceptionable, {
+                            path: _path + ".required[" + _index23 + "]",
+                            expected: "string",
+                            value: elem,
+                          }),
+                      )
+                      .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + ".required",
+                    expected: "(Array<string> | undefined)",
+                    value: input.required,
+                  }),
+                undefined === input.patternProperties ||
+                  ((("object" === typeof input.patternProperties &&
+                    null !== input.patternProperties &&
+                    false === Array.isArray(input.patternProperties)) ||
+                    $report(_exceptionable, {
+                      path: _path + ".patternProperties",
+                      expected: "(Record<string, IJsonSchema> | undefined)",
+                      value: input.patternProperties,
+                    })) &&
+                    $vo14(
+                      input.patternProperties,
+                      _path + ".patternProperties",
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + ".patternProperties",
+                    expected: "(Record<string, IJsonSchema> | undefined)",
+                    value: input.patternProperties,
+                  }),
+                undefined === input.additionalProperties ||
+                  ((("object" === typeof input.additionalProperties &&
+                    null !== input.additionalProperties &&
+                    false === Array.isArray(input.additionalProperties)) ||
+                    $report(_exceptionable, {
+                      path: _path + ".additionalProperties",
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                      value: input.additionalProperties,
+                    })) &&
+                    $vu0(
+                      input.additionalProperties,
+                      _path + ".additionalProperties",
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + ".additionalProperties",
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                    value: input.additionalProperties,
+                  }),
+                undefined === input["x-typia-patternProperties"] ||
+                  ((("object" === typeof input["x-typia-patternProperties"] &&
+                    null !== input["x-typia-patternProperties"] &&
+                    false ===
+                      Array.isArray(input["x-typia-patternProperties"])) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-patternProperties"]',
+                      expected: "(Record<string, IJsonSchema> | undefined)",
+                      value: input["x-typia-patternProperties"],
+                    })) &&
+                    $vo14(
+                      input["x-typia-patternProperties"],
+                      _path + '["x-typia-patternProperties"]',
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-patternProperties"]',
+                    expected: "(Record<string, IJsonSchema> | undefined)",
+                    value: input["x-typia-patternProperties"],
+                  }),
+                undefined === input["x-typia-additionalProperties"] ||
+                  ((("object" ===
+                    typeof input["x-typia-additionalProperties"] &&
+                    null !== input["x-typia-additionalProperties"] &&
+                    false ===
+                      Array.isArray(input["x-typia-additionalProperties"])) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-additionalProperties"]',
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                      value: input["x-typia-additionalProperties"],
+                    })) &&
+                    $vu0(
+                      input["x-typia-additionalProperties"],
+                      _path + '["x-typia-additionalProperties"]',
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-additionalProperties"]',
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                    value: input["x-typia-additionalProperties"],
+                  }),
+                "object" === input.type ||
+                  $report(_exceptionable, {
+                    path: _path + ".type",
+                    expected: '"object"',
+                    value: input.type,
+                  }),
+                undefined === input.nullable ||
+                  "boolean" === typeof input.nullable ||
+                  $report(_exceptionable, {
+                    path: _path + ".nullable",
+                    expected: "(boolean | undefined)",
+                    value: input.nullable,
                   }),
                 undefined === input.deprecated ||
                   "boolean" === typeof input.deprecated ||
@@ -2888,6 +3059,44 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   }),
               ].every((flag: boolean) => flag);
             const $vo14 = (
+              input: any,
+              _path: string,
+              _exceptionable: boolean = true,
+            ): boolean =>
+              [
+                false === _exceptionable ||
+                  Object.keys(input)
+                    .map((key: any) => {
+                      const value = input[key];
+                      if (undefined === value) return true;
+                      if (true)
+                        return (
+                          ((("object" === typeof value &&
+                            null !== value &&
+                            false === Array.isArray(value)) ||
+                            $report(_exceptionable, {
+                              path: _path + $join(key),
+                              expected:
+                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                              value: value,
+                            })) &&
+                            $vu0(
+                              value,
+                              _path + $join(key),
+                              true && _exceptionable,
+                            )) ||
+                          $report(_exceptionable, {
+                            path: _path + $join(key),
+                            expected:
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            value: value,
+                          })
+                        );
+                      return true;
+                    })
+                    .every((flag: boolean) => flag),
+              ].every((flag: boolean) => flag);
+            const $vo15 = (
               input: any,
               _path: string,
               _exceptionable: boolean = true,
@@ -2980,7 +3189,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     value: input["x-typia-rest"],
                   }),
               ].every((flag: boolean) => flag);
-            const $vo15 = (
+            const $vo16 = (
               input: any,
               _path: string,
               _exceptionable: boolean = true,
@@ -3073,7 +3282,130 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     value: input["x-typia-rest"],
                   }),
               ].every((flag: boolean) => flag);
-            const $vo16 = (
+            const $vo17 = (
+              input: any,
+              _path: string,
+              _exceptionable: boolean = true,
+            ): boolean =>
+              [
+                ((Array.isArray(input.oneOf) ||
+                  $report(_exceptionable, {
+                    path: _path + ".oneOf",
+                    expected: "Array<IJsonSchema>",
+                    value: input.oneOf,
+                  })) &&
+                  input.oneOf
+                    .map(
+                      (elem: any, _index27: number) =>
+                        ((("object" === typeof elem &&
+                          null !== elem &&
+                          false === Array.isArray(elem)) ||
+                          $report(_exceptionable, {
+                            path: _path + ".oneOf[" + _index27 + "]",
+                            expected:
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            value: elem,
+                          })) &&
+                          $vu0(
+                            elem,
+                            _path + ".oneOf[" + _index27 + "]",
+                            true && _exceptionable,
+                          )) ||
+                        $report(_exceptionable, {
+                          path: _path + ".oneOf[" + _index27 + "]",
+                          expected:
+                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                          value: elem,
+                        }),
+                    )
+                    .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + ".oneOf",
+                    expected: "Array<IJsonSchema>",
+                    value: input.oneOf,
+                  }),
+                undefined === input.deprecated ||
+                  "boolean" === typeof input.deprecated ||
+                  $report(_exceptionable, {
+                    path: _path + ".deprecated",
+                    expected: "(boolean | undefined)",
+                    value: input.deprecated,
+                  }),
+                undefined === input.title ||
+                  "string" === typeof input.title ||
+                  $report(_exceptionable, {
+                    path: _path + ".title",
+                    expected: "(string | undefined)",
+                    value: input.title,
+                  }),
+                undefined === input.description ||
+                  "string" === typeof input.description ||
+                  $report(_exceptionable, {
+                    path: _path + ".description",
+                    expected: "(string | undefined)",
+                    value: input.description,
+                  }),
+                undefined === input["x-typia-jsDocTags"] ||
+                  ((Array.isArray(input["x-typia-jsDocTags"]) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-jsDocTags"]',
+                      expected: "(Array<IJsDocTagInfo> | undefined)",
+                      value: input["x-typia-jsDocTags"],
+                    })) &&
+                    input["x-typia-jsDocTags"]
+                      .map(
+                        (elem: any, _index28: number) =>
+                          ((("object" === typeof elem && null !== elem) ||
+                            $report(_exceptionable, {
+                              path:
+                                _path +
+                                '["x-typia-jsDocTags"][' +
+                                _index28 +
+                                "]",
+                              expected: "IJsDocTagInfo",
+                              value: elem,
+                            })) &&
+                            $vo2(
+                              elem,
+                              _path + '["x-typia-jsDocTags"][' + _index28 + "]",
+                              true && _exceptionable,
+                            )) ||
+                          $report(_exceptionable, {
+                            path:
+                              _path + '["x-typia-jsDocTags"][' + _index28 + "]",
+                            expected: "IJsDocTagInfo",
+                            value: elem,
+                          }),
+                      )
+                      .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-jsDocTags"]',
+                    expected: "(Array<IJsDocTagInfo> | undefined)",
+                    value: input["x-typia-jsDocTags"],
+                  }),
+                undefined === input["x-typia-required"] ||
+                  "boolean" === typeof input["x-typia-required"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-required"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-required"],
+                  }),
+                undefined === input["x-typia-optional"] ||
+                  "boolean" === typeof input["x-typia-optional"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-optional"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-optional"],
+                  }),
+                undefined === input["x-typia-rest"] ||
+                  "boolean" === typeof input["x-typia-rest"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-rest"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-rest"],
+                  }),
+              ].every((flag: boolean) => flag);
+            const $vo18 = (
               input: any,
               _path: string,
               _exceptionable: boolean = true,
@@ -3121,25 +3453,25 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     })) &&
                     input["x-typia-jsDocTags"]
                       .map(
-                        (elem: any, _index27: number) =>
+                        (elem: any, _index29: number) =>
                           ((("object" === typeof elem && null !== elem) ||
                             $report(_exceptionable, {
                               path:
                                 _path +
                                 '["x-typia-jsDocTags"][' +
-                                _index27 +
+                                _index29 +
                                 "]",
                               expected: "IJsDocTagInfo",
                               value: elem,
                             })) &&
                             $vo2(
                               elem,
-                              _path + '["x-typia-jsDocTags"][' + _index27 + "]",
+                              _path + '["x-typia-jsDocTags"][' + _index29 + "]",
                               true && _exceptionable,
                             )) ||
                           $report(_exceptionable, {
                             path:
-                              _path + '["x-typia-jsDocTags"][' + _index27 + "]",
+                              _path + '["x-typia-jsDocTags"][' + _index29 + "]",
                             expected: "IJsDocTagInfo",
                             value: elem,
                           }),
@@ -3172,7 +3504,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     value: input["x-typia-rest"],
                   }),
               ].every((flag: boolean) => flag);
-            const $vo17 = (
+            const $vo19 = (
               input: any,
               _path: string,
               _exceptionable: boolean = true,
@@ -3185,252 +3517,19 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $report(_exceptionable, {
                       path: _path + ".schemas",
                       expected:
-                        "(Record<string, IObject | IAlias> | undefined)",
+                        "(Record<string, IJsonComponents.IAlias> | undefined)",
                       value: input.schemas,
                     })) &&
-                    $vo18(
+                    $vo20(
                       input.schemas,
                       _path + ".schemas",
                       true && _exceptionable,
                     )) ||
                   $report(_exceptionable, {
                     path: _path + ".schemas",
-                    expected: "(Record<string, IObject | IAlias> | undefined)",
+                    expected:
+                      "(Record<string, IJsonComponents.IAlias> | undefined)",
                     value: input.schemas,
-                  }),
-              ].every((flag: boolean) => flag);
-            const $vo18 = (
-              input: any,
-              _path: string,
-              _exceptionable: boolean = true,
-            ): boolean =>
-              [
-                false === _exceptionable ||
-                  Object.keys(input)
-                    .map((key: any) => {
-                      const value = input[key];
-                      if (undefined === value) return true;
-                      if (true)
-                        return (
-                          ((("object" === typeof value &&
-                            null !== value &&
-                            false === Array.isArray(value)) ||
-                            $report(_exceptionable, {
-                              path: _path + $join(key),
-                              expected:
-                                '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | IJsonComponents.IObject | INullOnly & IIdentified | INumber & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
-                              value: value,
-                            })) &&
-                            $vu1(
-                              value,
-                              _path + $join(key),
-                              true && _exceptionable,
-                            )) ||
-                          $report(_exceptionable, {
-                            path: _path + $join(key),
-                            expected:
-                              '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | IJsonComponents.IObject | INullOnly & IIdentified | INumber & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
-                            value: value,
-                          })
-                        );
-                      return true;
-                    })
-                    .every((flag: boolean) => flag),
-              ].every((flag: boolean) => flag);
-            const $vo19 = (
-              input: any,
-              _path: string,
-              _exceptionable: boolean = true,
-            ): boolean =>
-              [
-                undefined === input.$id ||
-                  "string" === typeof input.$id ||
-                  $report(_exceptionable, {
-                    path: _path + ".$id",
-                    expected: "(string | undefined)",
-                    value: input.$id,
-                  }),
-                "object" === input.type ||
-                  $report(_exceptionable, {
-                    path: _path + ".type",
-                    expected: '"object"',
-                    value: input.type,
-                  }),
-                undefined === input.nullable ||
-                  "boolean" === typeof input.nullable ||
-                  $report(_exceptionable, {
-                    path: _path + ".nullable",
-                    expected: "(boolean | undefined)",
-                    value: input.nullable,
-                  }),
-                ((("object" === typeof input.properties &&
-                  null !== input.properties &&
-                  false === Array.isArray(input.properties)) ||
-                  $report(_exceptionable, {
-                    path: _path + ".properties",
-                    expected: "Record<string, IJsonSchema>",
-                    value: input.properties,
-                  })) &&
-                  $vo20(
-                    input.properties,
-                    _path + ".properties",
-                    true && _exceptionable,
-                  )) ||
-                  $report(_exceptionable, {
-                    path: _path + ".properties",
-                    expected: "Record<string, IJsonSchema>",
-                    value: input.properties,
-                  }),
-                undefined === input.patternProperties ||
-                  ((("object" === typeof input.patternProperties &&
-                    null !== input.patternProperties &&
-                    false === Array.isArray(input.patternProperties)) ||
-                    $report(_exceptionable, {
-                      path: _path + ".patternProperties",
-                      expected: "(Record<string, IJsonSchema> | undefined)",
-                      value: input.patternProperties,
-                    })) &&
-                    $vo20(
-                      input.patternProperties,
-                      _path + ".patternProperties",
-                      true && _exceptionable,
-                    )) ||
-                  $report(_exceptionable, {
-                    path: _path + ".patternProperties",
-                    expected: "(Record<string, IJsonSchema> | undefined)",
-                    value: input.patternProperties,
-                  }),
-                undefined === input.additionalProperties ||
-                  ((("object" === typeof input.additionalProperties &&
-                    null !== input.additionalProperties &&
-                    false === Array.isArray(input.additionalProperties)) ||
-                    $report(_exceptionable, {
-                      path: _path + ".additionalProperties",
-                      expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                      value: input.additionalProperties,
-                    })) &&
-                    $vu0(
-                      input.additionalProperties,
-                      _path + ".additionalProperties",
-                      true && _exceptionable,
-                    )) ||
-                  $report(_exceptionable, {
-                    path: _path + ".additionalProperties",
-                    expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                    value: input.additionalProperties,
-                  }),
-                undefined === input.required ||
-                  ((Array.isArray(input.required) ||
-                    $report(_exceptionable, {
-                      path: _path + ".required",
-                      expected: "(Array<string> | undefined)",
-                      value: input.required,
-                    })) &&
-                    input.required
-                      .map(
-                        (elem: any, _index28: number) =>
-                          "string" === typeof elem ||
-                          $report(_exceptionable, {
-                            path: _path + ".required[" + _index28 + "]",
-                            expected: "string",
-                            value: elem,
-                          }),
-                      )
-                      .every((flag: boolean) => flag)) ||
-                  $report(_exceptionable, {
-                    path: _path + ".required",
-                    expected: "(Array<string> | undefined)",
-                    value: input.required,
-                  }),
-                undefined === input.description ||
-                  "string" === typeof input.description ||
-                  $report(_exceptionable, {
-                    path: _path + ".description",
-                    expected: "(string | undefined)",
-                    value: input.description,
-                  }),
-                undefined === input["x-typia-jsDocTags"] ||
-                  ((Array.isArray(input["x-typia-jsDocTags"]) ||
-                    $report(_exceptionable, {
-                      path: _path + '["x-typia-jsDocTags"]',
-                      expected: "(Array<IJsDocTagInfo> | undefined)",
-                      value: input["x-typia-jsDocTags"],
-                    })) &&
-                    input["x-typia-jsDocTags"]
-                      .map(
-                        (elem: any, _index29: number) =>
-                          ((("object" === typeof elem && null !== elem) ||
-                            $report(_exceptionable, {
-                              path:
-                                _path +
-                                '["x-typia-jsDocTags"][' +
-                                _index29 +
-                                "]",
-                              expected: "IJsDocTagInfo",
-                              value: elem,
-                            })) &&
-                            $vo2(
-                              elem,
-                              _path + '["x-typia-jsDocTags"][' + _index29 + "]",
-                              true && _exceptionable,
-                            )) ||
-                          $report(_exceptionable, {
-                            path:
-                              _path + '["x-typia-jsDocTags"][' + _index29 + "]",
-                            expected: "IJsDocTagInfo",
-                            value: elem,
-                          }),
-                      )
-                      .every((flag: boolean) => flag)) ||
-                  $report(_exceptionable, {
-                    path: _path + '["x-typia-jsDocTags"]',
-                    expected: "(Array<IJsDocTagInfo> | undefined)",
-                    value: input["x-typia-jsDocTags"],
-                  }),
-                undefined === input["x-typia-patternProperties"] ||
-                  ((("object" === typeof input["x-typia-patternProperties"] &&
-                    null !== input["x-typia-patternProperties"] &&
-                    false ===
-                      Array.isArray(input["x-typia-patternProperties"])) ||
-                    $report(_exceptionable, {
-                      path: _path + '["x-typia-patternProperties"]',
-                      expected: "(Record<string, IJsonSchema> | undefined)",
-                      value: input["x-typia-patternProperties"],
-                    })) &&
-                    $vo20(
-                      input["x-typia-patternProperties"],
-                      _path + '["x-typia-patternProperties"]',
-                      true && _exceptionable,
-                    )) ||
-                  $report(_exceptionable, {
-                    path: _path + '["x-typia-patternProperties"]',
-                    expected: "(Record<string, IJsonSchema> | undefined)",
-                    value: input["x-typia-patternProperties"],
-                  }),
-                undefined === input["x-typia-additionalProperties"] ||
-                  ((("object" ===
-                    typeof input["x-typia-additionalProperties"] &&
-                    null !== input["x-typia-additionalProperties"] &&
-                    false ===
-                      Array.isArray(input["x-typia-additionalProperties"])) ||
-                    $report(_exceptionable, {
-                      path: _path + '["x-typia-additionalProperties"]',
-                      expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                      value: input["x-typia-additionalProperties"],
-                    })) &&
-                    $vu0(
-                      input["x-typia-additionalProperties"],
-                      _path + '["x-typia-additionalProperties"]',
-                      true && _exceptionable,
-                    )) ||
-                  $report(_exceptionable, {
-                    path: _path + '["x-typia-additionalProperties"]',
-                    expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                    value: input["x-typia-additionalProperties"],
                   }),
               ].every((flag: boolean) => flag);
             const $vo20 = (
@@ -3452,10 +3551,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
                             $report(_exceptionable, {
                               path: _path + $join(key),
                               expected:
-                                '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                                '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | INullOnly & IIdentified | INumber & IIdentified | IObject & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
                               value: value,
                             })) &&
-                            $vu0(
+                            $vu1(
                               value,
                               _path + $join(key),
                               true && _exceptionable,
@@ -3463,7 +3562,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                           $report(_exceptionable, {
                             path: _path + $join(key),
                             expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                              '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | INullOnly & IIdentified | INumber & IIdentified | IObject & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
                             value: value,
                           })
                         );
@@ -4692,7 +4791,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $report(_exceptionable, {
                     path: _path + ".items",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: input.items,
                   })) &&
                   $vu0(
@@ -4703,7 +4802,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $report(_exceptionable, {
                     path: _path + ".items",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: input.items,
                   }),
                 undefined === input.minItems ||
@@ -4921,7 +5020,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                           $report(_exceptionable, {
                             path: _path + ".items[" + _index46 + "]",
                             expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                             value: elem,
                           })) &&
                           $vu0(
@@ -4932,7 +5031,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                         $report(_exceptionable, {
                           path: _path + ".items[" + _index46 + "]",
                           expected:
-                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                           value: elem,
                         }),
                     )
@@ -5085,41 +5184,142 @@ export const test_notation_createValidateCamel_UltimateUnion =
               _exceptionable: boolean = true,
             ): boolean =>
               [
-                ((Array.isArray(input.oneOf) ||
+                ((("object" === typeof input.properties &&
+                  null !== input.properties &&
+                  false === Array.isArray(input.properties)) ||
                   $report(_exceptionable, {
-                    path: _path + ".oneOf",
-                    expected: "Array<IJsonSchema>",
-                    value: input.oneOf,
+                    path: _path + ".properties",
+                    expected: "Record<string, IJsonSchema>",
+                    value: input.properties,
                   })) &&
-                  input.oneOf
-                    .map(
-                      (elem: any, _index48: number) =>
-                        ((("object" === typeof elem &&
-                          null !== elem &&
-                          false === Array.isArray(elem)) ||
-                          $report(_exceptionable, {
-                            path: _path + ".oneOf[" + _index48 + "]",
-                            expected:
-                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                            value: elem,
-                          })) &&
-                          $vu0(
-                            elem,
-                            _path + ".oneOf[" + _index48 + "]",
-                            true && _exceptionable,
-                          )) ||
-                        $report(_exceptionable, {
-                          path: _path + ".oneOf[" + _index48 + "]",
-                          expected:
-                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                          value: elem,
-                        }),
-                    )
-                    .every((flag: boolean) => flag)) ||
+                  $vo14(
+                    input.properties,
+                    _path + ".properties",
+                    true && _exceptionable,
+                  )) ||
                   $report(_exceptionable, {
-                    path: _path + ".oneOf",
-                    expected: "Array<IJsonSchema>",
-                    value: input.oneOf,
+                    path: _path + ".properties",
+                    expected: "Record<string, IJsonSchema>",
+                    value: input.properties,
+                  }),
+                undefined === input.required ||
+                  ((Array.isArray(input.required) ||
+                    $report(_exceptionable, {
+                      path: _path + ".required",
+                      expected: "(Array<string> | undefined)",
+                      value: input.required,
+                    })) &&
+                    input.required
+                      .map(
+                        (elem: any, _index48: number) =>
+                          "string" === typeof elem ||
+                          $report(_exceptionable, {
+                            path: _path + ".required[" + _index48 + "]",
+                            expected: "string",
+                            value: elem,
+                          }),
+                      )
+                      .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + ".required",
+                    expected: "(Array<string> | undefined)",
+                    value: input.required,
+                  }),
+                undefined === input.patternProperties ||
+                  ((("object" === typeof input.patternProperties &&
+                    null !== input.patternProperties &&
+                    false === Array.isArray(input.patternProperties)) ||
+                    $report(_exceptionable, {
+                      path: _path + ".patternProperties",
+                      expected: "(Record<string, IJsonSchema> | undefined)",
+                      value: input.patternProperties,
+                    })) &&
+                    $vo14(
+                      input.patternProperties,
+                      _path + ".patternProperties",
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + ".patternProperties",
+                    expected: "(Record<string, IJsonSchema> | undefined)",
+                    value: input.patternProperties,
+                  }),
+                undefined === input.additionalProperties ||
+                  ((("object" === typeof input.additionalProperties &&
+                    null !== input.additionalProperties &&
+                    false === Array.isArray(input.additionalProperties)) ||
+                    $report(_exceptionable, {
+                      path: _path + ".additionalProperties",
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                      value: input.additionalProperties,
+                    })) &&
+                    $vu0(
+                      input.additionalProperties,
+                      _path + ".additionalProperties",
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + ".additionalProperties",
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                    value: input.additionalProperties,
+                  }),
+                undefined === input["x-typia-patternProperties"] ||
+                  ((("object" === typeof input["x-typia-patternProperties"] &&
+                    null !== input["x-typia-patternProperties"] &&
+                    false ===
+                      Array.isArray(input["x-typia-patternProperties"])) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-patternProperties"]',
+                      expected: "(Record<string, IJsonSchema> | undefined)",
+                      value: input["x-typia-patternProperties"],
+                    })) &&
+                    $vo14(
+                      input["x-typia-patternProperties"],
+                      _path + '["x-typia-patternProperties"]',
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-patternProperties"]',
+                    expected: "(Record<string, IJsonSchema> | undefined)",
+                    value: input["x-typia-patternProperties"],
+                  }),
+                undefined === input["x-typia-additionalProperties"] ||
+                  ((("object" ===
+                    typeof input["x-typia-additionalProperties"] &&
+                    null !== input["x-typia-additionalProperties"] &&
+                    false ===
+                      Array.isArray(input["x-typia-additionalProperties"])) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-additionalProperties"]',
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                      value: input["x-typia-additionalProperties"],
+                    })) &&
+                    $vu0(
+                      input["x-typia-additionalProperties"],
+                      _path + '["x-typia-additionalProperties"]',
+                      true && _exceptionable,
+                    )) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-additionalProperties"]',
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                    value: input["x-typia-additionalProperties"],
+                  }),
+                "object" === input.type ||
+                  $report(_exceptionable, {
+                    path: _path + ".type",
+                    expected: '"object"',
+                    value: input.type,
+                  }),
+                undefined === input.nullable ||
+                  "boolean" === typeof input.nullable ||
+                  $report(_exceptionable, {
+                    path: _path + ".nullable",
+                    expected: "(boolean | undefined)",
+                    value: input.nullable,
                   }),
                 undefined === input.deprecated ||
                   "boolean" === typeof input.deprecated ||
@@ -5436,6 +5636,143 @@ export const test_notation_createValidateCamel_UltimateUnion =
               _exceptionable: boolean = true,
             ): boolean =>
               [
+                ((Array.isArray(input.oneOf) ||
+                  $report(_exceptionable, {
+                    path: _path + ".oneOf",
+                    expected: "Array<IJsonSchema>",
+                    value: input.oneOf,
+                  })) &&
+                  input.oneOf
+                    .map(
+                      (elem: any, _index52: number) =>
+                        ((("object" === typeof elem &&
+                          null !== elem &&
+                          false === Array.isArray(elem)) ||
+                          $report(_exceptionable, {
+                            path: _path + ".oneOf[" + _index52 + "]",
+                            expected:
+                              '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                            value: elem,
+                          })) &&
+                          $vu0(
+                            elem,
+                            _path + ".oneOf[" + _index52 + "]",
+                            true && _exceptionable,
+                          )) ||
+                        $report(_exceptionable, {
+                          path: _path + ".oneOf[" + _index52 + "]",
+                          expected:
+                            '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                          value: elem,
+                        }),
+                    )
+                    .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + ".oneOf",
+                    expected: "Array<IJsonSchema>",
+                    value: input.oneOf,
+                  }),
+                undefined === input.deprecated ||
+                  "boolean" === typeof input.deprecated ||
+                  $report(_exceptionable, {
+                    path: _path + ".deprecated",
+                    expected: "(boolean | undefined)",
+                    value: input.deprecated,
+                  }),
+                undefined === input.title ||
+                  "string" === typeof input.title ||
+                  $report(_exceptionable, {
+                    path: _path + ".title",
+                    expected: "(string | undefined)",
+                    value: input.title,
+                  }),
+                undefined === input.description ||
+                  "string" === typeof input.description ||
+                  $report(_exceptionable, {
+                    path: _path + ".description",
+                    expected: "(string | undefined)",
+                    value: input.description,
+                  }),
+                undefined === input["x-typia-jsDocTags"] ||
+                  ((Array.isArray(input["x-typia-jsDocTags"]) ||
+                    $report(_exceptionable, {
+                      path: _path + '["x-typia-jsDocTags"]',
+                      expected: "(Array<IJsDocTagInfo> | undefined)",
+                      value: input["x-typia-jsDocTags"],
+                    })) &&
+                    input["x-typia-jsDocTags"]
+                      .map(
+                        (elem: any, _index53: number) =>
+                          ((("object" === typeof elem && null !== elem) ||
+                            $report(_exceptionable, {
+                              path:
+                                _path +
+                                '["x-typia-jsDocTags"][' +
+                                _index53 +
+                                "]",
+                              expected: "IJsDocTagInfo",
+                              value: elem,
+                            })) &&
+                            $vo2(
+                              elem,
+                              _path + '["x-typia-jsDocTags"][' + _index53 + "]",
+                              true && _exceptionable,
+                            )) ||
+                          $report(_exceptionable, {
+                            path:
+                              _path + '["x-typia-jsDocTags"][' + _index53 + "]",
+                            expected: "IJsDocTagInfo",
+                            value: elem,
+                          }),
+                      )
+                      .every((flag: boolean) => flag)) ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-jsDocTags"]',
+                    expected: "(Array<IJsDocTagInfo> | undefined)",
+                    value: input["x-typia-jsDocTags"],
+                  }),
+                undefined === input["x-typia-required"] ||
+                  "boolean" === typeof input["x-typia-required"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-required"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-required"],
+                  }),
+                undefined === input["x-typia-optional"] ||
+                  "boolean" === typeof input["x-typia-optional"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-optional"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-optional"],
+                  }),
+                undefined === input["x-typia-rest"] ||
+                  "boolean" === typeof input["x-typia-rest"] ||
+                  $report(_exceptionable, {
+                    path: _path + '["x-typia-rest"]',
+                    expected: "(boolean | undefined)",
+                    value: input["x-typia-rest"],
+                  }),
+                undefined === input.$id ||
+                  "string" === typeof input.$id ||
+                  $report(_exceptionable, {
+                    path: _path + ".$id",
+                    expected: "(string | undefined)",
+                    value: input.$id,
+                  }),
+                undefined === input.$recursiveAnchor ||
+                  "boolean" === typeof input.$recursiveAnchor ||
+                  $report(_exceptionable, {
+                    path: _path + ".$recursiveAnchor",
+                    expected: "(boolean | undefined)",
+                    value: input.$recursiveAnchor,
+                  }),
+              ].every((flag: boolean) => flag);
+            const $vo34 = (
+              input: any,
+              _path: string,
+              _exceptionable: boolean = true,
+            ): boolean =>
+              [
                 (null !== input.type ||
                   $report(_exceptionable, {
                     path: _path + ".type",
@@ -5478,25 +5815,25 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     })) &&
                     input["x-typia-jsDocTags"]
                       .map(
-                        (elem: any, _index52: number) =>
+                        (elem: any, _index54: number) =>
                           ((("object" === typeof elem && null !== elem) ||
                             $report(_exceptionable, {
                               path:
                                 _path +
                                 '["x-typia-jsDocTags"][' +
-                                _index52 +
+                                _index54 +
                                 "]",
                               expected: "IJsDocTagInfo",
                               value: elem,
                             })) &&
                             $vo2(
                               elem,
-                              _path + '["x-typia-jsDocTags"][' + _index52 + "]",
+                              _path + '["x-typia-jsDocTags"][' + _index54 + "]",
                               true && _exceptionable,
                             )) ||
                           $report(_exceptionable, {
                             path:
-                              _path + '["x-typia-jsDocTags"][' + _index52 + "]",
+                              _path + '["x-typia-jsDocTags"][' + _index54 + "]",
                             expected: "IJsDocTagInfo",
                             value: elem,
                           }),
@@ -5562,25 +5899,27 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   Array.isArray(input.items) &&
                   input.items
                     .map(
-                      (elem: any, _index53: number) =>
+                      (elem: any, _index55: number) =>
                         "object" === typeof elem &&
                         null !== elem &&
                         false === Array.isArray(elem) &&
                         $vu0(
                           elem,
-                          _path + ".items[" + _index53 + "]",
+                          _path + ".items[" + _index55 + "]",
                           false && _exceptionable,
                         ),
                     )
                     .every((flag: boolean) => flag)
                 )
                   return $vo12(input, _path, true && _exceptionable);
-                else if (undefined !== input.oneOf)
+                else if ("object" === input.type)
                   return $vo13(input, _path, true && _exceptionable);
                 else if (undefined !== input.$ref)
-                  return $vo14(input, _path, true && _exceptionable);
-                else if ("null" === input.type)
                   return $vo15(input, _path, true && _exceptionable);
+                else if ("null" === input.type)
+                  return $vo16(input, _path, true && _exceptionable);
+                else if (undefined !== input.oneOf)
+                  return $vo17(input, _path, true && _exceptionable);
                 else
                   return (
                     $vo5(input, _path, false && _exceptionable) ||
@@ -5589,7 +5928,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $vo6(input, _path, false && _exceptionable) ||
                     $vo9(input, _path, false && _exceptionable) ||
                     $vo10(input, _path, false && _exceptionable) ||
-                    $vo16(input, _path, false && _exceptionable)
+                    $vo18(input, _path, false && _exceptionable)
                   );
               })();
             const $vu1 = (
@@ -5598,9 +5937,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
               _exceptionable: boolean = true,
             ): any =>
               (() => {
-                if ("object" === input.type)
-                  return $vo19(input, _path, true && _exceptionable);
-                else if ("integer" === input.type)
+                if ("integer" === input.type)
                   return $vo25(input, _path, true && _exceptionable);
                 else if (
                   "object" === typeof input.items &&
@@ -5613,25 +5950,27 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   Array.isArray(input.items) &&
                   input.items
                     .map(
-                      (elem: any, _index54: number) =>
+                      (elem: any, _index56: number) =>
                         "object" === typeof elem &&
                         null !== elem &&
                         false === Array.isArray(elem) &&
                         $vu0(
                           elem,
-                          _path + ".items[" + _index54 + "]",
+                          _path + ".items[" + _index56 + "]",
                           false && _exceptionable,
                         ),
                     )
                     .every((flag: boolean) => flag)
                 )
                   return $vo29(input, _path, true && _exceptionable);
-                else if (undefined !== input.oneOf)
+                else if ("object" === input.type)
                   return $vo30(input, _path, true && _exceptionable);
                 else if (undefined !== input.$ref)
                   return $vo31(input, _path, true && _exceptionable);
                 else if ("null" === input.type)
                   return $vo32(input, _path, true && _exceptionable);
+                else if (undefined !== input.oneOf)
+                  return $vo33(input, _path, true && _exceptionable);
                 else
                   return (
                     $vo23(input, _path, false && _exceptionable) ||
@@ -5640,7 +5979,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $vo24(input, _path, false && _exceptionable) ||
                     $vo26(input, _path, false && _exceptionable) ||
                     $vo27(input, _path, false && _exceptionable) ||
-                    $vo33(input, _path, false && _exceptionable)
+                    $vo34(input, _path, false && _exceptionable)
                   );
               })();
             return (
@@ -6026,6 +6365,105 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
         const $io13 = (input: any): boolean =>
+          "object" === typeof input.properties &&
+          null !== input.properties &&
+          false === Array.isArray(input.properties) &&
+          $io14(input.properties) &&
+          (undefined === input.required ||
+            (Array.isArray(input.required) &&
+              input.required.every((elem: any) => "string" === typeof elem))) &&
+          (undefined === input.patternProperties ||
+            ("object" === typeof input.patternProperties &&
+              null !== input.patternProperties &&
+              false === Array.isArray(input.patternProperties) &&
+              $io14(input.patternProperties))) &&
+          (undefined === input.additionalProperties ||
+            ("object" === typeof input.additionalProperties &&
+              null !== input.additionalProperties &&
+              false === Array.isArray(input.additionalProperties) &&
+              $iu0(input.additionalProperties))) &&
+          (undefined === input["x-typia-patternProperties"] ||
+            ("object" === typeof input["x-typia-patternProperties"] &&
+              null !== input["x-typia-patternProperties"] &&
+              false === Array.isArray(input["x-typia-patternProperties"]) &&
+              $io14(input["x-typia-patternProperties"]))) &&
+          (undefined === input["x-typia-additionalProperties"] ||
+            ("object" === typeof input["x-typia-additionalProperties"] &&
+              null !== input["x-typia-additionalProperties"] &&
+              false === Array.isArray(input["x-typia-additionalProperties"]) &&
+              $iu0(input["x-typia-additionalProperties"]))) &&
+          "object" === input.type &&
+          (undefined === input.nullable ||
+            "boolean" === typeof input.nullable) &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io14 = (input: any): boolean =>
+          Object.keys(input).every((key: any) => {
+            const value = input[key];
+            if (undefined === value) return true;
+            if (true)
+              return (
+                "object" === typeof value &&
+                null !== value &&
+                false === Array.isArray(value) &&
+                $iu0(value)
+              );
+            return true;
+          });
+        const $io15 = (input: any): boolean =>
+          "string" === typeof input.$ref &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io16 = (input: any): boolean =>
+          "null" === input.type &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io17 = (input: any): boolean =>
           Array.isArray(input.oneOf) &&
           input.oneOf.every(
             (elem: any) =>
@@ -6051,45 +6489,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
             "boolean" === typeof input["x-typia-optional"]) &&
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
-        const $io14 = (input: any): boolean =>
-          "string" === typeof input.$ref &&
-          (undefined === input.deprecated ||
-            "boolean" === typeof input.deprecated) &&
-          (undefined === input.title || "string" === typeof input.title) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-required"] ||
-            "boolean" === typeof input["x-typia-required"]) &&
-          (undefined === input["x-typia-optional"] ||
-            "boolean" === typeof input["x-typia-optional"]) &&
-          (undefined === input["x-typia-rest"] ||
-            "boolean" === typeof input["x-typia-rest"]);
-        const $io15 = (input: any): boolean =>
-          "null" === input.type &&
-          (undefined === input.deprecated ||
-            "boolean" === typeof input.deprecated) &&
-          (undefined === input.title || "string" === typeof input.title) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-required"] ||
-            "boolean" === typeof input["x-typia-required"]) &&
-          (undefined === input["x-typia-optional"] ||
-            "boolean" === typeof input["x-typia-optional"]) &&
-          (undefined === input["x-typia-rest"] ||
-            "boolean" === typeof input["x-typia-rest"]);
-        const $io16 = (input: any): boolean =>
+        const $io18 = (input: any): boolean =>
           null !== input.type &&
           undefined === input.type &&
           (undefined === input.deprecated ||
@@ -6109,65 +6509,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
             "boolean" === typeof input["x-typia-optional"]) &&
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
-        const $io17 = (input: any): boolean =>
+        const $io19 = (input: any): boolean =>
           undefined === input.schemas ||
           ("object" === typeof input.schemas &&
             null !== input.schemas &&
             false === Array.isArray(input.schemas) &&
-            $io18(input.schemas));
-        const $io18 = (input: any): boolean =>
-          Object.keys(input).every((key: any) => {
-            const value = input[key];
-            if (undefined === value) return true;
-            if (true)
-              return (
-                "object" === typeof value &&
-                null !== value &&
-                false === Array.isArray(value) &&
-                $iu1(value)
-              );
-            return true;
-          });
-        const $io19 = (input: any): boolean =>
-          (undefined === input.$id || "string" === typeof input.$id) &&
-          "object" === input.type &&
-          (undefined === input.nullable ||
-            "boolean" === typeof input.nullable) &&
-          "object" === typeof input.properties &&
-          null !== input.properties &&
-          false === Array.isArray(input.properties) &&
-          $io20(input.properties) &&
-          (undefined === input.patternProperties ||
-            ("object" === typeof input.patternProperties &&
-              null !== input.patternProperties &&
-              false === Array.isArray(input.patternProperties) &&
-              $io20(input.patternProperties))) &&
-          (undefined === input.additionalProperties ||
-            ("object" === typeof input.additionalProperties &&
-              null !== input.additionalProperties &&
-              false === Array.isArray(input.additionalProperties) &&
-              $iu0(input.additionalProperties))) &&
-          (undefined === input.required ||
-            (Array.isArray(input.required) &&
-              input.required.every((elem: any) => "string" === typeof elem))) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-patternProperties"] ||
-            ("object" === typeof input["x-typia-patternProperties"] &&
-              null !== input["x-typia-patternProperties"] &&
-              false === Array.isArray(input["x-typia-patternProperties"]) &&
-              $io20(input["x-typia-patternProperties"]))) &&
-          (undefined === input["x-typia-additionalProperties"] ||
-            ("object" === typeof input["x-typia-additionalProperties"] &&
-              null !== input["x-typia-additionalProperties"] &&
-              false === Array.isArray(input["x-typia-additionalProperties"]) &&
-              $iu0(input["x-typia-additionalProperties"])));
+            $io20(input.schemas));
         const $io20 = (input: any): boolean =>
           Object.keys(input).every((key: any) => {
             const value = input[key];
@@ -6177,7 +6524,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 "object" === typeof value &&
                 null !== value &&
                 false === Array.isArray(value) &&
-                $iu0(value)
+                $iu1(value)
               );
             return true;
           });
@@ -6522,14 +6869,36 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input.$recursiveAnchor ||
             "boolean" === typeof input.$recursiveAnchor);
         const $io30 = (input: any): boolean =>
-          Array.isArray(input.oneOf) &&
-          input.oneOf.every(
-            (elem: any) =>
-              "object" === typeof elem &&
-              null !== elem &&
-              false === Array.isArray(elem) &&
-              $iu0(elem),
-          ) &&
+          "object" === typeof input.properties &&
+          null !== input.properties &&
+          false === Array.isArray(input.properties) &&
+          $io14(input.properties) &&
+          (undefined === input.required ||
+            (Array.isArray(input.required) &&
+              input.required.every((elem: any) => "string" === typeof elem))) &&
+          (undefined === input.patternProperties ||
+            ("object" === typeof input.patternProperties &&
+              null !== input.patternProperties &&
+              false === Array.isArray(input.patternProperties) &&
+              $io14(input.patternProperties))) &&
+          (undefined === input.additionalProperties ||
+            ("object" === typeof input.additionalProperties &&
+              null !== input.additionalProperties &&
+              false === Array.isArray(input.additionalProperties) &&
+              $iu0(input.additionalProperties))) &&
+          (undefined === input["x-typia-patternProperties"] ||
+            ("object" === typeof input["x-typia-patternProperties"] &&
+              null !== input["x-typia-patternProperties"] &&
+              false === Array.isArray(input["x-typia-patternProperties"]) &&
+              $io14(input["x-typia-patternProperties"]))) &&
+          (undefined === input["x-typia-additionalProperties"] ||
+            ("object" === typeof input["x-typia-additionalProperties"] &&
+              null !== input["x-typia-additionalProperties"] &&
+              false === Array.isArray(input["x-typia-additionalProperties"]) &&
+              $iu0(input["x-typia-additionalProperties"]))) &&
+          "object" === input.type &&
+          (undefined === input.nullable ||
+            "boolean" === typeof input.nullable) &&
           (undefined === input.deprecated ||
             "boolean" === typeof input.deprecated) &&
           (undefined === input.title || "string" === typeof input.title) &&
@@ -6595,6 +6964,35 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input.$recursiveAnchor ||
             "boolean" === typeof input.$recursiveAnchor);
         const $io33 = (input: any): boolean =>
+          Array.isArray(input.oneOf) &&
+          input.oneOf.every(
+            (elem: any) =>
+              "object" === typeof elem &&
+              null !== elem &&
+              false === Array.isArray(elem) &&
+              $iu0(elem),
+          ) &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]) &&
+          (undefined === input.$id || "string" === typeof input.$id) &&
+          (undefined === input.$recursiveAnchor ||
+            "boolean" === typeof input.$recursiveAnchor);
+        const $io34 = (input: any): boolean =>
           null !== input.type &&
           undefined === input.type &&
           (undefined === input.deprecated ||
@@ -6638,9 +7036,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $io12(input);
-            else if (undefined !== input.oneOf) return $io13(input);
-            else if (undefined !== input.$ref) return $io14(input);
-            else if ("null" === input.type) return $io15(input);
+            else if ("object" === input.type) return $io13(input);
+            else if (undefined !== input.$ref) return $io15(input);
+            else if ("null" === input.type) return $io16(input);
+            else if (undefined !== input.oneOf) return $io17(input);
             else
               return (
                 $io5(input) ||
@@ -6649,13 +7048,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 $io6(input) ||
                 $io9(input) ||
                 $io10(input) ||
-                $io16(input)
+                $io18(input)
               );
           })();
         const $iu1 = (input: any): any =>
           (() => {
-            if ("object" === input.type) return $io19(input);
-            else if ("integer" === input.type) return $io25(input);
+            if ("integer" === input.type) return $io25(input);
             else if (
               "object" === typeof input.items &&
               null !== input.items &&
@@ -6674,9 +7072,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $io29(input);
-            else if (undefined !== input.oneOf) return $io30(input);
+            else if ("object" === input.type) return $io30(input);
             else if (undefined !== input.$ref) return $io31(input);
             else if ("null" === input.type) return $io32(input);
+            else if (undefined !== input.oneOf) return $io33(input);
             else
               return (
                 $io23(input) ||
@@ -6685,7 +7084,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 $io24(input) ||
                 $io26(input) ||
                 $io27(input) ||
-                $io33(input)
+                $io34(input)
               );
           })();
         const $any = (typia.notations.createValidateCamel as any).any;
@@ -6729,9 +7128,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
             : (input.schemas as any),
           components:
             "object" === typeof input.components && null !== input.components
-              ? $co17(input.components)
+              ? $co19(input.components)
               : (input.components as any),
           purpose: input.purpose as any,
+          surplus: input.surplus as any,
         });
         const $co1 = (input: any): any => ({
           enum: Array.isArray(input["enum"])
@@ -6932,33 +7332,60 @@ export const test_notation_createValidateCamel_UltimateUnion =
           "x-typia-rest": input["x-typia-rest"] as any,
         });
         const $co13 = (input: any): any => ({
-          oneOf: Array.isArray(input.oneOf)
-            ? $cp1(input.oneOf)
-            : (input.oneOf as any),
-          deprecated: input.deprecated as any,
-          title: input.title as any,
-          description: input.description as any,
-          "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
-            ? $cp3(input["x-typia-jsDocTags"])
-            : (input["x-typia-jsDocTags"] as any),
-          "x-typia-required": input["x-typia-required"] as any,
-          "x-typia-optional": input["x-typia-optional"] as any,
-          "x-typia-rest": input["x-typia-rest"] as any,
-        });
-        const $co14 = (input: any): any => ({
-          $ref: input.$ref as any,
-          deprecated: input.deprecated as any,
-          title: input.title as any,
-          description: input.description as any,
-          "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
-            ? $cp3(input["x-typia-jsDocTags"])
-            : (input["x-typia-jsDocTags"] as any),
-          "x-typia-required": input["x-typia-required"] as any,
-          "x-typia-optional": input["x-typia-optional"] as any,
-          "x-typia-rest": input["x-typia-rest"] as any,
-        });
-        const $co15 = (input: any): any => ({
+          properties:
+            "object" === typeof input.properties && null !== input.properties
+              ? $co14(input.properties)
+              : (input.properties as any),
+          required: Array.isArray(input.required)
+            ? $cp6(input.required)
+            : (input.required as any),
+          patternProperties:
+            "object" === typeof input.patternProperties &&
+            null !== input.patternProperties
+              ? $co14(input.patternProperties)
+              : (input.patternProperties as any),
+          additionalProperties:
+            "object" === typeof input.additionalProperties &&
+            null !== input.additionalProperties
+              ? $cu0(input.additionalProperties)
+              : (input.additionalProperties as any),
+          "x-typia-patternProperties":
+            "object" === typeof input["x-typia-patternProperties"] &&
+            null !== input["x-typia-patternProperties"]
+              ? $co14(input["x-typia-patternProperties"])
+              : (input["x-typia-patternProperties"] as any),
+          "x-typia-additionalProperties":
+            "object" === typeof input["x-typia-additionalProperties"] &&
+            null !== input["x-typia-additionalProperties"]
+              ? $cu0(input["x-typia-additionalProperties"])
+              : (input["x-typia-additionalProperties"] as any),
           type: input.type as any,
+          nullable: input.nullable as any,
+          deprecated: input.deprecated as any,
+          title: input.title as any,
+          description: input.description as any,
+          "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
+            ? $cp3(input["x-typia-jsDocTags"])
+            : (input["x-typia-jsDocTags"] as any),
+          "x-typia-required": input["x-typia-required"] as any,
+          "x-typia-optional": input["x-typia-optional"] as any,
+          "x-typia-rest": input["x-typia-rest"] as any,
+        });
+        const $co14 = (input: any): any => {
+          const output = {} as any;
+          for (const [key, value] of Object.entries(input)) {
+            if (RegExp(/(.*)/).test(key)) {
+              output[key] =
+                "object" === typeof value && null !== value
+                  ? $cu0(value)
+                  : (value as any);
+              continue;
+            }
+          }
+          return output;
+        };
+        const $co15 = (input: any): any => ({
+          $ref: input.$ref as any,
           deprecated: input.deprecated as any,
           title: input.title as any,
           description: input.description as any,
@@ -6982,59 +7409,36 @@ export const test_notation_createValidateCamel_UltimateUnion =
           "x-typia-rest": input["x-typia-rest"] as any,
         });
         const $co17 = (input: any): any => ({
-          schemas:
-            "object" === typeof input.schemas && null !== input.schemas
-              ? $co18(input.schemas)
-              : (input.schemas as any),
-        });
-        const $co18 = (input: any): any => {
-          const output = {} as any;
-          for (const [key, value] of Object.entries(input)) {
-            if (RegExp(/(.*)/).test(key)) {
-              output[key] =
-                "object" === typeof value && null !== value
-                  ? $cu1(value)
-                  : (value as any);
-              continue;
-            }
-          }
-          return output;
-        };
-        const $co19 = (input: any): any => ({
-          $id: input.$id as any,
-          type: input.type as any,
-          nullable: input.nullable as any,
-          properties:
-            "object" === typeof input.properties && null !== input.properties
-              ? $co20(input.properties)
-              : (input.properties as any),
-          patternProperties:
-            "object" === typeof input.patternProperties &&
-            null !== input.patternProperties
-              ? $co20(input.patternProperties)
-              : (input.patternProperties as any),
-          additionalProperties:
-            "object" === typeof input.additionalProperties &&
-            null !== input.additionalProperties
-              ? $cu0(input.additionalProperties)
-              : (input.additionalProperties as any),
-          required: Array.isArray(input.required)
-            ? $cp6(input.required)
-            : (input.required as any),
+          oneOf: Array.isArray(input.oneOf)
+            ? $cp1(input.oneOf)
+            : (input.oneOf as any),
+          deprecated: input.deprecated as any,
+          title: input.title as any,
           description: input.description as any,
           "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
             ? $cp3(input["x-typia-jsDocTags"])
             : (input["x-typia-jsDocTags"] as any),
-          "x-typia-patternProperties":
-            "object" === typeof input["x-typia-patternProperties"] &&
-            null !== input["x-typia-patternProperties"]
-              ? $co20(input["x-typia-patternProperties"])
-              : (input["x-typia-patternProperties"] as any),
-          "x-typia-additionalProperties":
-            "object" === typeof input["x-typia-additionalProperties"] &&
-            null !== input["x-typia-additionalProperties"]
-              ? $cu0(input["x-typia-additionalProperties"])
-              : (input["x-typia-additionalProperties"] as any),
+          "x-typia-required": input["x-typia-required"] as any,
+          "x-typia-optional": input["x-typia-optional"] as any,
+          "x-typia-rest": input["x-typia-rest"] as any,
+        });
+        const $co18 = (input: any): any => ({
+          type: input.type as any,
+          deprecated: input.deprecated as any,
+          title: input.title as any,
+          description: input.description as any,
+          "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
+            ? $cp3(input["x-typia-jsDocTags"])
+            : (input["x-typia-jsDocTags"] as any),
+          "x-typia-required": input["x-typia-required"] as any,
+          "x-typia-optional": input["x-typia-optional"] as any,
+          "x-typia-rest": input["x-typia-rest"] as any,
+        });
+        const $co19 = (input: any): any => ({
+          schemas:
+            "object" === typeof input.schemas && null !== input.schemas
+              ? $co20(input.schemas)
+              : (input.schemas as any),
         });
         const $co20 = (input: any): any => {
           const output = {} as any;
@@ -7042,7 +7446,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
             if (RegExp(/(.*)/).test(key)) {
               output[key] =
                 "object" === typeof value && null !== value
-                  ? $cu0(value)
+                  ? $cu1(value)
                   : (value as any);
               continue;
             }
@@ -7246,9 +7650,35 @@ export const test_notation_createValidateCamel_UltimateUnion =
           $recursiveAnchor: input.$recursiveAnchor as any,
         });
         const $co30 = (input: any): any => ({
-          oneOf: Array.isArray(input.oneOf)
-            ? $cp1(input.oneOf)
-            : (input.oneOf as any),
+          properties:
+            "object" === typeof input.properties && null !== input.properties
+              ? $co14(input.properties)
+              : (input.properties as any),
+          required: Array.isArray(input.required)
+            ? $cp6(input.required)
+            : (input.required as any),
+          patternProperties:
+            "object" === typeof input.patternProperties &&
+            null !== input.patternProperties
+              ? $co14(input.patternProperties)
+              : (input.patternProperties as any),
+          additionalProperties:
+            "object" === typeof input.additionalProperties &&
+            null !== input.additionalProperties
+              ? $cu0(input.additionalProperties)
+              : (input.additionalProperties as any),
+          "x-typia-patternProperties":
+            "object" === typeof input["x-typia-patternProperties"] &&
+            null !== input["x-typia-patternProperties"]
+              ? $co14(input["x-typia-patternProperties"])
+              : (input["x-typia-patternProperties"] as any),
+          "x-typia-additionalProperties":
+            "object" === typeof input["x-typia-additionalProperties"] &&
+            null !== input["x-typia-additionalProperties"]
+              ? $cu0(input["x-typia-additionalProperties"])
+              : (input["x-typia-additionalProperties"] as any),
+          type: input.type as any,
+          nullable: input.nullable as any,
           deprecated: input.deprecated as any,
           title: input.title as any,
           description: input.description as any,
@@ -7290,6 +7720,22 @@ export const test_notation_createValidateCamel_UltimateUnion =
           $recursiveAnchor: input.$recursiveAnchor as any,
         });
         const $co33 = (input: any): any => ({
+          oneOf: Array.isArray(input.oneOf)
+            ? $cp1(input.oneOf)
+            : (input.oneOf as any),
+          deprecated: input.deprecated as any,
+          title: input.title as any,
+          description: input.description as any,
+          "x-typia-jsDocTags": Array.isArray(input["x-typia-jsDocTags"])
+            ? $cp3(input["x-typia-jsDocTags"])
+            : (input["x-typia-jsDocTags"] as any),
+          "x-typia-required": input["x-typia-required"] as any,
+          "x-typia-optional": input["x-typia-optional"] as any,
+          "x-typia-rest": input["x-typia-rest"] as any,
+          $id: input.$id as any,
+          $recursiveAnchor: input.$recursiveAnchor as any,
+        });
+        const $co34 = (input: any): any => ({
           type: input.type as any,
           deprecated: input.deprecated as any,
           title: input.title as any,
@@ -7324,9 +7770,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $co12(input);
-            else if (undefined !== input.oneOf) return $co13(input);
-            else if (undefined !== input.$ref) return $co14(input);
-            else if ("null" === input.type) return $co15(input);
+            else if ("object" === input.type) return $co13(input);
+            else if (undefined !== input.$ref) return $co15(input);
+            else if ("null" === input.type) return $co16(input);
+            else if (undefined !== input.oneOf) return $co17(input);
             else
               return (() => {
                 if ($io5(input)) return $co5(input);
@@ -7335,7 +7782,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 else if ($io6(input)) return $co6(input);
                 else if ($io9(input)) return $co9(input);
                 else if ($io10(input)) return $co10(input);
-                else if ($io16(input)) return $co16(input);
+                else if ($io18(input)) return $co18(input);
                 else
                   $throws({
                     expected:
@@ -7346,8 +7793,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
           })();
         const $cu1 = (input: any): any =>
           (() => {
-            if ("object" === input.type) return $co19(input);
-            else if ("integer" === input.type) return $co25(input);
+            if ("integer" === input.type) return $co25(input);
             else if (
               "object" === typeof input.items &&
               null !== input.items &&
@@ -7366,9 +7812,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $co29(input);
-            else if (undefined !== input.oneOf) return $co30(input);
+            else if ("object" === input.type) return $co30(input);
             else if (undefined !== input.$ref) return $co31(input);
             else if ("null" === input.type) return $co32(input);
+            else if (undefined !== input.oneOf) return $co33(input);
             else
               return (() => {
                 if ($io23(input)) return $co23(input);
@@ -7377,7 +7824,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 else if ($io24(input)) return $co24(input);
                 else if ($io26(input)) return $co26(input);
                 else if ($io27(input)) return $co27(input);
-                else if ($io33(input)) return $co33(input);
+                else if ($io34(input)) return $co34(input);
                 else
                   $throws({
                     expected:
@@ -7406,8 +7853,9 @@ export const test_notation_createValidateCamel_UltimateUnion =
           "object" === typeof input.components &&
           null !== input.components &&
           false === Array.isArray(input.components) &&
-          $io17(input.components) &&
-          ("swagger" === input.purpose || "ajv" === input.purpose);
+          $io19(input.components) &&
+          ("swagger" === input.purpose || "ajv" === input.purpose) &&
+          "boolean" === typeof input.surplus;
         const $io1 = (input: any): boolean =>
           Array.isArray(input["enum"]) &&
           input["enum"].every((elem: any) => "boolean" === typeof elem) &&
@@ -7759,6 +8207,105 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
         const $io13 = (input: any): boolean =>
+          "object" === typeof input.properties &&
+          null !== input.properties &&
+          false === Array.isArray(input.properties) &&
+          $io14(input.properties) &&
+          (undefined === input.required ||
+            (Array.isArray(input.required) &&
+              input.required.every((elem: any) => "string" === typeof elem))) &&
+          (undefined === input.patternProperties ||
+            ("object" === typeof input.patternProperties &&
+              null !== input.patternProperties &&
+              false === Array.isArray(input.patternProperties) &&
+              $io14(input.patternProperties))) &&
+          (undefined === input.additionalProperties ||
+            ("object" === typeof input.additionalProperties &&
+              null !== input.additionalProperties &&
+              false === Array.isArray(input.additionalProperties) &&
+              $iu0(input.additionalProperties))) &&
+          (undefined === input["x-typia-patternProperties"] ||
+            ("object" === typeof input["x-typia-patternProperties"] &&
+              null !== input["x-typia-patternProperties"] &&
+              false === Array.isArray(input["x-typia-patternProperties"]) &&
+              $io14(input["x-typia-patternProperties"]))) &&
+          (undefined === input["x-typia-additionalProperties"] ||
+            ("object" === typeof input["x-typia-additionalProperties"] &&
+              null !== input["x-typia-additionalProperties"] &&
+              false === Array.isArray(input["x-typia-additionalProperties"]) &&
+              $iu0(input["x-typia-additionalProperties"]))) &&
+          "object" === input.type &&
+          (undefined === input.nullable ||
+            "boolean" === typeof input.nullable) &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io14 = (input: any): boolean =>
+          Object.keys(input).every((key: any) => {
+            const value = input[key];
+            if (undefined === value) return true;
+            if (true)
+              return (
+                "object" === typeof value &&
+                null !== value &&
+                false === Array.isArray(value) &&
+                $iu0(value)
+              );
+            return true;
+          });
+        const $io15 = (input: any): boolean =>
+          "string" === typeof input.$ref &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io16 = (input: any): boolean =>
+          "null" === input.type &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]);
+        const $io17 = (input: any): boolean =>
           Array.isArray(input.oneOf) &&
           input.oneOf.every(
             (elem: any) =>
@@ -7784,45 +8331,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
             "boolean" === typeof input["x-typia-optional"]) &&
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
-        const $io14 = (input: any): boolean =>
-          "string" === typeof input.$ref &&
-          (undefined === input.deprecated ||
-            "boolean" === typeof input.deprecated) &&
-          (undefined === input.title || "string" === typeof input.title) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-required"] ||
-            "boolean" === typeof input["x-typia-required"]) &&
-          (undefined === input["x-typia-optional"] ||
-            "boolean" === typeof input["x-typia-optional"]) &&
-          (undefined === input["x-typia-rest"] ||
-            "boolean" === typeof input["x-typia-rest"]);
-        const $io15 = (input: any): boolean =>
-          "null" === input.type &&
-          (undefined === input.deprecated ||
-            "boolean" === typeof input.deprecated) &&
-          (undefined === input.title || "string" === typeof input.title) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-required"] ||
-            "boolean" === typeof input["x-typia-required"]) &&
-          (undefined === input["x-typia-optional"] ||
-            "boolean" === typeof input["x-typia-optional"]) &&
-          (undefined === input["x-typia-rest"] ||
-            "boolean" === typeof input["x-typia-rest"]);
-        const $io16 = (input: any): boolean =>
+        const $io18 = (input: any): boolean =>
           null !== input.type &&
           undefined === input.type &&
           (undefined === input.deprecated ||
@@ -7842,65 +8351,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
             "boolean" === typeof input["x-typia-optional"]) &&
           (undefined === input["x-typia-rest"] ||
             "boolean" === typeof input["x-typia-rest"]);
-        const $io17 = (input: any): boolean =>
+        const $io19 = (input: any): boolean =>
           undefined === input.schemas ||
           ("object" === typeof input.schemas &&
             null !== input.schemas &&
             false === Array.isArray(input.schemas) &&
-            $io18(input.schemas));
-        const $io18 = (input: any): boolean =>
-          Object.keys(input).every((key: any) => {
-            const value = input[key];
-            if (undefined === value) return true;
-            if (true)
-              return (
-                "object" === typeof value &&
-                null !== value &&
-                false === Array.isArray(value) &&
-                $iu1(value)
-              );
-            return true;
-          });
-        const $io19 = (input: any): boolean =>
-          (undefined === input.$id || "string" === typeof input.$id) &&
-          "object" === input.type &&
-          (undefined === input.nullable ||
-            "boolean" === typeof input.nullable) &&
-          "object" === typeof input.properties &&
-          null !== input.properties &&
-          false === Array.isArray(input.properties) &&
-          $io20(input.properties) &&
-          (undefined === input.patternProperties ||
-            ("object" === typeof input.patternProperties &&
-              null !== input.patternProperties &&
-              false === Array.isArray(input.patternProperties) &&
-              $io20(input.patternProperties))) &&
-          (undefined === input.additionalProperties ||
-            ("object" === typeof input.additionalProperties &&
-              null !== input.additionalProperties &&
-              false === Array.isArray(input.additionalProperties) &&
-              $iu0(input.additionalProperties))) &&
-          (undefined === input.required ||
-            (Array.isArray(input.required) &&
-              input.required.every((elem: any) => "string" === typeof elem))) &&
-          (undefined === input.description ||
-            "string" === typeof input.description) &&
-          (undefined === input["x-typia-jsDocTags"] ||
-            (Array.isArray(input["x-typia-jsDocTags"]) &&
-              input["x-typia-jsDocTags"].every(
-                (elem: any) =>
-                  "object" === typeof elem && null !== elem && $io2(elem),
-              ))) &&
-          (undefined === input["x-typia-patternProperties"] ||
-            ("object" === typeof input["x-typia-patternProperties"] &&
-              null !== input["x-typia-patternProperties"] &&
-              false === Array.isArray(input["x-typia-patternProperties"]) &&
-              $io20(input["x-typia-patternProperties"]))) &&
-          (undefined === input["x-typia-additionalProperties"] ||
-            ("object" === typeof input["x-typia-additionalProperties"] &&
-              null !== input["x-typia-additionalProperties"] &&
-              false === Array.isArray(input["x-typia-additionalProperties"]) &&
-              $iu0(input["x-typia-additionalProperties"])));
+            $io20(input.schemas));
         const $io20 = (input: any): boolean =>
           Object.keys(input).every((key: any) => {
             const value = input[key];
@@ -7910,7 +8366,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 "object" === typeof value &&
                 null !== value &&
                 false === Array.isArray(value) &&
-                $iu0(value)
+                $iu1(value)
               );
             return true;
           });
@@ -8265,14 +8721,36 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input.$recursiveAnchor ||
             "boolean" === typeof input.$recursiveAnchor);
         const $io30 = (input: any): boolean =>
-          Array.isArray(input.oneOf) &&
-          input.oneOf.every(
-            (elem: any) =>
-              "object" === typeof elem &&
-              null !== elem &&
-              false === Array.isArray(elem) &&
-              $iu0(elem),
-          ) &&
+          "object" === typeof input.properties &&
+          null !== input.properties &&
+          false === Array.isArray(input.properties) &&
+          $io14(input.properties) &&
+          (undefined === input.required ||
+            (Array.isArray(input.required) &&
+              input.required.every((elem: any) => "string" === typeof elem))) &&
+          (undefined === input.patternProperties ||
+            ("object" === typeof input.patternProperties &&
+              null !== input.patternProperties &&
+              false === Array.isArray(input.patternProperties) &&
+              $io14(input.patternProperties))) &&
+          (undefined === input.additionalProperties ||
+            ("object" === typeof input.additionalProperties &&
+              null !== input.additionalProperties &&
+              false === Array.isArray(input.additionalProperties) &&
+              $iu0(input.additionalProperties))) &&
+          (undefined === input["x-typia-patternProperties"] ||
+            ("object" === typeof input["x-typia-patternProperties"] &&
+              null !== input["x-typia-patternProperties"] &&
+              false === Array.isArray(input["x-typia-patternProperties"]) &&
+              $io14(input["x-typia-patternProperties"]))) &&
+          (undefined === input["x-typia-additionalProperties"] ||
+            ("object" === typeof input["x-typia-additionalProperties"] &&
+              null !== input["x-typia-additionalProperties"] &&
+              false === Array.isArray(input["x-typia-additionalProperties"]) &&
+              $iu0(input["x-typia-additionalProperties"]))) &&
+          "object" === input.type &&
+          (undefined === input.nullable ||
+            "boolean" === typeof input.nullable) &&
           (undefined === input.deprecated ||
             "boolean" === typeof input.deprecated) &&
           (undefined === input.title || "string" === typeof input.title) &&
@@ -8338,6 +8816,35 @@ export const test_notation_createValidateCamel_UltimateUnion =
           (undefined === input.$recursiveAnchor ||
             "boolean" === typeof input.$recursiveAnchor);
         const $io33 = (input: any): boolean =>
+          Array.isArray(input.oneOf) &&
+          input.oneOf.every(
+            (elem: any) =>
+              "object" === typeof elem &&
+              null !== elem &&
+              false === Array.isArray(elem) &&
+              $iu0(elem),
+          ) &&
+          (undefined === input.deprecated ||
+            "boolean" === typeof input.deprecated) &&
+          (undefined === input.title || "string" === typeof input.title) &&
+          (undefined === input.description ||
+            "string" === typeof input.description) &&
+          (undefined === input["x-typia-jsDocTags"] ||
+            (Array.isArray(input["x-typia-jsDocTags"]) &&
+              input["x-typia-jsDocTags"].every(
+                (elem: any) =>
+                  "object" === typeof elem && null !== elem && $io2(elem),
+              ))) &&
+          (undefined === input["x-typia-required"] ||
+            "boolean" === typeof input["x-typia-required"]) &&
+          (undefined === input["x-typia-optional"] ||
+            "boolean" === typeof input["x-typia-optional"]) &&
+          (undefined === input["x-typia-rest"] ||
+            "boolean" === typeof input["x-typia-rest"]) &&
+          (undefined === input.$id || "string" === typeof input.$id) &&
+          (undefined === input.$recursiveAnchor ||
+            "boolean" === typeof input.$recursiveAnchor);
+        const $io34 = (input: any): boolean =>
           null !== input.type &&
           undefined === input.type &&
           (undefined === input.deprecated ||
@@ -8381,9 +8888,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $io12(input);
-            else if (undefined !== input.oneOf) return $io13(input);
-            else if (undefined !== input.$ref) return $io14(input);
-            else if ("null" === input.type) return $io15(input);
+            else if ("object" === input.type) return $io13(input);
+            else if (undefined !== input.$ref) return $io15(input);
+            else if ("null" === input.type) return $io16(input);
+            else if (undefined !== input.oneOf) return $io17(input);
             else
               return (() => {
                 if ($io5(input)) return $io5(input);
@@ -8392,14 +8900,13 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 else if ($io6(input)) return $io6(input);
                 else if ($io9(input)) return $io9(input);
                 else if ($io10(input)) return $io10(input);
-                else if ($io16(input)) return $io16(input);
+                else if ($io18(input)) return $io18(input);
                 else return false;
               })();
           })();
         const $iu1 = (input: any): any =>
           (() => {
-            if ("object" === input.type) return $io19(input);
-            else if ("integer" === input.type) return $io25(input);
+            if ("integer" === input.type) return $io25(input);
             else if (
               "object" === typeof input.items &&
               null !== input.items &&
@@ -8418,9 +8925,10 @@ export const test_notation_createValidateCamel_UltimateUnion =
               )
             )
               return $io29(input);
-            else if (undefined !== input.oneOf) return $io30(input);
+            else if ("object" === input.type) return $io30(input);
             else if (undefined !== input.$ref) return $io31(input);
             else if ("null" === input.type) return $io32(input);
+            else if (undefined !== input.oneOf) return $io33(input);
             else
               return (() => {
                 if ($io23(input)) return $io23(input);
@@ -8429,7 +8937,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 else if ($io24(input)) return $io24(input);
                 else if ($io26(input)) return $io26(input);
                 else if ($io27(input)) return $io27(input);
-                else if ($io33(input)) return $io33(input);
+                else if ($io34(input)) return $io34(input);
                 else return false;
               })();
           })();
@@ -8468,7 +8976,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $guard(_exceptionable, {
                       path: _path + ".schemas[" + _index2 + "]",
                       expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                       value: elem,
                     })) &&
                     $au0(
@@ -8479,7 +8987,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $guard(_exceptionable, {
                     path: _path + ".schemas[" + _index2 + "]",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: elem,
                   }),
               )) ||
@@ -8496,7 +9004,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 expected: "IJsonComponents",
                 value: input.components,
               })) &&
-              $ao17(
+              $ao19(
                 input.components,
                 _path + ".components",
                 true && _exceptionable,
@@ -8512,6 +9020,12 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 path: _path + ".purpose",
                 expected: '("ajv" | "swagger")',
                 value: input.purpose,
+              })) &&
+            ("boolean" === typeof input.surplus ||
+              $guard(_exceptionable, {
+                path: _path + ".surplus",
+                expected: "boolean",
+                value: input.surplus,
               }));
           const $ao1 = (
             input: any,
@@ -9666,14 +10180,14 @@ export const test_notation_createValidateCamel_UltimateUnion =
               $guard(_exceptionable, {
                 path: _path + ".items",
                 expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                 value: input.items,
               })) &&
               $au0(input.items, _path + ".items", true && _exceptionable)) ||
               $guard(_exceptionable, {
                 path: _path + ".items",
                 expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                 value: input.items,
               })) &&
             (undefined === input.minItems ||
@@ -9860,7 +10374,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $guard(_exceptionable, {
                       path: _path + ".items[" + _index21 + "]",
                       expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                       value: elem,
                     })) &&
                     $au0(
@@ -9871,7 +10385,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $guard(_exceptionable, {
                     path: _path + ".items[" + _index21 + "]",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: elem,
                   }),
               )) ||
@@ -10000,39 +10514,138 @@ export const test_notation_createValidateCamel_UltimateUnion =
             _path: string,
             _exceptionable: boolean = true,
           ): boolean =>
-            (((Array.isArray(input.oneOf) ||
+            (((("object" === typeof input.properties &&
+              null !== input.properties &&
+              false === Array.isArray(input.properties)) ||
               $guard(_exceptionable, {
-                path: _path + ".oneOf",
-                expected: "Array<IJsonSchema>",
-                value: input.oneOf,
+                path: _path + ".properties",
+                expected: "Record<string, IJsonSchema>",
+                value: input.properties,
               })) &&
-              input.oneOf.every(
-                (elem: any, _index23: number) =>
-                  ((("object" === typeof elem &&
-                    null !== elem &&
-                    false === Array.isArray(elem)) ||
-                    $guard(_exceptionable, {
-                      path: _path + ".oneOf[" + _index23 + "]",
-                      expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                      value: elem,
-                    })) &&
-                    $au0(
-                      elem,
-                      _path + ".oneOf[" + _index23 + "]",
-                      true && _exceptionable,
-                    )) ||
-                  $guard(_exceptionable, {
-                    path: _path + ".oneOf[" + _index23 + "]",
-                    expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                    value: elem,
-                  }),
+              $ao14(
+                input.properties,
+                _path + ".properties",
+                true && _exceptionable,
               )) ||
               $guard(_exceptionable, {
-                path: _path + ".oneOf",
-                expected: "Array<IJsonSchema>",
-                value: input.oneOf,
+                path: _path + ".properties",
+                expected: "Record<string, IJsonSchema>",
+                value: input.properties,
+              })) &&
+            (undefined === input.required ||
+              ((Array.isArray(input.required) ||
+                $guard(_exceptionable, {
+                  path: _path + ".required",
+                  expected: "(Array<string> | undefined)",
+                  value: input.required,
+                })) &&
+                input.required.every(
+                  (elem: any, _index23: number) =>
+                    "string" === typeof elem ||
+                    $guard(_exceptionable, {
+                      path: _path + ".required[" + _index23 + "]",
+                      expected: "string",
+                      value: elem,
+                    }),
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".required",
+                expected: "(Array<string> | undefined)",
+                value: input.required,
+              })) &&
+            (undefined === input.patternProperties ||
+              ((("object" === typeof input.patternProperties &&
+                null !== input.patternProperties &&
+                false === Array.isArray(input.patternProperties)) ||
+                $guard(_exceptionable, {
+                  path: _path + ".patternProperties",
+                  expected: "(Record<string, IJsonSchema> | undefined)",
+                  value: input.patternProperties,
+                })) &&
+                $ao14(
+                  input.patternProperties,
+                  _path + ".patternProperties",
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".patternProperties",
+                expected: "(Record<string, IJsonSchema> | undefined)",
+                value: input.patternProperties,
+              })) &&
+            (undefined === input.additionalProperties ||
+              ((("object" === typeof input.additionalProperties &&
+                null !== input.additionalProperties &&
+                false === Array.isArray(input.additionalProperties)) ||
+                $guard(_exceptionable, {
+                  path: _path + ".additionalProperties",
+                  expected:
+                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                  value: input.additionalProperties,
+                })) &&
+                $au0(
+                  input.additionalProperties,
+                  _path + ".additionalProperties",
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".additionalProperties",
+                expected:
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                value: input.additionalProperties,
+              })) &&
+            (undefined === input["x-typia-patternProperties"] ||
+              ((("object" === typeof input["x-typia-patternProperties"] &&
+                null !== input["x-typia-patternProperties"] &&
+                false === Array.isArray(input["x-typia-patternProperties"])) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-patternProperties"]',
+                  expected: "(Record<string, IJsonSchema> | undefined)",
+                  value: input["x-typia-patternProperties"],
+                })) &&
+                $ao14(
+                  input["x-typia-patternProperties"],
+                  _path + '["x-typia-patternProperties"]',
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-patternProperties"]',
+                expected: "(Record<string, IJsonSchema> | undefined)",
+                value: input["x-typia-patternProperties"],
+              })) &&
+            (undefined === input["x-typia-additionalProperties"] ||
+              ((("object" === typeof input["x-typia-additionalProperties"] &&
+                null !== input["x-typia-additionalProperties"] &&
+                false ===
+                  Array.isArray(input["x-typia-additionalProperties"])) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-additionalProperties"]',
+                  expected:
+                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                  value: input["x-typia-additionalProperties"],
+                })) &&
+                $au0(
+                  input["x-typia-additionalProperties"],
+                  _path + '["x-typia-additionalProperties"]',
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-additionalProperties"]',
+                expected:
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                value: input["x-typia-additionalProperties"],
+              })) &&
+            ("object" === input.type ||
+              $guard(_exceptionable, {
+                path: _path + ".type",
+                expected: '"object"',
+                value: input.type,
+              })) &&
+            (undefined === input.nullable ||
+              "boolean" === typeof input.nullable ||
+              $guard(_exceptionable, {
+                path: _path + ".nullable",
+                expected: "(boolean | undefined)",
+                value: input.nullable,
               })) &&
             (undefined === input.deprecated ||
               "boolean" === typeof input.deprecated ||
@@ -10108,6 +10721,36 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 value: input["x-typia-rest"],
               }));
           const $ao14 = (
+            input: any,
+            _path: string,
+            _exceptionable: boolean = true,
+          ): boolean =>
+            false === _exceptionable ||
+            Object.keys(input).every((key: any) => {
+              const value = input[key];
+              if (undefined === value) return true;
+              if (true)
+                return (
+                  ((("object" === typeof value &&
+                    null !== value &&
+                    false === Array.isArray(value)) ||
+                    $guard(_exceptionable, {
+                      path: _path + $join(key),
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      value: value,
+                    })) &&
+                    $au0(value, _path + $join(key), true && _exceptionable)) ||
+                  $guard(_exceptionable, {
+                    path: _path + $join(key),
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                    value: value,
+                  })
+                );
+              return true;
+            });
+          const $ao15 = (
             input: any,
             _path: string,
             _exceptionable: boolean = true,
@@ -10191,7 +10834,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 expected: "(boolean | undefined)",
                 value: input["x-typia-rest"],
               }));
-          const $ao15 = (
+          const $ao16 = (
             input: any,
             _path: string,
             _exceptionable: boolean = true,
@@ -10275,7 +10918,119 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 expected: "(boolean | undefined)",
                 value: input["x-typia-rest"],
               }));
-          const $ao16 = (
+          const $ao17 = (
+            input: any,
+            _path: string,
+            _exceptionable: boolean = true,
+          ): boolean =>
+            (((Array.isArray(input.oneOf) ||
+              $guard(_exceptionable, {
+                path: _path + ".oneOf",
+                expected: "Array<IJsonSchema>",
+                value: input.oneOf,
+              })) &&
+              input.oneOf.every(
+                (elem: any, _index27: number) =>
+                  ((("object" === typeof elem &&
+                    null !== elem &&
+                    false === Array.isArray(elem)) ||
+                    $guard(_exceptionable, {
+                      path: _path + ".oneOf[" + _index27 + "]",
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      value: elem,
+                    })) &&
+                    $au0(
+                      elem,
+                      _path + ".oneOf[" + _index27 + "]",
+                      true && _exceptionable,
+                    )) ||
+                  $guard(_exceptionable, {
+                    path: _path + ".oneOf[" + _index27 + "]",
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                    value: elem,
+                  }),
+              )) ||
+              $guard(_exceptionable, {
+                path: _path + ".oneOf",
+                expected: "Array<IJsonSchema>",
+                value: input.oneOf,
+              })) &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated ||
+              $guard(_exceptionable, {
+                path: _path + ".deprecated",
+                expected: "(boolean | undefined)",
+                value: input.deprecated,
+              })) &&
+            (undefined === input.title ||
+              "string" === typeof input.title ||
+              $guard(_exceptionable, {
+                path: _path + ".title",
+                expected: "(string | undefined)",
+                value: input.title,
+              })) &&
+            (undefined === input.description ||
+              "string" === typeof input.description ||
+              $guard(_exceptionable, {
+                path: _path + ".description",
+                expected: "(string | undefined)",
+                value: input.description,
+              })) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              ((Array.isArray(input["x-typia-jsDocTags"]) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-jsDocTags"]',
+                  expected: "(Array<IJsDocTagInfo> | undefined)",
+                  value: input["x-typia-jsDocTags"],
+                })) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any, _index28: number) =>
+                    ((("object" === typeof elem && null !== elem) ||
+                      $guard(_exceptionable, {
+                        path: _path + '["x-typia-jsDocTags"][' + _index28 + "]",
+                        expected: "IJsDocTagInfo",
+                        value: elem,
+                      })) &&
+                      $ao2(
+                        elem,
+                        _path + '["x-typia-jsDocTags"][' + _index28 + "]",
+                        true && _exceptionable,
+                      )) ||
+                    $guard(_exceptionable, {
+                      path: _path + '["x-typia-jsDocTags"][' + _index28 + "]",
+                      expected: "IJsDocTagInfo",
+                      value: elem,
+                    }),
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-jsDocTags"]',
+                expected: "(Array<IJsDocTagInfo> | undefined)",
+                value: input["x-typia-jsDocTags"],
+              })) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-required"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-required"],
+              })) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-optional"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-optional"],
+              })) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-rest"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-rest"],
+              }));
+          const $ao18 = (
             input: any,
             _path: string,
             _exceptionable: boolean = true,
@@ -10321,20 +11076,20 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   value: input["x-typia-jsDocTags"],
                 })) &&
                 input["x-typia-jsDocTags"].every(
-                  (elem: any, _index27: number) =>
+                  (elem: any, _index29: number) =>
                     ((("object" === typeof elem && null !== elem) ||
                       $guard(_exceptionable, {
-                        path: _path + '["x-typia-jsDocTags"][' + _index27 + "]",
+                        path: _path + '["x-typia-jsDocTags"][' + _index29 + "]",
                         expected: "IJsDocTagInfo",
                         value: elem,
                       })) &&
                       $ao2(
                         elem,
-                        _path + '["x-typia-jsDocTags"][' + _index27 + "]",
+                        _path + '["x-typia-jsDocTags"][' + _index29 + "]",
                         true && _exceptionable,
                       )) ||
                     $guard(_exceptionable, {
-                      path: _path + '["x-typia-jsDocTags"][' + _index27 + "]",
+                      path: _path + '["x-typia-jsDocTags"][' + _index29 + "]",
                       expected: "IJsDocTagInfo",
                       value: elem,
                     }),
@@ -10365,7 +11120,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                 expected: "(boolean | undefined)",
                 value: input["x-typia-rest"],
               }));
-          const $ao17 = (
+          const $ao19 = (
             input: any,
             _path: string,
             _exceptionable: boolean = true,
@@ -10376,232 +11131,20 @@ export const test_notation_createValidateCamel_UltimateUnion =
               false === Array.isArray(input.schemas)) ||
               $guard(_exceptionable, {
                 path: _path + ".schemas",
-                expected: "(Record<string, IObject | IAlias> | undefined)",
+                expected:
+                  "(Record<string, IJsonComponents.IAlias> | undefined)",
                 value: input.schemas,
               })) &&
-              $ao18(
+              $ao20(
                 input.schemas,
                 _path + ".schemas",
                 true && _exceptionable,
               )) ||
             $guard(_exceptionable, {
               path: _path + ".schemas",
-              expected: "(Record<string, IObject | IAlias> | undefined)",
+              expected: "(Record<string, IJsonComponents.IAlias> | undefined)",
               value: input.schemas,
             });
-          const $ao18 = (
-            input: any,
-            _path: string,
-            _exceptionable: boolean = true,
-          ): boolean =>
-            false === _exceptionable ||
-            Object.keys(input).every((key: any) => {
-              const value = input[key];
-              if (undefined === value) return true;
-              if (true)
-                return (
-                  ((("object" === typeof value &&
-                    null !== value &&
-                    false === Array.isArray(value)) ||
-                    $guard(_exceptionable, {
-                      path: _path + $join(key),
-                      expected:
-                        '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | IJsonComponents.IObject | INullOnly & IIdentified | INumber & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
-                      value: value,
-                    })) &&
-                    $au1(value, _path + $join(key), true && _exceptionable)) ||
-                  $guard(_exceptionable, {
-                    path: _path + $join(key),
-                    expected:
-                      '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | IJsonComponents.IObject | INullOnly & IIdentified | INumber & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
-                    value: value,
-                  })
-                );
-              return true;
-            });
-          const $ao19 = (
-            input: any,
-            _path: string,
-            _exceptionable: boolean = true,
-          ): boolean =>
-            (undefined === input.$id ||
-              "string" === typeof input.$id ||
-              $guard(_exceptionable, {
-                path: _path + ".$id",
-                expected: "(string | undefined)",
-                value: input.$id,
-              })) &&
-            ("object" === input.type ||
-              $guard(_exceptionable, {
-                path: _path + ".type",
-                expected: '"object"',
-                value: input.type,
-              })) &&
-            (undefined === input.nullable ||
-              "boolean" === typeof input.nullable ||
-              $guard(_exceptionable, {
-                path: _path + ".nullable",
-                expected: "(boolean | undefined)",
-                value: input.nullable,
-              })) &&
-            (((("object" === typeof input.properties &&
-              null !== input.properties &&
-              false === Array.isArray(input.properties)) ||
-              $guard(_exceptionable, {
-                path: _path + ".properties",
-                expected: "Record<string, IJsonSchema>",
-                value: input.properties,
-              })) &&
-              $ao20(
-                input.properties,
-                _path + ".properties",
-                true && _exceptionable,
-              )) ||
-              $guard(_exceptionable, {
-                path: _path + ".properties",
-                expected: "Record<string, IJsonSchema>",
-                value: input.properties,
-              })) &&
-            (undefined === input.patternProperties ||
-              ((("object" === typeof input.patternProperties &&
-                null !== input.patternProperties &&
-                false === Array.isArray(input.patternProperties)) ||
-                $guard(_exceptionable, {
-                  path: _path + ".patternProperties",
-                  expected: "(Record<string, IJsonSchema> | undefined)",
-                  value: input.patternProperties,
-                })) &&
-                $ao20(
-                  input.patternProperties,
-                  _path + ".patternProperties",
-                  true && _exceptionable,
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + ".patternProperties",
-                expected: "(Record<string, IJsonSchema> | undefined)",
-                value: input.patternProperties,
-              })) &&
-            (undefined === input.additionalProperties ||
-              ((("object" === typeof input.additionalProperties &&
-                null !== input.additionalProperties &&
-                false === Array.isArray(input.additionalProperties)) ||
-                $guard(_exceptionable, {
-                  path: _path + ".additionalProperties",
-                  expected:
-                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                  value: input.additionalProperties,
-                })) &&
-                $au0(
-                  input.additionalProperties,
-                  _path + ".additionalProperties",
-                  true && _exceptionable,
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + ".additionalProperties",
-                expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                value: input.additionalProperties,
-              })) &&
-            (undefined === input.required ||
-              ((Array.isArray(input.required) ||
-                $guard(_exceptionable, {
-                  path: _path + ".required",
-                  expected: "(Array<string> | undefined)",
-                  value: input.required,
-                })) &&
-                input.required.every(
-                  (elem: any, _index28: number) =>
-                    "string" === typeof elem ||
-                    $guard(_exceptionable, {
-                      path: _path + ".required[" + _index28 + "]",
-                      expected: "string",
-                      value: elem,
-                    }),
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + ".required",
-                expected: "(Array<string> | undefined)",
-                value: input.required,
-              })) &&
-            (undefined === input.description ||
-              "string" === typeof input.description ||
-              $guard(_exceptionable, {
-                path: _path + ".description",
-                expected: "(string | undefined)",
-                value: input.description,
-              })) &&
-            (undefined === input["x-typia-jsDocTags"] ||
-              ((Array.isArray(input["x-typia-jsDocTags"]) ||
-                $guard(_exceptionable, {
-                  path: _path + '["x-typia-jsDocTags"]',
-                  expected: "(Array<IJsDocTagInfo> | undefined)",
-                  value: input["x-typia-jsDocTags"],
-                })) &&
-                input["x-typia-jsDocTags"].every(
-                  (elem: any, _index29: number) =>
-                    ((("object" === typeof elem && null !== elem) ||
-                      $guard(_exceptionable, {
-                        path: _path + '["x-typia-jsDocTags"][' + _index29 + "]",
-                        expected: "IJsDocTagInfo",
-                        value: elem,
-                      })) &&
-                      $ao2(
-                        elem,
-                        _path + '["x-typia-jsDocTags"][' + _index29 + "]",
-                        true && _exceptionable,
-                      )) ||
-                    $guard(_exceptionable, {
-                      path: _path + '["x-typia-jsDocTags"][' + _index29 + "]",
-                      expected: "IJsDocTagInfo",
-                      value: elem,
-                    }),
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + '["x-typia-jsDocTags"]',
-                expected: "(Array<IJsDocTagInfo> | undefined)",
-                value: input["x-typia-jsDocTags"],
-              })) &&
-            (undefined === input["x-typia-patternProperties"] ||
-              ((("object" === typeof input["x-typia-patternProperties"] &&
-                null !== input["x-typia-patternProperties"] &&
-                false === Array.isArray(input["x-typia-patternProperties"])) ||
-                $guard(_exceptionable, {
-                  path: _path + '["x-typia-patternProperties"]',
-                  expected: "(Record<string, IJsonSchema> | undefined)",
-                  value: input["x-typia-patternProperties"],
-                })) &&
-                $ao20(
-                  input["x-typia-patternProperties"],
-                  _path + '["x-typia-patternProperties"]',
-                  true && _exceptionable,
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + '["x-typia-patternProperties"]',
-                expected: "(Record<string, IJsonSchema> | undefined)",
-                value: input["x-typia-patternProperties"],
-              })) &&
-            (undefined === input["x-typia-additionalProperties"] ||
-              ((("object" === typeof input["x-typia-additionalProperties"] &&
-                null !== input["x-typia-additionalProperties"] &&
-                false ===
-                  Array.isArray(input["x-typia-additionalProperties"])) ||
-                $guard(_exceptionable, {
-                  path: _path + '["x-typia-additionalProperties"]',
-                  expected:
-                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                  value: input["x-typia-additionalProperties"],
-                })) &&
-                $au0(
-                  input["x-typia-additionalProperties"],
-                  _path + '["x-typia-additionalProperties"]',
-                  true && _exceptionable,
-                )) ||
-              $guard(_exceptionable, {
-                path: _path + '["x-typia-additionalProperties"]',
-                expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
-                value: input["x-typia-additionalProperties"],
-              }));
           const $ao20 = (
             input: any,
             _path: string,
@@ -10619,14 +11162,14 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $guard(_exceptionable, {
                       path: _path + $join(key),
                       expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                        '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | INullOnly & IIdentified | INumber & IIdentified | IObject & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
                       value: value,
                     })) &&
-                    $au0(value, _path + $join(key), true && _exceptionable)) ||
+                    $au1(value, _path + $join(key), true && _exceptionable)) ||
                   $guard(_exceptionable, {
                     path: _path + $join(key),
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IArray & IIdentified | IBoolean & IIdentified | IEnumeration<"boolean"> & IIdentified | IEnumeration<"number"> & IIdentified | IEnumeration<"string"> & IIdentified | IInteger & IIdentified | INullOnly & IIdentified | INumber & IIdentified | IObject & IIdentified | IOneOf & IIdentified | IReference & IIdentified | IString & IIdentified | ITuple & IIdentified | IUnknown & IIdentified)',
                     value: value,
                   })
                 );
@@ -11755,14 +12298,14 @@ export const test_notation_createValidateCamel_UltimateUnion =
               $guard(_exceptionable, {
                 path: _path + ".items",
                 expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                 value: input.items,
               })) &&
               $au0(input.items, _path + ".items", true && _exceptionable)) ||
               $guard(_exceptionable, {
                 path: _path + ".items",
                 expected:
-                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                 value: input.items,
               })) &&
             (undefined === input.minItems ||
@@ -11963,7 +12506,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                     $guard(_exceptionable, {
                       path: _path + ".items[" + _index46 + "]",
                       expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                       value: elem,
                     })) &&
                     $au0(
@@ -11974,7 +12517,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $guard(_exceptionable, {
                     path: _path + ".items[" + _index46 + "]",
                     expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
                     value: elem,
                   }),
               )) ||
@@ -12117,39 +12660,138 @@ export const test_notation_createValidateCamel_UltimateUnion =
             _path: string,
             _exceptionable: boolean = true,
           ): boolean =>
-            (((Array.isArray(input.oneOf) ||
+            (((("object" === typeof input.properties &&
+              null !== input.properties &&
+              false === Array.isArray(input.properties)) ||
               $guard(_exceptionable, {
-                path: _path + ".oneOf",
-                expected: "Array<IJsonSchema>",
-                value: input.oneOf,
+                path: _path + ".properties",
+                expected: "Record<string, IJsonSchema>",
+                value: input.properties,
               })) &&
-              input.oneOf.every(
-                (elem: any, _index48: number) =>
-                  ((("object" === typeof elem &&
-                    null !== elem &&
-                    false === Array.isArray(elem)) ||
-                    $guard(_exceptionable, {
-                      path: _path + ".oneOf[" + _index48 + "]",
-                      expected:
-                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                      value: elem,
-                    })) &&
-                    $au0(
-                      elem,
-                      _path + ".oneOf[" + _index48 + "]",
-                      true && _exceptionable,
-                    )) ||
-                  $guard(_exceptionable, {
-                    path: _path + ".oneOf[" + _index48 + "]",
-                    expected:
-                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
-                    value: elem,
-                  }),
+              $ao14(
+                input.properties,
+                _path + ".properties",
+                true && _exceptionable,
               )) ||
               $guard(_exceptionable, {
-                path: _path + ".oneOf",
-                expected: "Array<IJsonSchema>",
-                value: input.oneOf,
+                path: _path + ".properties",
+                expected: "Record<string, IJsonSchema>",
+                value: input.properties,
+              })) &&
+            (undefined === input.required ||
+              ((Array.isArray(input.required) ||
+                $guard(_exceptionable, {
+                  path: _path + ".required",
+                  expected: "(Array<string> | undefined)",
+                  value: input.required,
+                })) &&
+                input.required.every(
+                  (elem: any, _index48: number) =>
+                    "string" === typeof elem ||
+                    $guard(_exceptionable, {
+                      path: _path + ".required[" + _index48 + "]",
+                      expected: "string",
+                      value: elem,
+                    }),
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".required",
+                expected: "(Array<string> | undefined)",
+                value: input.required,
+              })) &&
+            (undefined === input.patternProperties ||
+              ((("object" === typeof input.patternProperties &&
+                null !== input.patternProperties &&
+                false === Array.isArray(input.patternProperties)) ||
+                $guard(_exceptionable, {
+                  path: _path + ".patternProperties",
+                  expected: "(Record<string, IJsonSchema> | undefined)",
+                  value: input.patternProperties,
+                })) &&
+                $ao14(
+                  input.patternProperties,
+                  _path + ".patternProperties",
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".patternProperties",
+                expected: "(Record<string, IJsonSchema> | undefined)",
+                value: input.patternProperties,
+              })) &&
+            (undefined === input.additionalProperties ||
+              ((("object" === typeof input.additionalProperties &&
+                null !== input.additionalProperties &&
+                false === Array.isArray(input.additionalProperties)) ||
+                $guard(_exceptionable, {
+                  path: _path + ".additionalProperties",
+                  expected:
+                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                  value: input.additionalProperties,
+                })) &&
+                $au0(
+                  input.additionalProperties,
+                  _path + ".additionalProperties",
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + ".additionalProperties",
+                expected:
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                value: input.additionalProperties,
+              })) &&
+            (undefined === input["x-typia-patternProperties"] ||
+              ((("object" === typeof input["x-typia-patternProperties"] &&
+                null !== input["x-typia-patternProperties"] &&
+                false === Array.isArray(input["x-typia-patternProperties"])) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-patternProperties"]',
+                  expected: "(Record<string, IJsonSchema> | undefined)",
+                  value: input["x-typia-patternProperties"],
+                })) &&
+                $ao14(
+                  input["x-typia-patternProperties"],
+                  _path + '["x-typia-patternProperties"]',
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-patternProperties"]',
+                expected: "(Record<string, IJsonSchema> | undefined)",
+                value: input["x-typia-patternProperties"],
+              })) &&
+            (undefined === input["x-typia-additionalProperties"] ||
+              ((("object" === typeof input["x-typia-additionalProperties"] &&
+                null !== input["x-typia-additionalProperties"] &&
+                false ===
+                  Array.isArray(input["x-typia-additionalProperties"])) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-additionalProperties"]',
+                  expected:
+                    '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                  value: input["x-typia-additionalProperties"],
+                })) &&
+                $au0(
+                  input["x-typia-additionalProperties"],
+                  _path + '["x-typia-additionalProperties"]',
+                  true && _exceptionable,
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-additionalProperties"]',
+                expected:
+                  '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown | undefined)',
+                value: input["x-typia-additionalProperties"],
+              })) &&
+            ("object" === input.type ||
+              $guard(_exceptionable, {
+                path: _path + ".type",
+                expected: '"object"',
+                value: input.type,
+              })) &&
+            (undefined === input.nullable ||
+              "boolean" === typeof input.nullable ||
+              $guard(_exceptionable, {
+                path: _path + ".nullable",
+                expected: "(boolean | undefined)",
+                value: input.nullable,
               })) &&
             (undefined === input.deprecated ||
               "boolean" === typeof input.deprecated ||
@@ -12439,6 +13081,132 @@ export const test_notation_createValidateCamel_UltimateUnion =
             _path: string,
             _exceptionable: boolean = true,
           ): boolean =>
+            (((Array.isArray(input.oneOf) ||
+              $guard(_exceptionable, {
+                path: _path + ".oneOf",
+                expected: "Array<IJsonSchema>",
+                value: input.oneOf,
+              })) &&
+              input.oneOf.every(
+                (elem: any, _index52: number) =>
+                  ((("object" === typeof elem &&
+                    null !== elem &&
+                    false === Array.isArray(elem)) ||
+                    $guard(_exceptionable, {
+                      path: _path + ".oneOf[" + _index52 + "]",
+                      expected:
+                        '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                      value: elem,
+                    })) &&
+                    $au0(
+                      elem,
+                      _path + ".oneOf[" + _index52 + "]",
+                      true && _exceptionable,
+                    )) ||
+                  $guard(_exceptionable, {
+                    path: _path + ".oneOf[" + _index52 + "]",
+                    expected:
+                      '(IJsonSchema.IArray | IJsonSchema.IBoolean | IJsonSchema.IEnumeration<"boolean"> | IJsonSchema.IEnumeration<"number"> | IJsonSchema.IEnumeration<"string"> | IJsonSchema.IInteger | IJsonSchema.INullOnly | IJsonSchema.INumber | IJsonSchema.IObject | IJsonSchema.IOneOf | IJsonSchema.IReference | IJsonSchema.IString | IJsonSchema.ITuple | IJsonSchema.IUnknown)',
+                    value: elem,
+                  }),
+              )) ||
+              $guard(_exceptionable, {
+                path: _path + ".oneOf",
+                expected: "Array<IJsonSchema>",
+                value: input.oneOf,
+              })) &&
+            (undefined === input.deprecated ||
+              "boolean" === typeof input.deprecated ||
+              $guard(_exceptionable, {
+                path: _path + ".deprecated",
+                expected: "(boolean | undefined)",
+                value: input.deprecated,
+              })) &&
+            (undefined === input.title ||
+              "string" === typeof input.title ||
+              $guard(_exceptionable, {
+                path: _path + ".title",
+                expected: "(string | undefined)",
+                value: input.title,
+              })) &&
+            (undefined === input.description ||
+              "string" === typeof input.description ||
+              $guard(_exceptionable, {
+                path: _path + ".description",
+                expected: "(string | undefined)",
+                value: input.description,
+              })) &&
+            (undefined === input["x-typia-jsDocTags"] ||
+              ((Array.isArray(input["x-typia-jsDocTags"]) ||
+                $guard(_exceptionable, {
+                  path: _path + '["x-typia-jsDocTags"]',
+                  expected: "(Array<IJsDocTagInfo> | undefined)",
+                  value: input["x-typia-jsDocTags"],
+                })) &&
+                input["x-typia-jsDocTags"].every(
+                  (elem: any, _index53: number) =>
+                    ((("object" === typeof elem && null !== elem) ||
+                      $guard(_exceptionable, {
+                        path: _path + '["x-typia-jsDocTags"][' + _index53 + "]",
+                        expected: "IJsDocTagInfo",
+                        value: elem,
+                      })) &&
+                      $ao2(
+                        elem,
+                        _path + '["x-typia-jsDocTags"][' + _index53 + "]",
+                        true && _exceptionable,
+                      )) ||
+                    $guard(_exceptionable, {
+                      path: _path + '["x-typia-jsDocTags"][' + _index53 + "]",
+                      expected: "IJsDocTagInfo",
+                      value: elem,
+                    }),
+                )) ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-jsDocTags"]',
+                expected: "(Array<IJsDocTagInfo> | undefined)",
+                value: input["x-typia-jsDocTags"],
+              })) &&
+            (undefined === input["x-typia-required"] ||
+              "boolean" === typeof input["x-typia-required"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-required"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-required"],
+              })) &&
+            (undefined === input["x-typia-optional"] ||
+              "boolean" === typeof input["x-typia-optional"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-optional"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-optional"],
+              })) &&
+            (undefined === input["x-typia-rest"] ||
+              "boolean" === typeof input["x-typia-rest"] ||
+              $guard(_exceptionable, {
+                path: _path + '["x-typia-rest"]',
+                expected: "(boolean | undefined)",
+                value: input["x-typia-rest"],
+              })) &&
+            (undefined === input.$id ||
+              "string" === typeof input.$id ||
+              $guard(_exceptionable, {
+                path: _path + ".$id",
+                expected: "(string | undefined)",
+                value: input.$id,
+              })) &&
+            (undefined === input.$recursiveAnchor ||
+              "boolean" === typeof input.$recursiveAnchor ||
+              $guard(_exceptionable, {
+                path: _path + ".$recursiveAnchor",
+                expected: "(boolean | undefined)",
+                value: input.$recursiveAnchor,
+              }));
+          const $ao34 = (
+            input: any,
+            _path: string,
+            _exceptionable: boolean = true,
+          ): boolean =>
             (null !== input.type ||
               $guard(_exceptionable, {
                 path: _path + ".type",
@@ -12480,20 +13248,20 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   value: input["x-typia-jsDocTags"],
                 })) &&
                 input["x-typia-jsDocTags"].every(
-                  (elem: any, _index52: number) =>
+                  (elem: any, _index54: number) =>
                     ((("object" === typeof elem && null !== elem) ||
                       $guard(_exceptionable, {
-                        path: _path + '["x-typia-jsDocTags"][' + _index52 + "]",
+                        path: _path + '["x-typia-jsDocTags"][' + _index54 + "]",
                         expected: "IJsDocTagInfo",
                         value: elem,
                       })) &&
                       $ao2(
                         elem,
-                        _path + '["x-typia-jsDocTags"][' + _index52 + "]",
+                        _path + '["x-typia-jsDocTags"][' + _index54 + "]",
                         true && _exceptionable,
                       )) ||
                     $guard(_exceptionable, {
-                      path: _path + '["x-typia-jsDocTags"][' + _index52 + "]",
+                      path: _path + '["x-typia-jsDocTags"][' + _index54 + "]",
                       expected: "IJsDocTagInfo",
                       value: elem,
                     }),
@@ -12556,24 +13324,26 @@ export const test_notation_createValidateCamel_UltimateUnion =
               else if (
                 Array.isArray(input.items) &&
                 input.items.every(
-                  (elem: any, _index53: number) =>
+                  (elem: any, _index55: number) =>
                     "object" === typeof elem &&
                     null !== elem &&
                     false === Array.isArray(elem) &&
                     $au0(
                       elem,
-                      _path + ".items[" + _index53 + "]",
+                      _path + ".items[" + _index55 + "]",
                       false && _exceptionable,
                     ),
                 )
               )
                 return $ao12(input, _path, true && _exceptionable);
-              else if (undefined !== input.oneOf)
+              else if ("object" === input.type)
                 return $ao13(input, _path, true && _exceptionable);
               else if (undefined !== input.$ref)
-                return $ao14(input, _path, true && _exceptionable);
-              else if ("null" === input.type)
                 return $ao15(input, _path, true && _exceptionable);
+              else if ("null" === input.type)
+                return $ao16(input, _path, true && _exceptionable);
+              else if (undefined !== input.oneOf)
+                return $ao17(input, _path, true && _exceptionable);
               else
                 return (
                   $ao5(input, _path, false && _exceptionable) ||
@@ -12582,7 +13352,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $ao6(input, _path, false && _exceptionable) ||
                   $ao9(input, _path, false && _exceptionable) ||
                   $ao10(input, _path, false && _exceptionable) ||
-                  $ao16(input, _path, false && _exceptionable) ||
+                  $ao18(input, _path, false && _exceptionable) ||
                   $guard(_exceptionable, {
                     path: _path,
                     expected:
@@ -12597,9 +13367,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
             _exceptionable: boolean = true,
           ): any =>
             (() => {
-              if ("object" === input.type)
-                return $ao19(input, _path, true && _exceptionable);
-              else if ("integer" === input.type)
+              if ("integer" === input.type)
                 return $ao25(input, _path, true && _exceptionable);
               else if (
                 "object" === typeof input.items &&
@@ -12611,24 +13379,26 @@ export const test_notation_createValidateCamel_UltimateUnion =
               else if (
                 Array.isArray(input.items) &&
                 input.items.every(
-                  (elem: any, _index54: number) =>
+                  (elem: any, _index56: number) =>
                     "object" === typeof elem &&
                     null !== elem &&
                     false === Array.isArray(elem) &&
                     $au0(
                       elem,
-                      _path + ".items[" + _index54 + "]",
+                      _path + ".items[" + _index56 + "]",
                       false && _exceptionable,
                     ),
                 )
               )
                 return $ao29(input, _path, true && _exceptionable);
-              else if (undefined !== input.oneOf)
+              else if ("object" === input.type)
                 return $ao30(input, _path, true && _exceptionable);
               else if (undefined !== input.$ref)
                 return $ao31(input, _path, true && _exceptionable);
               else if ("null" === input.type)
                 return $ao32(input, _path, true && _exceptionable);
+              else if (undefined !== input.oneOf)
+                return $ao33(input, _path, true && _exceptionable);
               else
                 return (
                   $ao23(input, _path, false && _exceptionable) ||
@@ -12637,7 +13407,7 @@ export const test_notation_createValidateCamel_UltimateUnion =
                   $ao24(input, _path, false && _exceptionable) ||
                   $ao26(input, _path, false && _exceptionable) ||
                   $ao27(input, _path, false && _exceptionable) ||
-                  $ao33(input, _path, false && _exceptionable) ||
+                  $ao34(input, _path, false && _exceptionable) ||
                   $guard(_exceptionable, {
                     path: _path,
                     expected:
