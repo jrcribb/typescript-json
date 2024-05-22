@@ -1,8 +1,9 @@
-import { TypeGuardError } from "typia";
+import typia, { TypeGuardError } from "typia";
 
 import { TestStructure } from "../helpers/TestStructure";
 
 export const _test_assert =
+  (ErrorClass: Function) =>
   (name: string) =>
   <T>(factory: TestStructure<T>) =>
   (assert: (input: T) => T) =>
@@ -14,7 +15,7 @@ export const _test_assert =
       if (input !== output)
         throw new Error("Bug on typia.assert(): failed to return input value.");
     } catch (exp) {
-      if (exp instanceof TypeGuardError) {
+      if ((exp as Function).constructor?.name === ErrorClass.name) {
         console.log(exp);
         throw new Error(
           `Bug on typia.assert(): failed to understand the ${name} type.`,
@@ -29,13 +30,17 @@ export const _test_assert =
       try {
         assert(elem);
       } catch (exp) {
-        if (exp instanceof TypeGuardError)
+        if (
+          (exp as Function).constructor?.name === ErrorClass.name &&
+          typia.is<TypeGuardError.IProps>(exp)
+        ) {
           if (exp.path && expected.includes(exp.path) === true) continue;
           else
             console.log({
               expected: expected,
               actual: exp.path,
             });
+        }
       }
       throw new Error(
         `Bug on typia.assert(): failed to detect error on the ${name} type - ${expected}.`,

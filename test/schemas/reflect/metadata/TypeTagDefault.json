@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "boolean"
+                    {
+                      "value": "boolean"
+                    }
                   ]
                 }
               ],
@@ -70,7 +72,10 @@
                         "name": "Default<false>",
                         "kind": "default",
                         "value": false,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": false
+                        }
                       }
                     ]
                   ]
@@ -103,7 +108,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "number"
+                    {
+                      "value": "number"
+                    }
                   ]
                 }
               ],
@@ -134,7 +141,10 @@
                         "name": "Default<1>",
                         "kind": "default",
                         "value": 1,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": 1
+                        }
                       }
                     ]
                   ]
@@ -167,7 +177,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "string"
+                    {
+                      "value": "string"
+                    }
                   ]
                 }
               ],
@@ -198,7 +210,10 @@
                         "name": "Default<\"two\">",
                         "kind": "default",
                         "value": "two",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": "two"
+                        }
                       }
                     ]
                   ]
@@ -231,7 +246,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "text"
+                    {
+                      "value": "text"
+                    }
                   ]
                 }
               ],
@@ -262,7 +279,10 @@
                         "name": "Default<\"Very long text, can you understand it?\">",
                         "kind": "default",
                         "value": "Very long text, can you understand it?",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": "Very long text, can you understand it?"
+                        }
                       }
                     ]
                   ]
@@ -295,7 +315,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "boolean_and_number_and_string"
+                    {
+                      "value": "boolean_and_number_and_string"
+                    }
                   ]
                 }
               ],
@@ -326,7 +348,10 @@
                         "name": "Default<1>",
                         "kind": "default",
                         "value": 1,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": 1
+                        }
                       }
                     ]
                   ]
@@ -340,7 +365,10 @@
                         "name": "Default<\"two\">",
                         "kind": "default",
                         "value": "two",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": "two"
+                        }
                       }
                     ]
                   ]
@@ -354,7 +382,10 @@
                         "name": "Default<false>",
                         "kind": "default",
                         "value": false,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": false
+                        }
                       }
                     ]
                   ]
@@ -387,7 +418,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "union_but_boolean"
+                    {
+                      "value": "union_but_boolean"
+                    }
                   ]
                 }
               ],
@@ -426,7 +459,10 @@
                         "name": "Default<false>",
                         "kind": "default",
                         "value": false,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": false
+                        }
                       }
                     ]
                   ]
@@ -459,7 +495,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "union_but_number"
+                    {
+                      "value": "union_but_number"
+                    }
                   ]
                 }
               ],
@@ -494,7 +532,10 @@
                         "name": "Default<1>",
                         "kind": "default",
                         "value": 1,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": 1
+                        }
                       }
                     ]
                   ]
@@ -531,7 +572,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "union_but_string"
+                    {
+                      "value": "union_but_string"
+                    }
                   ]
                 }
               ],
@@ -566,7 +609,10 @@
                         "name": "Default<\"two\">",
                         "kind": "default",
                         "value": "two",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": "two"
+                        }
                       }
                     ]
                   ]
@@ -603,7 +649,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "boolean_and_number_and_template"
+                    {
+                      "value": "boolean_and_number_and_template"
+                    }
                   ]
                 }
               ],
@@ -634,7 +682,10 @@
                         "name": "Default<2>",
                         "kind": "default",
                         "value": 2,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": 2
+                        }
                       }
                     ]
                   ]
@@ -648,7 +699,10 @@
                         "name": "Default<false>",
                         "kind": "default",
                         "value": false,
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "default": false
+                        }
                       }
                     ]
                   ]
@@ -668,7 +722,9 @@
                       {
                         "type": "string",
                         "values": [
-                          "prefix_"
+                          {
+                            "value": "prefix_"
+                          }
                         ]
                       }
                     ],
@@ -725,7 +781,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

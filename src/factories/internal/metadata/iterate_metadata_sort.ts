@@ -45,8 +45,8 @@ const iterate =
         Metadata.covers(x.type.value, y.type.value)
           ? -1
           : Metadata.covers(y.type.value, x.type.value)
-          ? 1
-          : 0,
+            ? 1
+            : 0,
       );
     if (meta.tuples.length > 1)
       meta.tuples.sort((x, y) => {
@@ -58,4 +58,17 @@ const iterate =
 
         return Metadata.covers(xt, yt) ? -1 : Metadata.covers(yt, xt) ? 1 : 0;
       });
+
+    // SORT CONSTANT VALUES
+    for (const constant of meta.constants)
+      if (constant.type === "string") constant.values.sort();
+      else if (constant.type === "number")
+        constant.values.sort(
+          (a, b) => (a.value as number) - (b.value as number),
+        );
+      else if (constant.type === "bigint")
+        constant.values.sort((a, b) =>
+          (a.value as bigint) < (b.value as bigint) ? -1 : 1,
+        );
+      else constant.values.sort((a, _b) => (a.value === false ? -1 : 1));
   };

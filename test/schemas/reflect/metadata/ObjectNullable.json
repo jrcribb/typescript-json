@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -84,7 +86,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -105,7 +106,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -159,7 +162,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "manufacturer"
+                    {
+                      "value": "manufacturer"
+                    }
                   ]
                 }
               ],
@@ -210,7 +215,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "brand"
+                    {
+                      "value": "brand"
+                    }
                   ]
                 }
               ],
@@ -261,7 +268,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "similar"
+                    {
+                      "value": "similar"
+                    }
                   ]
                 }
               ],
@@ -304,7 +313,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -325,7 +333,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "type"
+                    {
+                      "value": "type"
+                    }
                   ]
                 }
               ],
@@ -351,7 +361,10 @@
                 {
                   "type": "string",
                   "values": [
-                    "manufacturer"
+                    {
+                      "value": "manufacturer",
+                      "tags": []
+                    }
                   ]
                 }
               ],
@@ -381,7 +394,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -426,7 +441,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false,
@@ -448,7 +462,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "type"
+                    {
+                      "value": "type"
+                    }
                   ]
                 }
               ],
@@ -474,7 +490,10 @@
                 {
                   "type": "string",
                   "values": [
-                    "brand"
+                    {
+                      "value": "brand",
+                      "tags": []
+                    }
                   ]
                 }
               ],
@@ -504,7 +523,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -549,7 +570,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           true

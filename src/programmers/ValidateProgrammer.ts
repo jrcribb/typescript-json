@@ -9,7 +9,7 @@ import { IProject } from "../transformers/IProject";
 
 import { CheckerProgrammer } from "./CheckerProgrammer";
 import { IsProgrammer } from "./IsProgrammer";
-import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { FunctionImporter } from "./helpers/FunctionImporter";
 import { OptionPredicator } from "./helpers/OptionPredicator";
 import { check_everything } from "./internal/check_everything";
 import { check_object } from "./internal/check_object";
@@ -38,48 +38,50 @@ export namespace ValidateProgrammer {
             ...(entry.conditions.length === 0
               ? []
               : entry.conditions.length === 1
-              ? entry.conditions[0]!.map((cond) =>
-                  ts.factory.createLogicalOr(
-                    cond.expression,
-                    create_report_call(
-                      explore.from === "top"
-                        ? ts.factory.createTrue()
-                        : ts.factory.createIdentifier("_exceptionable"),
-                    )(
-                      ts.factory.createIdentifier(
-                        explore.postfix
-                          ? `_path + ${explore.postfix}`
-                          : "_path",
+                ? entry.conditions[0]!.map((cond) =>
+                    ts.factory.createLogicalOr(
+                      cond.expression,
+                      create_report_call(
+                        explore.from === "top"
+                          ? ts.factory.createTrue()
+                          : ts.factory.createIdentifier("_exceptionable"),
+                      )(
+                        ts.factory.createIdentifier(
+                          explore.postfix
+                            ? `_path + ${explore.postfix}`
+                            : "_path",
+                        ),
+                        cond.expected,
+                        input,
                       ),
-                      cond.expected,
-                      input,
                     ),
-                  ),
-                )
-              : [
-                  ts.factory.createLogicalOr(
-                    entry.conditions
-                      .map((set) =>
-                        set
-                          .map((s) => s.expression)
-                          .reduce((a, b) => ts.factory.createLogicalAnd(a, b)),
-                      )
-                      .reduce((a, b) => ts.factory.createLogicalOr(a, b)),
-                    create_report_call(
-                      explore.from === "top"
-                        ? ts.factory.createTrue()
-                        : ts.factory.createIdentifier("_exceptionable"),
-                    )(
-                      ts.factory.createIdentifier(
-                        explore.postfix
-                          ? `_path + ${explore.postfix}`
-                          : "_path",
+                  )
+                : [
+                    ts.factory.createLogicalOr(
+                      entry.conditions
+                        .map((set) =>
+                          set
+                            .map((s) => s.expression)
+                            .reduce((a, b) =>
+                              ts.factory.createLogicalAnd(a, b),
+                            ),
+                        )
+                        .reduce((a, b) => ts.factory.createLogicalOr(a, b)),
+                      create_report_call(
+                        explore.from === "top"
+                          ? ts.factory.createTrue()
+                          : ts.factory.createIdentifier("_exceptionable"),
+                      )(
+                        ts.factory.createIdentifier(
+                          explore.postfix
+                            ? `_path + ${explore.postfix}`
+                            : "_path",
+                        ),
+                        entry.expected,
+                        input,
                       ),
-                      entry.expected,
-                      input,
                     ),
-                  ),
-                ]),
+                  ]),
           ].reduce((x, y) => ts.factory.createLogicalAnd(x, y)),
         combiner: combine(equals)(project)(importer),
         joiner: joiner(equals)(project)(importer),

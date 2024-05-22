@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "x"
+                    {
+                      "value": "x"
+                    }
                   ]
                 }
               ],
@@ -96,7 +98,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -150,7 +154,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "distance"
+                    {
+                      "value": "distance"
+                    }
                   ]
                 }
               ],
@@ -190,7 +196,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -211,7 +216,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p1"
+                    {
+                      "value": "p1"
+                    }
                   ]
                 }
               ],
@@ -262,7 +269,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p2"
+                    {
+                      "value": "p2"
+                    }
                   ]
                 }
               ],
@@ -313,7 +322,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "length"
+                    {
+                      "value": "length"
+                    }
                   ]
                 }
               ],
@@ -353,7 +364,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -374,7 +384,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "points"
+                    {
+                      "value": "points"
+                    }
                   ]
                 }
               ],
@@ -428,7 +440,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "length"
+                    {
+                      "value": "length"
+                    }
                   ]
                 }
               ],
@@ -468,7 +482,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -489,7 +502,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "points"
+                    {
+                      "value": "points"
+                    }
                   ]
                 }
               ],
@@ -543,7 +558,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "length"
+                    {
+                      "value": "length"
+                    }
                   ]
                 }
               ],
@@ -592,7 +609,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "area"
+                    {
+                      "value": "area"
+                    }
                   ]
                 }
               ],
@@ -632,7 +651,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

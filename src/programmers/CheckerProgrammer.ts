@@ -18,8 +18,9 @@ import { IProject } from "../transformers/IProject";
 import { TransformerError } from "../transformers/TransformerError";
 
 import { FeatureProgrammer } from "./FeatureProgrammer";
+import { IsProgrammer } from "./IsProgrammer";
 import { AtomicPredicator } from "./helpers/AtomicPredicator";
-import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { FunctionImporter } from "./helpers/FunctionImporter";
 import { ICheckEntry } from "./helpers/ICheckEntry";
 import { IExpressionEntry } from "./helpers/IExpressionEntry";
 import { OptionPredicator } from "./helpers/OptionPredicator";
@@ -335,7 +336,30 @@ export namespace CheckerProgrammer {
       // CONSTANT VALUES
       for (const constant of meta.constants)
         if (AtomicPredicator.constant(meta)(constant.type))
-          for (const val of constant.values) add(true, getConstantValue(val));
+          for (const v of constant.values) add(true, getConstantValue(v.value));
+      if (meta.escaped !== null)
+        binaries.push({
+          combined: false,
+          expression:
+            meta.escaped.original.size() === 1 &&
+            meta.escaped.original.natives.length === 1
+              ? check_native(meta.escaped.original.natives[0]!)(input)
+              : ts.factory.createLogicalAnd(
+                  decode(project)(config)(importer)(
+                    input,
+                    meta.escaped.original,
+                    explore,
+                  ),
+                  ts.factory.createLogicalAnd(
+                    IsProgrammer.decode_to_json(false)(input),
+                    decode_escaped(project)(config)(importer)(
+                      input,
+                      meta.escaped.returns,
+                      explore,
+                    ),
+                  ),
+                ),
+        });
 
       // ATOMIC VALUES
       for (const atom of meta.atomics)
@@ -572,8 +596,8 @@ export namespace CheckerProgrammer {
             meta.getName(),
           )
         : binaries.length
-        ? config.combiner(explore)("or")(input, binaries, meta.getName())
-        : config.success;
+          ? config.combiner(explore)("or")(input, binaries, meta.getName())
+          : config.success;
     };
 
   export const decode_object =
@@ -777,6 +801,36 @@ export namespace CheckerProgrammer {
         `[${tuple.elements.map((t) => t.getName()).join(", ")}]`,
       );
     };
+
+  const decode_escaped =
+    (project: IProject) =>
+    (config: IConfig) =>
+    (importer: FunctionImporter) =>
+    (input: ts.Expression, meta: Metadata, explore: IExplore): ts.Expression =>
+      ts.factory.createCallExpression(
+        ts.factory.createParenthesizedExpression(
+          ts.factory.createArrowFunction(
+            undefined,
+            undefined,
+            [IdentifierFactory.parameter("input", TypeFactory.keyword("any"))],
+            undefined,
+            undefined,
+            decode(project)(config)(importer)(
+              ts.factory.createIdentifier("input"),
+              meta,
+              explore,
+            ),
+          ),
+        ),
+        undefined,
+        [
+          ts.factory.createCallExpression(
+            IdentifierFactory.access(input)("toJSON"),
+            undefined,
+            [],
+          ),
+        ],
+      );
 
   /* -----------------------------------------------------------
         UNION TYPE EXPLORERS

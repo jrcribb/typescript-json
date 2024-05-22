@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "key"
+                    {
+                      "value": "key"
+                    }
                   ]
                 }
               ],
@@ -68,7 +70,10 @@
                 {
                   "type": "string",
                   "values": [
-                    "key"
+                    {
+                      "value": "key",
+                      "tags": []
+                    }
                   ]
                 }
               ],
@@ -89,7 +94,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -111,21 +115,36 @@
             {
               "type": "boolean",
               "values": [
-                false
+                {
+                  "value": false,
+                  "tags": []
+                }
               ]
             },
             {
               "type": "number",
               "values": [
-                2,
-                1
+                {
+                  "value": 1,
+                  "tags": []
+                },
+                {
+                  "value": 2,
+                  "tags": []
+                }
               ]
             },
             {
               "type": "string",
               "values": [
-                "three",
-                "four"
+                {
+                  "value": "three",
+                  "tags": []
+                },
+                {
+                  "value": "four",
+                  "tags": []
+                }
               ]
             }
           ],

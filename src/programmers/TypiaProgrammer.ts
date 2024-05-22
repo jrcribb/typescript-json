@@ -89,12 +89,12 @@ export namespace TypiaProgrammer {
         diag.category === ts.DiagnosticCategory.Warning
           ? "warning"
           : diag.category === ts.DiagnosticCategory.Error
-          ? "error"
-          : diag.category === ts.DiagnosticCategory.Suggestion
-          ? "suggestion"
-          : diag.category === ts.DiagnosticCategory.Message
-          ? "message"
-          : "unkown";
+            ? "error"
+            : diag.category === ts.DiagnosticCategory.Suggestion
+              ? "suggestion"
+              : diag.category === ts.DiagnosticCategory.Message
+                ? "message"
+                : "unkown";
       const [line, pos] = diag.file
         ? (() => {
             const lines: string[] = diag
@@ -120,18 +120,8 @@ export namespace TypiaProgrammer {
         .replace(props.input, props.output);
 
       const content: string = printer.printFile(file);
-      await fs.promises.writeFile(to, emend(content), "utf8");
+      await fs.promises.writeFile(to, content, "utf8");
     }
-  };
-
-  const emend = (content: string): string => {
-    if (
-      content.indexOf("typia.") === -1 ||
-      content.indexOf("import typia") !== -1 ||
-      content.indexOf("import * as typia") !== -1
-    )
-      return content;
-    return `import typia from "typia";\n\n${content}`;
   };
 
   const is_directory = async (current: string): Promise<boolean> => {

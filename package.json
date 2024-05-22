@@ -1,6 +1,6 @@
 {
   "name": "typia",
-  "version": "5.3.11",
+  "version": "6.0.3",
   "description": "Superfast runtime validators with only one line",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -14,8 +14,9 @@
   },
   "scripts": {
     "test": "npm run package:tgz",
+    "test:template": "npm run test template",
     "-------------------------------------------------": "",
-    "build": "rimraf lib && tsc --removeComments --declaration false && tsc --emitDeclarationOnly",
+    "build": "rimraf lib && tsc --declaration false && tsc --emitDeclarationOnly",
     "dev": "rimraf lib && tsc --watch",
     "eslint": "eslint ./**/*.ts",
     "eslint:fix": "eslint ./**/*.ts --fix",
@@ -64,25 +65,28 @@
   },
   "homepage": "https://typia.io",
   "dependencies": {
+    "@samchon/openapi": "^0.1.20",
     "commander": "^10.0.0",
     "comment-json": "^4.2.3",
     "inquirer": "^8.2.5",
     "randexp": "^0.5.3"
   },
   "peerDependencies": {
-    "typescript": ">=4.8.0 <5.4.0"
+    "typescript": ">=4.8.0 <5.5.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/inquirer": "^8.2.5",
     "@types/node": "^18.15.12",
-    "@types/ts-expose-internals": "npm:ts-expose-internals@5.3.2",
-    "@typescript-eslint/eslint-plugin": "^5.59.11",
-    "@typescript-eslint/parser": "^5.59.11",
-    "prettier": "^2.6.2",
+    "@types/ts-expose-internals": "npm:ts-expose-internals@5.4.2",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "chalk": "^4.0.0",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.3.3"
+    "suppress-warnings": "^1.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   },
   "stackblitzs": {
     "startCommand": "npm install && npm run test"

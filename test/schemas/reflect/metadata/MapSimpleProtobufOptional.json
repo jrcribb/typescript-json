@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "boolean"
+                    {
+                      "value": "boolean"
+                    }
                   ]
                 }
               ],
@@ -139,7 +141,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "int32"
+                    {
+                      "value": "int32"
+                    }
                   ]
                 }
               ],
@@ -214,7 +218,10 @@
                               "kind": "type",
                               "value": "int32",
                               "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                              "exclusive": true
+                              "exclusive": true,
+                              "schema": {
+                                "type": "integer"
+                              }
                             }
                           ]
                         ]
@@ -250,7 +257,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "bigint"
+                    {
+                      "value": "bigint"
+                    }
                   ]
                 }
               ],
@@ -350,7 +359,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "double"
+                    {
+                      "value": "double"
+                    }
                   ]
                 }
               ],
@@ -450,7 +461,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "string"
+                    {
+                      "value": "string"
+                    }
                   ]
                 }
               ],
@@ -525,7 +538,10 @@
                               "kind": "minLength",
                               "value": 1,
                               "validate": "1 <= $input.length",
-                              "exclusive": true
+                              "exclusive": true,
+                              "schema": {
+                                "minLength": 1
+                              }
                             }
                           ]
                         ]
@@ -561,7 +577,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "bytes"
+                    {
+                      "value": "bytes"
+                    }
                   ]
                 }
               ],
@@ -658,7 +676,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "objects"
+                    {
+                      "value": "objects"
+                    }
                   ]
                 }
               ],
@@ -746,7 +766,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": true,
         "nullables": [
           false

@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "items"
+                    {
+                      "value": "items"
+                    }
                   ]
                 }
               ],
@@ -79,7 +81,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       },
                       {
                         "name": "MaxItems<3>",
@@ -87,7 +92,10 @@
                         "kind": "maxItems",
                         "value": 3,
                         "validate": "$input.length <= 3",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 3
+                        }
                       }
                     ]
                   ]
@@ -125,7 +133,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "minItems"
+                    {
+                      "value": "minItems"
+                    }
                   ]
                 }
               ],
@@ -162,7 +172,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       }
                     ]
                   ]
@@ -200,7 +213,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "maxItems"
+                    {
+                      "value": "maxItems"
+                    }
                   ]
                 }
               ],
@@ -237,7 +252,10 @@
                         "kind": "maxItems",
                         "value": 7,
                         "validate": "$input.length <= 7",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 7
+                        }
                       }
                     ]
                   ]
@@ -275,7 +293,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "both"
+                    {
+                      "value": "both"
+                    }
                   ]
                 }
               ],
@@ -312,7 +332,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       },
                       {
                         "name": "MaxItems<7>",
@@ -320,7 +343,10 @@
                         "kind": "maxItems",
                         "value": 7,
                         "validate": "$input.length <= 7",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 7
+                        }
                       }
                     ]
                   ]
@@ -358,7 +384,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

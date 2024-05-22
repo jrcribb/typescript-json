@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -87,7 +89,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -108,7 +109,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -153,7 +156,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -174,7 +176,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -219,7 +223,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -240,7 +243,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -282,7 +287,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -303,7 +307,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "id"
+                    {
+                      "value": "id"
+                    }
                   ]
                 }
               ],
@@ -357,7 +363,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -411,7 +419,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "grade"
+                    {
+                      "value": "grade"
+                    }
                   ]
                 }
               ],
@@ -465,7 +475,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "serial"
+                    {
+                      "value": "serial"
+                    }
                   ]
                 }
               ],
@@ -519,7 +531,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "activated"
+                    {
+                      "value": "activated"
+                    }
                   ]
                 }
               ],
@@ -564,7 +578,6 @@
         ],
         "jsDocTags": [],
         "index": 4,
-        "validated": false,
         "recursive": false,
         "nullables": [
           true

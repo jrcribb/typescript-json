@@ -39,8 +39,8 @@ Typia is a transformer library supporting below features:
   - Protocol Buffer encoder and decoder
   - Random data generator
 
-> **Note**
-> 
+> [!NOTE]
+>
 > - **Only one line** required, with pure TypeScript type
 > - Runtime validator is **20,000x faster** than `class-validator`
 > - JSON serialization is **200x faster** than `class-transformer`
@@ -78,11 +78,12 @@ Check out the document in the [website](https://typia.io/docs/):
     - [`assert()` function](https://typia.io/docs/validators/assert/)
     - [`is()` function](https://typia.io/docs/validators/is/)
     - [`validate()` function](https://typia.io/docs/validators/validate/)
+    - [Functional Module](https://typia.io/docs/validators/functional)
     - [Special Tags](https://typia.io/docs/validators/tags/)
   - Enhanced JSON
+    - [JSON Schema](https://typia.io/docs/json/schema)
     - [`stringify()` functions](https://typia.io/docs/json/stringify/)
     - [`parse()` functions](https://typia.io/docs/json/parse/)
-    - [JSON Schema](https://typia.io/docs/json/schema)
   - Protocol Buffer
     - [Message Schema](https://typia.io/docs/protobuf/message)
     - [`decode()` functions](https://typia.io/docs/protobuf/decode/)
@@ -91,9 +92,10 @@ Check out the document in the [website](https://typia.io/docs/):
   - [Miscellaneous](https://typia.io/docs/misc/)
 
 ### 🔗 Appendix
+  - [API Documents](https://typia.io/api)
   - Utillization Cases
     - [NestJS](https://typia.io/docs/utilization/nestjs/)
     - [Prisma](https://typia.io/docs/utilization/prisma/)
     - [tRPC](https://typia.io/docs/utilization/trpc/)
-  - [⇲ Benchmark Result](https://github.com/samchon/typia/tree/master/packages/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz)
+  - [⇲ Benchmark Result](https://github.com/samchon/typia/tree/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz)
   - [⇲ `dev.to` Articles](https://dev.to/samchon/series/22474)

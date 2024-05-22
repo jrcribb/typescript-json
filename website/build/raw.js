@@ -1,10 +1,10 @@
 const fs = require("fs");
 
-const external = (container) => (props) => (lib) => {
+const external = (container) => (config) => (lib) => {
   const write = (variable) => (file) => (content) =>
     fs.writeFileSync(
       file,
-      `export const ${variable}: string = \`${content}\`;`,
+      `export const ${variable}: string = ${JSON.stringify(content)};`,
       "utf8",
     );
 
@@ -13,7 +13,7 @@ const external = (container) => (props) => (lib) => {
     const directory = `${__dirname}/../raw/${lib}`;
     fs.mkdirSync(directory);
 
-    if (props.packageJson) {
+    if (config.packageJson) {
       write(`${lib}_packageJson`)(`${directory}/packageJson.ts`)(
         fs.readFileSync(location, "utf8"),
       );
@@ -43,19 +43,21 @@ const external = (container) => (props) => (lib) => {
         fs.mkdirSync(link);
         iterate(location);
         continue;
-      } else if (file.endsWith(".d.ts") === false) continue;
-      else if (props.filter && props.filter(file) === false) continue;
+      } else if (
+        file.endsWith(".d.ts") === false &&
+        (config.javaScript === false || file.endsWith(".js") === false)
+      )
+        continue;
+      else if (config.filter && config.filter(file) === false) continue;
 
       // COPY TEXT FILE
-      const alias = `${lib}/${location.replace(".d.ts", "")}`;
+      const extension = location.endsWith(".d.ts") ? ".d.ts" : ".js";
+      const alias = `${lib}/${location.replace(extension, extension === ".d.ts" ? "_d_ts" : "_js")}`;
       const name = alias.split("/").join("_").split(".").join("_");
-      const content = fs
-        .readFileSync(from, "utf8")
-        .split("`")
-        .join("\\`")
-        .split("${")
-        .join("\\${");
-      write(name)(link.replace(".d.ts", ".ts"))(content);
+      const content = fs.readFileSync(from, "utf8");
+      write(name)(
+        link.replace(extension, extension === ".d.ts" ? "_d_ts.ts" : "_js.ts"),
+      )(content);
       container.push({
         format: "ts",
         import: `./${alias}`,
@@ -67,7 +69,7 @@ const external = (container) => (props) => (lib) => {
   return (path) => {
     if (path.length) {
       fs.mkdirSync(`${__dirname}/../raw/${lib}/${path}`);
-      if (props.index) {
+      if (config.index) {
         write(`${lib}_index`)(`${__dirname}/../raw/${lib}/index.ts`)(
           [
             `import * as ${lib} from "./${path}";`,
@@ -99,12 +101,13 @@ fs.mkdirSync(__dirname + "/../raw");
 const bucket = [];
 external(bucket)({
   packageJson: true,
+  javaScript: false,
   index: true,
 })("typia")("lib");
 external(bucket)({
   packageJson: false,
+  javaScript: false,
   index: false,
-  // filter: (file) => file === "lib.es5.d.ts",
 })("typescript")("lib");
 
 // COMBINE THEM ALL
@@ -125,35 +128,25 @@ fs.writeFileSync(
   `export const SCRIPT = \`import typia, { tags } from "typia";
 
 interface IMember {
-    id: string & tags.Format<"uuid">;
-    email: string & tags.Format<"email">;
-    age: number 
-        & tags.Type<"uint32"> 
-        & tags.Minimum<20> 
-        & tags.ExclusiveMaximum<100>;
-    parent: IMember | null;
-    children: IMember[];
+  id: string & tags.Format<"uuid">;
+  name: string;
+  age: number &
+    tags.Type<"uint32"> &
+    tags.Minimum<20> &
+    tags.ExclusiveMaximum<100>;
 }
 
-//----
-// VALIDATION
-//----
-typia.createIs<IMember>();
+const member: IMember = typia.random<IMember>();
+const check: boolean = typia.is(member);
+const json: string = typia.json.stringify(member);
+const binary: Uint8Array = typia.protobuf.encode(member);
 
-//----
-// RANDOM
-//----
-typia.createRandom<IMember>();
-
-//----
-// JSON
-//----
-typia.json.createStringify<IMember>();
-
-//----
-// PROTOCOL BUFFER
-//----
-typia.protobuf.createEncode<IMember>();
+console.log({
+  member,
+  check,
+  json,
+  binary,
+}); 
 \``,
   "utf8",
 );

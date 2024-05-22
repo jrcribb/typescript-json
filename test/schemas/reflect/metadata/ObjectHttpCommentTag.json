@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "int"
+                    {
+                      "value": "int"
+                    }
                   ]
                 }
               ],
@@ -71,7 +73,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       }
                     ]
                   ]
@@ -114,7 +119,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "uint64"
+                    {
+                      "value": "uint64"
+                    }
                   ]
                 }
               ],
@@ -189,7 +196,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "uuid"
+                    {
+                      "value": "uuid"
+                    }
                   ]
                 }
               ],
@@ -220,8 +229,11 @@
                         "name": "Format<\"uuid\">",
                         "kind": "format",
                         "value": "uuid",
-                        "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
-                        "exclusive": true
+                        "validate": "/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test($input)",
+                        "exclusive": true,
+                        "schema": {
+                          "format": "uuid"
+                        }
                       }
                     ]
                   ]
@@ -264,7 +276,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "items"
+                    {
+                      "value": "items"
+                    }
                   ]
                 }
               ],
@@ -301,7 +315,10 @@
                         "kind": "minItems",
                         "value": 10,
                         "validate": "10 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 10
+                        }
                       },
                       {
                         "name": "MaxItems<100>",
@@ -309,7 +326,10 @@
                         "kind": "maxItems",
                         "value": 100,
                         "validate": "$input.length <= 100",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 100
+                        }
                       }
                     ]
                   ]
@@ -347,7 +367,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

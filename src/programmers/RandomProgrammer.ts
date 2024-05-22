@@ -21,7 +21,8 @@ import { TransformerError } from "../transformers/TransformerError";
 
 import { Escaper } from "../utils/Escaper";
 
-import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { Format } from "../tags";
+import { FunctionImporter } from "./helpers/FunctionImporter";
 import { RandomJoiner } from "./helpers/RandomJoiner";
 import { RandomRanger } from "./helpers/RandomRanger";
 import { random_custom } from "./internal/random_custom";
@@ -80,10 +81,18 @@ export namespace RandomProgrammer {
               init ?? ts.factory.createToken(ts.SyntaxKind.QuestionToken),
             ),
           ],
-          ts.factory.createTypeReferenceNode(
-            `typia.Resolved<${
-              name ?? TypeFactory.getFullName(project.checker)(type)
-            }>`,
+          ts.factory.createImportTypeNode(
+            ts.factory.createLiteralTypeNode(
+              ts.factory.createStringLiteral("typia"),
+            ),
+            undefined,
+            ts.factory.createIdentifier("Resolved"),
+            [
+              ts.factory.createTypeReferenceNode(
+                name ?? TypeFactory.getFullName(project.checker)(type),
+              ),
+            ],
+            false,
           ),
           undefined,
           ts.factory.createBlock(
@@ -230,7 +239,7 @@ export namespace RandomProgrammer {
 
       // CONSTANT TYPES
       for (const constant of meta.constants)
-        for (const value of constant.values)
+        for (const { value } of constant.values)
           expressions.push(decode_atomic(value));
 
       // ATOMIC VARIABLES
@@ -296,10 +305,10 @@ export namespace RandomProgrammer {
     typeof value === "boolean"
       ? ts.factory.createIdentifier(value.toString())
       : typeof value === "number"
-      ? ExpressionFactory.number(value)
-      : typeof value === "string"
-      ? ts.factory.createStringLiteral(value)
-      : ExpressionFactory.bigint(Number(value));
+        ? ExpressionFactory.number(value)
+        : typeof value === "string"
+          ? ts.factory.createStringLiteral(value)
+          : ExpressionFactory.bigint(Number(value));
 
   const decode_template =
     (importer: FunctionImporter) =>
@@ -319,12 +328,12 @@ export namespace RandomProgrammer {
         )
           ? "int"
           : tags.find(
-              (t) =>
-                t.kind === "type" &&
-                (t.value === "uint32" || t.value === "uint64"),
-            )
-          ? "uint"
-          : "double";
+                (t) =>
+                  t.kind === "type" &&
+                  (t.value === "uint32" || t.value === "uint64"),
+              )
+            ? "uint"
+            : "double";
         const multiply = tags.find((t) => t.kind === "multipleOf");
         return random_custom(COALESCE(importer))("number")(tags)(
           RandomRanger.number({
@@ -383,9 +392,7 @@ export namespace RandomProgrammer {
             for (const t of tags)
               if (t.kind === "format")
                 return ts.factory.createCallExpression(
-                  COALESCE(importer)(
-                    t.value === "date-time" ? "datetime" : t.value,
-                  ),
+                  COALESCE(importer)(emendFormat(t.value)),
                   undefined,
                   undefined,
                 );
@@ -621,6 +628,8 @@ export namespace RandomProgrammer {
       else if (type === "ArrayBuffer" || type === "SharedArrayBuffer")
         return decode_native_array_buffer(importer)(type);
       else if (type === "DataView") return decode_native_data_view(importer);
+      else if (type === "Blob") return decode_native_blob(importer);
+      else if (type === "File") return decode_native_file(importer);
       else
         return ts.factory.createNewExpression(
           ts.factory.createIdentifier(type),
@@ -697,8 +706,8 @@ export namespace RandomProgrammer {
                     type === "Float32Array" || type === "Float64Array"
                       ? "number"
                       : type === "BigInt64Array" || type === "BigUint64Array"
-                      ? "bigint"
-                      : "integer",
+                        ? "bigint"
+                        : "integer",
                   ),
                   undefined,
                   [literal(minimum), literal(maximum)],
@@ -709,6 +718,48 @@ export namespace RandomProgrammer {
         ],
       );
     };
+
+  const decode_native_blob = (importer: FunctionImporter) =>
+    ts.factory.createNewExpression(
+      ts.factory.createIdentifier("Blob"),
+      undefined,
+      [
+        ts.factory.createArrayLiteralExpression(
+          [decode_native_byte_array(importer)("Uint8Array")],
+          true,
+        ),
+      ],
+    );
+
+  const decode_native_file = (importer: FunctionImporter) =>
+    ts.factory.createNewExpression(
+      ts.factory.createIdentifier("File"),
+      undefined,
+      [
+        ts.factory.createArrayLiteralExpression(
+          [decode_native_byte_array(importer)("Uint8Array")],
+          true,
+        ),
+        ts.factory.createTemplateExpression(ts.factory.createTemplateHead(""), [
+          ts.factory.createTemplateSpan(
+            ts.factory.createCallExpression(
+              COALESCE(importer)("string"),
+              undefined,
+              [ts.factory.createNumericLiteral(8)],
+            ),
+            ts.factory.createTemplateMiddle("."),
+          ),
+          ts.factory.createTemplateSpan(
+            ts.factory.createCallExpression(
+              COALESCE(importer)("string"),
+              undefined,
+              [ts.factory.createNumericLiteral(3)],
+            ),
+            ts.factory.createTemplateTail(""),
+          ),
+        ]),
+      ],
+    );
 
   const decode_native_array_buffer =
     (importer: FunctionImporter) =>
@@ -823,3 +874,15 @@ const COALESCE = (importer: FunctionImporter) => (name: string) =>
           ts.factory.createStringLiteral(name),
         ),
   )(IdentifierFactory.access(importer.use("generator"))(name));
+
+const emendFormat = (key: keyof Format.Validator) =>
+  key === "date-time"
+    ? "datetime"
+    : key
+        .split("-")
+        .map((str, i) =>
+          i === 0 || str.length === 0
+            ? str
+            : str[0]!.toUpperCase() + str.substring(1),
+        )
+        .join("");

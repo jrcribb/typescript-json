@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "items"
+                    {
+                      "value": "items"
+                    }
                   ]
                 }
               ],
@@ -79,7 +81,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       },
                       {
                         "target": "array",
@@ -87,7 +92,10 @@
                         "kind": "maxItems",
                         "value": 3,
                         "validate": "$input.length <= 3",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 3
+                        }
                       }
                     ]
                   ]
@@ -115,7 +123,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "minItems"
+                    {
+                      "value": "minItems"
+                    }
                   ]
                 }
               ],
@@ -152,7 +162,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       }
                     ]
                   ]
@@ -180,7 +193,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "maxItems"
+                    {
+                      "value": "maxItems"
+                    }
                   ]
                 }
               ],
@@ -217,7 +232,10 @@
                         "kind": "maxItems",
                         "value": 7,
                         "validate": "$input.length <= 7",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 7
+                        }
                       }
                     ]
                   ]
@@ -245,7 +263,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "both"
+                    {
+                      "value": "both"
+                    }
                   ]
                 }
               ],
@@ -282,7 +302,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       },
                       {
                         "target": "array",
@@ -290,7 +313,10 @@
                         "kind": "maxItems",
                         "value": 7,
                         "validate": "$input.length <= 7",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 7
+                        }
                       }
                     ]
                   ]
@@ -309,7 +335,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -365,11 +390,14 @@
                     "name": "Format<\"uuid\">",
                     "kind": "format",
                     "value": "uuid",
-                    "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
+                    "validate": "/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test($input)",
                     "exclusive": [
                       "format",
                       "pattern"
-                    ]
+                    ],
+                    "schema": {
+                      "format": "uuid"
+                    }
                   }
                 ]
               ]
@@ -415,7 +443,10 @@
                     "exclusive": [
                       "minimum",
                       "exclusiveMinimum"
-                    ]
+                    ],
+                    "schema": {
+                      "minimum": 3
+                    }
                   }
                 ]
               ]
@@ -458,7 +489,10 @@
                     "kind": "maxLength",
                     "value": 7,
                     "validate": "$input.length <= 7",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "maxLength": 7
+                    }
                   }
                 ]
               ]
@@ -476,7 +510,10 @@
                     "exclusive": [
                       "maximum",
                       "exclusiveMaximum"
-                    ]
+                    ],
+                    "schema": {
+                      "maximum": 7
+                    }
                   }
                 ]
               ]

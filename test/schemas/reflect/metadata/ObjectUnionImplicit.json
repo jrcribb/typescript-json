@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "x"
+                    {
+                      "value": "x"
+                    }
                   ]
                 }
               ],
@@ -96,7 +98,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -150,7 +154,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "slope"
+                    {
+                      "value": "slope"
+                    }
                   ]
                 }
               ],
@@ -195,7 +201,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -216,7 +221,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p1"
+                    {
+                      "value": "p1"
+                    }
                   ]
                 }
               ],
@@ -267,7 +274,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p2"
+                    {
+                      "value": "p2"
+                    }
                   ]
                 }
               ],
@@ -318,7 +327,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "width"
+                    {
+                      "value": "width"
+                    }
                   ]
                 }
               ],
@@ -372,7 +383,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "distance"
+                    {
+                      "value": "distance"
+                    }
                   ]
                 }
               ],
@@ -417,7 +430,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -438,7 +450,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p1"
+                    {
+                      "value": "p1"
+                    }
                   ]
                 }
               ],
@@ -489,7 +503,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p2"
+                    {
+                      "value": "p2"
+                    }
                   ]
                 }
               ],
@@ -540,7 +556,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p3"
+                    {
+                      "value": "p3"
+                    }
                   ]
                 }
               ],
@@ -591,7 +609,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "width"
+                    {
+                      "value": "width"
+                    }
                   ]
                 }
               ],
@@ -645,7 +665,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "height"
+                    {
+                      "value": "height"
+                    }
                   ]
                 }
               ],
@@ -699,7 +721,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "area"
+                    {
+                      "value": "area"
+                    }
                   ]
                 }
               ],
@@ -744,7 +768,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -765,7 +788,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p1"
+                    {
+                      "value": "p1"
+                    }
                   ]
                 }
               ],
@@ -816,7 +841,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p2"
+                    {
+                      "value": "p2"
+                    }
                   ]
                 }
               ],
@@ -867,7 +894,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p3"
+                    {
+                      "value": "p3"
+                    }
                   ]
                 }
               ],
@@ -918,7 +947,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "p4"
+                    {
+                      "value": "p4"
+                    }
                   ]
                 }
               ],
@@ -969,7 +1000,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "width"
+                    {
+                      "value": "width"
+                    }
                   ]
                 }
               ],
@@ -1023,7 +1056,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "height"
+                    {
+                      "value": "height"
+                    }
                   ]
                 }
               ],
@@ -1077,7 +1112,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "area"
+                    {
+                      "value": "area"
+                    }
                   ]
                 }
               ],
@@ -1122,7 +1159,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -1143,7 +1179,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "points"
+                    {
+                      "value": "points"
+                    }
                   ]
                 }
               ],
@@ -1197,7 +1235,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "length"
+                    {
+                      "value": "length"
+                    }
                   ]
                 }
               ],
@@ -1242,7 +1282,6 @@
         ],
         "jsDocTags": [],
         "index": 4,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -1263,7 +1302,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "outer"
+                    {
+                      "value": "outer"
+                    }
                   ]
                 }
               ],
@@ -1314,7 +1355,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "inner"
+                    {
+                      "value": "inner"
+                    }
                   ]
                 }
               ],
@@ -1368,7 +1411,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "area"
+                    {
+                      "value": "area"
+                    }
                   ]
                 }
               ],
@@ -1413,7 +1458,6 @@
         ],
         "jsDocTags": [],
         "index": 5,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -1434,7 +1478,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "radius"
+                    {
+                      "value": "radius"
+                    }
                   ]
                 }
               ],
@@ -1488,7 +1534,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "centroid"
+                    {
+                      "value": "centroid"
+                    }
                   ]
                 }
               ],
@@ -1539,7 +1587,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "area"
+                    {
+                      "value": "area"
+                    }
                   ]
                 }
               ],
@@ -1584,7 +1634,6 @@
         ],
         "jsDocTags": [],
         "index": 6,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

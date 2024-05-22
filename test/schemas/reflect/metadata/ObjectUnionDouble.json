@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -93,7 +95,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "child"
+                    {
+                      "value": "child"
+                    }
                   ]
                 }
               ],
@@ -136,7 +140,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -157,7 +160,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "x"
+                    {
+                      "value": "x"
+                    }
                   ]
                 }
               ],
@@ -202,7 +207,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -223,7 +227,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -265,7 +271,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -286,7 +291,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -331,7 +338,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -352,7 +358,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -394,7 +402,6 @@
         ],
         "jsDocTags": [],
         "index": 4,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -415,7 +422,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -460,7 +469,6 @@
         ],
         "jsDocTags": [],
         "index": 5,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -481,7 +489,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -532,7 +542,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "child"
+                    {
+                      "value": "child"
+                    }
                   ]
                 }
               ],
@@ -575,7 +587,6 @@
         ],
         "jsDocTags": [],
         "index": 6,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -596,7 +607,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "x"
+                    {
+                      "value": "x"
+                    }
                   ]
                 }
               ],
@@ -641,7 +654,6 @@
         ],
         "jsDocTags": [],
         "index": 7,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -662,7 +674,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -704,7 +718,6 @@
         ],
         "jsDocTags": [],
         "index": 8,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -725,7 +738,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -770,7 +785,6 @@
         ],
         "jsDocTags": [],
         "index": 9,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -791,7 +805,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -833,7 +849,6 @@
         ],
         "jsDocTags": [],
         "index": 10,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -854,7 +869,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "y"
+                    {
+                      "value": "y"
+                    }
                   ]
                 }
               ],
@@ -899,7 +916,6 @@
         ],
         "jsDocTags": [],
         "index": 11,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

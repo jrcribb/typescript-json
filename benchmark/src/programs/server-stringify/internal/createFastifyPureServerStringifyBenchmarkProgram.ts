@@ -5,7 +5,7 @@ import typia from "typia";
 import { IServerStringifyProgram } from "./IServerStringifyProgram";
 
 export const createFastifyPureServerStringifyBenchmarkProgram = async <T>(
-  app: typia.IJsonApplication,
+  app: typia.IJsonApplication<"3.0">,
 ) => {
   // DEFINE JSON-SCHEMA
   const schema = {
@@ -31,7 +31,7 @@ export const createFastifyPureServerStringifyBenchmarkProgram = async <T>(
   };
 
   // OPEN WORKER
-  const worker = new tgrid.protocols.workers.WorkerServer();
+  const worker = new tgrid.WorkerServer();
   await worker.open(provider);
 };
 

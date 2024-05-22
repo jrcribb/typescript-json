@@ -9,6 +9,7 @@ const SourceEditor = (props: {
   imports: [string, string][];
   script: string;
   setScript: (code: string | undefined) => void;
+  darkMode?: boolean;
 }) => {
   const time = { value: Date.now() };
 
@@ -42,8 +43,9 @@ const SourceEditor = (props: {
   return (
     <Editor
       height="100%"
-      theme="vs-dark"
+      theme={"vs-dark"}
       options={{
+        tabSize: 2,
         minimap: {
           enabled: false,
         },

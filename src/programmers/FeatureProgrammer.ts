@@ -13,7 +13,7 @@ import { MetadataObject } from "../schemas/metadata/MetadataObject";
 import { IProject } from "../transformers/IProject";
 
 import { CheckerProgrammer } from "./CheckerProgrammer";
-import { FunctionImporter } from "./helpers/FunctionImporeter";
+import { FunctionImporter } from "./helpers/FunctionImporter";
 import { IExpressionEntry } from "./helpers/IExpressionEntry";
 import { UnionExplorer } from "./helpers/UnionExplorer";
 import { feature_object_entries } from "./internal/feature_object_entries";
@@ -406,33 +406,33 @@ export namespace FeatureProgrammer {
         config.path === false && config.trace === false
           ? []
           : config.path === true && config.trace === true
-          ? [
-              ts.factory.createIdentifier(
-                explore.postfix ? `_path + ${explore.postfix}` : "_path",
-              ),
-              explore.source === "function"
-                ? ts.factory.createIdentifier(
-                    `${explore.tracable} && _exceptionable`,
-                  )
-                : explore.tracable
-                ? ts.factory.createTrue()
-                : ts.factory.createFalse(),
-            ]
-          : config.path === true
-          ? [
-              ts.factory.createIdentifier(
-                explore.postfix ? `_path + ${explore.postfix}` : "_path",
-              ),
-            ]
-          : [
-              explore.source === "function"
-                ? ts.factory.createIdentifier(
-                    `${explore.tracable} && _exceptionable`,
-                  )
-                : explore.tracable
-                ? ts.factory.createTrue()
-                : ts.factory.createFalse(),
-            ];
+            ? [
+                ts.factory.createIdentifier(
+                  explore.postfix ? `_path + ${explore.postfix}` : "_path",
+                ),
+                explore.source === "function"
+                  ? ts.factory.createIdentifier(
+                      `${explore.tracable} && _exceptionable`,
+                    )
+                  : explore.tracable
+                    ? ts.factory.createTrue()
+                    : ts.factory.createFalse(),
+              ]
+            : config.path === true
+              ? [
+                  ts.factory.createIdentifier(
+                    explore.postfix ? `_path + ${explore.postfix}` : "_path",
+                  ),
+                ]
+              : [
+                  explore.source === "function"
+                    ? ts.factory.createIdentifier(
+                        `${explore.tracable} && _exceptionable`,
+                      )
+                    : explore.tracable
+                      ? ts.factory.createTrue()
+                      : ts.factory.createFalse(),
+                ];
       return (input: ts.Expression) => [input, ...tail];
     };
 

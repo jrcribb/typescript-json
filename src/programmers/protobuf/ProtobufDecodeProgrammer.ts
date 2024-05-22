@@ -18,7 +18,7 @@ import { IProject } from "../../transformers/IProject";
 
 import { ProtobufAtomic } from "../../typings/ProtobufAtomic";
 
-import { FunctionImporter } from "../helpers/FunctionImporeter";
+import { FunctionImporter } from "../helpers/FunctionImporter";
 import { ProtobufUtil } from "../helpers/ProtobufUtil";
 
 export namespace ProtobufDecodeProgrammer {
@@ -58,10 +58,18 @@ export namespace ProtobufDecodeProgrammer {
             ts.factory.createTypeReferenceNode("Uint8Array"),
           ),
         ],
-        ts.factory.createTypeReferenceNode(
-          `typia.Resolved<${
-            name ?? TypeFactory.getFullName(project.checker)(type)
-          }>`,
+        ts.factory.createImportTypeNode(
+          ts.factory.createLiteralTypeNode(
+            ts.factory.createStringLiteral("typia"),
+          ),
+          undefined,
+          ts.factory.createIdentifier("Resolved"),
+          [
+            ts.factory.createTypeReferenceNode(
+              name ?? TypeFactory.getFullName(project.checker)(type),
+            ),
+          ],
+          false,
         ),
         undefined,
         ts.factory.createBlock(
@@ -231,33 +239,38 @@ export namespace ProtobufDecodeProgrammer {
       value.nullable
         ? ts.factory.createNull()
         : value.isRequired() === false
-        ? ts.factory.createIdentifier("undefined")
-        : value.arrays.length
-        ? ts.factory.createArrayLiteralExpression()
-        : value.maps.length
-        ? ts.factory.createNewExpression(
-            ts.factory.createIdentifier("Map"),
-            undefined,
-            [],
-          )
-        : value.natives.length
-        ? ts.factory.createNewExpression(
-            ts.factory.createIdentifier("Uint8Array"),
-            undefined,
-            [],
-          )
-        : value.atomics.some((a) => a.type === "string") ||
-          value.constants.some(
-            (c) => c.type === "string" && c.values.some((v) => v === ""),
-          ) ||
-          value.templates.some(
-            (tpl) => tpl.length === 1 && tpl[0]!.getName() === "string",
-          )
-        ? ts.factory.createStringLiteral("")
-        : value.objects.length &&
-          value.objects.some((obj) => !ProtobufUtil.isStaticObject(obj))
-        ? ts.factory.createObjectLiteralExpression()
-        : ts.factory.createIdentifier("undefined"),
+          ? ts.factory.createIdentifier("undefined")
+          : value.arrays.length
+            ? ts.factory.createArrayLiteralExpression()
+            : value.maps.length
+              ? ts.factory.createNewExpression(
+                  ts.factory.createIdentifier("Map"),
+                  undefined,
+                  [],
+                )
+              : value.natives.length
+                ? ts.factory.createNewExpression(
+                    ts.factory.createIdentifier("Uint8Array"),
+                    undefined,
+                    [],
+                  )
+                : value.atomics.some((a) => a.type === "string") ||
+                    value.constants.some(
+                      (c) =>
+                        c.type === "string" &&
+                        c.values.some((v) => v.value === ""),
+                    ) ||
+                    value.templates.some(
+                      (tpl) =>
+                        tpl.length === 1 && tpl[0]!.getName() === "string",
+                    )
+                  ? ts.factory.createStringLiteral("")
+                  : value.objects.length &&
+                      value.objects.some(
+                        (obj) => !ProtobufUtil.isStaticObject(obj),
+                      )
+                    ? ts.factory.createObjectLiteralExpression()
+                    : ts.factory.createIdentifier("undefined"),
       TypeFactory.keyword("any"),
     );
 
@@ -374,10 +387,10 @@ export namespace ProtobufDecodeProgrammer {
     const decoder = atomics.length
       ? () => decode_atomic(array.type.value)(atomics[0]!)
       : array.type.value.natives.length
-      ? () => decode_bytes("bytes")
-      : array.type.value.objects.length
-      ? () => decode_regular_object(false)(array.type.value.objects[0]!)
-      : null;
+        ? () => decode_bytes("bytes")
+        : array.type.value.objects.length
+          ? () => decode_regular_object(false)(array.type.value.objects[0]!)
+          : null;
     if (decoder === null) throw new Error("Never reach here.");
     else if (atomics.length && atomics[0] !== "string") {
       statements.push(

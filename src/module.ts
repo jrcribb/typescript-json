@@ -1,10 +1,12 @@
-import { Namespace } from "./functional/Namespace";
+import * as Namespace from "./functional/Namespace";
 
 import { AssertionGuard } from "./AssertionGuard";
 import { IRandomGenerator } from "./IRandomGenerator";
 import { IValidation } from "./IValidation";
 import { Resolved } from "./Resolved";
+import { TypeGuardError } from "./TypeGuardError";
 
+export * as functional from "./functional";
 export * as http from "./http";
 export * as json from "./json";
 export * as misc from "./misc";
@@ -15,8 +17,6 @@ export * as tags from "./tags";
 
 export * from "./schemas/metadata/IJsDocTagInfo";
 export * from "./schemas/json/IJsonApplication";
-export * from "./schemas/json/IJsonComponents";
-export * from "./schemas/json/IJsonSchema";
 export * from "./AssertionGuard";
 export * from "./IRandomGenerator";
 export * from "./IValidation";
@@ -49,12 +49,16 @@ export * from "./SnakeCase";
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assert<T>(input: T): T;
+function assert<T>(
+  input: T,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): T;
 
 /**
  * Asserts a value type.
@@ -72,20 +76,28 @@ export function assert<T>(input: T): T;
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value casted as `T`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assert<T>(input: unknown): T;
+function assert<T>(
+  input: unknown,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): T;
 
 /**
  * @internal
  */
-export function assert(): never {
+function assert(): never {
   halt("assert");
 }
-Object.assign(assert, Namespace.assert("assert"));
+const assertPure = /** @__PURE__ */ Object.assign<typeof assert, {}>(
+  assert,
+  /** @__PURE__ */ Namespace.assert("assert"),
+);
+export { assertPure as assert };
 
 /**
  * Assertion guard of a value type.
@@ -107,11 +119,15 @@ Object.assign(assert, Namespace.assert("assert"));
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertGuard<T>(input: T): asserts input is T;
+function assertGuard<T>(
+  input: T,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): asserts input is T;
 
 /**
  * Assertion guard of a value type.
@@ -133,19 +149,52 @@ export function assertGuard<T>(input: T): asserts input is T;
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertGuard<T>(input: unknown): asserts input is T;
+function assertGuard<T>(
+  input: unknown,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): asserts input is T;
 
 /**
  * @internal
  */
-export function assertGuard(): never {
+function assertGuard(): never {
   halt("assertGuard");
 }
-Object.assign(assertGuard, Namespace.assert("assertGuard"));
+const assertGuardPure = /** @__PURE__ */ Object.assign<typeof assertGuard, {}>(
+  assertGuard,
+  /** @__PURE__ */ Namespace.assert("assertGuard"),
+);
+export { assertGuardPure as assertGuard };
+
+/**
+ * Tests a value type.
+ *
+ * Tests a parametric value type and returns whether it's following the type `T` or not.
+ * If the parametric value is matched with the type `T`, `true` value would be returned.
+ * Otherwise, the parametric value is not following the type `T`, `false` value would be
+ * returned.
+ *
+ * If what you want is not just knowing whether the parametric value is following the
+ * type `T` or not, but throwing an exception with detailed reason, you can choose
+ * {@link assert} function instead. Also, if you want to know all the errors with
+ * detailed reasons, {@link validate} function would be useful.
+ *
+ * On the other and, if you don't want to allow any superfluous property that is not
+ * enrolled to the type `T`, you can use {@link equals} function instead.
+ *
+ * @template T Type of the input value
+ * @param input A value to be tested
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
+ * @returns Whether the parametric value is following the type `T` or not
+ *
+ * @author Jeongho Nam - https://github.com/samchon
+ */
+function is<T>(input: T): input is T;
 
 /**
  * Tests a value type.
@@ -169,39 +218,19 @@ Object.assign(assertGuard, Namespace.assert("assertGuard"));
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function is<T>(input: T): input is T;
-
-/**
- * Tests a value type.
- *
- * Tests a parametric value type and returns whether it's following the type `T` or not.
- * If the parametric value is matched with the type `T`, `true` value would be returned.
- * Otherwise, the parametric value is not following the type `T`, `false` value would be
- * returned.
- *
- * If what you want is not just knowing whether the parametric value is following the
- * type `T` or not, but throwing an exception with detailed reason, you can choose
- * {@link assert} function instead. Also, if you want to know all the errors with
- * detailed reasons, {@link validate} function would be useful.
- *
- * On the other and, if you don't want to allow any superfluous property that is not
- * enrolled to the type `T`, you can use {@link equals} function instead.
- *
- * @template T Type of the input value
- * @param input A value to be tested
- * @returns Whether the parametric value is following the type `T` or not
- *
- * @author Jeongho Nam - https://github.com/samchon
- */
-export function is<T>(input: unknown): input is T;
+function is<T>(input: unknown): input is T;
 
 /**
  * @internal
  */
-export function is(): never {
+function is(): never {
   halt("is");
 }
-Object.assign(is, Namespace.assert("is"));
+const isPure = /** @__PURE__ */ Object.assign<typeof is, {}>(
+  is,
+  /** @__PURE__ */ Namespace.assert("is"),
+);
+export { isPure as is };
 
 /**
  * Validates a value type.
@@ -226,7 +255,7 @@ Object.assign(is, Namespace.assert("is"));
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function validate<T>(input: T): IValidation<T>;
+function validate<T>(input: T): IValidation<T>;
 
 /**
  * Validates a value type.
@@ -251,15 +280,19 @@ export function validate<T>(input: T): IValidation<T>;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function validate<T>(input: unknown): IValidation<T>;
+function validate<T>(input: unknown): IValidation<T>;
 
 /**
  * @internal
  */
-export function validate(): never {
+function validate(): never {
   halt("validate");
 }
-Object.assign(validate, Namespace.validate());
+const validatePure = /** @__PURE__ */ Object.assign<typeof validate, {}>(
+  validate,
+  /** @__PURE__ */ Namespace.validate(),
+);
+export { validatePure as validate };
 
 /* -----------------------------------------------------------
     STRICT VALIDATORS
@@ -282,12 +315,16 @@ Object.assign(validate, Namespace.validate());
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertEquals<T>(input: T): T;
+function assertEquals<T>(
+  input: T,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): T;
 
 /**
  * Asserts equality between a value and its type.
@@ -307,20 +344,28 @@ export function assertEquals<T>(input: T): T;
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value casted as `T`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertEquals<T>(input: unknown): T;
+function assertEquals<T>(
+  input: unknown,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): T;
 
 /**
  * @internal
  */
-export function assertEquals(): never {
+function assertEquals(): never {
   halt("assertEquals");
 }
-Object.assign(assertEquals, Namespace.assert("assertEquals"));
+const assertEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof assertEquals,
+  {}
+>(assertEquals, /** @__PURE__ */ Namespace.assert("assertEquals"));
+export { assertEqualsPure as assertEquals };
 
 /**
  * Assertion guard of a type with equality.
@@ -344,12 +389,16 @@ Object.assign(assertEquals, Namespace.assert("assertEquals"));
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value casted as `T`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertGuardEquals<T>(input: T): asserts input is T;
+function assertGuardEquals<T>(
+  input: T,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): asserts input is T;
 
 /**
  * Assertion guard of a type with equality.
@@ -373,20 +422,28 @@ export function assertGuardEquals<T>(input: T): asserts input is T;
  *
  * @template T Type of the input value
  * @param input A value to be asserted
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Parametric input value casted as `T`
  * @throws A {@link TypeGuardError} instance with detailed reason
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function assertGuardEquals<T>(input: unknown): asserts input is T;
+function assertGuardEquals<T>(
+  input: unknown,
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): asserts input is T;
 
 /**
  * @internal
  */
-export function assertGuardEquals(): never {
+function assertGuardEquals(): never {
   halt("assertGuardEquals");
 }
-Object.assign(assertGuardEquals, Namespace.assert("assertGuardEquals"));
+const assertGuardEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof assertGuardEquals,
+  {}
+>(assertGuardEquals, /** @__PURE__ */ Namespace.assert("assertGuardEquals"));
+export { assertGuardEqualsPure as assertGuardEquals };
 
 /**
  * Tests equality between a value and its type.
@@ -411,7 +468,7 @@ Object.assign(assertGuardEquals, Namespace.assert("assertGuardEquals"));
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function equals<T>(input: T): input is T;
+function equals<T>(input: T): input is T;
 
 /**
  * Tests equality between a value and its type.
@@ -436,15 +493,19 @@ export function equals<T>(input: T): input is T;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function equals<T>(input: unknown): input is T;
+function equals<T>(input: unknown): input is T;
 
 /**
  * @internal
  */
-export function equals(): never {
+function equals(): never {
   halt("equals");
 }
-Object.assign(equals, Namespace.is());
+const equalsPure = /** @__PURE__ */ Object.assign<typeof equals, {}>(
+  equals,
+  /** @__PURE__ */ Namespace.is(),
+);
+export { equalsPure as equals };
 
 /**
  * Validates equality between a value and its type.
@@ -470,7 +531,7 @@ Object.assign(equals, Namespace.is());
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function validateEquals<T>(input: T): IValidation<T>;
+function validateEquals<T>(input: T): IValidation<T>;
 
 /**
  * Validates equality between a value and its type.
@@ -496,15 +557,19 @@ export function validateEquals<T>(input: T): IValidation<T>;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function validateEquals<T>(input: unknown): IValidation<T>;
+function validateEquals<T>(input: unknown): IValidation<T>;
 
 /**
  * @internal
  */
-export function validateEquals(): never {
+function validateEquals(): never {
   halt("validateEquals");
 }
-Object.assign(validateEquals, Namespace.validate());
+const validateEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof validateEquals,
+  {}
+>(validateEquals, /** @__PURE__ */ Namespace.validate());
+export { validateEqualsPure as validateEquals };
 
 /* -----------------------------------------------------------
     RANDOM
@@ -527,7 +592,7 @@ Object.assign(validateEquals, Namespace.validate());
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function random(generator?: Partial<IRandomGenerator>): never;
+function random(generator?: Partial<IRandomGenerator>): never;
 
 /**
  * Generate random data.
@@ -545,15 +610,19 @@ export function random(generator?: Partial<IRandomGenerator>): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function random<T>(generator?: Partial<IRandomGenerator>): Resolved<T>;
+function random<T>(generator?: Partial<IRandomGenerator>): Resolved<T>;
 
 /**
  * @internal
  */
-export function random(): never {
+function random(): never {
   halt("random");
 }
-Object.assign(random, Namespace.random());
+const randomPure = /** @__PURE__ */ Object.assign<typeof random, {}>(
+  random,
+  /** @__PURE__ */ Namespace.random(),
+);
+export { randomPure as random };
 
 /* -----------------------------------------------------------
     FACTORY FUNCTIONS
@@ -562,30 +631,40 @@ Object.assign(random, Namespace.random());
  * Creates a reusable {@link assert} function.
  *
  * @danger You must configure the generic argument `T`
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Nothing until you configure the generic argument `T`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssert(): never;
+function createAssert(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): never;
 
 /**
  * Creates a reusable {@link assert} function.
  *
  * @template T Type of the input value
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns A reusable `assert` function
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssert<T>(): (input: unknown) => T;
+function createAssert<T>(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): (input: unknown) => T;
 
 /**
  * @internal
  */
-export function createAssert<T>(): (input: unknown) => T {
+function createAssert<T>(): (input: unknown) => T {
   halt("createAssert");
 }
-Object.assign(createAssert, assert);
+const createAssertPure = /** @__PURE__ */ Object.assign<
+  typeof createAssert,
+  {}
+>(createAssert, assertPure);
+export { createAssertPure as createAssert };
 
 /**
  * Creates a reusable {@link assertGuard} function.
@@ -606,12 +685,15 @@ Object.assign(createAssert, assert);
  * > *explicit type annotation.*
  *
  * @danger You must configure the generic argument `T`
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Nothing until you configure the generic argument `T`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertGuard(): never;
+function createAssertGuard(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): never;
 
 /**
  * Creates a reusable {@link assertGuard} function.
@@ -632,19 +714,26 @@ export function createAssertGuard(): never;
  * > *explicit type annotation.*
  *
  * @returns Nothing until you configure the generic argument `T`
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertGuard<T>(): (input: unknown) => AssertionGuard<T>;
+function createAssertGuard<T>(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): (input: unknown) => AssertionGuard<T>;
 
 /**
  * @internal
  */
-export function createAssertGuard<T>(): (input: unknown) => AssertionGuard<T> {
+function createAssertGuard<T>(): (input: unknown) => AssertionGuard<T> {
   halt("createAssertGuard");
 }
-Object.assign(createAssertGuard, assertGuard);
+const createAssertGuardPure = /** @__PURE__ */ Object.assign<
+  typeof createAssertGuard,
+  {}
+>(createAssertGuard, assertGuardPure);
+export { createAssertGuardPure as createAssertGuard };
 
 /**
  * Creates a reusable {@link is} function.
@@ -655,7 +744,7 @@ Object.assign(createAssertGuard, assertGuard);
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createIs(): never;
+function createIs(): never;
 
 /**
  * Creates a reusable {@link is} function.
@@ -665,15 +754,19 @@ export function createIs(): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createIs<T>(): (input: unknown) => input is T;
+function createIs<T>(): (input: unknown) => input is T;
 
 /**
  * @internal
  */
-export function createIs<T>(): (input: unknown) => input is T {
+function createIs<T>(): (input: unknown) => input is T {
   halt("createIs");
 }
-Object.assign(createIs, is);
+const createIsPure = /** @__PURE__ */ Object.assign<typeof createIs, {}>(
+  createIs,
+  isPure,
+);
+export { createIsPure as createIs };
 
 /**
  * Creates a reusable {@link validate} function.
@@ -684,7 +777,7 @@ Object.assign(createIs, is);
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createValidate(): never;
+function createValidate(): never;
 
 /**
  * Creates a reusable {@link validate} function.
@@ -694,44 +787,58 @@ export function createValidate(): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createValidate<T>(): (input: unknown) => IValidation<T>;
+function createValidate<T>(): (input: unknown) => IValidation<T>;
 
 /**
  * @internal
  */
-export function createValidate(): (input: unknown) => IValidation {
+function createValidate(): (input: unknown) => IValidation {
   halt("createValidate");
 }
-Object.assign(createValidate, validate);
+const createValidatePure = /** @__PURE__ */ Object.assign<
+  typeof createValidate,
+  {}
+>(createValidate, validatePure);
+export { createValidatePure as createValidate };
 
 /**
  * Creates a reusable {@link assertEquals} function.
  *
  * @danger You must configure the generic argument `T`
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Nothing until you configure the generic argument `T`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertEquals(): never;
+function createAssertEquals(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): never;
 
 /**
  * Creates a reusable {@link assertEquals} function.
  *
  * @template T Type of the input value
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns A reusable `assertEquals` function
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertEquals<T>(): (input: unknown) => T;
+function createAssertEquals<T>(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): (input: unknown) => T;
 
 /**
  * @internal
  */
-export function createAssertEquals<T>(): (input: unknown) => T {
+function createAssertEquals<T>(): (input: unknown) => T {
   halt("createAssertEquals");
 }
-Object.assign(createAssertEquals, assertEquals);
+const createAssertEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof createAssertEquals,
+  {}
+>(createAssertEquals, assertEqualsPure);
+export { createAssertEqualsPure as createAssertEquals };
 
 /**
  * Creates a reusable {@link assertGuardEquals} function.
@@ -752,12 +859,15 @@ Object.assign(createAssertEquals, assertEquals);
  * > *explicit type annotation.*
  *
  * @danger You must configure the generic argument `T`
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Nothing until you configure the generic argument `T`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertGuardEquals(): never;
+function createAssertGuardEquals(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): never;
 
 /**
  * Creates a reusable {@link assertGuardEquals} function.
@@ -777,24 +887,27 @@ export function createAssertGuardEquals(): never;
  * > *Assertions require every name in the call target to be declared with an*
  * > *explicit type annotation.*
  *
+ * @param errorFactory Custom error factory. Default is `TypeGuardError`
  * @returns Nothing until you configure the generic argument `T`
  * @throws compile error
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createAssertGuardEquals<T>(): (
-  input: unknown,
-) => AssertionGuard<T>;
+function createAssertGuardEquals<T>(
+  errorFactory?: undefined | ((props: TypeGuardError.IProps) => Error),
+): (input: unknown) => AssertionGuard<T>;
 
 /**
  * @internal
  */
-export function createAssertGuardEquals<T>(): (
-  input: unknown,
-) => AssertionGuard<T> {
+function createAssertGuardEquals<T>(): (input: unknown) => AssertionGuard<T> {
   halt("createAssertGuardEquals");
 }
-Object.assign(createAssertGuardEquals, assertGuardEquals);
+const createAssertGuardEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof createAssertGuardEquals,
+  {}
+>(createAssertGuardEquals, assertGuardEqualsPure);
+export { createAssertGuardEqualsPure as createAssertGuardEquals };
 
 /**
  * Creates a reusable {@link equals} function.
@@ -805,7 +918,7 @@ Object.assign(createAssertGuardEquals, assertGuardEquals);
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createEquals(): never;
+function createEquals(): never;
 
 /**
  * Creates a reusable {@link equals} function.
@@ -815,15 +928,19 @@ export function createEquals(): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createEquals<T>(): (input: unknown) => input is T;
+function createEquals<T>(): (input: unknown) => input is T;
 
 /**
  * @internal
  */
-export function createEquals<T>(): (input: unknown) => input is T {
+function createEquals<T>(): (input: unknown) => input is T {
   halt("createEquals");
 }
-Object.assign(createEquals, equals);
+const createEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof createEquals,
+  {}
+>(createEquals, equalsPure);
+export { createEqualsPure as createEquals };
 
 /**
  * Creates a reusable {@link validateEquals} function.
@@ -834,7 +951,7 @@ Object.assign(createEquals, equals);
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createValidateEquals(): never;
+function createValidateEquals(): never;
 
 /**
  * Creates a reusable {@link validateEquals} function.
@@ -844,15 +961,19 @@ export function createValidateEquals(): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createValidateEquals<T>(): (input: unknown) => IValidation<T>;
+function createValidateEquals<T>(): (input: unknown) => IValidation<T>;
 
 /**
  * @internal
  */
-export function createValidateEquals(): (input: unknown) => IValidation {
+function createValidateEquals(): (input: unknown) => IValidation {
   halt("createValidateEquals");
 }
-Object.assign(createValidateEquals, validateEquals);
+const createValidateEqualsPure = /** @__PURE__ */ Object.assign<
+  typeof createValidateEquals,
+  {}
+>(createValidateEquals, validateEqualsPure);
+export { createValidateEqualsPure as createValidateEquals };
 
 /**
  * Creates a reusable {@link random} function.
@@ -864,7 +985,7 @@ Object.assign(createValidateEquals, validateEquals);
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createRandom(generator?: Partial<IRandomGenerator>): never;
+function createRandom(generator?: Partial<IRandomGenerator>): never;
 
 /**
  * Creates a resuable {@link random} function.
@@ -875,17 +996,21 @@ export function createRandom(generator?: Partial<IRandomGenerator>): never;
  *
  * @author Jeongho Nam - https://github.com/samchon
  */
-export function createRandom<T>(
+function createRandom<T>(
   generator?: Partial<IRandomGenerator>,
 ): () => Resolved<T>;
 
 /**
  * @internal
  */
-export function createRandom(): never {
+function createRandom(): never {
   halt("createRandom");
 }
-Object.assign(createRandom, random);
+const createRandomPure = /** @__PURE__ */ Object.assign<
+  typeof createRandom,
+  {}
+>(createRandom, randomPure);
+export { createRandomPure as createRandom };
 
 /**
  * @internal

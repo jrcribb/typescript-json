@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "matrix"
+                    {
+                      "value": "matrix"
+                    }
                   ]
                 }
               ],
@@ -76,7 +78,10 @@
                         "kind": "minItems",
                         "value": 3,
                         "validate": "3 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 3
+                        }
                       },
                       {
                         "target": "array",
@@ -84,7 +89,10 @@
                         "kind": "maxItems",
                         "value": 3,
                         "validate": "$input.length <= 3",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 3
+                        }
                       }
                     ]
                   ]
@@ -103,7 +111,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -136,7 +143,10 @@
                     "kind": "minItems",
                     "value": 4,
                     "validate": "4 <= $input.length",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "minItems": 4
+                    }
                   },
                   {
                     "target": "array",
@@ -144,7 +154,10 @@
                     "kind": "maxItems",
                     "value": 4,
                     "validate": "$input.length <= 4",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "maxItems": 4
+                    }
                   }
                 ]
               ]
@@ -181,11 +194,14 @@
                     "name": "Format<\"uuid\">",
                     "kind": "format",
                     "value": "uuid",
-                    "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
+                    "validate": "/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test($input)",
                     "exclusive": [
                       "format",
                       "pattern"
-                    ]
+                    ],
+                    "schema": {
+                      "format": "uuid"
+                    }
                   }
                 ]
               ]

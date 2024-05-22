@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -82,7 +84,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -103,7 +104,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -143,7 +146,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -164,7 +166,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -204,7 +208,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -225,7 +228,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -265,7 +270,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -286,7 +290,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "id"
+                    {
+                      "value": "id"
+                    }
                   ]
                 }
               ],
@@ -331,7 +337,6 @@
         ],
         "jsDocTags": [],
         "index": 4,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

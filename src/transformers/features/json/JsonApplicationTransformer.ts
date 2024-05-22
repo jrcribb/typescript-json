@@ -1,6 +1,5 @@
 import ts from "typescript";
 
-import { JsonMetadataFactory } from "../../../factories/JsonMetadataFactory";
 import { LiteralFactory } from "../../../factories/LiteralFactory";
 import { MetadataCollection } from "../../../factories/MetadataCollection";
 import { MetadataFactory } from "../../../factories/MetadataFactory";
@@ -45,20 +44,13 @@ export namespace JsonApplicationTransformer {
         });
 
       // ADDITIONAL PARAMETERS
-      const purpose: "swagger" | "ajv" = get_parameter<"swagger" | "ajv">({
+      const version: "3.0" | "3.1" = get_parameter<"3.0" | "3.1">({
         checker: project.checker,
-        name: "Purpose",
-        is: (str) => str === "swagger" || str === "ajv",
-        cast: (str) => str as "swagger" | "ajv",
-        default: () => "swagger",
+        name: "Version",
+        is: (str) => str === "3.0" || str === "3.1",
+        cast: (str) => str as "3.0" | "3.1",
+        default: () => "3.1",
       })(expression.typeArguments[1]);
-      const surplus: boolean = get_parameter<boolean>({
-        checker: project.checker,
-        name: "Surplus",
-        is: (str) => str === "true" || str === "false",
-        cast: (str) => str === "true",
-        default: () => false,
-      })(expression.typeArguments[2]);
 
       //----
       // GENERATORS
@@ -76,7 +68,7 @@ export namespace JsonApplicationTransformer {
             escape: true,
             constant: true,
             absorb: false,
-            validate: JsonMetadataFactory.validate,
+            validate: JsonApplicationProgrammer.validate,
           })(collection)(type),
         );
 
@@ -91,10 +83,8 @@ export namespace JsonApplicationTransformer {
         throw TransformerError.from("typia.json.application")(errors);
 
       // APPLICATION
-      const app: IJsonApplication = JsonApplicationProgrammer.write({
-        purpose,
-        surplus,
-      })(metadatas);
+      const app: IJsonApplication<any> =
+        JsonApplicationProgrammer.write(version)(metadatas);
       return LiteralFactory.generate(app);
     };
 

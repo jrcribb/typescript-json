@@ -42,8 +42,8 @@ export class Metadata {
   /** @internal */ public boolean_literal_intersected_?: boolean;
 
   /* -----------------------------------------------------------
-        CONSTRUCTORS
-    ----------------------------------------------------------- */
+    CONSTRUCTORS
+  ----------------------------------------------------------- */
   /**
    * @hidden
    */
@@ -205,8 +205,8 @@ export class Metadata {
   }
 
   /* -----------------------------------------------------------
-        ACCESSORS
-    ----------------------------------------------------------- */
+    ACCESSORS
+  ----------------------------------------------------------- */
   public getName(): string {
     return (this.name_ ??= getName(this));
   }
@@ -281,7 +281,7 @@ export class Metadata {
       this.constants[0]!.type === "string" &&
       this.constants[0]!.values.length === 1
     )
-      return this.constants[0]!.values[0] as string;
+      return this.constants[0]!.values[0]!.value as string;
     else return null;
   }
 
@@ -318,6 +318,13 @@ export namespace Metadata {
       if (x.natives.some((xn) => y.natives.some((yn) => xn === yn)))
         return true;
 
+    // ESCAPED
+    if (x.escaped && y.escaped)
+      return (
+        intersects(x.escaped.original, y.escaped.original) ||
+        intersects(x.escaped.returns, y.escaped.returns)
+      );
+
     //----
     // VALUES
     //----
@@ -340,8 +347,8 @@ export namespace Metadata {
       if (opposite === undefined) continue;
 
       const values: Set<any> = new Set([
-        ...constant.values,
-        ...opposite.values,
+        ...constant.values.map((e) => e.value),
+        ...opposite.values.map((e) => e.value),
       ]);
       if (values.size !== constant.values.length + opposite.values.length)
         return true;
@@ -362,11 +369,23 @@ export namespace Metadata {
     x: Metadata,
     y: Metadata,
     level: number = 0,
+    escaped: boolean = false,
   ): boolean => {
     // CHECK ANY
     if (x === y) return false;
     else if (x.any) return true;
     else if (y.any) return false;
+
+    if (escaped === false) {
+      if (x.escaped === null && y.escaped !== null) return false;
+      else if (
+        x.escaped !== null &&
+        y.escaped !== null &&
+        (!covers(x.escaped.original, y.escaped.original, level, true) ||
+          !covers(x.escaped.returns, y.escaped.returns, level, true))
+      )
+        return false;
+    }
 
     //----
     // INSTANCES
@@ -433,7 +452,7 @@ export namespace Metadata {
       );
       if (xc === undefined) return false;
       else if (
-        (yc.values as number[]).some(
+        (yc.values.map((e) => e.value) as number[]).some(
           (yv) => xc.values.includes(yv as never) === false,
         )
       )
@@ -505,7 +524,8 @@ export namespace Metadata {
             values: [],
           }),
       );
-      for (const value of constant.values) ArrayUtil.add(target.values, value);
+      for (const value of constant.values)
+        ArrayUtil.add(target.values, value, (a, b) => a.value === b.value);
     }
     for (const obj of y.objects)
       ArrayUtil.set(output.objects, obj, (elem) => elem.name);
@@ -530,10 +550,7 @@ const getName = (metadata: Metadata): string => {
     elements.push(atom.getName());
   }
   for (const constant of metadata.constants)
-    for (const value of constant.values)
-      elements.push(
-        constant.type === "string" ? JSON.stringify(value) : value.toString(),
-      );
+    for (const value of constant.values) elements.push(value.getName());
   for (const template of metadata.templates)
     elements.push(
       "`" +

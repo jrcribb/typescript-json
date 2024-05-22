@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "int32"
+                    {
+                      "value": "int32"
+                    }
                   ]
                 }
               ],
@@ -71,7 +73,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       }
                     ]
                   ]
@@ -104,7 +109,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "uint64"
+                    {
+                      "value": "uint64"
+                    }
                   ]
                 }
               ],
@@ -169,7 +176,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "uuid"
+                    {
+                      "value": "uuid"
+                    }
                   ]
                 }
               ],
@@ -200,11 +209,14 @@
                         "name": "Format<\"uuid\">",
                         "kind": "format",
                         "value": "uuid",
-                        "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
+                        "validate": "/^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test($input)",
                         "exclusive": [
                           "format",
                           "pattern"
-                        ]
+                        ],
+                        "schema": {
+                          "format": "uuid"
+                        }
                       }
                     ]
                   ]
@@ -237,7 +249,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "range"
+                    {
+                      "value": "range"
+                    }
                   ]
                 }
               ],
@@ -274,7 +288,10 @@
                         "kind": "minItems",
                         "value": 10,
                         "validate": "10 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 10
+                        }
                       },
                       {
                         "target": "array",
@@ -282,7 +299,10 @@
                         "kind": "maxItems",
                         "value": 100,
                         "validate": "$input.length <= 100",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 100
+                        }
                       }
                     ]
                   ]
@@ -310,7 +330,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "length"
+                    {
+                      "value": "length"
+                    }
                   ]
                 }
               ],
@@ -347,7 +369,10 @@
                         "kind": "minItems",
                         "value": 10,
                         "validate": "10 <= $input.length",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "minItems": 10
+                        }
                       },
                       {
                         "target": "array",
@@ -355,7 +380,10 @@
                         "kind": "maxItems",
                         "value": 100,
                         "validate": "$input.length <= 100",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "maxItems": 100
+                        }
                       }
                     ]
                   ]
@@ -374,7 +402,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -405,7 +432,10 @@
                     "exclusive": [
                       "minimum",
                       "exclusiveMinimum"
-                    ]
+                    ],
+                    "schema": {
+                      "minimum": 3
+                    }
                   },
                   {
                     "target": "number",
@@ -416,7 +446,10 @@
                     "exclusive": [
                       "maximum",
                       "exclusiveMaximum"
-                    ]
+                    ],
+                    "schema": {
+                      "maximum": 7
+                    }
                   }
                 ]
               ]
@@ -459,7 +492,10 @@
                     "kind": "minLength",
                     "value": 3,
                     "validate": "3 <= $input.length",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "minLength": 3
+                    }
                   },
                   {
                     "target": "string",
@@ -467,7 +503,10 @@
                     "kind": "maxLength",
                     "value": 7,
                     "validate": "$input.length <= 7",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "maxLength": 7
+                    }
                   }
                 ]
               ]

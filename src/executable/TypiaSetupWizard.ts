@@ -23,7 +23,7 @@ export namespace TypiaSetupWizard {
     // INSTALL TYPESCRIPT COMPILERS
     pack.install({ dev: true, modulo: "ts-patch", version: "latest" });
     pack.install({ dev: true, modulo: "ts-node", version: "latest" });
-    pack.install({ dev: true, modulo: "typescript", version: "5.3.2" });
+    pack.install({ dev: true, modulo: "typescript", version: "5.4.2" });
     args.project ??= (() => {
       const runner: string = pack.manager === "npm" ? "npx" : pack.manager;
       CommandExecutor.run(`${runner} tsc --init`);
@@ -117,10 +117,10 @@ export namespace TypiaSetupWizard {
           x === "tsconfig.json"
             ? -1
             : y === "tsconfig.json"
-            ? 1
-            : x < y
-            ? -1
-            : 1,
+              ? 1
+              : x < y
+                ? -1
+                : 1,
         );
       if (fileList.length === 0) {
         if (process.cwd() !== pack.directory)

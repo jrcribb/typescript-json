@@ -91,8 +91,8 @@ export namespace ProtobufMessageProgrammer {
               prop.value.arrays.length || type.startsWith("map<")
                 ? ""
                 : !prop.value.isRequired() || prop.value.nullable
-                ? "optional "
-                : "required "
+                  ? "optional "
+                  : "required "
             }${type} ${key} = ${++ptr.value};`;
       })
       .join("\n");
@@ -157,4 +157,4 @@ interface IPointer<T> {
   value: T;
 }
 
-const TAB = " ".repeat(4);
+const TAB = " ".repeat(2);

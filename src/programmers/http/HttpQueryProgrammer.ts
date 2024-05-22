@@ -18,7 +18,7 @@ import { Atomic } from "../../typings/Atomic";
 
 import { Escaper } from "../../utils/Escaper";
 
-import { FunctionImporter } from "../helpers/FunctionImporeter";
+import { FunctionImporter } from "../helpers/FunctionImporter";
 import { HttpMetadataUtil } from "../helpers/HttpMetadataUtil";
 
 export namespace HttpQueryProgrammer {
@@ -57,10 +57,18 @@ export namespace HttpQueryProgrammer {
             ts.factory.createTypeReferenceNode(INPUT_TYPE),
           ),
         ],
-        ts.factory.createTypeReferenceNode(
-          `typia.Resolved<${
-            name ?? TypeFactory.getFullName(project.checker)(type)
-          }>`,
+        ts.factory.createImportTypeNode(
+          ts.factory.createLiteralTypeNode(
+            ts.factory.createStringLiteral("typia"),
+          ),
+          undefined,
+          ts.factory.createIdentifier("Resolved"),
+          [
+            ts.factory.createTypeReferenceNode(
+              name ?? TypeFactory.getFullName(project.checker)(type),
+            ),
+          ],
+          false,
         ),
         undefined,
         ts.factory.createBlock(
@@ -161,24 +169,25 @@ export namespace HttpQueryProgrammer {
   const decode_regular_property =
     (importer: FunctionImporter) =>
     (property: MetadataProperty): ts.PropertyAssignment => {
-      const key: string = property.key.constants[0]!.values[0] as string;
+      const key: string = property.key.constants[0]!.values[0]!.value as string;
       const value: Metadata = property.value;
 
       const [type, isArray]: [Atomic.Literal, boolean] = value.atomics.length
         ? [value.atomics[0]!.type, false]
         : value.constants.length
-        ? [value.constants[0]!.type, false]
-        : value.templates.length
-        ? ["string", false]
-        : (() => {
-            const meta =
-              value.arrays[0]?.type.value ?? value.tuples[0]!.type.elements[0]!;
-            return meta.atomics.length
-              ? [meta.atomics[0]!.type, true]
-              : meta.templates.length
-              ? ["string", true]
-              : [meta.constants[0]!.type, true];
-          })();
+          ? [value.constants[0]!.type, false]
+          : value.templates.length
+            ? ["string", false]
+            : (() => {
+                const meta =
+                  value.arrays[0]?.type.value ??
+                  value.tuples[0]!.type.elements[0]!;
+                return meta.atomics.length
+                  ? [meta.atomics[0]!.type, true]
+                  : meta.templates.length
+                    ? ["string", true]
+                    : [meta.constants[0]!.type, true];
+              })();
       return ts.factory.createPropertyAssignment(
         Escaper.variable(key) ? key : ts.factory.createStringLiteral(key),
         isArray

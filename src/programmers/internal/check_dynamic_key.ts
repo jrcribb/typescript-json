@@ -4,7 +4,7 @@ import { Metadata } from "../../schemas/metadata/Metadata";
 
 import { IProject } from "../../transformers/IProject";
 
-import { FunctionImporter } from "../helpers/FunctionImporeter";
+import { FunctionImporter } from "../helpers/FunctionImporter";
 import { ICheckEntry } from "../helpers/ICheckEntry";
 import { check_bigint } from "./check_bigint";
 import { check_number } from "./check_number";
@@ -97,7 +97,7 @@ export const check_dynamic_key =
 
     // CONSTANTS
     for (const constant of metadata.constants)
-      for (const value of constant.values)
+      for (const { value } of constant.values)
         conditions.push(
           ts.factory.createStrictEquality(
             ts.factory.createStringLiteral(String(value)),
@@ -153,12 +153,12 @@ export const check_dynamic_key =
     return conditions.length === 0
       ? ts.factory.createTrue()
       : conditions.length === 1
-      ? conditions[0]!
-      : conditions.reduce(ts.factory.createLogicalOr);
+        ? conditions[0]!
+        : conditions.reduce(ts.factory.createLogicalOr);
   };
 
-const atomist = (entry: ICheckEntry) => {
-  return [
+const atomist = (entry: ICheckEntry) =>
+  [
     ...(entry.expression ? [entry.expression] : []),
     ...(entry.conditions.length === 0
       ? []
@@ -172,4 +172,3 @@ const atomist = (entry: ICheckEntry) => {
             .reduce((a, b) => ts.factory.createLogicalOr(a, b)),
         ]),
   ].reduce((x, y) => ts.factory.createLogicalAnd(x, y));
-};

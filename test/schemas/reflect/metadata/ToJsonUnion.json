@@ -42,7 +42,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "id"
+                    {
+                      "value": "id"
+                    }
                   ]
                 }
               ],
@@ -96,7 +98,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "mobile"
+                    {
+                      "value": "mobile"
+                    }
                   ]
                 }
               ],
@@ -150,7 +154,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -195,7 +201,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -216,7 +221,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -256,7 +263,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -277,7 +283,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -317,7 +325,6 @@
         ],
         "jsDocTags": [],
         "index": 2,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -338,7 +345,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "toJSON"
+                    {
+                      "value": "toJSON"
+                    }
                   ]
                 }
               ],
@@ -378,7 +387,6 @@
         ],
         "jsDocTags": [],
         "index": 3,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -399,7 +407,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "manufacturer"
+                    {
+                      "value": "manufacturer"
+                    }
                   ]
                 }
               ],
@@ -453,7 +463,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "brand"
+                    {
+                      "value": "brand"
+                    }
                   ]
                 }
               ],
@@ -507,7 +519,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -552,7 +566,6 @@
         ],
         "jsDocTags": [],
         "index": 4,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

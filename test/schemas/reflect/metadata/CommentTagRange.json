@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "value"
+                    {
+                      "value": "value"
+                    }
                   ]
                 }
               ],
@@ -84,7 +86,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -105,7 +106,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater"
+                    {
+                      "value": "greater"
+                    }
                   ]
                 }
               ],
@@ -137,7 +140,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -148,7 +154,11 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMinimum": true,
+                          "minimum": 3
+                        }
                       }
                     ]
                   ]
@@ -200,7 +210,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater_equal"
+                    {
+                      "value": "greater_equal"
+                    }
                   ]
                 }
               ],
@@ -232,7 +244,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -243,7 +258,10 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "minimum": 3
+                        }
                       }
                     ]
                   ]
@@ -295,7 +313,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "less"
+                    {
+                      "value": "less"
+                    }
                   ]
                 }
               ],
@@ -327,7 +347,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -338,7 +361,11 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMaximum": true,
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -390,7 +417,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "less_equal"
+                    {
+                      "value": "less_equal"
+                    }
                   ]
                 }
               ],
@@ -422,7 +451,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -433,7 +465,10 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -485,7 +520,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater_less"
+                    {
+                      "value": "greater_less"
+                    }
                   ]
                 }
               ],
@@ -517,7 +554,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -528,7 +568,11 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMinimum": true,
+                          "minimum": 3
+                        }
                       },
                       {
                         "target": "number",
@@ -539,7 +583,11 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMaximum": true,
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -600,7 +648,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater_equal_less"
+                    {
+                      "value": "greater_equal_less"
+                    }
                   ]
                 }
               ],
@@ -632,7 +682,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -643,7 +696,10 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "minimum": 3
+                        }
                       },
                       {
                         "target": "number",
@@ -654,7 +710,11 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMaximum": true,
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -715,7 +775,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater_less_equal"
+                    {
+                      "value": "greater_less_equal"
+                    }
                   ]
                 }
               ],
@@ -747,7 +809,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -758,7 +823,11 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "exclusiveMinimum": true,
+                          "minimum": 3
+                        }
                       },
                       {
                         "target": "number",
@@ -769,7 +838,10 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -830,7 +902,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "greater_equal_less_equal"
+                    {
+                      "value": "greater_equal_less_equal"
+                    }
                   ]
                 }
               ],
@@ -862,7 +936,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -873,7 +950,10 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "minimum": 3
+                        }
                       },
                       {
                         "target": "number",
@@ -884,7 +964,10 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "maximum": 7
+                        }
                       }
                     ]
                   ]
@@ -945,7 +1028,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "equal"
+                    {
+                      "value": "equal"
+                    }
                   ]
                 }
               ],
@@ -977,7 +1062,10 @@
                         "kind": "type",
                         "value": "int32",
                         "validate": "Math.floor($input) === $input && -2147483648 <= $input && $input <= 2147483647",
-                        "exclusive": true
+                        "exclusive": true,
+                        "schema": {
+                          "type": "integer"
+                        }
                       },
                       {
                         "target": "number",
@@ -988,7 +1076,10 @@
                         "exclusive": [
                           "minimum",
                           "exclusiveMinimum"
-                        ]
+                        ],
+                        "schema": {
+                          "minimum": 10
+                        }
                       },
                       {
                         "target": "number",
@@ -999,7 +1090,10 @@
                         "exclusive": [
                           "maximum",
                           "exclusiveMaximum"
-                        ]
+                        ],
+                        "schema": {
+                          "maximum": 10
+                        }
                       }
                     ]
                   ]
@@ -1051,7 +1145,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

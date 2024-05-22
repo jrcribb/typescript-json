@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { FunctionImporter } from "./FunctionImporeter";
+import { FunctionImporter } from "./FunctionImporter";
 
 export const disable_function_importer_declare = (
   importer: FunctionImporter,
@@ -27,6 +27,6 @@ type MethodOnly<T> = {
   [P in keyof T]: T[P] extends Function
     ? T[P]
     : P extends "method"
-    ? T[P]
-    : never;
+      ? T[P]
+      : never;
 };

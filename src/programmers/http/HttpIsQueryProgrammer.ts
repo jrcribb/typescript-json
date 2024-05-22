@@ -24,10 +24,18 @@ export namespace HttpIsQueryProgrammer {
           ),
         ],
         ts.factory.createUnionTypeNode([
-          ts.factory.createTypeReferenceNode(
-            `typia.Resolved<${
-              name ?? TypeFactory.getFullName(project.checker)(type)
-            }>`,
+          ts.factory.createImportTypeNode(
+            ts.factory.createLiteralTypeNode(
+              ts.factory.createStringLiteral("typia"),
+            ),
+            undefined,
+            ts.factory.createIdentifier("Resolved"),
+            [
+              ts.factory.createTypeReferenceNode(
+                name ?? TypeFactory.getFullName(project.checker)(type),
+              ),
+            ],
+            false,
           ),
           ts.factory.createLiteralTypeNode(ts.factory.createNull()),
         ]),
@@ -45,7 +53,7 @@ export namespace HttpIsQueryProgrammer {
             })(modulo)(false)(type, name),
           ),
           StatementFactory.constant(
-            "query",
+            "decode",
             HttpQueryProgrammer.write({
               ...project,
               options: {
@@ -58,7 +66,7 @@ export namespace HttpIsQueryProgrammer {
           StatementFactory.constant(
             "output",
             ts.factory.createCallExpression(
-              ts.factory.createIdentifier("query"),
+              ts.factory.createIdentifier("decode"),
               undefined,
               [ts.factory.createIdentifier("input")],
             ),

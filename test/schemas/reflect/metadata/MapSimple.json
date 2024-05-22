@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "boolean"
+                    {
+                      "value": "boolean"
+                    }
                   ]
                 }
               ],
@@ -139,7 +141,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "number"
+                    {
+                      "value": "number"
+                    }
                   ]
                 }
               ],
@@ -239,7 +243,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "strings"
+                    {
+                      "value": "strings"
+                    }
                   ]
                 }
               ],
@@ -339,7 +345,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "arrays"
+                    {
+                      "value": "arrays"
+                    }
                   ]
                 }
               ],
@@ -439,7 +447,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "objects"
+                    {
+                      "value": "objects"
+                    }
                   ]
                 }
               ],
@@ -527,7 +537,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -548,7 +557,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "id"
+                    {
+                      "value": "id"
+                    }
                   ]
                 }
               ],
@@ -602,7 +613,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "name"
+                    {
+                      "value": "name"
+                    }
                   ]
                 }
               ],
@@ -656,7 +669,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "age"
+                    {
+                      "value": "age"
+                    }
                   ]
                 }
               ],
@@ -701,7 +716,6 @@
         ],
         "jsDocTags": [],
         "index": 1,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false

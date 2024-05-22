@@ -39,7 +39,9 @@
                 {
                   "type": "string",
                   "values": [
-                    "tuple"
+                    {
+                      "value": "tuple"
+                    }
                   ]
                 }
               ],
@@ -84,7 +86,6 @@
         ],
         "jsDocTags": [],
         "index": 0,
-        "validated": false,
         "recursive": false,
         "nullables": [
           false
@@ -112,7 +113,10 @@
                     "kind": "minLength",
                     "value": 1,
                     "validate": "1 <= $input.length",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "minLength": 1
+                    }
                   },
                   {
                     "target": "string",
@@ -120,7 +124,10 @@
                     "kind": "maxLength",
                     "value": 2,
                     "validate": "$input.length <= 2",
-                    "exclusive": true
+                    "exclusive": true,
+                    "schema": {
+                      "maxLength": 2
+                    }
                   }
                 ]
               ]
@@ -166,7 +173,10 @@
                     "exclusive": [
                       "minimum",
                       "exclusiveMinimum"
-                    ]
+                    ],
+                    "schema": {
+                      "minimum": 1
+                    }
                   },
                   {
                     "target": "number",
@@ -177,7 +187,10 @@
                     "exclusive": [
                       "maximum",
                       "exclusiveMaximum"
-                    ]
+                    ],
+                    "schema": {
+                      "maximum": 2
+                    }
                   }
                 ]
               ]
@@ -224,7 +237,10 @@
                       "kind": "minLength",
                       "value": 3,
                       "validate": "3 <= $input.length",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "minLength": 3
+                      }
                     },
                     {
                       "target": "string",
@@ -232,7 +248,10 @@
                       "kind": "maxLength",
                       "value": 7,
                       "validate": "$input.length <= 7",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "maxLength": 7
+                      }
                     }
                   ]
                 ]
@@ -270,7 +289,10 @@
                       "exclusive": [
                         "minimum",
                         "exclusiveMinimum"
-                      ]
+                      ],
+                      "schema": {
+                        "minimum": 3
+                      }
                     },
                     {
                       "target": "number",
@@ -281,7 +303,10 @@
                       "exclusive": [
                         "maximum",
                         "exclusiveMaximum"
-                      ]
+                      ],
+                      "schema": {
+                        "maximum": 7
+                      }
                     }
                   ]
                 ]
@@ -321,7 +346,10 @@
                       "kind": "minItems",
                       "value": 3,
                       "validate": "3 <= $input.length",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "minItems": 3
+                      }
                     },
                     {
                       "target": "array",
@@ -329,7 +357,10 @@
                       "kind": "maxItems",
                       "value": 7,
                       "validate": "$input.length <= 7",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "maxItems": 7
+                      }
                     }
                   ]
                 ]
@@ -364,7 +395,10 @@
                       "kind": "minItems",
                       "value": 3,
                       "validate": "3 <= $input.length",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "minItems": 3
+                      }
                     },
                     {
                       "target": "array",
@@ -372,7 +406,10 @@
                       "kind": "maxItems",
                       "value": 7,
                       "validate": "$input.length <= 7",
-                      "exclusive": true
+                      "exclusive": true,
+                      "schema": {
+                        "maxItems": 7
+                      }
                     }
                   ]
                 ]
