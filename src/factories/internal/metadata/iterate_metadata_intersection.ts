@@ -5,6 +5,7 @@ import { Metadata } from "../../../schemas/metadata/Metadata";
 import { MetadataAtomic } from "../../../schemas/metadata/MetadataAtomic";
 import { MetadataConstant } from "../../../schemas/metadata/MetadataConstant";
 import { MetadataConstantValue } from "../../../schemas/metadata/MetadataConstantValue";
+import { MetadataTemplate } from "../../../schemas/metadata/MetadataTemplate";
 
 import { ArrayUtil } from "../../../utils/ArrayUtil";
 
@@ -26,7 +27,8 @@ export const iterate_metadata_intersection =
     explore: MetadataFactory.IExplore,
   ): boolean => {
     if (!type.isIntersection()) return false;
-    else if (
+    if (
+      // ONLY OBJECT TYPED INTERSECTION
       type.types.every(
         (child) =>
           (child.getFlags() & ts.TypeFlags.Object) !== 0 &&
@@ -37,7 +39,7 @@ export const iterate_metadata_intersection =
       return false;
 
     // COSTRUCT FAKE METADATA LIST
-    const fakeCollection: MetadataCollection = new MetadataCollection();
+    const fakeCollection: MetadataCollection = collection.clone();
     const fakeErrors: MetadataFactory.IError[] = [];
     const children: Metadata[] = [
       ...new Map(
@@ -67,19 +69,30 @@ export const iterate_metadata_intersection =
       );
       return true;
     } else if (children.every((c) => c.objects.length === c.size()))
+      // ONLY OBJECT TYPED INTERSECTION (DETAILED)
       return false;
 
     // VALIDATE EACH TYPES
+    const nonsensible = () => {
+      errors.push({
+        name: children.map((c) => c.getName()).join(" & "),
+        explore: { ...explore },
+        messages: ["nonsensible intersection"],
+      });
+      return true;
+    };
     const individuals: (readonly [Metadata, number])[] = children
       .map((child, i) => [child, i] as const)
       .filter(
         ([c]) =>
-          c.size() === 1 &&
-          (c.atomics.length === 1 ||
-            (c.constants.length === 1 && c.constants[0]!.values.length === 1) ||
-            c.arrays.length === 1),
+          (c.size() === 1 &&
+            (c.atomics.length === 1 ||
+              (c.constants.length === 1 &&
+                c.constants[0]!.values.length === 1) ||
+              c.arrays.length === 1)) ||
+          c.templates.length === 1,
       );
-    if (individuals.length !== 1) return false;
+    if (individuals.length !== 1) return nonsensible();
 
     const objects: Metadata[] = children.filter(
       (c) =>
@@ -97,20 +110,17 @@ export const iterate_metadata_intersection =
     );
     const constants: Metadata[] = individuals
       .filter((i) => i[0].constants.length === 1)
-      .map(([c]) => c);
+      .map(([m]) => m);
+    const templates: Metadata[] = individuals
+      .filter((i) => i[0].templates.length === 1)
+      .map(([m]) => m);
 
     // ESCAPE WHEN ONLY CONSTANT TYPES EXIST
     if (
-      atomics.size + constants.length + arrays.size > 1 ||
+      atomics.size + constants.length + arrays.size + templates.length > 1 ||
       individuals.length + objects.length !== children.length
-    ) {
-      errors.push({
-        name: children.map((c) => c.getName()).join(" & "),
-        explore: { ...explore },
-        messages: ["nonsensible intersection"],
-      });
-      return true;
-    }
+    )
+      return nonsensible();
 
     // RE-GENERATE TYPE
     const target: "boolean" | "bigint" | "number" | "string" | "array" =
@@ -118,7 +128,9 @@ export const iterate_metadata_intersection =
         ? "array"
         : atomics.size
           ? atomics.values().next().value
-          : constants[0]!.constants[0]!.type;
+          : constants.length
+            ? constants[0]!.constants[0]!.type
+            : "string";
     if (target === "array") {
       const name: string = arrays.values().next().value;
       if (!meta.arrays.some((a) => a.type.name === name)) {
@@ -141,7 +153,7 @@ export const iterate_metadata_intersection =
         }),
         (a, b) => a.type === b.type,
       );
-    else
+    else if (constants.length)
       ArrayUtil.take(
         ArrayUtil.take(
           meta.constants,
@@ -159,6 +171,16 @@ export const iterate_metadata_intersection =
             tags: [],
           }),
       );
+    else if (templates.length)
+      ArrayUtil.take(
+        meta.templates,
+        (o) => o.getBaseName() === templates[0]!.templates[0]!.getBaseName(),
+        () =>
+          MetadataTemplate.create({
+            row: templates[0]!.templates[0]!.row,
+            tags: [],
+          }),
+      );
 
     // ASSIGN TAGS
     if (objects.length) {
@@ -169,7 +191,7 @@ export const iterate_metadata_intersection =
         if (target === "array") meta.arrays.at(-1)!.tags.push(tags);
         else if (atomics.size)
           meta.atomics.find((a) => a.type === target)!.tags.push(tags);
-        else {
+        else if (constants.length) {
           const constant: MetadataConstant = meta.constants.find(
             (c) => c.type === target,
           )!;
@@ -178,6 +200,13 @@ export const iterate_metadata_intersection =
           )!;
           value.tags ??= [];
           value.tags.push(tags);
+        } else if (templates.length) {
+          const template: MetadataTemplate = meta.templates.find(
+            (t) =>
+              t.getBaseName() === templates[0]!.templates[0]!.getBaseName(),
+          )!;
+          template.tags ??= [];
+          template.tags.push(tags);
         }
     }
     return true;

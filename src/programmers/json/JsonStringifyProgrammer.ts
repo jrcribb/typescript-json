@@ -33,6 +33,7 @@ import { UnionExplorer } from "../helpers/UnionExplorer";
 import { check_native } from "../internal/check_native";
 import { decode_union_object } from "../internal/decode_union_object";
 import { feature_object_entries } from "../internal/feature_object_entries";
+import { postfix_of_tuple } from "../internal/postfix_of_tuple";
 import { wrap_metadata_rest_tuple } from "../internal/wrap_metadata_rest_tuple";
 
 export namespace JsonStringifyProgrammer {
@@ -394,7 +395,7 @@ export namespace JsonStringifyProgrammer {
           value: () =>
             meta.isParentResolved() === false &&
             meta.objects.length === 1 &&
-            meta.objects[0]!._Is_simple(explore.from === "top" ? 0 : 1)
+            meta.objects[0]!.isPlain(explore.from === "top" ? 0 : 1)
               ? (() => {
                   const obj: MetadataObject = meta.objects[0]!;
                   const entries: IExpressionEntry<ts.Expression>[] =
@@ -543,7 +544,7 @@ export namespace JsonStringifyProgrammer {
               ...explore,
               from: "array",
               postfix: explore.postfix.length
-                ? `${explore.postfix.slice(0, -1)}[${index}]"`
+                ? `${postfix_of_tuple(explore.postfix)}[${index}]"`
                 : `"[${index}]"`,
             },
           ),

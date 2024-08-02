@@ -1,9 +1,10 @@
 {
   "name": "typia",
-  "version": "6.0.5",
+  "version": "6.6.2",
   "description": "Superfast runtime validators with only one line",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "module": "lib/index.mjs",
   "bin": {
     "typia": "./lib/executable/typia.js"
   },
@@ -14,18 +15,19 @@
   },
   "scripts": {
     "test": "npm run package:tgz",
-    "test:template": "npm run test template",
+    "test:bun": "bun run deploy/bun.ts",
+    "test:template": "npm run --tag test --template",
     "-------------------------------------------------": "",
-    "build": "rimraf lib && tsc",
+    "build": "rimraf lib && tsc && rollup -c",
     "dev": "rimraf lib && tsc --watch",
     "eslint": "eslint ./**/*.ts",
     "eslint:fix": "eslint ./**/*.ts --fix",
     "prettier": "prettier src --write",
     "------------------------------------------------": "",
-    "package:latest": "ts-node deploy latest",
-    "package:next": "ts-node deploy next",
-    "package:patch": "ts-node deploy patch",
-    "package:tgz": "ts-node deploy tgz",
+    "package:latest": "ts-node deploy --tag latest",
+    "package:next": "ts-node deploy --tag next",
+    "package:patch": "ts-node deploy --tag patch",
+    "package:tgz": "ts-node deploy --tag tgz",
     "package:deprecate": "npm deprecate typescript-json \"Renamed to typia\""
   },
   "repository": {
@@ -65,32 +67,37 @@
   },
   "homepage": "https://typia.io",
   "dependencies": {
-    "@samchon/openapi": "0.1.22",
+    "@samchon/openapi": "^0.4.3",
     "commander": "^10.0.0",
     "comment-json": "^4.2.3",
     "inquirer": "^8.2.5",
     "randexp": "^0.5.3"
   },
   "peerDependencies": {
-    "typescript": ">=4.8.0 <5.5.0"
+    "typescript": ">=4.8.0 <5.6.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/inquirer": "^8.2.5",
     "@types/node": "^18.15.12",
-    "@types/ts-expose-internals": "npm:ts-expose-internals@5.4.2",
+    "@types/ts-expose-internals": "npm:ts-expose-internals@5.5.3",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "chalk": "^4.0.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
+    "rollup": "^4.18.0",
     "suppress-warnings": "^1.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
-  "stackblitzs": {
+  "stackblitz": {
     "startCommand": "npm install && npm run test"
   },
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",

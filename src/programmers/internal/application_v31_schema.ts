@@ -10,6 +10,7 @@ import { application_escaped } from "./application_escaped";
 import { application_number } from "./application_number";
 import { application_string } from "./application_string";
 import { application_templates } from "./application_templates";
+import { application_union_discriminator } from "./application_union_discriminator";
 import { application_v31_alias } from "./application_v31_alias";
 import { application_v31_constant } from "./application_v31_constant";
 import { application_v31_native } from "./application_v31_native";
@@ -50,11 +51,11 @@ export const application_v31_schema =
     if (meta.escaped !== null)
       application_escaped(application_v31_schema(false)(components)({}))(
         meta.escaped,
-      ).forEach(insert);
+      ).forEach(insert as any);
 
     // ATOMIC TYPES
     if (meta.templates.length && AtomicPredicator.template(meta))
-      insert(application_templates(meta));
+      application_templates(meta).map(insert as any);
     for (const constant of meta.constants)
       if (constant.type === "bigint") throw new TypeError(NO_BIGINT);
       else if (AtomicPredicator.constant(meta)(constant.type) === false)
@@ -62,15 +63,18 @@ export const application_v31_schema =
       else application_v31_constant(constant).map(insert);
     for (const a of meta.atomics)
       if (a.type === "bigint") throw new TypeError(NO_BIGINT);
-      else if (a.type === "boolean") application_boolean(a).forEach(insert);
-      else if (a.type === "number") application_number(a).forEach(insert);
-      else if (a.type === "string") application_string(a).forEach(insert);
+      else if (a.type === "boolean")
+        application_boolean(a).forEach(insert as any);
+      else if (a.type === "number")
+        application_number(a).forEach(insert as any);
+      else if (a.type === "string")
+        application_string(a).forEach(insert as any);
 
     // ARRAY
     for (const array of meta.arrays)
       application_array(application_v31_schema(false)(components)({}))(
-        array,
-      ).forEach(insert);
+        components,
+      )(array).forEach(insert as any);
 
     // TUPLE
     for (const tuple of meta.tuples)
@@ -93,7 +97,7 @@ export const application_v31_schema =
                 type: "boolean",
                 tags: [],
               }),
-            )[0]!,
+            )[0]! as any,
           );
         else if (type === "number")
           insert(
@@ -102,7 +106,7 @@ export const application_v31_schema =
                 type: "number",
                 tags: [],
               }),
-            )[0]!,
+            )[0]! as any,
           );
         else if (type === "string")
           insert(
@@ -111,7 +115,7 @@ export const application_v31_schema =
                 type: "string",
                 tags: [],
               }),
-            )[0]!,
+            )[0]! as any,
           );
       } else insert(application_v31_native(components)(native));
     if (meta.sets.length) insert(application_v31_native(components)(`Set`));
@@ -134,7 +138,10 @@ export const application_v31_schema =
         ? { type: undefined }
         : union.length === 1
           ? union[0]!
-          : { oneOf: union };
+          : {
+              oneOf: union,
+              discriminator: application_union_discriminator(meta),
+            };
     return {
       ...schema,
       ...attribute,

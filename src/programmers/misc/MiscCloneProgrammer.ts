@@ -21,6 +21,7 @@ import { CloneJoiner } from "../helpers/CloneJoiner";
 import { FunctionImporter } from "../helpers/FunctionImporter";
 import { UnionExplorer } from "../helpers/UnionExplorer";
 import { decode_union_object } from "../internal/decode_union_object";
+import { postfix_of_tuple } from "../internal/postfix_of_tuple";
 import { wrap_metadata_rest_tuple } from "../internal/wrap_metadata_rest_tuple";
 
 export namespace MiscCloneProgrammer {
@@ -335,7 +336,7 @@ export namespace MiscCloneProgrammer {
               ...explore,
               from: "array",
               postfix: explore.postfix.length
-                ? `${explore.postfix.slice(0, -1)}[${index}]"`
+                ? `${postfix_of_tuple(explore.postfix)}[${index}]"`
                 : `"[${index}]"`,
             },
           ),
@@ -378,7 +379,8 @@ export namespace MiscCloneProgrammer {
     type === "Int32Array" ||
     type === "BigInt64Array" ||
     type === "Float32Array" ||
-    type === "Float64Array"
+    type === "Float64Array" ||
+    type === "RegExp"
       ? decode_native_copyable(type)(input)
       : type === "ArrayBuffer" || type === "SharedArrayBuffer"
         ? decode_native_buffer(type)(input)

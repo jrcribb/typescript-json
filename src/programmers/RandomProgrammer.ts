@@ -13,6 +13,7 @@ import { MetadataArray } from "../schemas/metadata/MetadataArray";
 import { MetadataArrayType } from "../schemas/metadata/MetadataArrayType";
 import { MetadataAtomic } from "../schemas/metadata/MetadataAtomic";
 import { MetadataObject } from "../schemas/metadata/MetadataObject";
+import { MetadataTemplate } from "../schemas/metadata/MetadataTemplate";
 import { MetadataTuple } from "../schemas/metadata/MetadataTuple";
 import { MetadataTupleType } from "../schemas/metadata/MetadataTupleType";
 
@@ -114,7 +115,7 @@ export namespace RandomProgrammer {
     (collection: MetadataCollection): ts.VariableStatement[] =>
       collection.objects().map((obj, i) =>
         StatementFactory.constant(
-          PREFIX.object(i),
+          Prefix.object(i),
           ts.factory.createArrowFunction(
             undefined,
             undefined,
@@ -150,7 +151,7 @@ export namespace RandomProgrammer {
         .filter((a) => a.recursive)
         .map((array, i) =>
           StatementFactory.constant(
-            PREFIX.array(i),
+            Prefix.array(i),
             ts.factory.createArrowFunction(
               undefined,
               undefined,
@@ -158,6 +159,10 @@ export namespace RandomProgrammer {
                 IdentifierFactory.parameter(
                   "length",
                   TypeFactory.keyword("number"),
+                ),
+                IdentifierFactory.parameter(
+                  "unique",
+                  TypeFactory.keyword("boolean"),
                 ),
                 IdentifierFactory.parameter(
                   "_recursive",
@@ -180,7 +185,10 @@ export namespace RandomProgrammer {
               )({
                 recursive: true,
                 function: true,
-              })(ts.factory.createIdentifier("length"))(array.value),
+              })(
+                ts.factory.createIdentifier("length"),
+                ts.factory.createIdentifier("unique"),
+              )(array.value),
             ),
           ),
         );
@@ -193,7 +201,7 @@ export namespace RandomProgrammer {
         .filter((a) => a.recursive)
         .map((tuple, i) =>
           StatementFactory.constant(
-            PREFIX.tuple(i),
+            Prefix.tuple(i),
             ts.factory.createArrowFunction(
               undefined,
               undefined,
@@ -222,8 +230,8 @@ export namespace RandomProgrammer {
         );
 
   /* -----------------------------------------------------------
-        DECODERS
-    ----------------------------------------------------------- */
+    DECODERS
+  ----------------------------------------------------------- */
   const decode =
     (importer: FunctionImporter) =>
     (explore: IExplore) =>
@@ -313,9 +321,9 @@ export namespace RandomProgrammer {
   const decode_template =
     (importer: FunctionImporter) =>
     (explore: IExplore) =>
-    (template: Metadata[]) =>
+    (template: MetadataTemplate) =>
       TemplateFactory.generate(
-        template.map((meta) => decode(importer)(explore)(meta)),
+        template.row.map((meta) => decode(importer)(explore)(meta)),
       );
 
   const decode_number =
@@ -424,9 +432,9 @@ export namespace RandomProgrammer {
     (importer: FunctionImporter) =>
     (explore: IExplore) =>
     (array: MetadataArray): ts.Expression[] => {
-      const lengths: Array<ts.Expression | undefined> = (
-        array.tags.length ? array.tags : [[]]
-      ).map((tags) =>
+      const fixed: Array<
+        [ts.Expression | undefined, ts.Expression | undefined]
+      > = (array.tags.length ? array.tags : [[]]).map((tags) => [
         RandomRanger.length(COALESCE(importer))({
           minimum: 0,
           maximum: 3,
@@ -435,16 +443,25 @@ export namespace RandomProgrammer {
           minimum: "minItems",
           maximum: "maxItems",
         })(tags),
-      );
+        (() => {
+          const uniqueItems = tags.find((t) => t.kind === "uniqueItems");
+          return uniqueItems === undefined
+            ? undefined
+            : uniqueItems.value === false
+              ? ts.factory.createFalse()
+              : ts.factory.createTrue();
+        })(),
+      ]);
       if (array.type.recursive)
-        return lengths.map((len) =>
+        return fixed.map(([len, unique]) =>
           ts.factory.createCallExpression(
             ts.factory.createIdentifier(
-              importer.useLocal(PREFIX.array(array.type.index!)),
+              importer.useLocal(Prefix.array(array.type.index!)),
             ),
             undefined,
             [
               len ?? COALESCE(importer)("length"),
+              unique ?? ts.factory.createFalse(),
               ts.factory.createTrue(),
               explore.recursive
                 ? ts.factory.createAdd(
@@ -455,10 +472,13 @@ export namespace RandomProgrammer {
             ],
           ),
         );
-      return lengths.map((len) => {
+      return fixed.map(([len, unique]) => {
         const expr: ts.Expression = RandomJoiner.array(COALESCE(importer))(
           decode(importer)(explore),
-        )(explore)(len)(array.type.value);
+        )(explore)(
+          len,
+          unique,
+        )(array.type.value);
         return explore.recursive
           ? ts.factory.createConditionalExpression(
               ts.factory.createLogicalAnd(
@@ -484,7 +504,7 @@ export namespace RandomProgrammer {
       tuple.type.recursive
         ? ts.factory.createCallExpression(
             ts.factory.createIdentifier(
-              importer.useLocal(PREFIX.tuple(tuple.type.index!)),
+              importer.useLocal(Prefix.tuple(tuple.type.index!)),
             ),
             undefined,
             [
@@ -505,7 +525,7 @@ export namespace RandomProgrammer {
     (object: MetadataObject) =>
       ts.factory.createCallExpression(
         ts.factory.createIdentifier(
-          importer.useLocal(PREFIX.object(object.index)),
+          importer.useLocal(Prefix.object(object.index)),
         ),
         undefined,
         explore.function
@@ -528,8 +548,8 @@ export namespace RandomProgrammer {
       );
 
   /* -----------------------------------------------------------
-        NATIVE CLASSES
-    ----------------------------------------------------------- */
+    NATIVE CLASSES
+  ----------------------------------------------------------- */
   const decode_set =
     (importer: FunctionImporter) => (explore: IExplore) => (meta: Metadata) =>
       ts.factory.createNewExpression(
@@ -630,6 +650,7 @@ export namespace RandomProgrammer {
       else if (type === "DataView") return decode_native_data_view(importer);
       else if (type === "Blob") return decode_native_blob(importer);
       else if (type === "File") return decode_native_file(importer);
+      else if (type === "RegExp") return decode_regexp();
       else
         return ts.factory.createNewExpression(
           ts.factory.createIdentifier(type),
@@ -846,6 +867,13 @@ export namespace RandomProgrammer {
         )("buffer"),
       ],
     );
+
+  const decode_regexp = () =>
+    ts.factory.createNewExpression(
+      ts.factory.createIdentifier("RegExp"),
+      [],
+      [ts.factory.createIdentifier("/(?:)/")],
+    );
 }
 
 type Atomic = boolean | number | string | bigint;
@@ -854,7 +882,7 @@ interface IExplore {
   recursive: boolean;
 }
 
-const PREFIX = {
+const Prefix = {
   object: (i: number) => `$ro${i}`,
   array: (i: number) => `$ra${i}`,
   tuple: (i: number) => `$rt${i}`,

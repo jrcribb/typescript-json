@@ -7,7 +7,7 @@ import { PluginConfigurator } from "./setup/PluginConfigurator";
 
 export namespace TypiaSetupWizard {
   export interface IArguments {
-    manager: "npm" | "pnpm" | "yarn";
+    manager: "npm" | "pnpm" | "yarn" | "bun";
     project: string | null;
   }
 
@@ -21,9 +21,8 @@ export namespace TypiaSetupWizard {
     const args: IArguments = await ArgumentParser.parse(pack)(inquiry);
 
     // INSTALL TYPESCRIPT COMPILERS
+    pack.install({ dev: true, modulo: "typescript", version: "5.5.2" });
     pack.install({ dev: true, modulo: "ts-patch", version: "latest" });
-    pack.install({ dev: true, modulo: "ts-node", version: "latest" });
-    pack.install({ dev: true, modulo: "typescript", version: "5.4.2" });
     args.project ??= (() => {
       const runner: string = pack.manager === "npm" ? "npx" : pack.manager;
       CommandExecutor.run(`${runner} tsc --init`);
@@ -138,6 +137,7 @@ export namespace TypiaSetupWizard {
         [
           "npm" as const,
           "pnpm" as const,
+          "bun" as const,
           "yarn (berry is not supported)" as "yarn",
         ],
         (value) => value.split(" ")[0] as "yarn",

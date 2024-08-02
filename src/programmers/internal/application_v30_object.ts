@@ -8,6 +8,7 @@ import { MetadataObject } from "../../schemas/metadata/MetadataObject";
 
 import { PatternUtil } from "../../utils/PatternUtil";
 
+import { application_description } from "./application_description";
 import { application_v30_schema } from "./application_v30_schema";
 import { metadata_to_pattern } from "./metadata_to_pattern";
 
@@ -20,7 +21,7 @@ export const application_v30_object =
   (
     nullable: boolean,
   ): OpenApiV3.IJsonSchema.IReference | OpenApiV3.IJsonSchema.IObject => {
-    if (obj._Is_literal() === true)
+    if (obj.isLiteral() === true)
       return create_object_schema(components)(obj)(nullable);
 
     const key: string = `${obj.name}${nullable ? ".Nullable" : ""}`;
@@ -85,7 +86,7 @@ const create_object_schema =
             ? top.substring(0, top.length - 1)
             : undefined;
         })(),
-        description: property.description ?? undefined,
+        description: application_description(property),
       })(property.value);
 
       if (schema === null) continue;
@@ -111,7 +112,7 @@ const create_object_schema =
         );
         return info?.text?.length ? CommentFactory.merge(info.text) : undefined;
       })(),
-      description: obj.description,
+      description: application_description(obj),
       additionalProperties: join(components)(extraMeta),
     };
   };

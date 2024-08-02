@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "prepare": "ts-patch install && typia patch"
+    "prepare": "ts-patch install && typia patch",
+    "build": "node build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.9.2",
-    "ts-patch": "^3.1.2",
+    "ts-patch": "^3.2.0",
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "typia": "../typia-6.0.4.tgz"
+    "typia": "../typia-6.6.1.tgz"
   }
 }

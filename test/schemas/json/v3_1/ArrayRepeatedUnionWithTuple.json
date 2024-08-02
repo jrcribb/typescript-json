@@ -17,10 +17,7 @@
             }
           },
           {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ArrayRepeatedUnionWithTuple"
-            }
+            "$ref": "#/components/schemas/ArrayArrayRepeatedUnionWithTuple"
           },
           {
             "type": "array",
@@ -41,9 +38,7 @@
                 "type": "boolean"
               }
             ],
-            "additionalItems": {
-              "type": "boolean"
-            }
+            "additionalItems": false
           },
           {
             "type": "array",
@@ -55,11 +50,15 @@
                 "$ref": "#/components/schemas/ArrayRepeatedUnionWithTuple.IPoint3D"
               }
             ],
-            "additionalItems": {
-              "$ref": "#/components/schemas/ArrayRepeatedUnionWithTuple.IPoint3D"
-            }
+            "additionalItems": false
           }
         ]
+      },
+      "#/components/schemas/ArrayArrayRepeatedUnionWithTuple": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ArrayRepeatedUnionWithTuple"
+        }
       },
       "ArrayRepeatedUnionWithTuple.IBox3D": {
         "type": "object",
