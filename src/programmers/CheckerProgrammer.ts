@@ -97,6 +97,18 @@ export namespace CheckerProgrammer {
   /* -----------------------------------------------------------
         WRITERS
     ----------------------------------------------------------- */
+  export const compose = (props: {
+    project: IProject;
+    config: IConfig;
+    importer: FunctionImporter;
+    type: ts.Type;
+    name: string | undefined;
+  }) =>
+    FeatureProgrammer.compose({
+      ...props,
+      config: configure(props.project)(props.config)(props.importer),
+    });
+
   export const write =
     (project: IProject) => (config: IConfig) => (importer: FunctionImporter) =>
       FeatureProgrammer.write(project)(configure(project)(config)(importer))(
@@ -319,7 +331,7 @@ export namespace CheckerProgrammer {
         );
 
       // FUNCTIONAL
-      if (meta.functional === true)
+      if (meta.functions.length)
         if (OptionPredicator.functional(project.options) || meta.size() !== 1)
           add(
             true,

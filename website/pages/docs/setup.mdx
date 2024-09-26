@@ -31,7 +31,7 @@ bun typia setup --manager bun
 
 Just run `npx typia setup` command if you're using `tsc`. The setup wizard will do everything. 
 
-By the way, if you need additional bundling, the third party library [`unplugin-typia`](#unplugin-typia) is recommended.
+By the way, if you use `typia` with bundlers(`vite`, `rollup`, `webpack`, etc), the third party library [`unplugin-typia`](#unplugin-typia) is recommended.
 
 Otherwise non-standard compiler case, only the [generation](#generation) mode is available.
 
@@ -68,20 +68,10 @@ interface IMember {
 ```
   </Tab>
   <Tab>
-```javascript filename="examples/bin/check.js" showLineNumbers {2-12}
-"use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.check = void 0;
-const typia_1 = __importDefault(require("typia"));
-const check = (input) => {
-  return (
-    "object" === typeof input &&
-    null !== input &&
+```javascript filename="examples/bin/check.js" showLineNumbers {2-16}
+import typia from "typia";
+export const check = (() => {
+  const $io0 = (input) =>
     "string" === typeof input.id &&
     /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(
       input.id,
@@ -92,10 +82,9 @@ const check = (input) => {
     ) &&
     "number" === typeof input.age &&
     19 < input.age &&
-    input.age <= 100
-  );
-};
-exports.check = check;
+    input.age <= 100;
+  return (input) => "object" === typeof input && null !== input && $io0(input);
+})();
 ```
   </Tab>
 </Tabs>
@@ -262,7 +251,9 @@ Currently, `unplugin-typia` supports the following bundlers:
 <Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
   <Tab>
 ```bash filename="Terminal" showLineNumbers copy
-npx jsr add -D @ryoppippi/unplugin-typia
+npx jsr add -D @ryoppippi/unplugin-typia # via jsr (recommended)
+# npm install -D @ryoppippi/unplugin-typia # via npm
+
 npm install --save typia
 npx typia setup
 ```
@@ -295,10 +286,14 @@ At first, install both `unplugin-typia` and `typia`, with `npx typia setup` comm
 
 After that, follow the next section steps to integrate `unplugin-typia` into your bundlers.
 
-For reference, there are a couple of ways to integrate `unplugin-typia` into your bundlers. For the full integration guide, please refer to the [`unplugin-typia` documentation](https://jsr.io/@ryoppippi/unplugin-typia/doc). Also, you can see the examples projects in [`unplugin-typia` repository](https://github.com/ryoppippi/unplugin-typia).
+For reference, there are a couple of ways to integrate `unplugin-typia` into your bundlers. For the full integration guide, please refer to the [`unplugin-typia` documentation](https://jsr.io/@ryoppippi/unplugin-typia/doc). Also, you can see the examples projects in [`unplugin-typia` repository](https://github.com/ryoppippi/unplugin-typia/tree/main/examples).
 
 <Tabs items={['Vite', 'Next.js', 'esbuild', 'Bun.runtime', 'Bun.build']}>
   <Tab>
+  <Callout type="info">
+  You can use any plugins with [`unplugin-typia`](#unplugin-typia) in Vite (including [`@vitejs/plugin-react-swc`](https://github.com/vitejs/vite-plugin-react-swc)).
+  `unplugin-typia` processes the TypeScript code before transforming it to JavaScript, so it can be used with any plugins.
+  </Callout>
 ```typescript filename="vite.config.ts" copy showLineNumbers
 import UnpluginTypia from '@ryoppippi/unplugin-typia/vite'
  
@@ -622,7 +617,7 @@ If you are using a non-standard TypeScript compiler such as the following, you w
   - Non-standard TypeScript compilers:
     - [Babel](https://babeljs.io/) in Create-React-App
     - [esbuild](https://esbuild.github.io/) in Vite -> covered by [`unplugin-typia`](#unplugin-typia)
-    - [SWC](https://swc.rs/) in Next.js -> only `Next.js` is covered by [`unplugin-typia`](#unplugin-typia)
+    - [SWC](https://swc.rs/) -> use [`unplugin-typia`](#unplugin-typia) with your bundlers ( including `next.js`, `vite`, `webpack`, `rollup`, etc )
 
 Instead you should utilise the generation mode. 
 
