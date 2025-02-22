@@ -1,3 +1,6 @@
+---
+title: Guide Documents > JSON > Schema
+---
 import { Tabs } from 'nextra/components'
 
 ## `schemas()` function
@@ -139,7 +142,6 @@ If you write any comment on a property, it would fill the `IJsonSchema.descripti
   - `@hidden`
   - `@internal`
   - `@title {string}`
-  - `@default {value}`
 
 Let's see how those [type tags](../validators/tags/#type-tags), comment tags and description comments are working with example code.
 
@@ -183,7 +185,6 @@ interface Special {
    *
    * @exclusiveMinimum 19
    * @maximum 100
-   * @default 30
    */
   number?: number;
 

@@ -7,6 +7,8 @@ on:
       - 'test-error/**'
       - 'test-esm/**'
       - 'package.json'
+      - 'tsconfig.json'
+      - 'rollup.config.js'
       - '.github/workflows/build.yml'
 jobs:
   Build-and-Upload-to-pkg-pr-new-and-artifactory:
@@ -39,6 +41,17 @@ jobs:
             *.tgz
             src
             lib
+
+  Check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - run: npm install
+      - run: npm run eslint
+      - run: npm run prettier
 
   NodeJS:
     runs-on: ubuntu-latest
@@ -85,6 +98,7 @@ jobs:
   action-timeline:
     needs:
       - Build-and-Upload-to-pkg-pr-new-and-artifactory
+      - Check-format
       - NodeJS
       - Bun
     if: ${{ always() }}

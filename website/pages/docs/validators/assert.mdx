@@ -1,3 +1,7 @@
+---
+title: Guide Documents > Runtime Validators > assert() functions
+---
+
 import { Tabs } from 'nextra/components'
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -39,7 +43,7 @@ The `TypeGuardError` instance has only the first type error info, with access pa
 <br/>
 <Alert severity="success">
   <AlertTitle> 
-    **AOT compliation** 
+    **AOT compilation** 
   </AlertTitle>
 
 If you'd used other competitive validator libraries like `ajv` or `class-validator`, you may found that `typia` does not require any extra schema definition. If you have not experienced them, I can sure that you may get shocked after reading below extra schema definition files.
@@ -692,7 +696,7 @@ export const assertMember = (() => {
 
 <Alert severity="warning">
   <AlertTitle>
-    **Explicity of Assertion Guard** 
+    **Explicitly of Assertion Guard** 
   </AlertTitle>
 
 Be careful when using `typia.createAssertGuard<T>()` or `typia.createAssertGuardEquals<T>()` functions. 
@@ -705,7 +709,7 @@ import typia, { AssertionGuard } from "typia";
 //MUST DECLARE THE VARIABLE TYPE
 const explicit: AssertionGuard<number> = typia.createAssertGuard<number>();
 
-// IF NOT, COMPILATION ERROR BE OCCURED
+// IF NOT, COMPILATION ERROR BE OCCURRED
 const implicit = typia.createAssertGuard<number>();
 ```
 

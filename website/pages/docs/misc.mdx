@@ -1,3 +1,6 @@
+---
+title: Guide Documents > Miscellaneous
+---
 import { Tabs } from 'nextra/components'
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -1982,14 +1985,14 @@ URL query decoder functions.
 
 `typia.http.query<T>()` is a function decoding a query string or an `URLSearchParams` instance, with automatic type casting to the expected type. When property type be defined as boolean or number type, `typia.http.query<T>()` will cast the value to the expected type when decoding.
 
-By the way, as URL query is not enough to express complex data structures, `typia.http.query<T>()` function has some limitations. If target type `T` is not following those restrictions, compilation errors would be occured.
+By the way, as URL query is not enough to express complex data structures, `typia.http.query<T>()` function has some limitations. If target type `T` is not following those restrictions, compilation errors would be occurred.
 
   1. Type T must be an object type
   2. Do not allow dynamic property
   3. Only boolean, bigint, number, string or their array types are allowed
   4. By the way, union type never be not allowed
 
-Also, `typia.http.query<T>()` function does not perform validation about the decoded value. Therefore, if you can't sure that input data is following the `T` type, it would better to call one of below functions intead.
+Also, `typia.http.query<T>()` function does not perform validation about the decoded value. Therefore, if you can't sure that input data is following the `T` type, it would better to call one of below functions instead.
 
   - `typia.http.assertQuery<T>()`: [`typia.assert<T>()`](./validators/assert) + `typia.http.query<T>()`
   - `typia.http.isQuery<T>()`: [`typia.is<T>()`](./validators/is) + `typia.http.query<T>()`
@@ -2250,7 +2253,7 @@ Headers decoder (for express and fastify).
 
 `typia.http.headers<t>()` is a function decoding an header instance, with automatic type casting to the expected type. When property type be defined as boolean or number type, `typia.http.headers<t>()` will cast the value to the expected type.
 
-By the way, as HTTP headers are not enough to express complex data structures, `typia.http.headers<t>()` function has some limitations. If target type `T` is not following those restrictions, compilation errors would be occured.
+By the way, as HTTP headers are not enough to express complex data structures, `typia.http.headers<t>()` function has some limitations. If target type `T` is not following those restrictions, compilation errors would be occurred.
 
   1. Type T must be an object type
   2. Do not allow dynamic property
@@ -2279,7 +2282,7 @@ By the way, as HTTP headers are not enough to express complex data structures, `
     - server
     - user-agent
 
-Also, `typia.http.headers<t>()` function does not perform validation about the decoded value. Therefore, if you can't sure that input data is following the `T` type, it would better to call one of below functions intead.
+Also, `typia.http.headers<t>()` function does not perform validation about the decoded value. Therefore, if you can't sure that input data is following the `T` type, it would better to call one of below functions instead.
 
   - `typia.http.assertHeaders<T>()`: [`typia.assert<T>()`](./validators/assert) + `typia.http.headers<T>()`
   - `typia.http.isHeaders<T>()`: [`typia.is<T>()`](./validators/is) + `typia.http.headers<T>()`
@@ -2287,6 +2290,7 @@ Also, `typia.http.headers<t>()` function does not perform validation about the d
 
 <Tabs items={['TypeScript Source Code', 'Compiled JavaScript File']}>
   <Tabs.Tab>
+
 ```typescript filename="examples/src/headers.ts" showLineNumbers {}
 import typia from "typia";
 
@@ -2294,7 +2298,7 @@ interface IHeaders {
   "x-Category": "x" | "y" | "z";
   "x-MEMO"?: string;
   "x-nAmE"?: string;
-  "x-ValUes": number[];
+  "x-Values": number[];
   "x-FlAgS": boolean[];
   "X-Descriptions": string[];
 }
@@ -2312,7 +2316,7 @@ import typia from "typia";
       "x-Category": input["x-category"],
       "x-MEMO": input["x-memo"],
       "x-nAmE": input["x-name"],
-      "x-ValUes": Array.isArray(input["x-values"])
+      "x-Values": Array.isArray(input["x-values"])
         ? input["x-values"].map(
             __typia_transform__httpHeaderReadNumber._httpHeaderReadNumber,
           )
@@ -2371,7 +2375,7 @@ export class TypeGuardError extends Error {
 
 URL path parameter decoder.
 
-`typia.http.parameter<T>()` is a function decoding a path parameter, with automatic type casting to the expected type. When type T has beeen defined as boolean or number `type, typia.http.parameter<T>()` will cast the value to the expected type.
+`typia.http.parameter<T>()` is a function decoding a path parameter, with automatic type casting to the expected type. When type T has been defined as boolean or number `type, typia.http.parameter<T>()` will cast the value to the expected type.
 
 Also, `typia.http.parameter<T>()` performs type assertion to the decoded value by combining with assert function. Therefore, when the decoded value is not following the `T` type, `TypeGuardError` would be thrown.
 
