@@ -1,7 +1,11 @@
 import { LlmTypeCheckerV3_1 } from "@samchon/openapi";
 import typia, { tags } from "typia";
 
-export const schema = typia.llm.schema<ICompany, "chatgpt">({});
+export const schema = typia.llm.schema<
+  ICompany,
+  "chatgpt",
+  { reference: true }
+>({});
 
 export const parameters = typia.llm.parameters<
   {
@@ -16,11 +20,6 @@ export const application = typia.llm.application<IApplication, "llama">({
   separate: (schema) =>
     LlmTypeCheckerV3_1.isString(schema) && schema.format === "date-time",
 });
-
-export const applicationOfValidate = typia.llm.applicationOfValidate<
-  IApplication,
-  "llama"
->();
 
 export interface IApplication {
   establishCompany(props: { company: ICompany }): ICompany;
